@@ -1,0 +1,93 @@
+/* ==========================================================================
+   MediBook+ Design Tokens
+   Single source of truth for color, spacing, radius, shadow and typography.
+   Values are lifted from the "Clinical Precision" design system.
+   ========================================================================== */
+
+:root {
+  /* ---- Brand & Surface Colors ------------------------------------------ */
+  --primary: #069494;
+  --primary-hover: #057a7a;
+  --primary-dark: #006767;
+  --primary-light: #e6f5f5;
+  --primary-container: #d0efee;
+  --on-primary: #ffffff;
+
+  --secondary: #505f76;
+  --secondary-container: #d0e1fb;
+  --on-secondary-container: #54647a;
+
+  --tertiary: #8f491d;
+  --tertiary-container: #ffdbca;
+
+  --background: #f6faf9;
+  --surface: #f6faf9;
+  --surface-dim: #d6dbda;
+  --surface-bright: #f6faf9;
+  --surface-lowest: #ffffff;
+  --surface-low: #f0f5f4;
+  --surface-container: #eaefee;
+  --surface-high: #e4e9e8;
+  --surface-highest: #dfe3e3;
+
+  --on-surface: #171d1c;
+  --on-surface-variant: #3d4949;
+  --outline: #6d7979;
+  --outline-variant: #bcc9c8;
+
+  --success: #1b7a4b;
+  --success-bg: #dcf5e6;
+  --success-border: #b8e6cb;
+
+  --warning: #92620a;
+  --warning-bg: #fdf0d5;
+  --warning-border: #f5dfa8;
+
+  --danger: #ba1a1a;
+  --danger-bg: #ffdad6;
+  --danger-border: #f5c2c2;
+
+  /* ---- Shape ------------------------------------------------------------ */
+  --radius-sm: 8px;
+  --radius: 16px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  /* ---- Elevation ---------------------------------------------------------*/
+  --shadow-sm: 0 1px 3px rgba(15, 30, 29, 0.06);
+  --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --shadow-focus: 0 0 0 4px rgba(6, 148, 148, 0.18);
+
+  /* ---- Motion ------------------------------------------------------------*/
+  --transition: all 0.2s ease-in-out;
+  --transition-slow: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* ---- Spacing (8px base grid) ------------------------------------------*/
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --gutter: 24px;
+  --margin-mobile: 16px;
+  --margin-desktop: 32px;
+  --container-max: 1440px;
+
+  /* ---- Layout ------------------------------------------------------------*/
+  --sidebar-width: 260px;
+  --navbar-height: 64px;
+  --bottom-nav-height: 64px;
+
+  /* ---- Z-Index Scale -------------------------------------------------------*/
+  --z-sidebar: 1030;
+  --z-navbar: 1040;
+  --z-fab: 1035;
+  --z-modal: 1050;
+  --z-toast: 1060;
+
+  /* ---- Typography ---------------------------------------------------------*/
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}

@@ -1,0 +1,16 @@
+/* ==========================================================================
+   MediBook+ | Global Stylesheet Entry Point
+   Import order matters (cascade): tokens first, then resets, then
+   generic utilities/layout/components, then responsive overrides last.
+
+   Every page links only this file (plus its own page-specific stylesheet,
+   e.g. dashboard.css) — no page should need to hand-pick individual
+   modules.
+   ========================================================================== */
+
+@import url("variables.css");   /* design tokens: color, spacing, radius, shadow, z-index */
+@import url("reset.css");       /* base element resets */
+@import url("utilities.css");   /* single-purpose helper classes & shared animations */
+@import url("layout.css");      /* app shell: navbar, sidebar, main region, mobile nav */
+@import url("components.css");  /* reusable components: cards, badges, tables, buttons */
+@import url("responsive.css");  /* breakpoint fine-tuning, applied last so it can override */

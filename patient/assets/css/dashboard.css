@@ -1,0 +1,137 @@
+/* ==========================================================================
+   MediBook+ | Dashboard Page
+   Styles specific to the Patient Dashboard's hero/welcome composition.
+   Everything reusable (cards, badges, tables, buttons) already lives in
+   components.css — this file only covers the one-off hero layout.
+   ========================================================================== */
+
+.mb-hero {
+  position: relative;
+  overflow: hidden;
+  background: var(--surface-lowest);
+  border: 1px solid rgba(109, 121, 121, 0.15);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: var(--space-xl);
+}
+.mb-hero__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2xl);
+  align-items: center;
+}
+@media (min-width: 992px) {
+  .mb-hero__grid { grid-template-columns: 1fr 1fr; }
+}
+
+.mb-hero__title {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: var(--space-md);
+}
+@media (min-width: 768px) {
+  .mb-hero__title { font-size: 32px; }
+}
+
+.mb-hero__desc {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--on-surface-variant);
+  margin-bottom: var(--space-xl);
+  max-width: 480px;
+}
+
+.mb-appt-highlight {
+  background: var(--surface-container);
+  border-radius: var(--radius);
+  padding: var(--space-lg);
+  border: 1px solid rgba(109, 121, 121, 0.15);
+  max-width: 420px;
+}
+.mb-appt-highlight__doctor {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+.mb-appt-highlight__doctor .avatar-initials { width: 48px; height: 48px; font-size: 16px; }
+.mb-appt-highlight__doctor h3 { font-size: 16px; font-weight: 600; margin: 0; }
+.mb-appt-highlight__doctor .dept {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.mb-appt-highlight__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-lg);
+  color: var(--on-surface-variant);
+  margin-bottom: var(--space-xl);
+  font-size: 14px;
+}
+.mb-appt-highlight__meta span { display: flex; align-items: center; gap: 6px; }
+.mb-appt-highlight__meta i { color: var(--primary); font-size: 18px; }
+
+.mb-hero__visual { display: none; }
+@media (min-width: 992px) {
+  .mb-hero__visual { display: block; }
+}
+.mb-hero__image {
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: linear-gradient(135deg, #0a8f8f 0%, #0d5c5c 55%, #06393a 100%);
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+}
+.mb-hero__image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.18), transparent 45%),
+    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.12), transparent 40%);
+}
+.mb-hero__image span {
+  position: relative;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 13px;
+  font-weight: 500;
+  padding: var(--space-md);
+}
+
+.mb-hero__side-cards {
+  margin-top: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+/* ---- Quick Stats grid --------------------------------------------------- */
+.mb-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gutter);
+}
+@media (min-width: 992px) {
+  .mb-stats-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ---- Quick Actions grid --------------------------------------------------*/
+.mb-actions-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gutter);
+}
+@media (min-width: 576px) {
+  .mb-actions-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 992px) {
+  .mb-actions-grid { grid-template-columns: repeat(3, 1fr); }
+}

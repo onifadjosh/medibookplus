@@ -1,0 +1,44 @@
+/* ==========================================================================
+   MediBook+ | Profile Page
+   Layout only — every visual component (page header, panels, progress
+   bar, form fields, badges, avatar) lives in components.css and is
+   reused here.
+   ========================================================================== */
+
+.mb-profile-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-md);
+}
+@media (min-width: 768px) {
+  .mb-profile-summary { flex-direction: row; align-items: center; text-align: left; }
+}
+.mb-profile-summary__avatar .avatar-initials { width: 96px; height: 96px; font-size: 32px; }
+.mb-profile-summary__info { flex: 1; min-width: 0; }
+.mb-profile-summary__info h2 { font-size: 20px; font-weight: 700; margin: 0 0 4px; }
+.mb-profile-summary__info .sub { font-size: 14px; color: var(--on-surface-variant); margin: 0 0 var(--space-md); }
+.mb-profile-summary__stats { display: flex; flex-wrap: wrap; gap: var(--space-lg); justify-content: center; }
+@media (min-width: 768px) {
+  .mb-profile-summary__stats { justify-content: flex-start; }
+}
+.mb-profile-summary__stats .stat .k { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--on-surface-variant); margin: 0 0 2px; }
+.mb-profile-summary__stats .stat .v { font-size: 14px; font-weight: 600; margin: 0; }
+
+.mb-profile-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+}
+@media (min-width: 992px) {
+  .mb-profile-grid { grid-template-columns: 1fr 1fr; align-items: start; }
+}
+
+.mb-profile-allergies { display: flex; flex-wrap: wrap; gap: var(--space-sm); margin-top: 6px; }
+
+.mb-profile-col { display: flex; flex-direction: column; gap: var(--space-lg); }
+
+.mb-profile-summary__progress { max-width: 320px; margin-bottom: 0; }
+.mb-form-group--narrow { max-width: 200px; }
+.mb-form-group--medium { max-width: 420px; }

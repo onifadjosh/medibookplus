@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings | MediBook+</title>
+  <meta name="description"
+    content="MediBook+ settings — account, notification preferences, privacy & security, language, and theme.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+  <!-- MediBook+ styles: style.css covers the shared shell + component library,
+     settings.css covers this page's minimal layout only. -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/settings.css">
+</head>
+
+<body data-page="settings">
+
+  <a href="#main-content" class="visually-hidden-focusable">Skip to main content</a>
+
+  <!-- ===========================================================
+     Top Navigation (identical to dashboard.html — shared app shell)
+     =========================================================== -->
+  <header class="mb-navbar">
+    <div class="d-flex align-items-center gap-4">
+      <span class="mb-navbar__brand">MediBook+</span>
+      <!-- <nav class="mb-navbar__links" aria-label="Primary">
+      <a href="dashboard.html" data-route="dashboard" class="mb-navbar__link" data-nav-link="dashboard">Dashboard</a>
+      <a href="appointments.html" data-route="appointments" class="mb-navbar__link" data-nav-link="appointments">Appointments</a>
+      <a href="messages.html" data-route="messages" class="mb-navbar__link" data-nav-link="messages">Messages</a>
+      <a href="#" class="mb-navbar__link" data-nav-link="records">Records</a>
+    </nav> -->
+    </div>
+    <div class="mb-navbar__actions">
+      <button type="button" class="mb-icon-btn" data-notif-bell aria-label="View notifications">
+        <i class="bi bi-bell" aria-hidden="true"></i>
+        <span class="badge-dot" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="mb-icon-btn" data-settings-shortcut aria-label="Settings">
+        <i class="bi bi-gear" aria-hidden="true"></i>
+      </button>
+      <div class="mb-navbar__avatar" data-navbar-avatar aria-label="Patient profile"></div>
+    </div>
+  </header>
+
+  <div class="mb-app-body">
+
+    <!-- =========================================================
+       Sidebar (identical to dashboard.html — shared app shell)
+       ========================================================= -->
+    <aside class="mb-sidebar" aria-label="Sidebar navigation">
+      <nav class="mb-sidebar__nav" aria-label="Secondary">
+        <a href="dashboard.html" data-route="dashboard" class="mb-sidebar__item" data-nav-link="dashboard">
+          <i class="bi bi-grid-1x2" aria-hidden="true"></i> Dashboard
+        </a>
+        <a href="profile.html" data-route="profile" class="mb-sidebar__item" data-nav-link="profile">
+          <i class="bi bi-person-badge" aria-hidden="true"></i> Profile
+        </a>
+        <a href="appointments.html" data-route="appointments" class="mb-sidebar__item" data-nav-link="appointments">
+          <i class="bi bi-calendar2-week" aria-hidden="true"></i> Appointments
+        </a>
+        <a href="messages.html" data-route="messages" class="mb-sidebar__item" data-nav-link="messages">
+          <i class="bi bi-chat-dots" aria-hidden="true"></i> Messages
+        </a>
+        <a href="settings.html" data-route="settings" class="mb-sidebar__item" data-nav-link="settings">
+          <i class="bi bi-gear" aria-hidden="true"></i> Settings
+        </a>
+      </nav>
+
+      <div class="mb-sidebar__cta">
+        <a href="appointments.html" data-route="appointments" class="mb-btn-new-appt">
+          <i class="bi bi-plus-circle" aria-hidden="true"></i>
+          New Appointment
+        </a>
+      </div>
+    </aside>
+
+    <!-- =========================================================
+       Main Content — Settings
+       ========================================================= -->
+    <main id="main-content" class="mb-main">
+      <div class="mb-main__inner">
+
+        <!-- ---- Page Header ---- -->
+        <div class="mb-page-header fade-in-up">
+          <div>
+            <p class="mb-breadcrumb">Dashboard &gt; <span class="current">Settings</span></p>
+            <h1>Settings</h1>
+          </div>
+        </div>
+
+        <div class="mb-settings-grid">
+
+          <!-- ---- Account Settings ---- -->
+          <section class="mb-panel fade-in-up" aria-labelledby="account-settings-heading">
+            <h4 class="mb-panel__title" id="account-settings-heading">Account Settings</h4>
+            <div class="mb-settings-account-row">
+              <div>
+                <p class="mb-settings-row__label" data-settings-email>&nbsp;</p>
+                <p class="mb-settings-row__desc">Patient ID: <span data-settings-patient-id>&nbsp;</span></p>
+              </div>
+              <span class="mb-badge confirmed" data-settings-account-status>&nbsp;</span>
+            </div>
+            <a href="profile.html" data-route="profile" class="mb-btn mb-btn-outline mt-md">
+              <i class="bi bi-pencil-square" aria-hidden="true"></i> Manage on Profile Page
+            </a>
+          </section>
+
+          <!-- ---- Notification Preferences ---- -->
+          <section class="mb-panel fade-in-up" aria-labelledby="notification-prefs-heading">
+            <h4 class="mb-panel__title" id="notification-prefs-heading">Notification Preferences</h4>
+            <div data-notification-toggles></div>
+          </section>
+
+          <!-- ---- Privacy & Security ---- -->
+          <section class="mb-panel fade-in-up" aria-labelledby="privacy-security-heading">
+            <h4 class="mb-panel__title" id="privacy-security-heading">Privacy &amp; Security</h4>
+            <div data-privacy-toggles></div>
+            <div class="mb-settings-row">
+              <div>
+                <p class="mb-settings-row__label">Change Password</p>
+                <p class="mb-settings-row__desc">Update the password used to sign in to your account.</p>
+              </div>
+              <a href="profile.html#change-password" data-route="profile"
+                class="mb-btn mb-btn-outline mb-settings-row__control">
+                Change
+              </a>
+            </div>
+          </section>
+
+          <!-- ---- Language Preference ---- -->
+          <section class="mb-panel fade-in-up" aria-labelledby="language-heading">
+            <h4 class="mb-panel__title" id="language-heading">Language Preference</h4>
+            <div class="mb-form-group mb-language-field">
+              <label class="mb-form-label" for="languageSelect">Display Language</label>
+              <select id="languageSelect" class="mb-form-control" data-language-select></select>
+            </div>
+          </section>
+
+          <!-- ---- Theme Preference ---- -->
+          <section class="mb-panel fade-in-up" aria-labelledby="theme-heading">
+            <h4 class="mb-panel__title" id="theme-heading">Theme Preference</h4>
+            <p class="mb-form-hint mb-md">Visual theme switching is coming soon — your choice is saved for when it
+              ships.</p>
+            <div class="mb-theme-grid" data-theme-options></div>
+          </section>
+
+          <!-- ---- Logout ---- -->
+          <section class="mb-panel fade-in-up" aria-labelledby="logout-heading">
+            <h4 class="mb-panel__title" id="logout-heading">Logout</h4>
+            <p class="mb-form-hint mb-md">Sign out of MediBook+ on this device.</p>
+            <button type="button" class="mb-btn mb-btn-outline" data-action="logout">
+              <i class="bi bi-box-arrow-right" aria-hidden="true"></i> Logout
+            </button>
+          </section>
+
+          <!-- ---- Danger Zone: Deactivate Account ---- -->
+          <section class="mb-panel mb-panel--danger fade-in-up" aria-labelledby="deactivate-heading">
+            <h4 class="mb-panel__title" id="deactivate-heading">Deactivate Account</h4>
+            <p class="mb-form-hint mb-md">
+              Deactivating your account hides your profile and pauses future appointments. This is reversible by
+              contacting
+              support — it does not permanently delete your medical records.
+            </p>
+            <button type="button" class="mb-btn mb-btn-danger" data-action="deactivate">
+              <i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Deactivate Account
+            </button>
+          </section>
+
+        </div>
+      </div>
+      <div class="mb-bottom-spacer"></div>
+    </main>
+  </div>
+
+  <!-- =============================================================
+     Bottom Navigation (identical to dashboard.html — shared app shell)
+     ============================================================= -->
+  <nav class="mb-bottom-nav" aria-label="Mobile primary navigation">
+    <a href="dashboard.html" data-route="dashboard" class="mb-bottom-nav__item" data-nav-link="dashboard">
+      <i class="bi bi-grid-1x2" aria-hidden="true"></i>
+      <span>Home</span>
+    </a>
+    <a href="appointments.html" data-route="appointments" class="mb-bottom-nav__item" data-nav-link="appointments">
+      <i class="bi bi-calendar2-week" aria-hidden="true"></i>
+      <span>Appointments</span>
+    </a>
+    <a href="messages.html" data-route="messages" class="mb-bottom-nav__item" data-nav-link="messages">
+      <i class="bi bi-chat-dots" aria-hidden="true"></i>
+      <span>Chat</span>
+    </a>
+    <a href="#" class="mb-bottom-nav__item" data-nav-link="records">
+      <i class="bi bi-folder2" aria-hidden="true"></i>
+      <span>Records</span>
+    </a>
+    <a href="profile.html" data-route="profile" class="mb-bottom-nav__item" data-nav-link="profile">
+      <i class="bi bi-person" aria-hidden="true"></i>
+      <span>Profile</span>
+    </a>
+  </nav>
+
+  <!-- =============================================================
+     Logout Confirmation Modal
+     ============================================================= -->
+  <div class="modal fade" id="logoutConfirmModal" tabindex="-1" aria-labelledby="logoutConfirmModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="logoutConfirmModalLabel">Log Out?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="mb-0">You'll need to sign in again to access your account.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="mb-btn mb-btn-outline" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="mb-btn mb-btn-primary" data-action="confirm-logout">
+            <i class="bi bi-box-arrow-right" aria-hidden="true"></i> Log Out
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============================================================
+     Deactivate Account Confirmation Modal
+     ============================================================= -->
+  <div class="modal fade" id="deactivateConfirmModal" tabindex="-1" aria-labelledby="deactivateConfirmModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deactivateConfirmModalLabel">Deactivate Your Account?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>This will hide your profile and pause any future appointments. Your medical records are kept, and you can
+            reactivate by contacting support.</p>
+          <p class="mb-0"><strong>This action cannot be undone from this device.</strong></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="mb-btn mb-btn-outline" data-bs-dismiss="modal">Keep My Account</button>
+          <button type="button" class="mb-btn mb-btn-danger" data-action="confirm-deactivate">
+            <i class="bi bi-exclamation-triangle" aria-hidden="true"></i> Yes, Deactivate
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap bundle (JS, no jQuery dependency) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- MediBook+ scripts (ES modules: app.js boots shared chrome, settings.js
+     owns this page's data + rendering) -->
+  <script type="module" src="../assets/js/app.js"></script>
+  <script type="module" src="../assets/js/settings.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Appointment | MediBook+</title>
+  <meta name="description" content="MediBook+ appointment booking — select a department, doctor, date, and time.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+  <!-- MediBook+ styles: style.css covers the shared shell + component library,
+     appointments.css covers this page's wizard layout only. -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/appointments.css">
+</head>
+
+<body data-page="appointments">
+
+  <a href="#main-content" class="visually-hidden-focusable">Skip to main content</a>
+
+  <!-- ===========================================================
+     Top Navigation (identical to dashboard.html — shared app shell)
+     =========================================================== -->
+  <header class="mb-navbar">
+    <div class="d-flex align-items-center gap-4">
+      <span class="mb-navbar__brand">MediBook+</span>
+      <nav class="mb-navbar__links" aria-label="Primary">
+        <a href="dashboard.html" data-route="dashboard" class="mb-navbar__link" data-nav-link="dashboard">Dashboard</a>
+        <a href="appointments.html" data-route="appointments" class="mb-navbar__link"
+          data-nav-link="appointments">Appointments</a>
+        <a href="messages.html" data-route="messages" class="mb-navbar__link" data-nav-link="messages">Messages</a>
+        <a href="#" class="mb-navbar__link" data-nav-link="records">Records</a>
+      </nav>
+    </div>
+    <div class="mb-navbar__actions">
+      <button type="button" class="mb-icon-btn" data-notif-bell aria-label="View notifications">
+        <i class="bi bi-bell" aria-hidden="true"></i>
+        <span class="badge-dot" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="mb-icon-btn" data-settings-shortcut aria-label="Settings">
+        <i class="bi bi-gear" aria-hidden="true"></i>
+      </button>
+      <div class="mb-navbar__avatar" data-navbar-avatar aria-label="Patient profile"></div>
+    </div>
+  </header>
+
+  <div class="mb-app-body">
+
+    <!-- =========================================================
+       Sidebar (identical to dashboard.html — shared app shell)
+       ========================================================= -->
+    <aside class="mb-sidebar" aria-label="Sidebar navigation">
+      <!-- <nav class="mb-sidebar__nav" aria-label="Secondary">
+        <a href="dashboard.html" data-route="dashboard" class="mb-sidebar__item" data-nav-link="dashboard">
+          <i class="bi bi-grid-1x2" aria-hidden="true"></i> Dashboard
+        </a>
+        <a href="profile.html" data-route="profile" class="mb-sidebar__item" data-nav-link="profile">
+          <i class="bi bi-person-badge" aria-hidden="true"></i> Profile
+        </a>
+        <a href="appointments.html" data-route="appointments" class="mb-sidebar__item" data-nav-link="appointments">
+          <i class="bi bi-calendar2-week" aria-hidden="true"></i> Appointments
+        </a>
+        <a href="messages.html" data-route="messages" class="mb-sidebar__item" data-nav-link="messages">
+          <i class="bi bi-chat-dots" aria-hidden="true"></i> Messages
+        </a>
+        <a href="settings.html" data-route="settings" class="mb-sidebar__item" data-nav-link="settings">
+          <i class="bi bi-gear" aria-hidden="true"></i> Settings
+        </a>
+      </nav> -->
+
+      <div class="mb-sidebar__cta">
+        <button type="button" class="mb-btn-new-appt" data-action="restart-booking">
+          <i class="bi bi-plus-circle" aria-hidden="true"></i>
+          New Appointment
+        </button>
+      </div>
+    </aside>
+
+    <!-- =========================================================
+       Main Content — Booking Wizard
+       ========================================================= -->
+    <main id="main-content" class="mb-main">
+      <div class="mb-main__inner">
+
+        <!-- ---- Page Header: title + quick link to Appointment History ---- -->
+        <div class="mb-page-header fade-in-up">
+          <div>
+            <p class="mb-breadcrumb">Dashboard &gt; <span class="current">Book Appointment</span></p>
+            <h1>Book an Appointment</h1>
+          </div>
+          <div class="mb-header-actions">
+            <a href="appointment-history.html" data-route="appointmentHistory" class="mb-btn mb-btn-outline">
+              <i class="bi bi-clock-history" aria-hidden="true"></i> View Appointment History
+            </a>
+          </div>
+        </div>
+
+        <!-- ---- Stepper (reused across every step; components.css §24) --- -->
+        <section class="mb-stepper fade-in-up" aria-label="Booking progress" data-wizard-stepper hidden>
+          <div class="mb-stepper__top">
+            <div>
+              <span class="mb-stepper__eyebrow" data-stepper-eyebrow>Step 1 of 5</span>
+              <h2 class="mb-stepper__title" data-stepper-title>Select Department</h2>
+            </div>
+            <div class="mb-stepper__meta" data-stepper-meta>Next: Select Provider</div>
+          </div>
+          <div class="mb-stepper__track" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+            aria-label="Booking progress" data-stepper-track>
+            <div class="mb-stepper__fill" data-stepper-fill style="width: 20%;"></div>
+          </div>
+          <div class="mb-stepper__labels" data-stepper-labels>
+            <span>Department</span><span>Doctor</span><span>Date</span><span>Time</span><span>Review</span>
+          </div>
+        </section>
+
+        <!-- ================= Step 1: Select Department ================= -->
+        <section class="mb-wizard-step" data-step="department">
+          <div class="mb-dept-grid stagger" data-department-grid></div>
+          <div class="mb-wizard-actions mt-xl">
+            <button type="button" class="mb-btn mb-btn-primary mb-btn-lg" data-action="next" disabled>
+              Continue <i class="bi bi-arrow-right" aria-hidden="true"></i>
+            </button>
+          </div>
+        </section>
+
+        <!-- ================= Step 2: Select Doctor ================= -->
+        <section class="mb-wizard-step" data-step="doctor" hidden>
+          <div class="mb-doctor-list stagger" data-doctor-list></div>
+          <div class="mb-wizard-actions mt-xl">
+            <button type="button" class="mb-btn mb-btn-primary mb-btn-lg" data-action="next" disabled>
+              Continue <i class="bi bi-arrow-right" aria-hidden="true"></i>
+            </button>
+            <button type="button" class="mb-btn mb-btn-outline" data-action="back">
+              <i class="bi bi-arrow-left" aria-hidden="true"></i> Back to Department
+            </button>
+          </div>
+        </section>
+
+        <!-- ================= Step 3: Select Date ================= -->
+        <section class="mb-wizard-step" data-step="date" hidden>
+          <div class="mb-booking-grid">
+            <div class="mb-calendar-card">
+              <div class="mb-calendar-card__head">
+                <div class="mb-calendar-card__title">
+                  <i class="bi bi-calendar-month" aria-hidden="true"></i>
+                  <span data-calendar-month>&nbsp;</span>
+                </div>
+                <div class="mb-calendar-nav">
+                  <button type="button" class="mb-row-action" data-action="prev-month" aria-label="Previous month">
+                    <i class="bi bi-chevron-left" aria-hidden="true"></i>
+                  </button>
+                  <button type="button" class="mb-row-action" data-action="next-month" aria-label="Next month">
+                    <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                  </button>
+                </div>
+              </div>
+              <div class="mb-calendar-grid" aria-label="Month calendar for selecting an appointment date">
+                <div class="mb-calendar-dow">Sun</div>
+                <div class="mb-calendar-dow">Mon</div>
+                <div class="mb-calendar-dow">Tue</div>
+                <div class="mb-calendar-dow">Wed</div>
+                <div class="mb-calendar-dow">Thu</div>
+                <div class="mb-calendar-dow">Fri</div>
+                <div class="mb-calendar-dow">Sat</div>
+                <div data-calendar-days class="mb-calendar-days"></div>
+              </div>
+            </div>
+
+            <aside class="mb-summary-sidebar">
+              <div class="mb-panel">
+                <h4 class="mb-panel__title">Your Selection</h4>
+                <div data-date-summary></div>
+              </div>
+              <div class="mb-panel">
+                <h4 class="mb-panel__title">Legend</h4>
+                <ul class="mb-legend">
+                  <li><span class="mb-legend__dot primary"></span> Selected date</li>
+                  <li><span class="mb-legend__dot neutral"></span> Available</li>
+                  <li><span class="mb-legend__dot danger"></span> Fully booked</li>
+                </ul>
+              </div>
+              <div class="mb-wizard-actions">
+                <button type="button" class="mb-btn mb-btn-primary mb-btn-lg" data-action="next" disabled>
+                  Continue <i class="bi bi-arrow-right" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="mb-btn mb-btn-outline" data-action="back">
+                  <i class="bi bi-arrow-left" aria-hidden="true"></i> Back to Doctor
+                </button>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <!-- ================= Step 4: Select Time ================= -->
+        <section class="mb-wizard-step" data-step="time" hidden>
+          <div class="mb-booking-grid">
+            <div class="mb-slot-sections" data-slot-sections></div>
+
+            <aside class="mb-summary-sidebar">
+              <div class="mb-panel">
+                <h4 class="mb-panel__title">Selected Details</h4>
+                <div data-time-summary></div>
+              </div>
+              <div class="mb-wizard-actions">
+                <button type="button" class="mb-btn mb-btn-primary mb-btn-lg" data-action="next" disabled>
+                  Continue <i class="bi bi-arrow-right" aria-hidden="true"></i>
+                </button>
+                <button type="button" class="mb-btn mb-btn-outline" data-action="back">
+                  <i class="bi bi-arrow-left" aria-hidden="true"></i> Back to Date
+                </button>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <!-- ================= Step 5: Review & Confirm ================= -->
+        <section class="mb-wizard-step" data-step="review" hidden>
+          <div class="mb-panel mb-panel--narrow">
+            <div class="mb-review-doctor">
+              <div data-review-avatar></div>
+              <div>
+                <h3 data-review-doctor-name>&nbsp;</h3>
+                <p class="specialty" data-review-doctor-dept>&nbsp;</p>
+              </div>
+            </div>
+            <div class="mb-review-details" data-review-details></div>
+            <div class="mb-wizard-actions">
+              <button type="button" class="mb-btn mb-btn-primary mb-btn-lg" data-action="confirm">
+                <i class="bi bi-check-circle" aria-hidden="true"></i> Confirm Appointment
+              </button>
+              <button type="button" class="mb-btn mb-btn-outline" data-action="back">
+                <i class="bi bi-arrow-left" aria-hidden="true"></i> Back to Time Slot
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= Success State ================= -->
+        <section class="mb-wizard-step" data-step="success" hidden aria-live="polite">
+          <div class="mb-panel mb-success-panel">
+            <div class="mb-success-icon"><i class="bi bi-check-lg" aria-hidden="true"></i></div>
+            <span class="mb-success-badge"><i class="bi bi-check-circle-fill" aria-hidden="true"></i> Booking
+              Successful</span>
+            <h2>Appointment Confirmed!</h2>
+            <p data-success-message>&nbsp;</p>
+            <div class="mb-reference-card">
+              <div>
+                <p class="label">Reference Number</p>
+                <p class="value" data-success-reference>&nbsp;</p>
+              </div>
+              <button type="button" class="mb-icon-btn" data-action="copy-reference" aria-label="Copy reference number">
+                <i class="bi bi-clipboard" aria-hidden="true"></i>
+              </button>
+            </div>
+            <div class="mb-success-actions">
+              <a href="appointment-history.html" data-route="appointmentHistory"
+                class="mb-btn mb-btn-primary mb-btn-lg mb-btn-block">
+                <i class="bi bi-clock-history" aria-hidden="true"></i> View Appointment History
+              </a>
+              <button type="button" class="mb-btn mb-btn-outline mb-btn-lg mb-btn-block" data-action="restart-booking">
+                <i class="bi bi-calendar-plus" aria-hidden="true"></i> Book Another Appointment
+              </button>
+            </div>
+            <button type="button" class="mb-view-all" data-action="add-to-calendar">
+              <i class="bi bi-calendar-check" aria-hidden="true"></i> Add to Calendar
+            </button>
+            <p class="mb-success-note">
+              <i class="bi bi-info-circle" aria-hidden="true"></i>
+              A confirmation email has been sent to your registered address. You can reschedule or cancel this
+              appointment up to 24 hours before the session.
+            </p>
+          </div>
+        </section>
+
+      </div>
+      <div class="mb-bottom-spacer"></div>
+    </main>
+  </div>
+
+  <!-- =============================================================
+     Bottom Navigation (identical to dashboard.html — shared app shell)
+     ============================================================= -->
+  <nav class="mb-bottom-nav" aria-label="Mobile primary navigation">
+    <a href="dashboard.html" data-route="dashboard" class="mb-bottom-nav__item" data-nav-link="dashboard">
+      <i class="bi bi-grid-1x2" aria-hidden="true"></i>
+      <span>Home</span>
+    </a>
+    <a href="appointments.html" data-route="appointments" class="mb-bottom-nav__item" data-nav-link="appointments">
+      <i class="bi bi-calendar2-week" aria-hidden="true"></i>
+      <span>Appointments</span>
+    </a>
+    <a href="messages.html" data-route="messages" class="mb-bottom-nav__item" data-nav-link="messages">
+      <i class="bi bi-chat-dots" aria-hidden="true"></i>
+      <span>Chat</span>
+    </a>
+    <a href="#" class="mb-bottom-nav__item" data-nav-link="records">
+      <i class="bi bi-folder2" aria-hidden="true"></i>
+      <span>Records</span>
+    </a>
+    <a href="profile.html" data-route="profile" class="mb-bottom-nav__item" data-nav-link="profile">
+      <i class="bi bi-person" aria-hidden="true"></i>
+      <span>Profile</span>
+    </a>
+  </nav>
+
+  <!-- Bootstrap bundle (JS, no jQuery dependency) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- MediBook+ scripts (ES modules: app.js boots shared chrome, appointments.js
+     owns this page's data + rendering) -->
+  <script type="module" src="../assets/js/app.js"></script>
+  <script type="module" src="../assets/js/appointments.js"></script>
+</body>
+
+</html>

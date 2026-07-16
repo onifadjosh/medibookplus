@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Messages | MediBook+</title>
+  <meta name="description" content="MediBook+ messages — secure conversations with your care team.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+  <!-- MediBook+ styles: style.css covers the shared shell + component library,
+     messages.css covers this page's minimal layout only. -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/messages.css">
+</head>
+
+<body data-page="messages">
+
+  <a href="#main-content" class="visually-hidden-focusable">Skip to main content</a>
+
+  <!-- ===========================================================
+     Top Navigation (identical to dashboard.html — shared app shell)
+     =========================================================== -->
+  <header class="mb-navbar">
+    <div class="d-flex align-items-center gap-4">
+      <span class="mb-navbar__brand">MediBook+</span>
+      <!-- <nav class="mb-navbar__links" aria-label="Primary">
+      <a href="dashboard.html" data-route="dashboard" class="mb-navbar__link" data-nav-link="dashboard">Dashboard</a>
+      <a href="appointments.html" data-route="appointments" class="mb-navbar__link" data-nav-link="appointments">Appointments</a>
+      <a href="messages.html" data-route="messages" class="mb-navbar__link" data-nav-link="messages">Messages</a>
+      <a href="#" class="mb-navbar__link" data-nav-link="records">Records</a>
+    </nav> -->
+    </div>
+    <div class="mb-navbar__actions">
+      <button type="button" class="mb-icon-btn" data-notif-bell aria-label="View notifications">
+        <i class="bi bi-bell" aria-hidden="true"></i>
+        <span class="badge-dot" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="mb-icon-btn" data-settings-shortcut aria-label="Settings">
+        <i class="bi bi-gear" aria-hidden="true"></i>
+      </button>
+      <div class="mb-navbar__avatar" data-navbar-avatar aria-label="Patient profile"></div>
+    </div>
+  </header>
+
+  <div class="mb-app-body">
+
+    <!-- =========================================================
+       Sidebar (identical to dashboard.html — shared app shell)
+       ========================================================= -->
+    <aside class="mb-sidebar" aria-label="Sidebar navigation">
+      <nav class="mb-sidebar__nav" aria-label="Secondary">
+        <a href="dashboard.html" data-route="dashboard" class="mb-sidebar__item" data-nav-link="dashboard">
+          <i class="bi bi-grid-1x2" aria-hidden="true"></i> Dashboard
+        </a>
+        <a href="profile.html" data-route="profile" class="mb-sidebar__item" data-nav-link="profile">
+          <i class="bi bi-person-badge" aria-hidden="true"></i> Profile
+        </a>
+        <a href="appointments.html" data-route="appointments" class="mb-sidebar__item" data-nav-link="appointments">
+          <i class="bi bi-calendar2-week" aria-hidden="true"></i> Appointments
+        </a>
+        <a href="messages.html" data-route="messages" class="mb-sidebar__item" data-nav-link="messages">
+          <i class="bi bi-chat-dots" aria-hidden="true"></i> Messages
+        </a>
+        <a href="settings.html" data-route="settings" class="mb-sidebar__item" data-nav-link="settings">
+          <i class="bi bi-gear" aria-hidden="true"></i> Settings
+        </a>
+      </nav>
+
+      <div class="mb-sidebar__cta">
+        <a href="appointments.html" data-route="appointments" class="mb-btn-new-appt">
+          <i class="bi bi-plus-circle" aria-hidden="true"></i>
+          New Appointment
+        </a>
+      </div>
+    </aside>
+
+    <!-- =========================================================
+       Main Content — Messages
+       ========================================================= -->
+    <main id="main-content" class="mb-main">
+      <div class="mb-main__inner">
+
+        <!-- ---- Page Header ---- -->
+        <div class="mb-page-header fade-in-up">
+          <div>
+            <p class="mb-breadcrumb">Dashboard &gt; <span class="current">Messages</span></p>
+            <h1>Messages</h1>
+          </div>
+        </div>
+
+        <!-- ---- Split-view Messages Shell ---- -->
+        <div class="mb-messages-shell fade-in-up" data-messages-shell>
+
+          <!-- Conversation list pane -->
+          <div class="mb-conversations-pane">
+            <div class="mb-conversations-pane__search">
+              <label class="mb-search-input">
+                <i class="bi bi-search" aria-hidden="true"></i>
+                <input type="search" placeholder="Search conversations…" data-conversations-search
+                  aria-label="Search conversations">
+              </label>
+            </div>
+            <div class="mb-conversations-list" data-conversations-list></div>
+          </div>
+
+          <!-- Chat pane -->
+          <div class="mb-chat-pane" data-chat-pane>
+            <!-- Populated by messages.js: either the empty state, or a header + message thread + input bar -->
+          </div>
+
+        </div>
+
+      </div>
+      <div class="mb-bottom-spacer"></div>
+    </main>
+  </div>
+
+  <!-- =============================================================
+     Bottom Navigation (identical to dashboard.html — shared app shell)
+     ============================================================= -->
+  <nav class="mb-bottom-nav" aria-label="Mobile primary navigation">
+    <a href="dashboard.html" data-route="dashboard" class="mb-bottom-nav__item" data-nav-link="dashboard">
+      <i class="bi bi-grid-1x2" aria-hidden="true"></i>
+      <span>Home</span>
+    </a>
+    <a href="appointments.html" data-route="appointments" class="mb-bottom-nav__item" data-nav-link="appointments">
+      <i class="bi bi-calendar2-week" aria-hidden="true"></i>
+      <span>Appointments</span>
+    </a>
+    <a href="messages.html" data-route="messages" class="mb-bottom-nav__item" data-nav-link="messages">
+      <i class="bi bi-chat-dots" aria-hidden="true"></i>
+      <span>Chat</span>
+    </a>
+    <a href="#" class="mb-bottom-nav__item" data-nav-link="records">
+      <i class="bi bi-folder2" aria-hidden="true"></i>
+      <span>Records</span>
+    </a>
+    <a href="profile.html" data-route="profile" class="mb-bottom-nav__item" data-nav-link="profile">
+      <i class="bi bi-person" aria-hidden="true"></i>
+      <span>Profile</span>
+    </a>
+  </nav>
+
+  <!-- Bootstrap bundle (JS, no jQuery dependency) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- MediBook+ scripts (ES modules: app.js boots shared chrome, messages.js
+     owns this page's data + rendering) -->
+  <script type="module" src="../assets/js/app.js"></script>
+  <script type="module" src="../assets/js/messages.js"></script>
+</body>
+
+</html>

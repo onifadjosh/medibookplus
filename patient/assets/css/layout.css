@@ -1,0 +1,183 @@
+/* ==========================================================================
+   MediBook+ | Layout
+   The application shell: top navbar, sidebar shell, main content region,
+   and mobile bottom navigation. Reusable across Patient, Doctor, and Admin
+   dashboards — none of these rules are page-specific.
+   Table of contents:
+     1. Top Navbar
+     2. Sidebar Shell
+     3. Main Content Region
+     4. Bottom Mobile Nav + FAB
+   ========================================================================== */
+
+/* -------------------------------------------------------------------------
+   1. Top Navbar
+   ------------------------------------------------------------------------- */
+.mb-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--navbar-height);
+  background: var(--surface-bright);
+  box-shadow: var(--shadow-sm);
+  z-index: var(--z-navbar);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: var(--margin-mobile);
+}
+@media (min-width: 768px) {
+  .mb-navbar { padding-inline: var(--margin-desktop); }
+}
+
+.mb-navbar__brand {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary-dark);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.mb-navbar__links {
+  display: none;
+  align-items: center;
+  gap: var(--space-lg);
+}
+@media (min-width: 768px) {
+  .mb-navbar__links { display: flex; }
+}
+
+.mb-navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.mb-navbar__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--primary);
+  overflow: hidden;
+  margin-left: 4px;
+  font-size: 15px;
+}
+
+/* -------------------------------------------------------------------------
+   2. Sidebar Shell
+   ------------------------------------------------------------------------- */
+.mb-sidebar {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  top: var(--navbar-height);
+  left: 0;
+  height: calc(100vh - var(--navbar-height));
+  width: var(--sidebar-width);
+  background: var(--surface-low);
+  padding: var(--space-md);
+  gap: var(--space-sm);
+  z-index: var(--z-sidebar);
+  overflow-y: auto;
+}
+@media (min-width: 768px) {
+  .mb-sidebar { display: flex; }
+}
+
+.mb-sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.mb-sidebar__widgets {
+  margin-top: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.mb-sidebar__cta {
+  border-top: 1px solid var(--outline-variant);
+  padding-top: var(--space-md);
+  margin-top: auto;
+}
+
+/* -------------------------------------------------------------------------
+   3. Main Content Region
+   ------------------------------------------------------------------------- */
+.mb-app-body {
+  display: flex;
+  padding-top: var(--navbar-height);
+}
+
+.mb-main {
+  flex: 1;
+  min-width: 0;
+  padding: var(--margin-mobile);
+}
+@media (min-width: 768px) {
+  .mb-main {
+    margin-left: var(--sidebar-width);
+    padding: var(--margin-desktop);
+  }
+}
+
+.mb-main__inner {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xl);
+}
+
+/* -------------------------------------------------------------------------
+   4. Bottom Mobile Nav + FAB
+   ------------------------------------------------------------------------- */
+.mb-bottom-nav {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--bottom-nav-height);
+  background: var(--surface-bright);
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+  align-items: center;
+  justify-content: space-around;
+  padding-inline: var(--space-sm);
+  z-index: var(--z-navbar);
+}
+@media (min-width: 768px) {
+  .mb-bottom-nav { display: none; }
+}
+
+.mb-bottom-spacer { height: 80px; }
+@media (min-width: 768px) {
+  .mb-bottom-spacer { display: none; }
+}
+
+.mb-fab {
+  position: fixed;
+  bottom: 96px;
+  right: var(--margin-mobile);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--on-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  box-shadow: var(--shadow-lg);
+  transition: var(--transition);
+  z-index: var(--z-fab);
+}
+@media (min-width: 768px) {
+  .mb-fab { bottom: var(--space-2xl); right: var(--margin-desktop); }
+}
+.mb-fab:hover { transform: scale(1.1); }
+.mb-fab:active { transform: scale(0.95); }

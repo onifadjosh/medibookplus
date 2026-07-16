@@ -1,0 +1,120 @@
+/* ==========================================================================
+   MediBook+ | Appointment Booking Page
+   Layout only — every visual component (cards, buttons, calendar, slot
+   chips, detail rows) lives in components.css and is reused here.
+   ========================================================================== */
+
+/* ---- Wizard step visibility --------------------------------------------- */
+.mb-wizard-step[hidden] { display: none; }
+
+/* ---- Department grid ----------------------------------------------------- */
+.mb-dept-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gutter);
+}
+@media (min-width: 576px) {
+  .mb-dept-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 992px) {
+  .mb-dept-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ---- Two-column step layout (content + summary sidebar) ------------------ */
+.mb-booking-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+  align-items: start;
+}
+@media (min-width: 992px) {
+  .mb-booking-grid { grid-template-columns: 2fr 1fr; }
+}
+
+.mb-doctor-list { display: flex; flex-direction: column; gap: var(--space-lg); }
+.mb-slot-sections { display: flex; flex-direction: column; gap: var(--space-lg); }
+.mb-panel--narrow { max-width: 760px; margin-inline: auto; }
+.mb-reference-card .mb-icon-btn { border: 1px solid var(--outline-variant); }
+
+.mb-summary-sidebar { display: flex; flex-direction: column; gap: var(--space-lg); position: sticky; top: calc(var(--navbar-height) + var(--space-lg)); }
+.mb-summary-sidebar .mb-detail-row + .mb-detail-row { margin-top: var(--space-md); }
+.mb-wizard-actions { display: flex; flex-direction: column; gap: var(--space-md); }
+
+/* ---- Review step ----------------------------------------------------------*/
+.mb-review-doctor { display: flex; gap: var(--space-lg); align-items: center; padding-bottom: var(--space-lg); margin-bottom: var(--space-lg); border-bottom: 1px solid rgba(109, 121, 121, 0.12); flex-wrap: wrap; }
+.mb-review-doctor .avatar-initials { width: 72px; height: 72px; font-size: 22px; }
+.mb-review-doctor h3 { font-size: 20px; font-weight: 700; margin: 0 0 4px; }
+.mb-review-doctor .specialty { color: var(--primary); font-weight: 600; font-size: 14px; }
+.mb-review-details { display: grid; grid-template-columns: 1fr; gap: var(--space-lg); margin-bottom: var(--space-xl); }
+@media (min-width: 576px) {
+  .mb-review-details { grid-template-columns: 1fr 1fr; }
+}
+
+/* ---- Success panel --------------------------------------------------------*/
+.mb-success-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-lg);
+  max-width: 640px;
+  margin-inline: auto;
+  padding: var(--space-2xl) var(--space-lg);
+}
+@media (min-width: 768px) {
+  .mb-success-panel { text-align: left; align-items: flex-start; }
+}
+.mb-success-icon {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: rgba(6, 148, 148, 0.1);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+}
+.mb-success-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: rgba(6, 148, 148, 0.1);
+  color: var(--primary);
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.mb-success-panel h2 { font-size: 26px; font-weight: 800; color: var(--primary); margin: 0; }
+.mb-success-panel p { font-size: 16px; color: var(--on-surface-variant); line-height: 1.6; margin: 0; }
+.mb-reference-card {
+  width: 100%;
+  background: var(--surface-container);
+  border: 1px solid rgba(109, 121, 121, 0.15);
+  border-radius: var(--radius);
+  padding: var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.mb-reference-card .label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--on-surface-variant); margin: 0 0 2px; }
+.mb-reference-card .value { font-size: 20px; font-weight: 800; letter-spacing: 0.03em; margin: 0; }
+.mb-success-actions { display: flex; flex-direction: column; gap: var(--space-md); width: 100%; }
+@media (min-width: 576px) {
+  .mb-success-actions { flex-direction: row; }
+}
+.mb-success-note {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  background: rgba(143, 73, 29, 0.05);
+  border-radius: var(--radius-sm);
+  padding: var(--space-md);
+  font-size: 13px;
+  color: var(--on-surface-variant);
+  text-align: left;
+}
+.mb-success-note i { color: var(--tertiary); flex-shrink: 0; margin-top: 2px; }

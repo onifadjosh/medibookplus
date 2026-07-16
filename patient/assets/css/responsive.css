@@ -1,0 +1,33 @@
+/* ==========================================================================
+   MediBook+ | Responsive Fine-Tuning
+   Component layout rules already use mobile-first media queries in their
+   own files. This file layers additional breakpoint-specific polish that
+   doesn't belong to any single component.
+   ========================================================================== */
+
+/* ---- Small phones (<380px) --------------------------------------------- */
+@media (max-width: 380px) {
+  .mb-navbar__brand { font-size: 17px; }
+  .mb-hero { padding: var(--space-lg); }
+  .mb-hero__title { font-size: 20px; }
+  .mb-stat-card__value { font-size: 22px; }
+  .mb-appt-highlight__meta { gap: var(--space-md); }
+}
+
+/* ---- Phones & small tablets (up to 767px) ------------------------------ */
+@media (max-width: 767.98px) {
+  .mb-main { padding-bottom: calc(var(--bottom-nav-height) + var(--space-lg)); }
+  .mb-appt-table th:nth-child(2),
+  .mb-appt-table td:nth-child(2) { display: none; }
+}
+
+/* ---- Tablets (768px - 991px): sidebar visible, 2-col grids ------------- */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .mb-stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .mb-actions-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* ---- Large desktop / wide monitors -------------------------------------- */
+@media (min-width: 1440px) {
+  .mb-main { padding-inline: var(--space-2xl); }
+}

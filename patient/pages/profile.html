@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile | MediBook+</title>
+  <meta name="description"
+    content="MediBook+ patient profile — personal information, emergency contact, medical information, and account settings.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+  <!-- MediBook+ styles: style.css covers the shared shell + component library,
+     profile.css covers this page's layout only. -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/profile.css">
+</head>
+
+<body data-page="profile">
+
+  <a href="#main-content" class="visually-hidden-focusable">Skip to main content</a>
+
+  <!-- ===========================================================
+     Top Navigation (identical to dashboard.html — shared app shell)
+     =========================================================== -->
+  <header class="mb-navbar">
+    <div class="d-flex align-items-center gap-4">
+      <span class="mb-navbar__brand">MediBook+</span>
+      <!-- <nav class="mb-navbar__links" aria-label="Primary">
+      <a href="dashboard.html" data-route="dashboard" class="mb-navbar__link" data-nav-link="dashboard">Dashboard</a>
+      <a href="appointments.html" data-route="appointments" class="mb-navbar__link" data-nav-link="appointments">Appointments</a>
+      <a href="messages.html" data-route="messages" class="mb-navbar__link" data-nav-link="messages">Messages</a>
+      <a href="#" class="mb-navbar__link" data-nav-link="records">Records</a>
+    </nav> -->
+    </div>
+    <div class="mb-navbar__actions">
+      <button type="button" class="mb-icon-btn" data-notif-bell aria-label="View notifications">
+        <i class="bi bi-bell" aria-hidden="true"></i>
+        <span class="badge-dot" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="mb-icon-btn" data-settings-shortcut aria-label="Settings">
+        <i class="bi bi-gear" aria-hidden="true"></i>
+      </button>
+      <div class="mb-navbar__avatar" data-navbar-avatar aria-label="Patient profile"></div>
+    </div>
+  </header>
+
+  <div class="mb-app-body">
+
+    <!-- =========================================================
+       Sidebar (identical to dashboard.html — shared app shell)
+       ========================================================= -->
+    <aside class="mb-sidebar" aria-label="Sidebar navigation">
+      <nav class="mb-sidebar__nav" aria-label="Secondary">
+        <a href="dashboard.html" data-route="dashboard" class="mb-sidebar__item" data-nav-link="dashboard">
+          <i class="bi bi-grid-1x2" aria-hidden="true"></i> Dashboard
+        </a>
+        <a href="profile.html" data-route="profile" class="mb-sidebar__item" data-nav-link="profile">
+          <i class="bi bi-person-badge" aria-hidden="true"></i> Profile
+        </a>
+        <a href="appointments.html" data-route="appointments" class="mb-sidebar__item" data-nav-link="appointments">
+          <i class="bi bi-calendar2-week" aria-hidden="true"></i> Appointments
+        </a>
+        <a href="messages.html" data-route="messages" class="mb-sidebar__item" data-nav-link="messages">
+          <i class="bi bi-chat-dots" aria-hidden="true"></i> Messages
+        </a>
+        <a href="settings.html" data-route="settings" class="mb-sidebar__item" data-nav-link="settings">
+          <i class="bi bi-gear" aria-hidden="true"></i> Settings
+        </a>
+      </nav>
+
+      <div class="mb-sidebar__cta">
+        <a href="appointments.html" data-route="appointments" class="mb-btn-new-appt">
+          <i class="bi bi-plus-circle" aria-hidden="true"></i>
+          New Appointment
+        </a>
+      </div>
+    </aside>
+
+    <!-- =========================================================
+       Main Content — Profile
+       ========================================================= -->
+    <main id="main-content" class="mb-main">
+      <div class="mb-main__inner">
+
+        <!-- ---- Page Header ---- -->
+        <div class="mb-page-header fade-in-up">
+          <div>
+            <p class="mb-breadcrumb">Dashboard &gt; <span class="current">Profile</span></p>
+            <h1>Patient Profile</h1>
+          </div>
+          <div class="mb-header-actions">
+            <a href="patient-card.html" data-route="patientCard" class="mb-btn mb-btn-outline">
+              <i class="bi bi-credit-card-2-front" aria-hidden="true"></i> View Digital Card
+            </a>
+          </div>
+        </div>
+
+        <!-- ---- Profile Summary ---- -->
+        <div class="mb-panel fade-in-up mb-4">
+          <div class="mb-profile-summary">
+            <div class="mb-profile-summary__avatar" data-profile-avatar></div>
+            <div class="mb-profile-summary__info">
+              <h2 data-profile-name>&nbsp;</h2>
+              <p class="sub" data-profile-id>&nbsp;</p>
+              <div class="mb-progress-wrap mb-profile-summary__progress">
+                <div class="mb-progress-label">
+                  <span class="label">Profile Completion</span>
+                  <span class="value" data-profile-completion-value>&nbsp;</span>
+                </div>
+                <div class="mb-progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                  aria-label="Profile completion percentage" data-profile-progress-track>
+                  <div class="mb-progress-fill" data-profile-progress-fill style="width:0%"></div>
+                </div>
+              </div>
+            </div>
+            <div class="mb-profile-summary__stats">
+              <div class="stat">
+                <p class="k">Blood Group</p>
+                <p class="v" data-profile-blood-group>&nbsp;</p>
+              </div>
+              <div class="stat">
+                <p class="k">Member Since</p>
+                <p class="v" data-profile-member-since>&nbsp;</p>
+              </div>
+              <div class="stat">
+                <p class="k">Status</p>
+                <p class="v"><span class="mb-badge confirmed" data-profile-status>&nbsp;</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ---- Editable Profile Form ---- -->
+        <form data-profile-form novalidate>
+          <div class="mb-profile-grid">
+
+            <div class="mb-profile-col">
+              <!-- ---- Personal Information ---- -->
+              <div class="mb-panel fade-in-up">
+                <h4 class="mb-panel__title">Personal Information</h4>
+                <div class="mb-form-row cols-2">
+                  <div class="mb-form-group">
+                    <label class="mb-form-label" for="firstName">First Name</label>
+                    <input type="text" id="firstName" name="firstName" class="mb-form-control" autocomplete="given-name"
+                      required>
+                  </div>
+                  <div class="mb-form-group">
+                    <label class="mb-form-label" for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" class="mb-form-control" autocomplete="family-name"
+                      required>
+                  </div>
+                </div>
+                <div class="mb-form-row cols-2">
+                  <div class="mb-form-group">
+                    <label class="mb-form-label" for="email">Email Address</label>
+                    <input type="email" id="email" name="email" class="mb-form-control" autocomplete="email" required>
+                  </div>
+                  <div class="mb-form-group">
+                    <label class="mb-form-label" for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" class="mb-form-control" autocomplete="tel">
+                  </div>
+                </div>
+                <div class="mb-form-row cols-2">
+                  <div class="mb-form-group">
+                    <label class="mb-form-label" for="dateOfBirth">Date of Birth</label>
+                    <input type="date" id="dateOfBirth" name="dateOfBirth" class="mb-form-control" autocomplete="bday">
+                  </div>
+                  <div class="mb-form-group">
+                    <label class="mb-form-label" for="gender">Gender</label>
+                    <select id="gender" name="gender" class="mb-form-control">
+                      <option value="Female">Female</option>
+                      <option value="Male">Male</option>
+                      <option value="Non-binary">Non-binary</option>
+                      <option value="Prefer not to say">Prefer not to say</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="mb-form-row">
+                  <div class="mb-form-group">
+                    <label class="mb-form-label" for="addressStreet">Street Address</label>
+                    <input type="text" id="addressStreet" name="addressStreet" class="mb-form-control"
+                      autocomplete="address-line1">
+                  </div>
+                </div>
+                <div class="mb-form-row cols-2">
+                  <div class="mb-form-group">
+                    <label class="mb-form-label" for="addressCity">City</label>
+                    <input type="text" id="addressCity" name="addressCity" class="mb-form-control"
+                      autocomplete="address-level2">
+                  </div>
+                  <div class="mb-form-group">
+                    <label class="mb-form-label" for="addressState">State</label>
+                    <input type="text" id="addressState" name="addressState" class="mb-form-control"
+                      autocomplete="address-level1">
+                  </div>
+                </div>
+                <div class="mb-form-row">
+                  <div class="mb-form-group">
+                    <label class="mb-form-label" for="addressZip">ZIP Code <span
+                        class="optional">(optional)</span></label>
+                    <input type="text" id="addressZip" name="addressZip" class="mb-form-control mb-form-group--narrow"
+                      autocomplete="postal-code">
+                  </div>
+                </div>
+              </div>
+
+              <!-- ---- Emergency Contact ---- -->
+              <div class="mb-panel fade-in-up">
+                <h4 class="mb-panel__title">Emergency Contact</h4>
+                <div class="mb-form-row cols-2">
+                  <div class="mb-form-group">
+                    <label class="mb-form-label" for="emergencyName">Full Name</label>
+                    <input type="text" id="emergencyName" name="emergencyName" class="mb-form-control">
+                  </div>
+                  <div class="mb-form-group">
+                    <label class="mb-form-label" for="emergencyRelation">Relationship</label>
+                    <input type="text" id="emergencyRelation" name="emergencyRelation" class="mb-form-control">
+                  </div>
+                </div>
+                <div class="mb-form-row">
+                  <div class="mb-form-group">
+                    <label class="mb-form-label" for="emergencyPhone">Phone Number</label>
+                    <input type="tel" id="emergencyPhone" name="emergencyPhone" class="mb-form-control">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-profile-col">
+              <!-- ---- Medical Information ---- -->
+              <div class="mb-panel fade-in-up">
+                <h4 class="mb-panel__title">Medical Information</h4>
+                <div class="mb-form-row">
+                  <div class="mb-form-group">
+                    <label class="mb-form-label" for="bloodGroup">Blood Group</label>
+                    <select id="bloodGroup" name="bloodGroup" class="mb-form-control">
+                      <option>O+</option>
+                      <option>O-</option>
+                      <option>A+</option>
+                      <option>A-</option>
+                      <option>B+</option>
+                      <option>B-</option>
+                      <option>AB+</option>
+                      <option>AB-</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="mb-form-row">
+                  <div class="mb-form-group">
+                    <span class="mb-form-label">Known Allergies</span>
+                    <div class="mb-profile-allergies" data-profile-allergies></div>
+                    <p class="mb-form-hint">Managed from your <a href="patient-card.html"
+                        data-route="patientCard">Digital Patient Card</a>.</p>
+                  </div>
+                </div>
+                <div class="mb-form-row">
+                  <div class="mb-form-group">
+                    <label class="mb-form-label" for="chronicConditions">Chronic Conditions <span class="optional">(one
+                        per line)</span></label>
+                    <textarea id="chronicConditions" name="chronicConditions" class="mb-form-control"></textarea>
+                  </div>
+                </div>
+                <div class="mb-form-row">
+                  <div class="mb-form-group">
+                    <label class="mb-form-label" for="currentMedications">Current Medications <span
+                        class="optional">(one per line)</span></label>
+                    <textarea id="currentMedications" name="currentMedications" class="mb-form-control"></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ---- Account Information (read-only) ---- -->
+              <div class="mb-panel fade-in-up">
+                <h4 class="mb-panel__title">Account Information</h4>
+                <div class="mb-form-row cols-2">
+                  <div class="mb-id-field">
+                    <p class="k">Patient ID</p>
+                    <p class="v" data-account-patient-id>&nbsp;</p>
+                  </div>
+                  <div class="mb-id-field">
+                    <p class="k">Member Since</p>
+                    <p class="v" data-account-member-since>&nbsp;</p>
+                  </div>
+                </div>
+                <div class="mb-form-row cols-2">
+                  <div class="mb-id-field">
+                    <p class="k">Insurance Provider</p>
+                    <p class="v" data-account-insurance>&nbsp;</p>
+                  </div>
+                  <div class="mb-id-field">
+                    <p class="k">Account Status</p>
+                    <p class="v"><span class="mb-badge confirmed" data-account-status>&nbsp;</span></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="mb-form-actions">
+            <button type="button" class="mb-btn mb-btn-outline" data-action="cancel-changes">Cancel</button>
+            <button type="submit" class="mb-btn mb-btn-primary">
+              <i class="bi bi-check-lg" aria-hidden="true"></i> Save Changes
+            </button>
+          </div>
+        </form>
+
+        <!-- ---- Change Password ---- -->
+        <form id="change-password" class="mb-panel fade-in-up mt-lg" data-password-form novalidate>
+          <h4 class="mb-panel__title">Change Password</h4>
+          <div class="mb-form-row">
+            <div class="mb-form-group mb-form-group--medium">
+              <label class="mb-form-label" for="currentPassword">Current Password</label>
+              <input type="password" id="currentPassword" name="currentPassword" class="mb-form-control"
+                autocomplete="current-password" required>
+            </div>
+          </div>
+          <div class="mb-form-row cols-2">
+            <div class="mb-form-group">
+              <label class="mb-form-label" for="newPassword">New Password</label>
+              <input type="password" id="newPassword" name="newPassword" class="mb-form-control"
+                autocomplete="new-password" minlength="8" required>
+            </div>
+            <div class="mb-form-group">
+              <label class="mb-form-label" for="confirmPassword">Confirm New Password</label>
+              <input type="password" id="confirmPassword" name="confirmPassword" class="mb-form-control"
+                autocomplete="new-password" minlength="8" required>
+            </div>
+          </div>
+          <p class="mb-form-hint" data-password-error role="alert" hidden></p>
+          <div class="mb-form-actions">
+            <button type="submit" class="mb-btn mb-btn-primary">
+              <i class="bi bi-shield-lock" aria-hidden="true"></i> Update Password
+            </button>
+          </div>
+        </form>
+
+      </div>
+      <div class="mb-bottom-spacer"></div>
+    </main>
+  </div>
+
+  <!-- =============================================================
+     Bottom Navigation (identical to dashboard.html — shared app shell)
+     ============================================================= -->
+  <nav class="mb-bottom-nav" aria-label="Mobile primary navigation">
+    <a href="dashboard.html" data-route="dashboard" class="mb-bottom-nav__item" data-nav-link="dashboard">
+      <i class="bi bi-grid-1x2" aria-hidden="true"></i>
+      <span>Home</span>
+    </a>
+    <a href="appointments.html" data-route="appointments" class="mb-bottom-nav__item" data-nav-link="appointments">
+      <i class="bi bi-calendar2-week" aria-hidden="true"></i>
+      <span>Appointments</span>
+    </a>
+    <a href="messages.html" data-route="messages" class="mb-bottom-nav__item" data-nav-link="messages">
+      <i class="bi bi-chat-dots" aria-hidden="true"></i>
+      <span>Chat</span>
+    </a>
+    <a href="#" class="mb-bottom-nav__item" data-nav-link="records">
+      <i class="bi bi-folder2" aria-hidden="true"></i>
+      <span>Records</span>
+    </a>
+    <a href="profile.html" data-route="profile" class="mb-bottom-nav__item" data-nav-link="profile">
+      <i class="bi bi-person" aria-hidden="true"></i>
+      <span>Profile</span>
+    </a>
+  </nav>
+
+  <!-- Bootstrap bundle (JS, no jQuery dependency) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- MediBook+ scripts (ES modules: app.js boots shared chrome, profile.js
+     owns this page's data + rendering) -->
+  <script type="module" src="../assets/js/app.js"></script>
+  <script type="module" src="../assets/js/profile.js"></script>
+</body>
+
+</html>

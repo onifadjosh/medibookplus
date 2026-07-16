@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Appointment History | MediBook+</title>
+  <meta name="description"
+    content="MediBook+ appointment history — search, filter, and manage past and upcoming appointments.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+  <!-- MediBook+ styles: style.css covers the shared shell + component library,
+     appointment-history.css covers this page's layout only. -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/appointment-history.css">
+</head>
+
+<body data-page="appointment-history">
+
+  <a href="#main-content" class="visually-hidden-focusable">Skip to main content</a>
+
+  <!-- ===========================================================
+     Top Navigation (identical to dashboard.html — shared app shell)
+     =========================================================== -->
+  <header class="mb-navbar">
+    <div class="d-flex align-items-center gap-4">
+      <span class="mb-navbar__brand">MediBook+</span>
+      <!-- <nav class="mb-navbar__links" aria-label="Primary">
+      <a href="dashboard.html" data-route="dashboard" class="mb-navbar__link" data-nav-link="dashboard">Dashboard</a>
+      <a href="appointments.html" data-route="appointments" class="mb-navbar__link" data-nav-link="appointments">Appointments</a>
+      <a href="messages.html" data-route="messages" class="mb-navbar__link" data-nav-link="messages">Messages</a>
+      <a href="#" class="mb-navbar__link" data-nav-link="records">Records</a>
+    </nav> -->
+    </div>
+    <div class="mb-navbar__actions">
+      <button type="button" class="mb-icon-btn" data-notif-bell aria-label="View notifications">
+        <i class="bi bi-bell" aria-hidden="true"></i>
+        <span class="badge-dot" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="mb-icon-btn" data-settings-shortcut aria-label="Settings">
+        <i class="bi bi-gear" aria-hidden="true"></i>
+      </button>
+      <div class="mb-navbar__avatar" data-navbar-avatar aria-label="Patient profile"></div>
+    </div>
+  </header>
+
+  <div class="mb-app-body">
+
+    <!-- =========================================================
+       Sidebar (identical to dashboard.html — shared app shell)
+       ========================================================= -->
+    <aside class="mb-sidebar" aria-label="Sidebar navigation">
+      <nav class="mb-sidebar__nav" aria-label="Secondary">
+        <a href="dashboard.html" data-route="dashboard" class="mb-sidebar__item" data-nav-link="dashboard">
+          <i class="bi bi-grid-1x2" aria-hidden="true"></i> Dashboard
+        </a>
+        <a href="profile.html" data-route="profile" class="mb-sidebar__item" data-nav-link="profile">
+          <i class="bi bi-person-badge" aria-hidden="true"></i> Profile
+        </a>
+        <a href="appointments.html" data-route="appointments" class="mb-sidebar__item" data-nav-link="appointments">
+          <i class="bi bi-calendar2-week" aria-hidden="true"></i> Appointments
+        </a>
+        <a href="messages.html" data-route="messages" class="mb-sidebar__item" data-nav-link="messages">
+          <i class="bi bi-chat-dots" aria-hidden="true"></i> Messages
+        </a>
+        <a href="settings.html" data-route="settings" class="mb-sidebar__item" data-nav-link="settings">
+          <i class="bi bi-gear" aria-hidden="true"></i> Settings
+        </a>
+      </nav>
+
+      <div class="mb-sidebar__cta">
+        <a href="appointments.html" data-route="appointments" class="mb-btn-new-appt">
+          <i class="bi bi-plus-circle" aria-hidden="true"></i>
+          New Appointment
+        </a>
+      </div>
+    </aside>
+
+    <!-- =========================================================
+       Main Content — Appointment History
+       ========================================================= -->
+    <main id="main-content" class="mb-main">
+      <div class="mb-main__inner">
+
+        <!-- ---- Page Header ---- -->
+        <div class="mb-page-header fade-in-up">
+          <div>
+            <p class="mb-breadcrumb">Dashboard &gt; <span class="current">Appointment History</span></p>
+            <h1>Appointment History</h1>
+          </div>
+          <div class="mb-header-actions">
+            <a href="appointments.html" data-route="appointments" class="mb-btn mb-btn-primary">
+              <i class="bi bi-plus-circle" aria-hidden="true"></i> New Appointment
+            </a>
+          </div>
+        </div>
+
+        <!-- ---- Search + Filter Toolbar ---- -->
+        <div class="mb-toolbar fade-in-up">
+          <label class="mb-search-input">
+            <i class="bi bi-search" aria-hidden="true"></i>
+            <input type="search" placeholder="Search by doctor or department…" data-history-search
+              aria-label="Search appointments by doctor or department">
+          </label>
+          <div class="mb-filter-tabs" role="tablist" aria-label="Filter appointments by status" data-history-filters>
+            <button type="button" class="mb-filter-tab is-active" role="tab" aria-selected="true"
+              data-filter="all">All</button>
+            <button type="button" class="mb-filter-tab" role="tab" aria-selected="false"
+              data-filter="confirmed">Upcoming</button>
+            <button type="button" class="mb-filter-tab" role="tab" aria-selected="false"
+              data-filter="completed">Completed</button>
+            <button type="button" class="mb-filter-tab" role="tab" aria-selected="false"
+              data-filter="cancelled">Cancelled</button>
+            <button type="button" class="mb-filter-tab" role="tab" aria-selected="false"
+              data-filter="pending">Pending</button>
+          </div>
+        </div>
+
+        <!-- ---- Appointments Table ---- -->
+        <section class="mb-table-card fade-in-up" aria-labelledby="history-heading">
+          <div class="mb-table-card__head">
+            <h2 id="history-heading">All Appointments</h2>
+            <span class="mb-result-count" data-history-count>&nbsp;</span>
+          </div>
+          <div class="mb-table-scroll">
+            <table class="mb-appt-table">
+              <thead>
+                <tr>
+                  <th scope="col">Doctor</th>
+                  <th scope="col">Department</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Time</th>
+                  <th scope="col">Status</th>
+                  <th scope="col"><span class="visually-hidden">Actions</span></th>
+                </tr>
+              </thead>
+              <tbody data-history-body></tbody>
+            </table>
+          </div>
+        </section>
+
+      </div>
+      <div class="mb-bottom-spacer"></div>
+    </main>
+  </div>
+
+  <!-- =============================================================
+     Bottom Navigation (identical to dashboard.html — shared app shell)
+     ============================================================= -->
+  <nav class="mb-bottom-nav" aria-label="Mobile primary navigation">
+    <a href="dashboard.html" data-route="dashboard" class="mb-bottom-nav__item" data-nav-link="dashboard">
+      <i class="bi bi-grid-1x2" aria-hidden="true"></i>
+      <span>Home</span>
+    </a>
+    <a href="appointments.html" data-route="appointments" class="mb-bottom-nav__item" data-nav-link="appointments">
+      <i class="bi bi-calendar2-week" aria-hidden="true"></i>
+      <span>Appointments</span>
+    </a>
+    <a href="messages.html" data-route="messages" class="mb-bottom-nav__item" data-nav-link="messages">
+      <i class="bi bi-chat-dots" aria-hidden="true"></i>
+      <span>Chat</span>
+    </a>
+    <a href="#" class="mb-bottom-nav__item" data-nav-link="records">
+      <i class="bi bi-folder2" aria-hidden="true"></i>
+      <span>Records</span>
+    </a>
+    <a href="profile.html" data-route="profile" class="mb-bottom-nav__item" data-nav-link="profile">
+      <i class="bi bi-person" aria-hidden="true"></i>
+      <span>Profile</span>
+    </a>
+  </nav>
+
+  <!-- =============================================================
+     Appointment Detail Modal (Bootstrap modal, reused for View Details)
+     ============================================================= -->
+  <div class="modal fade" id="appointmentDetailModal" tabindex="-1" aria-labelledby="appointmentDetailModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="appointmentDetailModalLabel">Appointment Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-modal-detail-grid" data-modal-detail-grid></div>
+          <div class="mt-4" data-modal-notes-wrap hidden>
+            <p class="mb-detail-row__label mb-2">Notes</p>
+            <p class="mb-modal-notes" data-modal-notes></p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="mb-btn mb-btn-outline" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============================================================
+     Cancel Confirmation Modal (same Bootstrap modal shell, reused)
+     ============================================================= -->
+  <div class="modal fade" id="cancelConfirmModal" tabindex="-1" aria-labelledby="cancelConfirmModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="cancelConfirmModalLabel">Cancel Appointment?</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="mb-0" data-cancel-modal-message>&nbsp;</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="mb-btn mb-btn-outline" data-bs-dismiss="modal">Keep Appointment</button>
+          <button type="button" class="mb-btn mb-btn-primary" data-action="confirm-cancel">
+            <i class="bi bi-x-circle" aria-hidden="true"></i> Yes, Cancel It
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap bundle (JS, no jQuery dependency) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- MediBook+ scripts (ES modules: app.js boots shared chrome, appointmentHistory.js
+     owns this page's data + rendering) -->
+  <script type="module" src="../assets/js/app.js"></script>
+  <script type="module" src="../assets/js/appointmentHistory.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+/* ==========================================================================
+   MediBook+ | Notifications Page
+   Almost nothing page-specific here — the toolbar, page header, filter
+   tabs, search input, notification cards, and empty state all live in
+   components.css and are reused as-is.
+   ========================================================================== */
+
+.mb-notifications-panel {
+  background: var(--surface-lowest);
+  border: 1px solid rgba(109, 121, 121, 0.15);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: var(--space-lg);
+}
+.mb-notifications-panel__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+  flex-wrap: wrap;
+}
+.mb-notifications-panel__head h2 { font-size: 20px; font-weight: 600; margin: 0; }

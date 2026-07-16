@@ -1,0 +1,23 @@
+/* ==========================================================================
+   MediBook+ | Appointment History Page
+   Layout only — every visual component (page header, toolbar, search
+   input, filter tabs, table, badges, row actions, modals) lives in
+   components.css / Bootstrap and is reused here.
+   ========================================================================== */
+
+.mb-modal-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+}
+@media (min-width: 576px) {
+  .mb-modal-detail-grid { grid-template-columns: 1fr 1fr; }
+}
+.mb-modal-notes {
+  border-left: 3px solid var(--primary);
+  padding-left: var(--space-md);
+  font-size: 14px;
+  color: var(--on-surface-variant);
+  line-height: 1.6;
+  margin: 0;
+}

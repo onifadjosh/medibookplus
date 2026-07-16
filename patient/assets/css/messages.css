@@ -1,0 +1,13 @@
+/* ==========================================================================
+   MediBook+ | Messages Page
+   Almost nothing page-specific here — the split-view shell, conversation
+   list, chat header/messages/input, and message bubbles all live in
+   components.css and are reused as-is.
+   ========================================================================== */
+
+.mb-chat-empty-state {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

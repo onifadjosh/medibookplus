@@ -1,0 +1,33 @@
+/* ==========================================================================
+   MediBook+ | Settings Page
+   Almost nothing page-specific here — page header, panels, form controls,
+   toggle switches, settings rows, and theme cards all live in
+   components.css and are reused as-is.
+   ========================================================================== */
+
+.mb-settings-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.mb-theme-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+@media (min-width: 576px) {
+  .mb-theme-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.mb-theme-grid .mb-action-card { text-align: center; }
+.mb-theme-grid .mb-action-card__icon { margin-inline: auto; }
+
+.mb-settings-account-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.mb-language-field { max-width: 320px; }

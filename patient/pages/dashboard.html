@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard | MediBook+</title>
+  <meta name="description" content="MediBook+ patient dashboard — appointments, health summary, and quick actions.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+
+  <!-- MediBook+ styles: style.css covers the shared shell + component library,
+     dashboard.css covers this page's hero layout only. -->
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/dashboard.css">
+</head>
+
+<body data-page="dashboard">
+
+  <a href="#main-content" class="visually-hidden-focusable">Skip to main content</a>
+
+  <!-- ===========================================================
+     Top Navigation
+     =========================================================== -->
+  <header class="mb-navbar">
+    <div class="d-flex align-items-center gap-4">
+      <span class="mb-navbar__brand">MediBook+</span>
+      <!-- <nav class="mb-navbar__links" aria-label="Primary">
+        <a href="dashboard.html" data-route="dashboard" class="mb-navbar__link active"
+          data-nav-link="dashboard">Dashboard</a>
+        <a href="appointments.html" data-route="appointments" class="mb-navbar__link"
+          data-nav-link="appointments">Appointments</a>
+        <a href="messages.html" data-route="messages" class="mb-navbar__link" data-nav-link="messages">Messages</a>
+        <a href="#" class="mb-navbar__link" data-nav-link="records">Records</a>
+      </nav> -->
+    </div>
+    <div class="mb-navbar__actions">
+      <button type="button" class="mb-icon-btn" data-notif-bell aria-label="View notifications">
+        <i class="bi bi-bell" aria-hidden="true"></i>
+        <span class="badge-dot" aria-hidden="true"></span>
+      </button>
+      <button type="button" class="mb-icon-btn" data-settings-shortcut aria-label="Settings">
+        <i class="bi bi-gear" aria-hidden="true"></i>
+      </button>
+      <div class="mb-navbar__avatar" data-navbar-avatar aria-label="John Doe's profile"></div>
+    </div>
+  </header>
+
+  <div class="mb-app-body">
+
+    <!-- =========================================================
+       Sidebar (desktop only)
+       ========================================================= -->
+    <aside class="mb-sidebar" aria-label="Sidebar navigation">
+      <nav class="mb-sidebar__nav" aria-label="Secondary">
+        <button type="button" class="mb-sidebar__item active" data-nav-link="dashboard">
+          <i class="bi bi-grid-1x2" aria-hidden="true"></i> Dashboard
+        </button>
+        <a href="profile.html" data-route="profile" class="mb-sidebar__item" data-nav-link="profile">
+          <i class="bi bi-person-badge" aria-hidden="true"></i> Profile
+        </a>
+        <a href="appointments.html" data-route="appointments" class="mb-sidebar__item" data-nav-link="appointments">
+          <i class="bi bi-calendar2-week" aria-hidden="true"></i> Appointments
+        </a>
+        <a href="messages.html" data-route="messages" class="mb-sidebar__item" data-nav-link="messages">
+          <i class="bi bi-chat-dots" aria-hidden="true"></i> Messages
+        </a>
+        <a href="settings.html" data-route="settings" class="mb-sidebar__item" data-nav-link="settings">
+          <i class="bi bi-gear" aria-hidden="true"></i> Settings
+        </a>
+      </nav>
+
+      <div class="mb-sidebar__widgets">
+        <div class="mb-mini-calendar">
+          <p class="mb-mini-calendar__title" data-mini-cal-month>October 2023</p>
+          <div class="mb-mini-calendar__grid" data-mini-cal-grid role="img"
+            aria-label="Mini calendar for October 2023, 24th highlighted as today"></div>
+        </div>
+
+        <div>
+          <p class="mb-sidebar__notifications-title">Recent Notifications</p>
+          <div data-sidebar-notifications></div>
+        </div>
+      </div>
+
+      <div class="mb-sidebar__cta">
+        <button type="button" class="mb-btn-new-appt" data-cta="new-appointment">
+          <i class="bi bi-plus-circle" aria-hidden="true"></i>
+          New Appointment
+        </button>
+      </div>
+    </aside>
+
+    <!-- =========================================================
+       Main Content
+       ========================================================= -->
+    <main id="main-content" class="mb-main">
+      <div class="mb-main__inner">
+
+        <!-- ---- Hero / Welcome ---------------------------------- -->
+        <section class="mb-hero fade-in-up" aria-labelledby="welcome-heading">
+          <div class="mb-hero__grid">
+            <div>
+              <h1 id="welcome-heading" class="mb-hero__title">Welcome back, John 👋</h1>
+
+              <div class="mb-progress-wrap">
+                <div class="mb-progress-label">
+                  <span class="label">Profile Completion</span>
+                  <span class="value" data-progress-value>0%</span>
+                </div>
+                <div class="mb-progress-track" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+                  aria-valuemax="100" aria-label="Profile completion percentage">
+                  <div class="mb-progress-fill" data-progress-fill style="width:0%"></div>
+                </div>
+              </div>
+
+              <p class="mb-hero__desc">
+                You have an upcoming appointment scheduled for today. Be sure to check your connection before joining.
+              </p>
+
+              <div class="mb-appt-highlight">
+                <div class="mb-appt-highlight__doctor">
+                  <div data-hero-avatar></div>
+                  <div>
+                    <h3 data-hero-doctor-name>&nbsp;</h3>
+                    <p class="dept" data-hero-doctor-dept>&nbsp;</p>
+                  </div>
+                </div>
+                <div class="mb-appt-highlight__meta">
+                  <span><i class="bi bi-calendar-event" aria-hidden="true"></i> <span
+                      data-hero-date>&nbsp;</span></span>
+                  <span><i class="bi bi-clock" aria-hidden="true"></i> <span data-hero-time>&nbsp;</span></span>
+                </div>
+                <button type="button" class="mb-btn-join" data-cta="join-appointment">
+                  <i class="bi bi-camera-video" aria-hidden="true"></i>
+                  Join Appointment
+                </button>
+              </div>
+            </div>
+
+            <div class="mb-hero__visual">
+              <div class="mb-hero__image">
+                <span>Patient Lounge &mdash; East Wing</span>
+              </div>
+
+              <div class="mb-hero__side-cards">
+                <div class="mb-health-summary">
+                  <div class="mb-health-summary__head">
+                    <i class="bi bi-info-circle-fill" aria-hidden="true"></i>
+                    <h3>Health Summary</h3>
+                  </div>
+                  <div class="mb-health-summary__grid">
+                    <div>
+                      <p class="k">Blood Group</p>
+                      <p class="v" data-health-blood>&nbsp;</p>
+                    </div>
+                    <div>
+                      <p class="k">Insurance</p>
+                      <p class="v success" data-health-insurance>&nbsp;</p>
+                    </div>
+                    <div class="full">
+                      <p class="k">Allergies</p>
+                      <p class="v" data-health-allergies>&nbsp;</p>
+                    </div>
+                  </div>
+                </div>
+
+                <a href="appointments.html" data-route="appointments" class="mb-next-appt-banner">
+                  <div class="mb-next-appt-banner__left">
+                    <i class="bi bi-bell-fill" aria-hidden="true"></i>
+                    <p>
+                      <span class="title d-block" data-next-appt-title>&nbsp;</span>
+                      <span class="sub" data-next-appt-detail>&nbsp;</span>
+                    </p>
+                  </div>
+                  <i class="bi bi-chevron-right" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ---- Quick Stats -------------------------------------- -->
+        <section aria-label="Quick statistics">
+          <div class="mb-stats-grid stagger" data-quick-stats></div>
+        </section>
+
+        <!-- ---- Quick Actions -------------------------------------- -->
+        <section aria-labelledby="quick-actions-heading">
+          <h2 id="quick-actions-heading" class="mb-section-title">Quick Actions</h2>
+          <div class="mb-actions-grid stagger" data-quick-actions></div>
+        </section>
+
+        <!-- ---- Upcoming Appointments Table -------------------------- -->
+        <section class="mb-table-card" aria-labelledby="appointments-heading">
+          <div class="mb-table-card__head">
+            <h2 id="appointments-heading">Upcoming Appointments</h2>
+            <a href="appointment-history.html" data-route="appointmentHistory" class="mb-view-all">View All</a>
+          </div>
+          <div class="mb-table-scroll">
+            <table class="mb-appt-table">
+              <thead>
+                <tr>
+                  <th scope="col">Doctor</th>
+                  <th scope="col">Department</th>
+                  <th scope="col">Date</th>
+                  <th scope="col">Time</th>
+                  <th scope="col">Status</th>
+                  <th scope="col"><span class="visually-hidden">Actions</span></th>
+                </tr>
+              </thead>
+              <tbody data-appointments-body></tbody>
+            </table>
+          </div>
+        </section>
+
+      </div>
+
+      <div class="mb-bottom-spacer"></div>
+    </main>
+  </div>
+
+  <!-- =============================================================
+     Bottom Navigation (mobile only)
+     ============================================================= -->
+  <nav class="mb-bottom-nav" aria-label="Mobile primary navigation">
+    <a href="dashboard.html" data-route="dashboard" class="mb-bottom-nav__item" data-nav-link="dashboard">
+      <i class="bi bi-grid-1x2" aria-hidden="true"></i>
+      <span>Home</span>
+    </a>
+    <a href="appointments.html" data-route="appointments" class="mb-bottom-nav__item" data-nav-link="appointments">
+      <i class="bi bi-calendar2-week" aria-hidden="true"></i>
+      <span>Appointments</span>
+    </a>
+    <a href="messages.html" data-route="messages" class="mb-bottom-nav__item" data-nav-link="messages">
+      <i class="bi bi-chat-dots" aria-hidden="true"></i>
+      <span>Chat</span>
+    </a>
+    <a href="#" class="mb-bottom-nav__item" data-nav-link="records">
+      <i class="bi bi-folder2" aria-hidden="true"></i>
+      <span>Records</span>
+    </a>
+    <a href="profile.html" data-route="profile" class="mb-bottom-nav__item" data-nav-link="profile">
+      <i class="bi bi-person" aria-hidden="true"></i>
+      <span>Profile</span>
+    </a>
+  </nav>
+
+  <!-- Floating Action Button: New Appointment -->
+  <button type="button" class="mb-fab" data-cta="new-appointment" aria-label="Book a new appointment">
+    <i class="bi bi-plus-lg" aria-hidden="true"></i>
+  </button>
+
+  <!-- Bootstrap bundle (JS, no jQuery dependency) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- MediBook+ scripts (ES modules: app.js boots shared chrome, dashboard.js
+     owns this page's data + rendering) -->
+  <script type="module" src="../assets/js/app.js"></script>
+  <script type="module" src="../assets/js/dashboard.js"></script>
+</body>
+
+</html>

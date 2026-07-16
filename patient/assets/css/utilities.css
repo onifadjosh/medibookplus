@@ -1,0 +1,52 @@
+/* ==========================================================================
+   MediBook+ | Utilities
+   Small, single-purpose helper classes reused across every component.
+   If a rule only ever applies to one component, it belongs in
+   components.css / layout.css instead.
+   ========================================================================== */
+
+.text-primary-brand { color: var(--primary) !important; }
+.bg-primary-brand { background-color: var(--primary) !important; }
+
+.container-max {
+  max-width: var(--container-max);
+  margin-inline: auto;
+}
+
+.card-shadow { box-shadow: var(--shadow); }
+
+/* ---- Entrance animation, used by any card/list rendered dynamically ---- */
+.fade-in-up {
+  animation: fadeInUp 0.5s var(--transition-slow) both;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Staggers the .fade-in-up animation of direct children (grids/lists) */
+.stagger > * { animation-fill-mode: both; }
+.stagger > *:nth-child(1) { animation-delay: 0.02s; }
+.stagger > *:nth-child(2) { animation-delay: 0.08s; }
+.stagger > *:nth-child(3) { animation-delay: 0.14s; }
+.stagger > *:nth-child(4) { animation-delay: 0.2s; }
+.stagger > *:nth-child(5) { animation-delay: 0.26s; }
+.stagger > *:nth-child(6) { animation-delay: 0.32s; }
+
+/* ---- Spacing utilities --------------------------------------------------
+   Bootstrap-style shorthand (mt-*, mb-*) mapped to our own spacing tokens.
+   Note: "mb-" here means "margin-bottom", same as Bootstrap's convention —
+   coincidentally the same two letters as our "MediBook" component prefix
+   (.mb-btn, .mb-panel, etc.), but exact-string class matching means there's
+   no actual collision. Used sparingly for one-off spacing tweaks; anything
+   reused more than once should get a real component/utility of its own. */
+.mt-xs { margin-top: var(--space-xs) !important; }
+.mt-sm { margin-top: var(--space-sm) !important; }
+.mt-md { margin-top: var(--space-md) !important; }
+.mt-lg { margin-top: var(--space-lg) !important; }
+.mt-xl { margin-top: var(--space-xl) !important; }
+.mb-xs { margin-bottom: var(--space-xs) !important; }
+.mb-sm { margin-bottom: var(--space-sm) !important; }
+.mb-md { margin-bottom: var(--space-md) !important; }
+.mb-lg { margin-bottom: var(--space-lg) !important; }
+.mb-xl { margin-bottom: var(--space-xl) !important; }
