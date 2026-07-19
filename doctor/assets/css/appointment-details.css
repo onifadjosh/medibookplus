@@ -1,0 +1,619 @@
+/* ==========================================================================
+   MediBook+ | Appointment Details Styles
+   Page-specific components only — shared tokens, sidebar, topbar, buttons,
+   cards, tags, and vitals come from dashboard.css.
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   1. BREADCRUMB
+--------------------------------------------------------------------------- */
+.appt-breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+  font-size: var(--fs-label-sm);
+}
+
+.appt-breadcrumb a {
+  color: var(--color-on-surface-variant);
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
+.appt-breadcrumb a:hover {
+  color: var(--color-primary);
+}
+
+.appt-breadcrumb-sep {
+  color: var(--color-outline-variant);
+  font-size: 0.65rem;
+  user-select: none;
+}
+
+.appt-breadcrumb-current {
+  color: var(--color-on-surface);
+  font-weight: 700;
+}
+
+/* ---------------------------------------------------------------------------
+   2. PATIENT INFO CARD
+--------------------------------------------------------------------------- */
+.patient-info-card {
+  background-color: var(--color-surface-container-lowest);
+  border: 1px solid rgba(189, 201, 200, 0.3);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-sm);
+}
+
+.patient-info-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: var(--space-xl);
+  padding-bottom: var(--space-xl);
+  border-bottom: 1px solid rgba(189, 201, 200, 0.3);
+}
+
+.patient-info-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 0 4px var(--color-primary-soft-strong);
+  margin-bottom: var(--space-md);
+}
+
+.patient-info-name {
+  font-size: var(--fs-headline-md);
+  font-weight: 800;
+  margin: 0;
+  color: var(--color-on-surface);
+  line-height: 1.2;
+}
+
+.patient-info-id {
+  font-size: var(--fs-body-sm);
+  font-weight: 500;
+  color: var(--color-on-surface-variant);
+  margin: var(--space-xs) 0 0;
+}
+
+.patient-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.patient-info-field {
+  background-color: var(--color-surface-container-low);
+  border: 1px solid rgba(189, 201, 200, 0.2);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+}
+
+.patient-info-field-full {
+  grid-column: 1 / -1;
+}
+
+.patient-info-label {
+  font-size: var(--fs-label-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-on-surface-variant);
+  margin: 0 0 4px;
+}
+
+.patient-info-value {
+  font-size: var(--fs-body-sm);
+  font-weight: 600;
+  color: var(--color-on-surface);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.patient-info-notes {
+  font-size: var(--fs-label-sm);
+  color: var(--color-on-surface-variant);
+  line-height: 1.6;
+}
+
+.patient-info-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.patient-info-actions .btn {
+  width: 100%;
+  justify-content: center;
+}
+
+/* ---------------------------------------------------------------------------
+   3. RECENT VITALS CARD
+--------------------------------------------------------------------------- */
+.vitals-card {
+  background-color: var(--color-surface-container-lowest);
+  border: 1px solid rgba(189, 201, 200, 0.3);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-sm);
+}
+
+.vitals-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.vitals-card-updated {
+  font-size: var(--fs-label-xs);
+  font-weight: 600;
+  color: var(--color-on-surface-variant);
+}
+
+.vitals-stat-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+@media (min-width: 576px) {
+  .vitals-stat-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.vitals-stat-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  background-color: var(--color-surface-container-low);
+  border: 1px solid rgba(189, 201, 200, 0.2);
+  border-radius: var(--radius-xl);
+  padding: var(--space-md) var(--space-lg);
+}
+
+.vitals-stat-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.vitals-stat-icon.icon-heart {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--color-status-critical);
+}
+
+.vitals-stat-icon.icon-temp {
+  background-color: var(--color-status-urgent-bg);
+  color: var(--color-status-urgent);
+}
+
+.vitals-stat-label {
+  font-size: var(--fs-label-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-on-surface-variant);
+  margin: 0;
+}
+
+.vitals-stat-value {
+  font-size: var(--fs-title-lg);
+  font-weight: 800;
+  margin: 2px 0 0;
+  color: var(--color-on-surface);
+  line-height: 1;
+}
+
+.vitals-stat-unit {
+  font-size: var(--fs-label-sm);
+  font-weight: 500;
+  color: var(--color-on-surface-variant);
+}
+
+/* ---------------------------------------------------------------------------
+   4. PATIENT TABS (Bootstrap overrides)
+--------------------------------------------------------------------------- */
+.appt-tabs-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.appt-tabs-nav {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  border-bottom: 1px solid rgba(189, 201, 200, 0.3);
+  padding: var(--space-sm) var(--space-lg) 0;
+  gap: var(--space-xs);
+  scrollbar-width: none;
+}
+
+.appt-tabs-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.appt-tabs-nav .nav-link {
+  border: none;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  color: var(--color-on-surface-variant);
+  font-weight: 600;
+  font-size: var(--fs-label-sm);
+  padding: 0.65rem 1.25rem;
+  white-space: nowrap;
+  background: transparent;
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.appt-tabs-nav .nav-link:hover {
+  color: var(--color-primary);
+  background-color: var(--color-primary-soft);
+}
+
+.appt-tabs-nav .nav-link.active {
+  color: var(--color-primary);
+  font-weight: 700;
+  background-color: var(--color-primary-soft);
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.appt-tab-body {
+  padding: var(--space-xl);
+}
+
+.appt-tab-placeholder {
+  text-align: center;
+  padding: var(--space-3xl) var(--space-xl);
+  color: var(--color-on-surface-variant);
+}
+
+.appt-tab-placeholder i {
+  font-size: 2rem;
+  color: var(--color-outline-variant);
+  margin-bottom: var(--space-md);
+  display: block;
+}
+
+.appt-tab-placeholder p {
+  font-size: var(--fs-body-sm);
+  margin: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   5. OVERVIEW SUB-CARDS (Allergy, Conditions)
+--------------------------------------------------------------------------- */
+.overview-section {
+  margin-bottom: var(--space-xl);
+}
+
+.overview-section:last-child {
+  margin-bottom: 0;
+}
+
+.overview-section-title {
+  font-size: var(--fs-title-md);
+  font-weight: 700;
+  margin: 0 0 var(--space-md);
+  color: var(--color-on-surface);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.overview-section-title i {
+  color: var(--color-primary);
+  font-size: 1rem;
+}
+
+.overview-badge-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.tag-allergy {
+  background-color: var(--color-error-container);
+  color: var(--color-error);
+  border-color: rgba(186, 26, 26, 0.2);
+}
+
+.tag-condition {
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+  border-color: rgba(0, 103, 103, 0.2);
+}
+
+/* ---------------------------------------------------------------------------
+   6. LAB TREND CHART PLACEHOLDER
+--------------------------------------------------------------------------- */
+.lab-trend-card {
+  background-color: var(--color-surface-container-low);
+  border: 1px solid rgba(189, 201, 200, 0.3);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+}
+
+.lab-trend-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-lg);
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.lab-trend-legend {
+  display: flex;
+  gap: var(--space-lg);
+  font-size: var(--fs-label-xs);
+  font-weight: 600;
+  color: var(--color-on-surface-variant);
+}
+
+.lab-trend-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.legend-dot-primary {
+  background-color: var(--color-primary);
+}
+
+.legend-dot-secondary {
+  background-color: var(--color-status-urgent);
+}
+
+.lab-chart-placeholder {
+  position: relative;
+  height: 200px;
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-sm) 0;
+  border-bottom: 1px solid var(--color-outline-variant);
+}
+
+.lab-chart-bar-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  min-width: 0;
+}
+
+.lab-chart-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 160px;
+  width: 100%;
+  justify-content: center;
+}
+
+.lab-chart-bar {
+  width: 12px;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  transition: height var(--transition-slow);
+}
+
+.lab-chart-bar-primary {
+  background-color: var(--color-primary);
+  opacity: 0.85;
+}
+
+.lab-chart-bar-secondary {
+  background-color: var(--color-status-urgent);
+  opacity: 0.7;
+}
+
+.lab-chart-label {
+  font-size: var(--fs-label-xs);
+  font-weight: 600;
+  color: var(--color-on-surface-variant);
+  text-align: center;
+}
+
+.lab-chart-grid-lines {
+  position: absolute;
+  inset: 0 var(--space-sm) 24px;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.lab-chart-grid-line {
+  border-top: 1px dashed rgba(189, 201, 200, 0.5);
+  width: 100%;
+}
+
+/* ---------------------------------------------------------------------------
+   7. CLINICAL DOCUMENTS
+--------------------------------------------------------------------------- */
+.documents-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.document-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  background-color: var(--color-surface-container-low);
+  border: 1px solid rgba(189, 201, 200, 0.3);
+  border-radius: var(--radius-xl);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.document-item:hover {
+  background-color: var(--color-primary-soft);
+  border-color: rgba(0, 103, 103, 0.15);
+}
+
+.document-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-lg);
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--color-status-critical);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.document-info {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.document-name {
+  font-size: var(--fs-body-sm);
+  font-weight: 700;
+  margin: 0;
+  color: var(--color-on-surface);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.document-meta {
+  font-size: var(--fs-label-xs);
+  color: var(--color-on-surface-variant);
+  margin: 2px 0 0;
+  font-weight: 500;
+}
+
+.document-download-btn {
+  flex-shrink: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   8. CONFIRMATION MODAL (Bootstrap overrides)
+--------------------------------------------------------------------------- */
+.appt-modal .modal-content {
+  border: none;
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.appt-modal .modal-header {
+  background-color: var(--color-surface-container-low);
+  border-bottom: 1px solid rgba(189, 201, 200, 0.3);
+  padding: var(--space-lg) var(--space-xl);
+}
+
+.appt-modal .modal-title {
+  font-size: var(--fs-title-md);
+  font-weight: 700;
+  color: var(--color-on-surface);
+}
+
+.appt-modal .modal-body {
+  padding: var(--space-xl);
+  font-size: var(--fs-body-sm);
+  color: var(--color-on-surface-variant);
+  line-height: 1.6;
+}
+
+.appt-modal .modal-footer {
+  border-top: 1px solid rgba(189, 201, 200, 0.3);
+  padding: var(--space-md) var(--space-xl);
+  gap: var(--space-sm);
+}
+
+.appt-modal-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  margin-bottom: var(--space-md);
+}
+
+.appt-modal-icon-success {
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+.appt-modal-icon-warning {
+  background-color: var(--color-status-urgent-bg);
+  color: var(--color-status-urgent);
+}
+
+.appt-modal-icon-danger {
+  background-color: var(--color-status-critical-bg);
+  color: var(--color-status-critical);
+}
+
+/* ---------------------------------------------------------------------------
+   9. RESPONSIVE
+--------------------------------------------------------------------------- */
+@media (max-width: 767.98px) {
+  .patient-info-card,
+  .vitals-card,
+  .appt-tab-body {
+    padding: var(--space-lg);
+  }
+
+  .patient-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .patient-info-field-full {
+    grid-column: auto;
+  }
+
+  .lab-chart-placeholder {
+    height: 160px;
+  }
+
+  .lab-chart-bars {
+    height: 120px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .document-item {
+    flex-wrap: wrap;
+  }
+
+  .document-download-btn {
+    margin-left: auto;
+  }
+}

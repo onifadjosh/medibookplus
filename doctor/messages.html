@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MediBook+ | Messages</title>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Bootstrap 5 CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+  <!-- Project styles -->
+  <link rel="stylesheet" href="./assets/css/variables.css">
+  <link rel="stylesheet" href="./assets/css/dashboard.css">
+  <link rel="stylesheet" href="./assets/css/messages.css">
+</head>
+<body>
+
+  <div class="app-shell">
+
+    <!-- =========================================================
+         SIDEBAR (Desktop / Tablet persistent navigation)
+    ========================================================== -->
+    <aside class="app-sidebar d-none d-lg-flex flex-column" id="appSidebar">
+      <div class="sidebar-brand">
+        <span class="brand-icon"><i class="bi bi-bag-plus-fill"></i></span>
+        <span class="brand-name">MediBook+</span>
+      </div>
+
+      <nav class="sidebar-nav flex-grow-1" aria-label="Primary navigation">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" href="dashboard.html" data-nav="dashboard">
+              <i class="bi bi-grid-1x2-fill"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="appointments.html" data-nav="appointments">
+              <i class="bi bi-calendar3"></i>
+              <span>Appointments</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="messages.html" data-nav="messages">
+              <i class="bi bi-chat-left-text"></i>
+              <span>Messages</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="patients.html" data-nav="patients">
+              <i class="bi bi-people"></i>
+              <span>Patients</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="settings.html" data-nav="settings">
+              <i class="bi bi-gear"></i>
+              <span>Settings</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <button type="button" class="btn btn-brand w-100 sidebar-cta" id="newSessionBtn">
+        <i class="bi bi-plus-circle-fill"></i>
+        <span>New Session</span>
+      </button>
+    </aside>
+
+    <!-- =========================================================
+         OFFCANVAS SIDEBAR (Mobile navigation)
+    ========================================================== -->
+    <div class="offcanvas offcanvas-start app-sidebar-offcanvas" tabindex="-1" id="mobileSidebar" aria-labelledby="mobileSidebarLabel">
+      <div class="offcanvas-header">
+        <div class="sidebar-brand mb-0">
+          <span class="brand-icon"><i class="bi bi-bag-plus-fill"></i></span>
+          <span class="brand-name" id="mobileSidebarLabel">MediBook+</span>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body d-flex flex-column">
+        <nav class="sidebar-nav flex-grow-1" aria-label="Mobile navigation">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="dashboard.html" data-nav="dashboard">
+                <i class="bi bi-grid-1x2-fill"></i>
+                <span>Dashboard</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="appointments.html" data-nav="appointments">
+                <i class="bi bi-calendar3"></i>
+                <span>Appointments</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="messages.html" data-nav="messages">
+                <i class="bi bi-chat-left-text"></i>
+                <span>Messages</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="patients.html" data-nav="patients">
+                <i class="bi bi-people"></i>
+                <span>Patients</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="settings.html" data-nav="settings">
+                <i class="bi bi-gear"></i>
+                <span>Settings</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <button type="button" class="btn btn-brand w-100 sidebar-cta">
+          <i class="bi bi-plus-circle-fill"></i>
+          <span>New Session</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         MAIN CONTENT
+    ========================================================== -->
+    <div class="app-main">
+
+      <!-- ---------- TOP NAVIGATION BAR ---------- -->
+      <header class="app-topbar">
+        <button class="btn btn-icon d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar" aria-controls="mobileSidebar" aria-label="Open navigation">
+          <i class="bi bi-list"></i>
+        </button>
+
+        <div class="topbar-search d-none d-md-flex">
+          <i class="bi bi-search"></i>
+          <input type="search" id="globalSearch" class="topbar-search-input" placeholder="Search Patient ID, Name, or Lab Case...">
+        </div>
+
+        <div class="topbar-actions ms-auto">
+          <span class="emr-status-badge d-none d-sm-inline-flex">
+            <span class="status-dot"></span>
+            EMR CONNECTED
+          </span>
+
+          <div class="dropdown notif-dropdown">
+            <button type="button" class="btn btn-icon position-relative" id="notificationBtn" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" aria-label="Notifications">
+              <i class="bi bi-bell"></i>
+              <span class="notif-dot" id="notifDot" aria-hidden="true"></span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-end notif-dropdown-menu" id="notificationDropdownMenu" aria-labelledby="notificationBtn">
+              <div class="notif-dropdown-header">
+                <h2 class="notif-dropdown-title">Notifications</h2>
+                <p class="notif-dropdown-unread" id="notifUnreadLabel">0 unread</p>
+              </div>
+              <div class="notif-dropdown-body" id="notifDropdownList" role="list"></div>
+              <div class="notif-dropdown-footer">
+                <a href="notifications.html" class="notif-view-all">View All Notifications</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="topbar-divider d-none d-sm-block"></div>
+
+          <div class="topbar-profile">
+            <div class="profile-text d-none d-sm-block">
+              <p class="profile-name">Dr. James Wilson</p>
+              <p class="profile-role">Senior Cardiologist</p>
+            </div>
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkSbzdMCV1dVEYlzT5GZpc5O88zYnLGHI4pQ_ZOUeY1b6gSvdvXT77h406Qd2bR1nGIKt9DIkj65ZkQbxy4Dcr7183c9cMQmD-jSV1kXXPI9-a08NePJx_ksInOxusDQVHNUZxuEWOT3TAvOiGw8Pj4KsvYm7hYVgLRPTdEIguW3zVL0LCGzoiTJ6i060fgN6tZ6w8DmjVf48mlJR5PJi7GfiPRIY2lU774C4xoJQMUDe87td404Gt3A"
+                 alt="Dr. James Wilson" class="profile-avatar">
+          </div>
+        </div>
+      </header>
+
+      <!-- ---------- MESSAGES WORKSPACE ---------- -->
+      <main class="messages-content" aria-label="Patient messages">
+
+        <div class="messages-workspace">
+
+          <!-- ================= CONVERSATION LIST ================= -->
+          <aside class="messages-list-panel" id="messagesListPanel" aria-label="Conversation list">
+
+            <div class="messages-list-header">
+              <div class="messages-list-doctor">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkSbzdMCV1dVEYlzT5GZpc5O88zYnLGHI4pQ_ZOUeY1b6gSvdvXT77h406Qd2bR1nGIKt9DIkj65ZkQbxy4Dcr7183c9cMQmD-jSV1kXXPI9-a08NePJx_ksInOxusDQVHNUZxuEWOT3TAvOiGw8Pj4KsvYm7hYVgLRPTdEIguW3zVL0LCGzoiTJ6i060fgN6tZ6w8DmjVf48mlJR5PJi7GfiPRIY2lU774C4xoJQMUDe87td404Gt3A"
+                     alt="Dr. James Wilson" class="messages-list-doctor-avatar">
+                <div>
+                  <p class="messages-list-doctor-name">Dr. James Wilson</p>
+                  <p class="messages-list-doctor-role">Senior Cardiologist</p>
+                </div>
+              </div>
+
+              <div class="messages-search">
+                <i class="bi bi-search"></i>
+                <input type="search" id="conversationSearch" class="messages-search-input" placeholder="Search conversations..." aria-label="Search conversations">
+              </div>
+
+              <div class="segmented-control messages-filter-control" role="tablist" aria-label="Conversation filters">
+                <button type="button" class="segmented-btn active" role="tab" aria-selected="true" data-msg-filter="all">All</button>
+                <button type="button" class="segmented-btn" role="tab" aria-selected="false" data-msg-filter="unread">Unread</button>
+                <button type="button" class="segmented-btn" role="tab" aria-selected="false" data-msg-filter="priority">Priority</button>
+              </div>
+            </div>
+
+            <div class="conversation-list" id="conversationList" role="listbox" aria-label="Conversations">
+              <!-- Rendered by messages.js -->
+            </div>
+
+          </aside>
+
+          <!-- ================= CHAT AREA ================= -->
+          <section class="messages-chat-panel" id="messagesChatPanel" aria-label="Chat conversation">
+
+            <!-- Chat Header -->
+            <header class="chat-header">
+              <button type="button" class="btn btn-icon chat-back-btn" id="chatBackBtn" aria-label="Back to conversations">
+                <i class="bi bi-arrow-left"></i>
+              </button>
+
+              <div class="chat-header-patient">
+                <div class="chat-header-avatar-wrap">
+                  <img src="" alt="" class="chat-header-avatar" id="chatHeaderAvatar">
+                  <span class="chat-online-dot" id="chatOnlineDot" aria-label="Online"></span>
+                </div>
+                <div>
+                  <h2 class="chat-header-name" id="chatHeaderName">Select a conversation</h2>
+                  <p class="chat-header-status" id="chatHeaderStatus">Online</p>
+                </div>
+              </div>
+
+              <div class="chat-header-actions">
+                <button type="button" class="btn btn-icon-outline" id="videoCallBtn" aria-label="Video call">
+                  <i class="bi bi-camera-video"></i>
+                </button>
+                <button type="button" class="btn btn-icon-outline" id="voiceCallBtn" aria-label="Voice call">
+                  <i class="bi bi-telephone"></i>
+                </button>
+                <button type="button" class="btn btn-brand btn-sm-action summary-toggle-btn" id="summaryToggleBtn">
+                  <i class="bi bi-clipboard2-pulse"></i>
+                  <span>Summary</span>
+                </button>
+              </div>
+            </header>
+
+            <!-- Chat Messages -->
+            <div class="chat-messages" id="chatMessages" role="log" aria-live="polite" aria-label="Message history">
+              <!-- Rendered by messages.js -->
+            </div>
+
+            <!-- Message Composer (UI only) -->
+            <div class="chat-composer">
+              <button type="button" class="btn btn-icon" aria-label="Attach file">
+                <i class="bi bi-paperclip"></i>
+              </button>
+              <input type="text" class="chat-composer-input" id="messageComposerInput" placeholder="Type a message..." aria-label="Message input">
+              <button type="button" class="btn btn-brand" id="messageSendBtn" aria-label="Send message">
+                <i class="bi bi-send-fill"></i>
+              </button>
+            </div>
+
+          </section>
+
+          <!-- ================= CLINICAL SUMMARY PANEL (Desktop) ================= -->
+          <aside class="messages-summary-panel d-none d-xl-flex" id="messagesSummaryPanel" aria-label="Clinical summary">
+
+            <div class="summary-card">
+              <h3 class="summary-card-title">Current Status</h3>
+              <p class="summary-status-text" id="summaryStatus">â€”</p>
+            </div>
+
+            <div class="summary-card">
+              <h3 class="summary-card-title">Vitals</h3>
+              <div class="summary-vitals-row">
+                <div class="vital-box">
+                  <p class="vital-label">Blood Pressure</p>
+                  <p class="vital-value" id="summaryBP">â€”</p>
+                </div>
+                <div class="vital-box">
+                  <p class="vital-label">Heart Rate</p>
+                  <p class="vital-value" id="summaryHR">â€”</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="summary-card">
+              <h3 class="summary-card-title">Active Conditions</h3>
+              <div class="summary-conditions" id="summaryConditions">
+                <!-- Rendered by messages.js -->
+              </div>
+            </div>
+
+            <div class="summary-card">
+              <h3 class="summary-card-title">Prescriptions</h3>
+              <ul class="summary-rx-list" id="summaryRx">
+                <!-- Rendered by messages.js -->
+              </ul>
+            </div>
+
+            <div class="summary-card">
+              <h3 class="summary-card-title">Internal Notes</h3>
+              <p class="summary-notes-text" id="summaryNotes">â€”</p>
+            </div>
+
+          </aside>
+
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       CLINICAL SUMMARY OFFCANVAS (Tablet / Mobile)
+  ========================================================== -->
+  <div class="offcanvas offcanvas-end messages-summary-offcanvas" tabindex="-1" id="summaryOffcanvas" aria-labelledby="summaryOffcanvasLabel">
+    <div class="offcanvas-header">
+      <h2 class="offcanvas-title content-card-title-sm" id="summaryOffcanvasLabel">
+        <i class="bi bi-clipboard2-pulse"></i> Clinical Summary
+      </h2>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+
+      <div class="summary-card">
+        <h3 class="summary-card-title">Current Status</h3>
+        <p class="summary-status-text" id="offcanvasSummaryStatus">â€”</p>
+      </div>
+
+      <div class="summary-card">
+        <h3 class="summary-card-title">Vitals</h3>
+        <div class="summary-vitals-row">
+          <div class="vital-box">
+            <p class="vital-label">Blood Pressure</p>
+            <p class="vital-value" id="offcanvasSummaryBP">â€”</p>
+          </div>
+          <div class="vital-box">
+            <p class="vital-label">Heart Rate</p>
+            <p class="vital-value" id="offcanvasSummaryHR">â€”</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="summary-card">
+        <h3 class="summary-card-title">Active Conditions</h3>
+        <div class="summary-conditions" id="offcanvasSummaryConditions"></div>
+      </div>
+
+      <div class="summary-card">
+        <h3 class="summary-card-title">Prescriptions</h3>
+        <ul class="summary-rx-list" id="offcanvasSummaryRx"></ul>
+      </div>
+
+      <div class="summary-card">
+        <h3 class="summary-card-title">Internal Notes</h3>
+        <p class="summary-notes-text" id="offcanvasSummaryNotes">â€”</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MOBILE BOTTOM NAVIGATION
+  ========================================================== -->
+  <nav class="mobile-bottom-nav d-lg-none" aria-label="Mobile bottom navigation">
+    <a href="dashboard.html" class="mobile-nav-link" data-nav="dashboard">
+      <i class="bi bi-grid-1x2-fill"></i>
+      <span>Dashboard</span>
+    </a>
+    <a href="appointments.html" class="mobile-nav-link" data-nav="appointments">
+      <i class="bi bi-calendar3"></i>
+      <span>Appts</span>
+    </a>
+    <button type="button" class="mobile-nav-fab" id="mobileNewSessionBtn" aria-label="New Session">
+      <i class="bi bi-plus-lg"></i>
+    </button>
+    <a href="#" class="mobile-nav-link" data-nav="patients">
+      <i class="bi bi-people"></i>
+      <span>Patients</span>
+    </a>
+    <a href="settings.html" class="mobile-nav-link" data-nav="settings">
+      <i class="bi bi-gear"></i>
+      <span>Settings</span>
+    </a>
+  </nav>
+
+  <!-- =========================================================
+       TOAST
+  ========================================================== -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1080;">
+    <div id="appToast" class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body" id="appToastBody">Action completed.</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Project scripts -->
+  <script src="./assets/js/notifications-shared.js"></script>
+  <script src="./assets/js/messages.js"></script>
+</body>
+</html>
