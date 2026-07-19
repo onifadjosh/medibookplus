@@ -1,0 +1,386 @@
+/* ==========================================================================
+   MediBook+ | Appointments List Styles
+   Page-specific components only — shared tokens, sidebar, topbar, buttons,
+   stat cards, segmented control, and tags come from dashboard.css.
+   ========================================================================== */
+
+/* ---------------------------------------------------------------------------
+   1. PAGE HEADER
+--------------------------------------------------------------------------- */
+.appt-list-header {
+  margin-bottom: var(--space-xl);
+}
+
+.appt-list-title {
+  font-size: var(--fs-headline-md);
+  font-weight: 800;
+  margin: 0;
+  color: var(--color-on-surface);
+  letter-spacing: -0.01em;
+}
+
+.appt-list-subtitle {
+  font-size: var(--fs-body-sm);
+  color: var(--color-on-surface-variant);
+  margin: var(--space-xs) 0 0;
+}
+
+/* ---------------------------------------------------------------------------
+   2. TOOLBAR (Search + Filters)
+--------------------------------------------------------------------------- */
+.appt-list-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+@media (min-width: 768px) {
+  .appt-list-toolbar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+}
+
+.appt-list-search {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  background-color: var(--color-surface-container-lowest);
+  border: 1px solid rgba(189, 201, 200, 0.3);
+  border-radius: var(--radius-full);
+  padding: 0.6rem 1.25rem;
+  flex: 1 1 auto;
+  max-width: 100%;
+  box-shadow: var(--shadow-sm);
+}
+
+@media (min-width: 768px) {
+  .appt-list-search {
+    max-width: 28rem;
+  }
+}
+
+.appt-list-search i {
+  color: var(--color-on-surface-variant);
+  font-size: 0.95rem;
+}
+
+.appt-list-search-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 100%;
+  font-size: var(--fs-body-sm);
+  color: var(--color-on-surface);
+}
+
+.appt-list-search-input::placeholder {
+  color: var(--color-outline);
+}
+
+.appt-list-filters {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.appt-list-filters::-webkit-scrollbar {
+  display: none;
+}
+
+.appt-list-filters .segmented-control {
+  width: max-content;
+  min-width: 100%;
+}
+
+@media (min-width: 768px) {
+  .appt-list-filters {
+    width: auto;
+  }
+
+  .appt-list-filters .segmented-control {
+    min-width: auto;
+  }
+}
+
+.appt-list-filters .segmented-btn {
+  padding: 0.5rem 1rem;
+  font-size: var(--fs-label-sm);
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------------------
+   3. STATISTICS ROW
+--------------------------------------------------------------------------- */
+.appt-stats-row {
+  margin-bottom: var(--space-xl);
+}
+
+.stat-card-pending .stat-value {
+  color: var(--color-status-urgent);
+}
+
+/* ---------------------------------------------------------------------------
+   4. APPOINTMENT LIST
+--------------------------------------------------------------------------- */
+.appt-list-card {
+  padding: var(--space-lg);
+}
+
+@media (min-width: 768px) {
+  .appt-list-card {
+    padding: var(--space-xl);
+  }
+}
+
+.appt-list-count {
+  font-size: var(--fs-label-sm);
+  font-weight: 600;
+  color: var(--color-on-surface-variant);
+  margin: 0;
+}
+
+.appt-list-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+/* Individual appointment row */
+.appt-row {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background-color: #ffffff;
+  border: 1px solid rgba(189, 201, 200, 0.5);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+  cursor: pointer;
+  transition: background-color var(--transition-base), border-color var(--transition-base), box-shadow var(--transition-base);
+  color: inherit;
+}
+
+.appt-row:hover {
+  background-color: var(--color-surface-container-low);
+  border-color: rgba(0, 103, 103, 0.2);
+  box-shadow: var(--shadow-sm);
+}
+
+.appt-row-priority {
+  border-left: 4px solid var(--color-status-critical);
+}
+
+.appt-row-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+  align-items: center;
+}
+
+.appt-row-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--color-outline-variant);
+  flex-shrink: 0;
+}
+
+.appt-row-avatar-initials {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-secondary-container);
+  color: var(--color-on-secondary-container);
+  font-weight: 700;
+  font-size: var(--fs-body-sm);
+  border: 1px solid var(--color-outline-variant);
+}
+
+.appt-row-main {
+  flex: 1 1 200px;
+  min-width: 0;
+}
+
+.appt-row-top {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: 4px;
+}
+
+.appt-row-name {
+  font-size: var(--fs-body-md);
+  font-weight: 700;
+  margin: 0;
+  color: var(--color-on-surface);
+}
+
+.appt-row-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.status-badge {
+  font-size: 0.625rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+}
+
+.status-badge-waiting {
+  background-color: var(--color-status-urgent-bg);
+  color: var(--color-status-urgent);
+  border-color: rgba(245, 158, 11, 0.2);
+}
+
+.status-badge-confirmed {
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+  border-color: rgba(0, 103, 103, 0.2);
+}
+
+.status-badge-completed {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--color-status-normal);
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+.status-badge-cancelled {
+  background-color: var(--color-error-container);
+  color: var(--color-error);
+  border-color: rgba(186, 26, 26, 0.2);
+}
+
+.priority-badge {
+  font-size: 0.625rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-md);
+  background-color: var(--color-status-critical-bg);
+  color: var(--color-status-critical);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.appt-row-meta {
+  font-size: var(--fs-label-sm);
+  color: var(--color-on-surface-variant);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.appt-row-meta strong {
+  font-weight: 600;
+  color: var(--color-on-surface);
+}
+
+.appt-row-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md) var(--space-xl);
+  flex: 1 1 280px;
+}
+
+.appt-row-detail {
+  min-width: 100px;
+}
+
+.appt-row-detail-label {
+  font-size: var(--fs-label-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-on-surface-variant);
+  margin: 0 0 2px;
+}
+
+.appt-row-detail-value {
+  font-size: var(--fs-body-sm);
+  font-weight: 600;
+  color: var(--color-on-surface);
+  margin: 0;
+}
+
+.appt-row-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.appt-row-actions .btn {
+  font-size: var(--fs-label-sm);
+  padding: 0.5rem 1rem;
+  white-space: nowrap;
+}
+
+/* Empty state */
+.appt-list-empty {
+  text-align: center;
+  padding: var(--space-3xl) var(--space-xl);
+  color: var(--color-on-surface-variant);
+}
+
+.appt-list-empty i {
+  font-size: 2.5rem;
+  color: var(--color-outline-variant);
+  margin-bottom: var(--space-md);
+  display: block;
+}
+
+.appt-list-empty p {
+  font-size: var(--fs-body-sm);
+  margin: 0;
+}
+
+/* ---------------------------------------------------------------------------
+   5. RESPONSIVE
+--------------------------------------------------------------------------- */
+@media (max-width: 767.98px) {
+  .appt-row {
+    padding: var(--space-md);
+  }
+
+  .appt-row-inner {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .appt-row-actions {
+    margin-left: 0;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .appt-row-actions .btn-brand {
+    flex: 1 1 auto;
+  }
+
+  .appt-row-details {
+    width: 100%;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .appt-row-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .appt-row-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

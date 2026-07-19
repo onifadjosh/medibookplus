@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MediBook+ | EMR Clinician Dashboard</title>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Bootstrap 5 CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+  <!-- Project styles -->
+  <link rel="stylesheet" href="./assets/css/variables.css">
+  <link rel="stylesheet" href="./assets/css/dashboard.css">
+</head>
+<body>
+
+  <div class="app-shell">
+
+    <!-- =========================================================
+         SIDEBAR (Desktop / Tablet persistent navigation)
+    ========================================================== -->
+    <aside class="app-sidebar d-none d-lg-flex flex-column" id="appSidebar">
+      <div class="sidebar-brand">
+        <span class="brand-icon"><i class="bi bi-bag-plus-fill"></i></span>
+        <span class="brand-name">MediBook+</span>
+      </div>
+
+      <nav class="sidebar-nav flex-grow-1" aria-label="Primary navigation">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" href="dashboard.html" data-nav="dashboard">
+              <i class="bi bi-grid-1x2-fill"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="appointments.html" data-nav="appointments">
+              <i class="bi bi-calendar3"></i>
+              <span>Appointments</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="messages.html" data-nav="messages">
+              <i class="bi bi-chat-left-text"></i>
+              <span>Messages</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="patients.html" data-nav="patients">
+              <i class="bi bi-people"></i>
+              <span>Patients</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="settings.html" data-nav="settings">
+              <i class="bi bi-gear"></i>
+              <span>Settings</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <button type="button" class="btn btn-brand w-100 sidebar-cta" id="newSessionBtn">
+        <i class="bi bi-plus-circle-fill"></i>
+        <span>New Session</span>
+      </button>
+    </aside>
+
+    <!-- =========================================================
+         OFFCANVAS SIDEBAR (Mobile navigation)
+    ========================================================== -->
+    <div class="offcanvas offcanvas-start app-sidebar-offcanvas" tabindex="-1" id="mobileSidebar" aria-labelledby="mobileSidebarLabel">
+      <div class="offcanvas-header">
+        <div class="sidebar-brand mb-0">
+          <span class="brand-icon"><i class="bi bi-bag-plus-fill"></i></span>
+          <span class="brand-name" id="mobileSidebarLabel">MediBook+</span>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body d-flex flex-column">
+        <nav class="sidebar-nav flex-grow-1" aria-label="Mobile navigation">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" href="dashboard.html" data-nav="dashboard">
+                <i class="bi bi-grid-1x2-fill"></i>
+                <span>Dashboard</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="appointments.html" data-nav="appointments">
+                <i class="bi bi-calendar3"></i>
+                <span>Appointments</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="messages.html" data-nav="messages">
+                <i class="bi bi-chat-left-text"></i>
+                <span>Messages</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="patients.html" data-nav="patients">
+                <i class="bi bi-people"></i>
+                <span>Patients</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="settings.html" data-nav="settings">
+                <i class="bi bi-gear"></i>
+                <span>Settings</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <button type="button" class="btn btn-brand w-100 sidebar-cta">
+          <i class="bi bi-plus-circle-fill"></i>
+          <span>New Session</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- =========================================================
+         MAIN CONTENT
+    ========================================================== -->
+    <div class="app-main">
+
+      <!-- ---------- TOP NAVIGATION BAR ---------- -->
+      <header class="app-topbar">
+        <button class="btn btn-icon d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar" aria-controls="mobileSidebar" aria-label="Open navigation">
+          <i class="bi bi-list"></i>
+        </button>
+
+        <div class="topbar-search d-none d-md-flex">
+          <i class="bi bi-search"></i>
+          <input type="search" id="globalSearch" class="topbar-search-input" placeholder="Search Patient ID, Name, or Lab Case...">
+        </div>
+
+        <div class="topbar-actions ms-auto">
+          <span class="emr-status-badge d-none d-sm-inline-flex">
+            <span class="status-dot"></span>
+            EMR CONNECTED
+          </span>
+
+          <div class="dropdown notif-dropdown">
+            <button type="button" class="btn btn-icon position-relative" id="notificationBtn" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" aria-label="Notifications">
+              <i class="bi bi-bell"></i>
+              <span class="notif-dot" id="notifDot" aria-hidden="true"></span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-end notif-dropdown-menu" id="notificationDropdownMenu" aria-labelledby="notificationBtn">
+              <div class="notif-dropdown-header">
+                <h2 class="notif-dropdown-title">Notifications</h2>
+                <p class="notif-dropdown-unread" id="notifUnreadLabel">0 unread</p>
+              </div>
+              <div class="notif-dropdown-body" id="notifDropdownList" role="list"></div>
+              <div class="notif-dropdown-footer">
+                <a href="notifications.html" class="notif-view-all">View All Notifications</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="topbar-divider d-none d-sm-block"></div>
+
+          <div class="topbar-profile">
+            <div class="profile-text d-none d-sm-block">
+              <p class="profile-name">Dr. James Wilson</p>
+              <p class="profile-role">Senior Cardiologist</p>
+            </div>
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkSbzdMCV1dVEYlzT5GZpc5O88zYnLGHI4pQ_ZOUeY1b6gSvdvXT77h406Qd2bR1nGIKt9DIkj65ZkQbxy4Dcr7183c9cMQmD-jSV1kXXPI9-a08NePJx_ksInOxusDQVHNUZxuEWOT3TAvOiGw8Pj4KsvYm7hYVgLRPTdEIguW3zVL0LCGzoiTJ6i060fgN6tZ6w8DmjVf48mlJR5PJi7GfiPRIY2lU774C4xoJQMUDe87td404Gt3A"
+                 alt="Dr. James Wilson" class="profile-avatar">
+          </div>
+        </div>
+      </header>
+
+      <!-- ---------- DASHBOARD CONTENT ---------- -->
+      <main class="app-content">
+        <div class="row g-4">
+
+          <!-- ================= LEFT / PRIMARY COLUMN ================= -->
+          <div class="col-12 col-xl-8">
+
+            <!-- Stats Cards -->
+            <section class="row g-3 mb-4" aria-label="Clinician performance statistics">
+              <div class="col-6 col-md-3">
+                <div class="stat-card stat-card-primary">
+                  <p class="stat-label">Total Load</p>
+                  <p class="stat-value">18 <span class="stat-unit">pts/day</span></p>
+                  <div class="progress stat-progress" role="progressbar" aria-label="Total load progress" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar" style="width: 65%;"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="stat-card">
+                  <p class="stat-label">Avg. Session</p>
+                  <p class="stat-value">14 <span class="stat-unit">min</span></p>
+                  <p class="stat-trend stat-trend-down"><i class="bi bi-graph-down-arrow"></i> -2m from yesterday</p>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="stat-card">
+                  <p class="stat-label">Efficiency</p>
+                  <p class="stat-value">92 <span class="stat-unit">%</span></p>
+                  <p class="stat-footnote">Target: 85%</p>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="stat-card">
+                  <p class="stat-label">Pending Lab</p>
+                  <p class="stat-value stat-value-critical">04 <span class="stat-unit">High Priority</span></p>
+                  <p class="stat-footnote">7 total pending cases</p>
+                </div>
+              </div>
+            </section>
+
+            <!-- Active Consultation Card -->
+            <section class="active-consultation-card mb-4" aria-label="Active consultation">
+              <div class="active-consultation-header">
+                <div class="d-flex align-items-center gap-2">
+                  <span class="pulse-dot"></span>
+                  <h2 class="active-consultation-title">Active Consultation</h2>
+                </div>
+                <div class="d-flex align-items-center gap-3">
+                  <div class="consultation-timer">
+                    <i class="bi bi-stopwatch"></i>
+                    <span id="consultationTimer">12:45</span>
+                  </div>
+                  <button type="button" class="btn btn-brand" id="endSessionBtn">End Session</button>
+                </div>
+              </div>
+
+              <div class="active-consultation-body">
+                <div class="patient-summary">
+                  <div class="patient-avatar-wrap">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBy9mh47NSNhI0FoQ4E93LzbloWZbPiVYTzVN2PCG5MKFMaiPGzDnUaM5NeBCeMxVDVxfAgVSNB5FySOyhz5rJ13Fo1JjyzY14IVaqX40ueqmW8td2_-hwqGKVbZdTqBPk8iYgOXEF9txY_gObDAc8ICpJbLnda2gq4kIJVmr92Q7Z70Y4juf6NVOUTSpJ1ESk0WhTd4OxPDzsiUytnUio_M7Re79P92kb2kbIpIenvp5t8-815jlXtNg"
+                         alt="Eleanor Vance" class="patient-avatar">
+                    <span class="patient-status-check"><i class="bi bi-check-lg"></i></span>
+                  </div>
+                  <div>
+                    <h3 class="patient-name">Eleanor Vance <span class="patient-id">ID: #PX-9921</span></h3>
+                    <div class="patient-tags">
+                      <span class="tag tag-neutral">Age: 72</span>
+                      <span class="tag tag-danger">Hypertension</span>
+                      <span class="tag tag-warning">Aspirin Sensitivity</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="vitals-group">
+                  <div class="vital-box">
+                    <p class="vital-label">Vitals BP</p>
+                    <p class="vital-value">132/88</p>
+                  </div>
+                  <div class="vital-box">
+                    <p class="vital-label">HR (BPM)</p>
+                    <p class="vital-value vital-value-warning">78</p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Consultation Queue -->
+            <section class="content-card" aria-label="Consultation queue">
+              <div class="content-card-header">
+                <div>
+                  <h2 class="content-card-title">Consultation Queue</h2>
+                  <p class="content-card-subtitle">Real-time patient check-in status</p>
+                </div>
+                <div class="segmented-control" role="tablist" aria-label="Queue display mode">
+                  <button type="button" class="segmented-btn active" role="tab" aria-selected="true" data-queue-view="list">Queue View</button>
+                  <button type="button" class="segmented-btn" role="tab" aria-selected="false" data-queue-view="calendar">Calendar</button>
+                </div>
+              </div>
+
+              <div class="queue-timeline" id="queueTimeline">
+
+                <!-- Critical -->
+                <article class="queue-item queue-item-critical">
+                  <span class="queue-marker queue-marker-critical"><i class="bi bi-exclamation-lg"></i></span>
+                  <div class="queue-card">
+                    <div class="queue-card-main">
+                      <div class="queue-time">
+                        <p class="queue-time-value">10:45 AM</p>
+                        <p class="queue-time-label text-critical">CRITICAL</p>
+                      </div>
+                      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxt6mb1SFU954kesK4HjAFHE2k4yTh5U-o_Kq50G4am-0pxpiwkWPeX-VcEXY-QNcgugZNe_qReBRDXwVxilCR7XXDZlwLCo3LJVXsJDaaeGruSj8Wb5Kzgrho0KEZ6Agw5x2ECDHVEjXOKGgeSkJV2GztsieG8UeHyqyIXHNUdC7EVvkSGrzzOFYirphL2sIGTYGGqErMKY1b-WYAeW-4egvonyBno__94qH2-zvi8gvsMuStUjOKDQ"
+                           alt="Julian Rossi" class="queue-avatar">
+                      <div>
+                        <p class="queue-patient-name">Julian Rossi</p>
+                        <p class="queue-patient-meta">Post-op chest pain check &bull; Dr. Reed Refer</p>
+                      </div>
+                    </div>
+                    <div class="queue-card-actions">
+                      <button type="button" class="btn btn-danger-solid">Start Now</button>
+                      <button type="button" class="btn btn-icon-outline" aria-label="More options">
+                        <i class="bi bi-three-dots-vertical"></i>
+                      </button>
+                    </div>
+                  </div>
+                </article>
+
+                <!-- Urgent -->
+                <article class="queue-item queue-item-urgent">
+                  <span class="queue-marker queue-marker-urgent"><i class="bi bi-exclamation-triangle-fill"></i></span>
+                  <div class="queue-card">
+                    <div class="queue-card-main">
+                      <div class="queue-time">
+                        <p class="queue-time-value">11:30 AM</p>
+                        <p class="queue-time-label text-urgent">URGENT</p>
+                      </div>
+                      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsBOapm_Vua8Eh1806E5PqoR9h85YDk3ONxrjmOTCF2Sq2Yjm3ABIvHFXe38egUGf1Jzt9ZHvtQ_zm9Akaqv4-7LSKtjcRbrVyftSxDSuNNkFs-7Rtgx9KTHZRy0OS8Py3kkHtvHBvWa1NdcdRLSDbSH-q_Z6ITa_zMxYdymxLwn61AC9m87QyEZB5rbarqdLVSloGn0WXGCrjPyCM0bMMuOeRIDosjajlemZEJuvCfo_IwTRUsLvVCQ"
+                           alt="Mark Thompson" class="queue-avatar">
+                      <div>
+                        <p class="queue-patient-name">Mark Thompson</p>
+                        <p class="queue-patient-meta">Abnormal Lab Review &bull; Lipid Panel</p>
+                      </div>
+                    </div>
+                    <div class="queue-card-actions">
+                      <button type="button" class="btn btn-neutral-solid">View Record</button>
+                      <button type="button" class="btn btn-icon-outline" aria-label="More options">
+                        <i class="bi bi-three-dots-vertical"></i>
+                      </button>
+                    </div>
+                  </div>
+                </article>
+
+                <!-- Normal -->
+                <article class="queue-item queue-item-normal">
+                  <span class="queue-marker queue-marker-normal"><i class="bi bi-calendar-event-fill"></i></span>
+                  <div class="queue-card">
+                    <div class="queue-card-main">
+                      <div class="queue-time">
+                        <p class="queue-time-value">01:15 PM</p>
+                        <p class="queue-time-label text-normal">NORMAL</p>
+                      </div>
+                      <div class="queue-avatar queue-avatar-initials">SH</div>
+                      <div>
+                        <p class="queue-patient-name">Sarah Higgins</p>
+                        <p class="queue-patient-meta">Annual Screening &bull; Preventive Care</p>
+                      </div>
+                    </div>
+                    <div class="queue-card-actions">
+                      <button type="button" class="btn btn-neutral-solid">View Record</button>
+                      <button type="button" class="btn btn-icon-outline" aria-label="More options">
+                        <i class="bi bi-three-dots-vertical"></i>
+                      </button>
+                    </div>
+                  </div>
+                </article>
+
+              </div>
+
+              <button type="button" class="btn btn-load-more" id="loadMoreQueueBtn">
+                Load Full Today's Schedule (12 Total Patients)
+              </button>
+            </section>
+
+          </div>
+
+          <!-- ================= RIGHT / UTILITY COLUMN ================= -->
+          <div class="col-12 col-xl-4">
+            <div class="d-flex flex-column gap-4">
+
+              <!-- Clinical Notes -->
+              <section class="content-card" aria-label="Clinical notes">
+                <div class="content-card-header">
+                  <h2 class="content-card-title-sm">
+                    <i class="bi bi-pencil-square"></i> Clinical Notes
+                  </h2>
+                  <span class="badge-autosave">AUTO-SAVING</span>
+                </div>
+                <textarea class="form-control clinical-notes-textarea" id="clinicalNotes"
+                          placeholder="Type rapid findings or clinical observations here..."></textarea>
+                <div class="row g-2 mt-3">
+                  <div class="col-6">
+                    <button type="button" class="btn btn-brand w-100 btn-sm-action" id="appendEmrBtn">Append to EMR</button>
+                  </div>
+                  <div class="col-6">
+                    <button type="button" class="btn btn-neutral-solid w-100 btn-sm-action" id="voiceDictateBtn">
+                      <i class="bi bi-mic"></i> Voice Dictate
+                    </button>
+                  </div>
+                </div>
+              </section>
+
+              <!-- Pending Lab Results -->
+              <section class="content-card" aria-label="Pending lab results">
+                <h2 class="content-card-title-sm mb-3">
+                  <i class="bi bi-clipboard2-pulse"></i> Pending Lab Results
+                </h2>
+                <ul class="list-unstyled lab-results-list">
+                  <li class="lab-result-item lab-result-critical">
+                    <div class="d-flex align-items-center gap-3">
+                      <span class="lab-icon lab-icon-critical"><i class="bi bi-file-earmark-medical"></i></span>
+                      <div>
+                        <p class="lab-patient-name">M. Thompson</p>
+                        <p class="lab-status-critical">Critical Lipid Level</p>
+                      </div>
+                    </div>
+                    <button type="button" class="btn btn-review">Review</button>
+                  </li>
+                  <li class="lab-result-item">
+                    <div class="d-flex align-items-center gap-3">
+                      <span class="lab-icon"><i class="bi bi-clipboard-data"></i></span>
+                      <div>
+                        <p class="lab-patient-name">Eleanor Vance</p>
+                        <p class="lab-status-queue">CBC Panel &bull; In Queue</p>
+                      </div>
+                    </div>
+                    <i class="bi bi-clock-history text-muted"></i>
+                  </li>
+                </ul>
+                <button type="button" class="btn btn-text-link w-100">View All Results (12)</button>
+              </section>
+
+              <!-- Rx Shortcuts -->
+              <section class="content-card" aria-label="Prescription shortcuts">
+                <h2 class="content-card-title-sm mb-3">
+                  <i class="bi bi-capsule"></i> Rx Shortcuts
+                </h2>
+                <ul class="list-unstyled rx-shortcut-list">
+                  <li class="rx-shortcut-item">
+                    <span class="d-flex align-items-center gap-3">
+                      <i class="bi bi-capsule rx-icon"></i>
+                      <span class="rx-name">Atorvastatin 20mg</span>
+                    </span>
+                    <i class="bi bi-plus-circle rx-add-icon"></i>
+                  </li>
+                  <li class="rx-shortcut-item">
+                    <span class="d-flex align-items-center gap-3">
+                      <i class="bi bi-capsule rx-icon"></i>
+                      <span class="rx-name">Lisinopril 10mg</span>
+                    </span>
+                    <i class="bi bi-plus-circle rx-add-icon"></i>
+                  </li>
+                  <li class="rx-shortcut-item">
+                    <span class="d-flex align-items-center gap-3">
+                      <i class="bi bi-capsule rx-icon"></i>
+                      <span class="rx-name">Metformin 500mg</span>
+                    </span>
+                    <i class="bi bi-plus-circle rx-add-icon"></i>
+                  </li>
+                </ul>
+                <button type="button" class="btn btn-text-link w-100">
+                  <i class="bi bi-sliders"></i> Manage Presets
+                </button>
+              </section>
+
+              <!-- Inter-Clinical Feed -->
+              <section class="content-card" aria-label="Inter-clinical team feed">
+                <h2 class="content-card-title-sm mb-3">
+                  <i class="bi bi-diagram-3"></i> Inter-Clinical Feed
+                </h2>
+                <div class="clinical-feed">
+                  <div class="feed-item">
+                    <div class="feed-avatar">DR</div>
+                    <div class="feed-bubble">
+                      <p class="feed-meta">Dr. Sarah Reed <span>08:30 AM</span></p>
+                      <p class="feed-text">Vance BP was stable during PT today. No intervention needed.</p>
+                    </div>
+                  </div>
+                  <div class="feed-item">
+                    <div class="feed-avatar feed-avatar-primary">LP</div>
+                    <div class="feed-bubble">
+                      <p class="feed-meta">Lab Tech #42 <span>09:12 AM</span></p>
+                      <p class="feed-text">Rossi lipid panel completed. Values are dangerously elevated.</p>
+                    </div>
+                  </div>
+                  <div class="feed-item">
+                    <div class="feed-avatar">NS</div>
+                    <div class="feed-bubble">
+                      <p class="feed-meta">Nurse Smith <span>09:45 AM</span></p>
+                      <p class="feed-text">Patient Sarah Higgins checked in and is in Waiting Room B.</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+            </div>
+          </div>
+
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MOBILE BOTTOM NAVIGATION
+  ========================================================== -->
+  <nav class="mobile-bottom-nav d-lg-none" aria-label="Mobile bottom navigation">
+    <a href="dashboard.html" class="mobile-nav-link active" data-nav="dashboard">
+      <i class="bi bi-grid-1x2-fill"></i>
+      <span>Dashboard</span>
+    </a>
+    <a href="appointments.html" class="mobile-nav-link" data-nav="appointments">
+      <i class="bi bi-calendar3"></i>
+      <span>Appts</span>
+    </a>
+    <button type="button" class="mobile-nav-fab" id="mobileNewSessionBtn" aria-label="New Session">
+      <i class="bi bi-plus-lg"></i>
+    </button>
+    <a href="#" class="mobile-nav-link" data-nav="patients">
+      <i class="bi bi-people"></i>
+      <span>Patients</span>
+    </a>
+    <a href="settings.html" class="mobile-nav-link" data-nav="settings">
+      <i class="bi bi-gear"></i>
+      <span>Settings</span>
+    </a>
+  </nav>
+
+  <!-- =========================================================
+       TOAST (New Session confirmation)
+  ========================================================== -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1080;">
+    <div id="appToast" class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body" id="appToastBody">Action completed.</div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Project scripts -->
+  <script src="./assets/js/notifications-shared.js"></script>
+  <script src="./assets/js/dashboard.js"></script>
+</body>
+</html>
