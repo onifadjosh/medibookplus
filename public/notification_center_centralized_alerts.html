@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MediBook+ | Notification Center</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Configuration -->
+
+
+<link href="tailwind.css" rel="stylesheet"/><link href="custom.css" rel="stylesheet"/></head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- Sidebar (Desktop Only) -->
+<nav class="hidden md:flex h-screen w-64 flex-col fixed left-0 top-0 bg-surface-container-low border-r border-outline-variant p-md space-y-sm overflow-y-auto">
+<div class="mb-xl px-sm">
+<h1 class="font-title-md text-title-md font-bold text-primary">MediBook+ Portal</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Hospital Admin</p>
+</div>
+<div class="space-y-xs flex-grow">
+<a class="flex items-center gap-sm p-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-150" href="../a_dm_in/admin_hospital_management_dashboard.html">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-sm p-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-150" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md">Patients</span>
+</a>
+<a class="flex items-center gap-sm p-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-150" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-label-md">Schedules</span>
+</a>
+<a class="flex items-center gap-sm p-sm bg-secondary-container text-on-secondary-container font-semibold rounded-lg" href="#">
+<span class="material-symbols-outlined">notifications</span>
+<span class="font-label-md">Notifications</span>
+</a>
+<a class="flex items-center gap-sm p-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-150" href="#">
+<span class="material-symbols-outlined">clinical_notes</span>
+<span class="font-label-md">Medical Records</span>
+</a>
+<a class="flex items-center gap-sm p-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg transition-all duration-150" href="#">
+<span class="material-symbols-outlined">inventory_2</span>
+<span class="font-label-md">Inventory</span>
+</a>
+</div>
+<div class="pt-lg border-t border-outline-variant space-y-xs">
+<a class="flex items-center gap-sm p-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-sm p-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="md:ml-64 min-h-screen flex flex-col">
+<!-- Top Bar -->
+<header class="w-full sticky top-0 bg-background/80 backdrop-blur-md shadow-sm z-30">
+<div class="flex justify-between items-center h-16 px-margin-desktop max-w-container-max mx-auto">
+<h2 class="font-title-lg text-title-lg text-primary font-bold">Notification Center</h2>
+<div class="flex items-center gap-md">
+<a class="p-sm hover:bg-surface-container-low rounded-full transition-colors" href="search_results_global_clinical_search.html">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+</a>
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-white font-bold text-xs">
+                        JS
+                    </div>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="flex-grow p-margin-desktop max-w-4xl mx-auto w-full">
+<!-- Filters / Tabs -->
+<div class="flex items-center justify-between mb-lg border-b border-outline-variant">
+<div class="flex gap-lg">
+<button class="pb-sm font-label-md tab-active">All</button>
+<button class="pb-sm font-label-md text-on-surface-variant hover:text-primary transition-colors">Appointments</button>
+<button class="pb-sm font-label-md text-on-surface-variant hover:text-primary transition-colors">Lab Results</button>
+<button class="pb-sm font-label-md text-on-surface-variant hover:text-primary transition-colors">System</button>
+</div>
+<button class="text-primary font-label-sm hover:underline flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">done_all</span>
+                    Mark all as read
+                </button>
+</div>
+<!-- Notification Groups -->
+<div class="space-y-xl">
+<!-- Today Section -->
+<section>
+<h3 class="font-label-sm text-on-surface-variant uppercase tracking-wider mb-md flex items-center gap-sm">
+                        Today
+                        <span class="bg-primary text-on-primary text-[10px] px-1.5 py-0.5 rounded-full">2 New</span>
+</h3>
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden divide-y divide-outline-variant">
+<!-- Item 1 (Lab Result - Unread) -->
+<div class="notification-card p-lg flex gap-md cursor-pointer relative bg-primary-fixed/5">
+<div class="unread-indicator absolute top-lg right-lg"></div>
+<div class="w-10 h-10 rounded-lg bg-secondary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">biotech</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-title-md text-on-surface">Lab Results Ready</h4>
+<span class="font-label-sm text-outline">10:24 AM</span>
+</div>
+<p class="font-body-sm text-on-surface-variant leading-relaxed">Blood work results for Patient #8821 (A. Thompson) have been uploaded and are ready for review. Priority: Normal.</p>
+<div class="mt-md flex gap-sm">
+<button class="bg-primary text-on-primary px-lg py-sm rounded font-label-md hover:opacity-90 transition-opacity">View Results</button>
+<button class="border border-outline text-on-surface-variant px-lg py-sm rounded font-label-md hover:bg-surface-container-low transition-colors">Dismiss</button>
+</div>
+</div>
+</div>
+<!-- Item 2 (Appointment - Unread) -->
+<div class="notification-card p-lg flex gap-md cursor-pointer relative bg-primary-fixed/5">
+<div class="unread-indicator absolute top-lg right-lg"></div>
+<div class="w-10 h-10 rounded-lg bg-tertiary-fixed flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-tertiary">calendar_clock</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-title-md text-on-surface">New Appointment Request</h4>
+<span class="font-label-sm text-outline">08:15 AM</span>
+</div>
+<p class="font-body-sm text-on-surface-variant leading-relaxed">Sarah Miller has requested a follow-up consultation for Tomorrow at 2:00 PM in Clinical Wing B.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Yesterday Section -->
+<section>
+<h3 class="font-label-sm text-on-surface-variant uppercase tracking-wider mb-md">Yesterday</h3>
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden divide-y divide-outline-variant">
+<!-- Item 3 (System Update - Read) -->
+<div class="notification-card p-lg flex gap-md cursor-pointer">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-surface-variant">update</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-title-md text-on-surface">Security Protocol Updated</h4>
+<span class="font-label-sm text-outline">Yesterday, 4:45 PM</span>
+</div>
+<p class="font-body-sm text-on-surface-variant leading-relaxed">The system underwent a scheduled security patch (v2.4.1). 2FA requirements have been tightened for remote access.</p>
+</div>
+</div>
+<!-- Item 4 (Appointment - Read) -->
+<div class="notification-card p-lg flex gap-md cursor-pointer">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-surface-variant">check_circle</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-title-md text-on-surface">Consultation Completed</h4>
+<span class="font-label-sm text-outline">Yesterday, 2:30 PM</span>
+</div>
+<p class="font-body-sm text-on-surface-variant leading-relaxed">Dr. Aris summarized the findings for Patient John Doe. Electronic health records have been synchronized.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Earlier Section -->
+<section>
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-label-sm text-on-surface-variant uppercase tracking-wider">Earlier this week</h3>
+<button class="text-outline font-label-sm hover:text-primary transition-colors">Clear History</button>
+</div>
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden divide-y divide-outline-variant">
+<!-- Item 5 (System Update) -->
+<div class="notification-card p-lg flex gap-md cursor-pointer opacity-80 hover:opacity-100 transition-opacity">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-surface-variant">inventory_2</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-1">
+<h4 class="font-title-md text-on-surface">Low Stock Alert: Medical Supplies</h4>
+<span class="font-label-sm text-outline">Monday, 9:00 AM</span>
+</div>
+<p class="font-body-sm text-on-surface-variant leading-relaxed">Inventory check shows low levels of Nitrile Gloves (Large). Automatic re-order has been triggered.</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Empty State Illustration Placeholder (Only visible if no notifications) -->
+<div class="hidden flex-col items-center justify-center py-3xl text-center" id="empty-state">
+<div class="w-48 h-48 mb-lg bg-surface-container-low rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-[64px] text-outline-variant">notifications_off</span>
+</div>
+<h3 class="font-headline-md text-on-surface">All caught up!</h3>
+<p class="font-body-md text-on-surface-variant max-w-sm mt-sm">You have no new notifications at this time. Check back later for patient updates.</p>
+</div>
+</div>
+<!-- Footer -->
+<footer class="w-full py-xl bg-surface-container-highest mt-auto border-t border-outline-variant">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop max-w-container-max mx-auto gap-lg">
+<div class="flex items-center gap-md">
+<span class="font-title-md text-title-md text-on-surface font-bold">MediBook+</span>
+<span class="font-body-sm text-on-surface-variant">© 2024 MediBook+ SaaS. All rights reserved.</span>
+</div>
+<div class="flex gap-lg">
+<a class="font-body-sm text-on-surface-variant hover:text-primary transition-opacity duration-200" href="#">Privacy Policy</a>
+<a class="font-body-sm text-on-surface-variant hover:text-primary transition-opacity duration-200" href="#">Terms of Service</a>
+<a class="font-body-sm text-on-surface-variant hover:text-primary transition-opacity duration-200" href="#">HIPAA Compliance</a>
+</div>
+</div>
+</footer>
+</main>
+<!-- Floating Action Button (FAB) -->
+<button class="fixed bottom-margin-desktop right-margin-desktop w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center active:scale-95 transition-transform z-50">
+<span class="material-symbols-outlined">add</span>
+</button>
+
+<script src="scripts.js"></script></body></html>

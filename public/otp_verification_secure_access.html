@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MediBook+ | Verify Identity</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+
+
+<link href="tailwind.css" rel="stylesheet"/><link href="custom.css" rel="stylesheet"/></head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- Header Navigation (Simplified for Transactional Page) -->
+<header class="w-full h-16 flex items-center px-margin-desktop bg-surface-container-lowest shadow-[0px_4px_15px_0px_rgba(0,0,0,0.05)] sticky top-0 z-50">
+<div class="flex items-center gap-sm">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary text-[20px]" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+</div>
+<span class="font-headline-md text-headline-md font-bold text-primary">MediBook+</span>
+</div>
+</header>
+<main class="flex-grow flex items-center justify-center px-margin-mobile md:px-margin-desktop py-2xl relative overflow-hidden">
+<!-- Background Atmospheric Element -->
+<div class="absolute top-0 right-0 -mr-24 -mt-24 opacity-10 pulse-effect">
+<span class="material-symbols-outlined text-[400px] text-primary">security</span>
+</div>
+<!-- Verification Card -->
+<div class="w-full max-w-[520px] bg-surface-container-lowest rounded-xl shadow-[0px_4px_15px_0px_rgba(0,0,0,0.05)] p-lg md:p-xl relative z-10 border border-outline-variant/30">
+<div class="flex flex-col items-center text-center mb-xl">
+<div class="w-16 h-16 bg-primary-container rounded-full flex items-center justify-center mb-md shadow-sm">
+<span class="material-symbols-outlined text-on-primary-container text-[32px]">shield_person</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface mb-xs">Identity Verification</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-[400px]">To ensure secure access to MediBook+ records, enter the 6-digit code sent to <span class="font-semibold text-on-surface">ad***@hospital-central.com</span></p>
+</div>
+<form class="space-y-xl" id="otp-form">
+<!-- OTP Input Grid -->
+<div class="flex justify-between gap-xs sm:gap-sm md:gap-md">
+<input autocomplete="one-time-code" class="otp-input w-full aspect-square text-center font-display-lg text-display-lg border-2 border-outline-variant rounded-lg bg-surface-container-low transition-all focus:outline-none focus:ring-0 text-primary" maxlength="1" required="" type="text"/>
+<input class="otp-input w-full aspect-square text-center font-display-lg text-display-lg border-2 border-outline-variant rounded-lg bg-surface-container-low transition-all focus:outline-none focus:ring-0 text-primary" maxlength="1" required="" type="text"/>
+<input class="otp-input w-full aspect-square text-center font-display-lg text-display-lg border-2 border-outline-variant rounded-lg bg-surface-container-low transition-all focus:outline-none focus:ring-0 text-primary" maxlength="1" required="" type="text"/>
+<input class="otp-input w-full aspect-square text-center font-display-lg text-display-lg border-2 border-outline-variant rounded-lg bg-surface-container-low transition-all focus:outline-none focus:ring-0 text-primary" maxlength="1" required="" type="text"/>
+<input class="otp-input w-full aspect-square text-center font-display-lg text-display-lg border-2 border-outline-variant rounded-lg bg-surface-container-low transition-all focus:outline-none focus:ring-0 text-primary" maxlength="1" required="" type="text"/>
+<input class="otp-input w-full aspect-square text-center font-display-lg text-display-lg border-2 border-outline-variant rounded-lg bg-surface-container-low transition-all focus:outline-none focus:ring-0 text-primary" maxlength="1" required="" type="text"/>
+</div>
+<div class="flex flex-col items-center gap-md">
+<button class="w-full bg-primary text-on-primary font-title-md text-title-md py-md rounded-lg shadow-sm hover:opacity-90 active:scale-[0.98] transition-all flex items-center justify-center gap-sm" type="submit">
+                        Verify Code
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<div class="flex items-center gap-xs font-label-md text-label-md">
+<span class="text-on-surface-variant">Didn't receive the code?</span>
+<button class="text-primary font-bold flex items-center gap-xs hover:underline cursor-pointer" id="resend-btn" type="button">
+                            Resend Code <span id="timer">(38s)</span>
+</button>
+</div>
+</div>
+</form>
+<!-- Security Notice Section -->
+<div class="mt-2xl pt-xl border-t border-outline-variant/30">
+<div class="flex gap-md items-start">
+<div class="mt-1">
+<span class="material-symbols-outlined text-primary text-[20px]">info</span>
+</div>
+<div class="space-y-sm">
+<h2 class="font-label-md text-label-md font-bold text-on-surface">Security Protocols</h2>
+<ul class="space-y-xs">
+<li class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-xs">
+<span class="w-1 h-1 bg-outline rounded-full"></span>
+                                Code expires in 10 minutes
+                            </li>
+<li class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-xs">
+<span class="w-1 h-1 bg-outline rounded-full"></span>
+                                Never share your verification code with anyone
+                            </li>
+<li class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-xs">
+<span class="w-1 h-1 bg-outline rounded-full"></span>
+                                HIPAA compliant multi-factor authentication
+                            </li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="p-margin-desktop text-center">
+<p class="font-label-sm text-label-sm text-on-surface-variant opacity-70">© 2024 MediBook+ Medical Solutions. All Rights Reserved.</p>
+</footer>
+
+<script src="scripts.js"></script></body></html>

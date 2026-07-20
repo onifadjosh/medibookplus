@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MediFlow Admin - Doctors Management</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/><link href="tailwind.css" rel="stylesheet"/></head>
+<body class="font-body-md text-body-md overflow-hidden">
+<!-- Side Navigation Shell -->
+<aside class="w-64 h-full fixed left-0 top-0 bg-surface-container-lowest dark:bg-inverse-surface shadow-sm flex flex-col py-md px-sm z-50">
+<div class="mb-3xl px-md">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">MediFlow Admin</h1>
+<p class="text-on-surface-variant font-label-sm">General Hospital</p>
+</div>
+<nav class="flex-1 space-y-1 custom-scrollbar overflow-y-auto">
+<!-- Navigation Items - Patients is active for this context -->
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors cursor-pointer active:scale-95 transition-transform" href="admin_hospital_management_dashboard.html">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors cursor-pointer active:scale-95 transition-transform" href="admin_patient_doctor_management.html">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Patients</span>
+</a>
+<!-- Doctors is active -->
+<a class="flex items-center gap-md p-md rounded-lg text-primary dark:text-primary-fixed-dim font-bold border-r-4 border-primary bg-surface-container-low transition-colors cursor-pointer active:scale-95 transition-transform" href="admin_doctor_management_directory.html">
+<span class="material-symbols-outlined">medical_services</span>
+<span class="font-label-md text-label-md">Doctors</span>
+</a>
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors cursor-pointer active:scale-95 transition-transform" href="admin_hospital_departments_overview.html">
+<span class="material-symbols-outlined">domain</span>
+<span class="font-label-md text-label-md">Departments</span>
+</a>
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors cursor-pointer active:scale-95 transition-transform" href="admin_master_appointment_schedule.html">
+<span class="material-symbols-outlined">event</span>
+<span class="font-label-md text-label-md">Appointments</span>
+</a>
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors cursor-pointer active:scale-95 transition-transform" href="admin_centralized_medical_records_portal.html">
+<span class="material-symbols-outlined">description</span>
+<span class="font-label-md text-label-md">Medical Records</span>
+</a>
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors cursor-pointer active:scale-95 transition-transform" href="admin_advanced_hospital_reports_analytics.html">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors cursor-pointer active:scale-95 transition-transform" href="admin_hospital_billing_revenue_management.html">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-label-md">Billing</span>
+</a>
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors cursor-pointer active:scale-95 transition-transform" href="admin_global_hospital_settings.html">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+</aside>
+<!-- Top Navigation Shell -->
+<header class="h-16 w-full sticky top-0 z-40 bg-surface dark:bg-background shadow-sm flex justify-between items-center px-lg ml-64 border-none">
+<div class="flex items-center gap-lg flex-1">
+<div class="relative w-full max-w-md focus-within:ring-2 focus-within:ring-primary rounded-lg">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-md py-2 bg-surface-container-low border-none rounded-lg font-body-sm focus:outline-none" placeholder="Search for doctors, staff ID..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<button class="relative p-2 rounded-full hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 rounded-full hover:text-primary transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="flex items-center gap-sm ml-md">
+<div class="text-right">
+<p class="font-title-md text-title-md text-primary">Admin User</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">System Manager</p>
+</div>
+<img class="w-10 h-10 rounded-full border-2 border-primary-fixed" data-alt="A professional headshot of a healthcare administrator, wearing a crisp white blazer over a teal blouse, smiling warmly in a bright, modern glass-walled office with a soft-focus background of clinical monitors. The lighting is clean and airy, reinforcing a high-trust, professional healthcare environment with a minimalist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYHuffXvaLgPfY6n4EG76jiEaBIUUMgBIO7oj6Zyh-TC9X49Gcl_zaMkTJKOmKxQ_78QqTMhUs1LvlkpJvBl5wUKTZOV5L8pypZTF6ITQi-4eYB9zMnr44AKnhB_klrny-Q6CT_HqCW2xe2O3uZDJGfiMxTDfpd1UUo0zx7O8jUzOjZIWkrL6We_nfrUrAIVK1nR6X0O3TLyksC3dveMPbXq684Se4V57Ucki4c6Elk-hRJOVfZTbrnQ"/>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="ml-64 p-lg h-[calc(100vh-64px)] overflow-y-auto bg-background">
+<div class="max-w-7xl mx-auto space-y-lg">
+<!-- Header Section -->
+<div class="flex justify-between items-end pb-md border-b border-outline-variant">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-background">Doctors Directory</h2>
+<p class="text-on-surface-variant">Manage medical staff profiles, schedules, and clinical assignments.</p>
+</div>
+<div class="flex gap-md">
+<button class="flex items-center gap-sm px-lg py-md bg-surface-container border border-outline rounded-lg font-label-md text-on-surface hover:bg-surface-container-high transition-all active:scale-95">
+<span class="material-symbols-outlined">upload</span>
+                        Export List
+                    </button>
+<button class="flex items-center gap-sm px-lg py-md bg-primary text-on-primary rounded-lg font-label-md shadow-sm hover:shadow-md transition-all active:scale-95">
+<span class="material-symbols-outlined">add</span>
+                        Add New Doctor
+                    </button>
+</div>
+</div>
+<!-- Dashboard Stats / Filters Row -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-lg">
+<!-- Filters Panel -->
+<div class="md:col-span-4 bg-surface-container-lowest p-md rounded-xl shadow-sm flex flex-wrap items-center gap-md">
+<div class="flex items-center gap-sm px-md py-sm bg-surface-container rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined text-outline">filter_list</span>
+<select class="bg-transparent border-none focus:ring-0 font-label-md">
+<option>All Departments</option>
+<option>Cardiology</option>
+<option>Neurology</option>
+<option>Pediatrics</option>
+<option>Surgery</option>
+</select>
+</div>
+<div class="flex items-center gap-sm px-md py-sm bg-surface-container rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined text-outline">grade</span>
+<select class="bg-transparent border-none focus:ring-0 font-label-md">
+<option>All Expertise Levels</option>
+<option>Senior Consultant</option>
+<option>Attending Physician</option>
+<option>Medical Resident</option>
+<option>Intern</option>
+</select>
+</div>
+<div class="flex items-center gap-sm px-md py-sm bg-surface-container rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined text-outline">sync</span>
+<select class="bg-transparent border-none focus:ring-0 font-label-md">
+<option>All Statuses</option>
+<option>Active</option>
+<option>On Leave</option>
+<option>In Surgery</option>
+</select>
+</div>
+<div class="flex-1"></div>
+<button class="text-primary font-label-md hover:underline">Clear All Filters</button>
+</div>
+</div>
+<!-- Table Section -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden border border-surface-container-high">
+<!-- Bulk Actions Toolbar -->
+<div class="p-md bg-surface-container-low flex justify-between items-center border-b border-outline-variant">
+<div class="flex items-center gap-md">
+<input class="rounded text-primary focus:ring-primary h-5 w-5 cursor-pointer" type="checkbox"/>
+<span class="text-body-sm font-medium text-on-surface-variant">12 Doctors Selected</span>
+<div class="h-4 w-[1px] bg-outline-variant"></div>
+<button class="text-on-surface-variant hover:text-error flex items-center gap-xs transition-colors">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+<span class="font-label-sm">Delete Selected</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary flex items-center gap-xs transition-colors">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+<span class="font-label-sm">Email Team</span>
+</button>
+</div>
+<div class="flex items-center gap-sm text-on-surface-variant">
+<span class="font-label-sm">Displaying 1-10 of 48</span>
+<div class="flex gap-xs">
+<button class="p-1 rounded hover:bg-surface-container"><span class="material-symbols-outlined">chevron_left</span></button>
+<button class="p-1 rounded hover:bg-surface-container"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+</div>
+</div>
+<!-- Main Directory Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-lowest border-b border-outline-variant">
+<th class="p-md w-12"><input class="rounded text-primary focus:ring-primary h-5 w-5" type="checkbox"/></th>
+<th class="p-md font-label-sm text-outline uppercase tracking-wider">Doctor Name</th>
+<th class="p-md font-label-sm text-outline uppercase tracking-wider">Specialty &amp; Expertise</th>
+<th class="p-md font-label-sm text-outline uppercase tracking-wider">Contact Info</th>
+<th class="p-md font-label-sm text-outline uppercase tracking-wider">Assigned Ward</th>
+<th class="p-md font-label-sm text-outline uppercase tracking-wider">Current Status</th>
+<th class="p-md font-label-sm text-outline uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-high">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="p-md"><input class="rounded text-primary focus:ring-primary h-5 w-5" type="checkbox"/></td>
+<td class="p-md">
+<div class="flex items-center gap-md">
+<img class="w-10 h-10 rounded-full object-cover shadow-sm" data-alt="A portrait of a male cardiologist in his mid-40s with professional demeanor, wearing clinical scrubs and a stethoscope around his neck. The environment is a clean, bright medical corridor with soft ambient lighting and a high-end corporate healthcare aesthetic, using a soft teal and white color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD92Akf3YBY-MQSKB-V_hF1QMrj_g63CSIU1mDF9rhQMl5GcZThZ5F4VBkaSB7Mv3nWkWQ619N79L_Lu3I6afBmcy349xy3q1N9njVSN_vMrXapMroID7Up1a7-Rp3yu1W2MDNC0lXibW4zX4KVoilT9OCTpEQSwmj6n3EmjOgXDX_f8V6qCMJSAw8oXp0kwnYELDqUNbcd79e-tpXKg-lY7hPbpyHGPv63H5p7hTTKYMRynqHmphLuvg"/>
+<div>
+<p class="font-title-md text-on-background">Dr. Julian Vance</p>
+<p class="text-body-sm text-on-surface-variant">Staff ID: #MC-0912</p>
+</div>
+</div>
+</td>
+<td class="p-md">
+<div>
+<p class="font-body-md text-on-background">Cardiology</p>
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-fixed-variant rounded text-[10px] font-bold uppercase tracking-tight">Senior Consultant</span>
+</div>
+</td>
+<td class="p-md">
+<div class="space-y-1">
+<div class="flex items-center gap-xs text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">mail</span>
+                                            j.vance@mediflow.com
+                                        </div>
+<div class="flex items-center gap-xs text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">call</span>
+                                            +1 (555) 012-9876
+                                        </div>
+</div>
+</td>
+<td class="p-md text-body-md text-on-background">Ward 4-B (ICU)</td>
+<td class="p-md">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full text-label-sm">
+<span class="w-1.5 h-1.5 bg-emerald-600 rounded-full"></span>
+                                        Active
+                                    </span>
+</td>
+<td class="p-md text-right">
+<button class="p-2 hover:bg-surface-container rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-outline">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="p-md"><input class="rounded text-primary focus:ring-primary h-5 w-5" type="checkbox"/></td>
+<td class="p-md">
+<div class="flex items-center gap-md">
+<img class="w-10 h-10 rounded-full object-cover shadow-sm" data-alt="A portrait of a female surgeon in her late 30s, looking confident and focused. She is wearing blue surgical scrubs and a head cap, standing against a minimalist clinical background with soft, diffused white lighting. The image style is sharp and modern, following a premium medical SaaS design language with clean lines and a professional atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_45oonC8_eQQhYHnNuAKzJeP29e-4dV2hQ21FW8L0Jgk_p-TdHygIAH_g6Ckd3ocpAk5y66lCCmucf2Aq-wJIgCWu7cTuwoJrXk3kkP81f1lY7qIpz0xfD82giREGHqiX3nI9w00iyYnqKi21Ds2Y72XGzeWfMUCEU3vqoz_Mv54yc17iKLAMZVXCeLeaKPKq5Kk-TfN6S9mxvGjeQhTnW9rG0J9PtPS4AsnBdT80OWdA6WrzD9VURg"/>
+<div>
+<p class="font-title-md text-on-background">Dr. Elena Rodriguez</p>
+<p class="text-body-sm text-on-surface-variant">Staff ID: #MC-4481</p>
+</div>
+</div>
+</td>
+<td class="p-md">
+<div>
+<p class="font-body-md text-on-background">Neurological Surgery</p>
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-fixed-variant rounded text-[10px] font-bold uppercase tracking-tight">Attending Physician</span>
+</div>
+</td>
+<td class="p-md">
+<div class="space-y-1">
+<div class="flex items-center gap-xs text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">mail</span>
+                                            e.rodriguez@mediflow.com
+                                        </div>
+<div class="flex items-center gap-xs text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">call</span>
+                                            +1 (555) 012-3344
+                                        </div>
+</div>
+</td>
+<td class="p-md text-body-md text-on-background">Theater 2</td>
+<td class="p-md">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-100 text-amber-800 rounded-full text-label-sm">
+<span class="w-1.5 h-1.5 bg-amber-600 rounded-full"></span>
+                                        In Surgery
+                                    </span>
+</td>
+<td class="p-md text-right">
+<button class="p-2 hover:bg-surface-container rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-outline">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="p-md"><input class="rounded text-primary focus:ring-primary h-5 w-5" type="checkbox"/></td>
+<td class="p-md">
+<div class="flex items-center gap-md">
+<img class="w-10 h-10 rounded-full object-cover shadow-sm" data-alt="A portrait of a male pediatrician in his 50s, smiling warmly and looking approachable. He wears a stethoscope with a colorful pediatric attachment over a light gray shirt. The background is a brightly lit, cheerful but professional clinic space with soft pastel accents and minimalist furniture. The lighting is soft and even, highlighting a trusted healthcare figure." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6d9-AfHPO2vscUTEw-KGl8y9gx7j57P44bIKhadbd2DMjWnKeBT6bMdgNZ4BLXbX0OVdOcvbVml4q_SwHaCrbvV9txVGzcJoyI1v9KW1w8zl5UpdnUtgyQaDHOxkS0Fx9tBtSBOY8tsn16geaHUznXRa9PCPaRZp_IGDp0JVGJ1UaClhjS-6BfL2iuvsgLWc5XucO4Vk4gYfTQjR3CZOTSvbTu4X5-ALwAtw6K8iRgGACdXQlBkVT5A"/>
+<div>
+<p class="font-title-md text-on-background">Dr. Samuel Chen</p>
+<p class="text-body-sm text-on-surface-variant">Staff ID: #MC-2231</p>
+</div>
+</div>
+</td>
+<td class="p-md">
+<div>
+<p class="font-body-md text-on-background">Pediatrics</p>
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-fixed-variant rounded text-[10px] font-bold uppercase tracking-tight">Senior Consultant</span>
+</div>
+</td>
+<td class="p-md">
+<div class="space-y-1">
+<div class="flex items-center gap-xs text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">mail</span>
+                                            s.chen@mediflow.com
+                                        </div>
+<div class="flex items-center gap-xs text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">call</span>
+                                            +1 (555) 012-1199
+                                        </div>
+</div>
+</td>
+<td class="p-md text-body-md text-on-background">Ward 1-A</td>
+<td class="p-md">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-surface-container-high text-on-surface-variant rounded-full text-label-sm">
+<span class="w-1.5 h-1.5 bg-outline rounded-full"></span>
+                                        On Leave
+                                    </span>
+</td>
+<td class="p-md text-right">
+<button class="p-2 hover:bg-surface-container rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-outline">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="p-md"><input class="rounded text-primary focus:ring-primary h-5 w-5" type="checkbox"/></td>
+<td class="p-md">
+<div class="flex items-center gap-md">
+<img class="w-10 h-10 rounded-full object-cover shadow-sm" data-alt="A portrait of a young female resident doctor in her late 20s, looking diligent and professional. She is wearing a white lab coat over a dark blouse, with a ID badge clipped to her pocket. The setting is a clean, modern medical workstation with a soft bokeh effect of clinical charts and data screens. The color palette is composed of cool whites and teals, evoking reliability and modern clinical expertise." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOXWiTcmTrPm08otsA87w6H1qkIERjPDjBT7AX8zD4kjyIfRS_mkFdoBqDTz45ioBJbVtI1V-VTVWwfb3IopCqR5r--JradSnwmCx2FmkSJ5m9O4G7I0OCBpibOZYx1z9gr-AalNuZBqARL2fcjzOu9Q-p6wEFVS9SPkjKQ6RUBN8N9-l6n_Y6pKVXHqC4NIPJixvn-tC9ElY3VLWLhDYOilnH0U2aGvpgr7hIZ4XczjMWz-c0NL7pNw"/>
+<div>
+<p class="font-title-md text-on-background">Dr. Sarah Thompson</p>
+<p class="text-body-sm text-on-surface-variant">Staff ID: #MC-8812</p>
+</div>
+</div>
+</td>
+<td class="p-md">
+<div>
+<p class="font-body-md text-on-background">Internal Medicine</p>
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-fixed-variant rounded text-[10px] font-bold uppercase tracking-tight">Medical Resident</span>
+</div>
+</td>
+<td class="p-md">
+<div class="space-y-1">
+<div class="flex items-center gap-xs text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">mail</span>
+                                            s.thompson@mediflow.com
+                                        </div>
+<div class="flex items-center gap-xs text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px]">call</span>
+                                            +1 (555) 012-7722
+                                        </div>
+</div>
+</td>
+<td class="p-md text-body-md text-on-background">Ward 2-C</td>
+<td class="p-md">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full text-label-sm">
+<span class="w-1.5 h-1.5 bg-emerald-600 rounded-full"></span>
+                                        Active
+                                    </span>
+</td>
+<td class="p-md text-right">
+<button class="p-2 hover:bg-surface-container rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-outline">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Footer / Pagination -->
+<div class="p-md border-t border-outline-variant flex items-center justify-center gap-2">
+<button class="px-3 py-1 border border-outline-variant rounded hover:bg-surface-container-low transition-colors text-label-md">1</button>
+<button class="px-3 py-1 bg-primary text-on-primary rounded font-bold text-label-md">2</button>
+<button class="px-3 py-1 border border-outline-variant rounded hover:bg-surface-container-low transition-colors text-label-md">3</button>
+<span class="mx-2 text-outline">...</span>
+<button class="px-3 py-1 border border-outline-variant rounded hover:bg-surface-container-low transition-colors text-label-md">5</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Micro-interaction Scripts -->
+<script src="scripts.js"></script></body></html>

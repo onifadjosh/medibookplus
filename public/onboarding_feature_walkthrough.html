@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Welcome to MediBook+</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+
+
+<link href="tailwind.css" rel="stylesheet"/><link href="custom.css" rel="stylesheet"/></head>
+<body class="bg-background text-on-background font-body-md overflow-hidden h-screen flex flex-col">
+<main class="flex-grow flex items-center justify-center relative p-margin-mobile md:p-margin-desktop overflow-hidden">
+<!-- Abstract Background Shape -->
+<div class="absolute -top-24 -right-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="absolute -bottom-24 -left-24 w-96 h-96 bg-secondary-container/20 rounded-full blur-3xl pointer-events-none"></div>
+<div class="w-full max-w-4xl glass-card rounded-2xl shadow-[0px_4px_15px_0px_rgba(0,0,0,0.05)] border border-white/40 flex flex-col md:flex-row overflow-hidden relative">
+<!-- Visual Side (Left on Desktop) -->
+<div class="w-full md:w-1/2 h-64 md:h-auto relative bg-surface-container-low overflow-hidden">
+<!-- Slide 1 Image -->
+<div class="onboarding-slide active absolute inset-0" id="image-1">
+<div class="w-full h-full bg-cover bg-center" data-alt="A premium 3D clinical illustration of a clean, minimalist medical dashboard floating in mid-air. The scene is bathed in soft, diffused teal and white light, reflecting a modern Healthcare SaaS aesthetic. A friendly digital interface shows a calendar with glowing appointments. The style is professional and trustworthy with high-end architectural rendering quality." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD7IBx44BFJKsvYk_5iMipQ-OtUBN-V56pJGiQEkTBlHkUaNUnTl6kNXYqzZDLMhZ4i28UQbWJ3szyCi7VHoGQ7oetTkwMMjTBkJZM5rVzme2u0o9LBHDU5Q3UYcVdNDXCtoBfU38FtWS6ysR7IB7-s7g2bq-oVg3mKwoXSNxwHued69OBsqYIhmegi9nBwzd7gM8OT6nqpAKb-8aBXfMPG_LN49QDwZfFvSyiRauWvOCgfOp-EffAhHQ')"></div>
+</div>
+<!-- Slide 2 Image -->
+<div class="onboarding-slide absolute inset-0" id="image-2">
+<div class="w-full h-full bg-cover bg-center" data-alt="A sophisticated digital representation of patient data visualization. Intricate medical icons like heart rate monitors and DNA strands are rendered as glowing, transparent 3D glass elements. The background is a clean, bright clinic-inspired space with soft shadows and a professional, technologically advanced mood using a palette of soft teals and slate grays." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD-bVsPwde5QmJ0-RG2IyvI-Rn9WQVQINgzUsjYb3VM-sYu6xcZzMaIyJGYuM-RRXokrf3t8wUH9RD-9hqx5wvKhP46V4WK8ChqTYlSVwe9IAQnpXshH3OfXkacjkhumiJuUqV8IrcNdHJau3na74SCEcib_du9SV0EvOydsHBNk63qmWF3b95cq0uDM8npgiSnZUWobgtS6etgLP7EES7hgsl71DywLRXeER78E-Z9se8AhZJRfUao8A')"></div>
+</div>
+<!-- Slide 3 Image -->
+<div class="onboarding-slide absolute inset-0" id="image-3">
+<div class="w-full h-full bg-cover bg-center" data-alt="A clean, modern workspace featuring a high-end tablet displaying a secure medical communication portal. The environment is a bright, sunlit professional doctor's office with minimalist furniture. The lighting is optimistic and warm, highlighting a sense of secure and efficient healthcare connectivity. The color scheme is anchored in the brand's primary teal and crisp whites." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC489Zb9MYk64iUESTN7JlEgi8H_HpSc_y5I8gLHDV9xamrx2_3C5zVmDqV-J-GjneQssEO7pPANiF-cWfvE0Uc1Hg0B-ugq9IomGckO9HmxFYDmkELVZ3QD1SPe0K9AyTCbwSdo--3LBvq-zCOmGCi6tqpkt3fmzshef3VkLmYDq_j8xaXSXV2LU7ZGnhgssIrLZvhKe7CmpZ4xoAD9PyeMy6gPT1L7ZuKAIII5bb1p5KxeKRlvMCkvw')"></div>
+</div>
+</div>
+<!-- Content Side (Right on Desktop) -->
+<div class="w-full md:w-1/2 p-lg md:p-2xl flex flex-col justify-between min-h-[400px]">
+<!-- Top Brand Header -->
+<div class="flex justify-between items-center mb-xl">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary text-headline-md" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+<span class="font-headline-md text-headline-md font-bold text-primary">MediBook+</span>
+</div>
+<button class="text-secondary font-label-md hover:text-primary transition-colors cursor-pointer" onclick="skipOnboarding()">Skip</button>
+</div>
+<!-- Slides Content -->
+<div class="flex-grow flex flex-col justify-center">
+<!-- Slide 1 -->
+<div class="onboarding-slide active flex-col" id="content-1">
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-md">Easy Appointment Booking</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                            Streamline your clinic's workflow with our intuitive scheduling system. Manage patient visits, follow-ups, and emergency blocks with just a few clicks.
+                        </p>
+</div>
+<!-- Slide 2 -->
+<div class="onboarding-slide flex-col" id="content-2">
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-md">Comprehensive Patient Records</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                            Access secure, digitized medical histories instantly. From lab results to prescription history, everything you need is organized and ready.
+                        </p>
+</div>
+<!-- Slide 3 -->
+<div class="onboarding-slide flex-col" id="content-3">
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface mb-md">Seamless Communication</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                            Connect with patients and specialists through our integrated portal. High-level security ensures all consultations remain private and professional.
+                        </p>
+</div>
+</div>
+<!-- Footer Navigation -->
+<div class="mt-2xl flex items-center justify-between">
+<!-- Dots -->
+<div class="flex gap-sm">
+<div class="h-2 w-8 bg-primary rounded-full transition-all duration-300" id="dot-1"></div>
+<div class="h-2 w-2 bg-outline-variant rounded-full transition-all duration-300" id="dot-2"></div>
+<div class="h-2 w-2 bg-outline-variant rounded-full transition-all duration-300" id="dot-3"></div>
+</div>
+<!-- Action Button -->
+<button class="bg-primary hover:bg-primary-container text-on-primary font-title-md py-sm px-lg rounded-lg shadow-sm flex items-center gap-sm transition-all active:scale-95 group" id="next-btn" onclick="nextSlide()">
+<span class="" id="btn-text">Next</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+
+<script src="scripts.js"></script></body></html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Recover Your Access | Clinical Precision</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#ad6033",
+                        "primary-fixed-dim": "#6ad7d7",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#e4e9e8",
+                        "background": "#f6faf9",
+                        "primary-container": "#008282",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#006a6a",
+                        "surface-container-low": "#f0f5f4",
+                        "on-error": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-surface-variant": "#3d4949",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#ffdbca",
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-on-surface": "#edf2f1",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed-variant": "#743408",
+                        "inverse-surface": "#2c3131",
+                        "surface-container-highest": "#dfe3e3",
+                        "primary-fixed": "#88f4f3",
+                        "surface-container": "#eaefee",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-primary-container": "#f3fffe",
+                        "on-primary-fixed": "#002020",
+                        "secondary-fixed": "#d3e4fe",
+                        "on-surface": "#171d1c",
+                        "surface-bright": "#f6faf9",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#6ad7d7",
+                        "tertiary-fixed-dim": "#ffb68f",
+                        "surface-dim": "#d6dbda",
+                        "on-primary-fixed-variant": "#004f4f",
+                        "tertiary": "#8f491d",
+                        "surface-variant": "#dfe3e3",
+                        "on-secondary-container": "#54647a",
+                        "primary": "#006767",
+                        "on-secondary-fixed": "#0b1c30",
+                        "outline": "#6d7979",
+                        "on-tertiary-fixed": "#331100",
+                        "on-tertiary-container": "#fffbff",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "on-background": "#171d1c",
+                        "secondary": "#505f76",
+                        "outline-variant": "#bcc9c8",
+                        "surface": "#f6faf9",
+                        "secondary-container": "#d0e1fb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "8px",
+                        "margin-mobile": "16px",
+                        "base": "8px",
+                        "3xl": "64px",
+                        "margin-desktop": "32px",
+                        "container-max": "1440px",
+                        "xl": "32px",
+                        "gutter": "24px",
+                        "md": "16px",
+                        "lg": "24px",
+                        "xs": "4px",
+                        "2xl": "48px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f6faf9;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-effect {
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.8);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center relative overflow-hidden">
+<!-- Background Ambient Element -->
+<div class="fixed inset-0 -z-10 overflow-hidden">
+<div class="absolute -top-[20%] -left-[10%] w-[60%] h-[60%] rounded-full bg-primary/5 blur-[120px]"></div>
+<div class="absolute -bottom-[10%] -right-[10%] w-[50%] h-[50%] rounded-full bg-secondary-container/10 blur-[100px]"></div>
+</div>
+<!-- Main Content Canvas -->
+<main class="w-full max-w-[1200px] px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-2 gap-xl items-center">
+<!-- Left Side: Visual/Branding (Asymmetric Layout) -->
+<div class="hidden md:flex flex-col space-y-lg">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 bg-primary-container rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary">verified_user</span>
+</div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">MediBook+</h1>
+</div>
+<div class="space-y-md pr-xl">
+<h2 class="font-display-lg text-display-lg text-on-surface leading-tight">Secure recovery for <span class="text-primary">essential care.</span></h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md">
+                    Regain access to your medical dashboard with our encrypted link system. We prioritize your account security above all else.
+                </p>
+</div>
+<!-- Descriptive Stepper -->
+<div class="space-y-md pt-lg">
+<div class="flex gap-md items-start">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center flex-shrink-0">
+<span class="text-label-md font-bold text-primary">1</span>
+</div>
+<div>
+<p class="font-title-md text-title-md text-on-surface">Enter Registered Email</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Provide the email associated with your professional clinical account.</p>
+</div>
+</div>
+<div class="flex gap-md items-start">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center flex-shrink-0">
+<span class="text-label-md font-bold text-primary">2</span>
+</div>
+<div>
+<p class="font-title-md text-title-md text-on-surface">Verify Identity</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">We'll send a time-sensitive secure link to your inbox immediately.</p>
+</div>
+</div>
+<div class="flex gap-md items-start">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center flex-shrink-0">
+<span class="text-label-md font-bold text-primary">3</span>
+</div>
+<div>
+<p class="font-title-md text-title-md text-on-surface">Reset Password</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Follow the link to establish a new, strong password for your portal.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Side: The Form Card -->
+<div class="flex justify-center md:justify-end">
+<div class="w-full max-w-md bg-surface-container-lowest rounded-xl shadow-[0px_4px_15px_0px_rgba(0,0,0,0.05)] p-lg md:p-xl border border-outline-variant/30 transition-all hover:shadow-md">
+<!-- Mobile Branding -->
+<div class="flex md:hidden items-center gap-sm mb-lg">
+<div class="w-8 h-8 bg-primary-container rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary text-[20px]">verified_user</span>
+</div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">MediBook+</h1>
+</div>
+<div class="mb-xl">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Forgot Password?</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Don't worry, it happens. Enter your email and we'll send you a recovery link.</p>
+</div>
+<form class="space-y-lg" id="recoveryForm" onsubmit="return false;">
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface-variant px-xs" for="email">Email Address</label>
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-outline group-focus-within:text-primary transition-colors">mail</span>
+<input class="w-full h-12 pl-xl pr-md bg-surface-container-low border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all font-body-md text-body-md text-on-surface placeholder:text-outline/60" id="email" name="email" placeholder="name@clinic.com" required="" type="email">
+</div>
+</div>
+<div class="pt-sm">
+<button class="w-full h-12 bg-primary hover:bg-primary-container active:scale-[0.98] text-on-primary font-title-md text-title-md rounded-lg flex items-center justify-center gap-sm transition-all shadow-sm" id="submitBtn" type="submit">
+<span id="btnText" class="">Send Recovery Link</span>
+<span class="material-symbols-outlined text-[20px]" id="btnIcon">arrow_forward</span>
+<div class="hidden" id="loader">
+<svg class="animate-spin h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+<path class="opacity-75" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" fill="currentColor"></path>
+</svg>
+</div>
+</button>
+</div>
+<div class="hidden animate-in fade-in slide-in-from-top-2 p-md bg-secondary-container rounded-lg flex items-start gap-md" id="successMessage">
+<span class="material-symbols-outlined text-on-secondary-container">check_circle</span>
+<p class="font-body-sm text-body-sm text-on-secondary-container">Check your inbox. If an account exists for that email, we've sent instructions.</p>
+</div>
+</form>
+<div class="mt-2xl flex flex-col items-center gap-md">
+<div class="w-full h-px bg-outline-variant/30"></div>
+<a class="flex items-center gap-xs text-primary font-label-md text-label-md hover:underline group" href="#">
+<span class="material-symbols-outlined text-[18px] transition-transform group-hover:-translate-x-1">arrow_back</span>
+                        Back to Login
+                    </a>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Security Trust -->
+<footer class="mt-2xl w-full max-w-[1200px] px-margin-mobile md:px-margin-desktop py-lg flex flex-col md:flex-row justify-between items-center gap-md border-t border-outline-variant/20 opacity-60">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-outline">lock</span>
+<p class="font-label-sm text-label-sm uppercase tracking-widest text-outline">256-bit AES Encryption</p>
+</div>
+<div class="flex gap-lg">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">System Status</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Help Center</a>
+</div>
+</footer>
+<script>
+        document.getElementById('recoveryForm').addEventListener('submit', function(e) {
+            const btn = document.getElementById('submitBtn');
+            const btnText = document.getElementById('btnText');
+            const btnIcon = document.getElementById('btnIcon');
+            const loader = document.getElementById('loader');
+            const success = document.getElementById('successMessage');
+
+            // Disable button and show loading state
+            btn.disabled = true;
+            btnText.classList.add('hidden');
+            btnIcon.classList.add('hidden');
+            loader.classList.remove('hidden');
+
+            // Mock API delay
+            setTimeout(() => {
+                loader.classList.add('hidden');
+                btnText.textContent = "Resend Link";
+                btnText.classList.remove('hidden');
+                btnIcon.classList.remove('hidden');
+                btn.classList.replace('bg-primary', 'bg-secondary');
+                btn.disabled = false;
+                
+                success.classList.remove('hidden');
+            }, 1500);
+        });
+    </script>
+
+
+</body></html>

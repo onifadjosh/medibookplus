@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MediBook+ | Patient Management</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/><link href="tailwind.css" rel="stylesheet"/></head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 bg-surface shadow-sm dark:shadow-none dark:bg-surface-dim">
+<div class="flex items-center gap-xl">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">MediBook+</span>
+<div class="hidden md:flex relative items-center">
+<span class="material-symbols-outlined absolute left-3 text-outline">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-lg w-96 font-body-sm focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Search patients, records, or labs..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="flex items-center gap-sm mr-4">
+<button class="p-2 rounded-full hover:bg-surface-container-low transition-colors text-on-surface-variant cursor-pointer active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-container-low transition-colors text-on-surface-variant cursor-pointer active:scale-95">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-container-low transition-colors text-on-surface-variant cursor-pointer active:scale-95">
+<span class="material-symbols-outlined">help</span>
+</button>
+</div>
+<div class="flex items-center gap-sm pl-4 border-l border-outline-variant">
+<div class="w-10 h-10 rounded-full bg-primary-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional portrait of a senior cardiologist, Dr. Richardson, wearing a white lab coat with a stethoscope around his neck. The background is a brightly lit, modern medical clinic with soft teal accents and clean white surfaces. He has a warm, confident expression, conveying trust and expertise in a high-end healthcare setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHMvFLtF2ej7Mjlj2IRm2AH2MWxBRmaAnuTuXGLjLPGUVVpNohuYXzGXzvAzOCTdBwevHQjrMP6xI6hE2b4Pp6RLb7wT4ESEJyw06M3mC4gfvgj9sCdD-vifGxbHLYiebmhShgBpZhj4Lmzrs42PmIw0--v8uTFySP7UOjd2Azf_0VcWTDXJye49ZLa0vTr-BOVPvqjRO4fEGO_CVdDM5ep36PN7apgdMy1-GpdmNAqatYZvPx3Rp4OQ"/>
+</div>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-64 bg-surface-container-lowest dark:bg-inverse-surface flex flex-col py-lg border-r border-surface-container-highest transition-all duration-200 ease-in-out hidden md:flex">
+<div class="px-md mb-xl">
+<div class="p-md rounded-xl bg-surface-container-low flex flex-col gap-xs">
+<span class="font-title-md text-title-md text-on-surface">Dr. Richardson</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase">Cardiology Specialist</span>
+</div>
+</div>
+<nav class="flex-1 px-sm space-y-1"><a class="flex items-center gap-md px-md py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-all" href="admin_hospital_management_dashboard.html">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-all" href="admin_master_appointment_schedule.html">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-label-md text-label-md">Appointments</span>
+</a>
+<a class="flex items-center gap-md px-md py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-all" href="doctor_messages_consultations_hub.html">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="font-label-md text-label-md">Messages</span>
+</a>
+<a class="flex items-center gap-md px-md py-3 rounded-lg bg-surface-container text-primary font-bold transition-all" href="admin_patient_doctor_management.html">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Patients</span>
+</a>
+<a class="flex items-center gap-md px-md py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-all" href="admin_global_hospital_settings.html">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a></nav>
+<div class="px-md mt-auto pt-lg space-y-1">
+<button class="w-full bg-primary text-on-primary py-3 rounded-lg font-title-md flex items-center justify-center gap-sm mb-lg shadow-sm hover:shadow-md transition-all active:scale-95">
+<span class="material-symbols-outlined">add</span>
+<span class="">New Message</span>
+</button>
+<a class="flex items-center gap-md px-md py-3 rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-all" href="#">
+<span class="material-symbols-outlined">contact_support</span>
+<span class="font-label-md text-label-md">Support</span>
+</a>
+<a class="flex items-center gap-md px-md py-3 rounded-lg text-error hover:bg-error-container transition-all" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="md:ml-64 pt-16 min-h-screen p-margin-desktop">
+<div class="max-w-container-max mx-auto space-y-xl">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-md">
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Patient Management</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage and monitor 1,284 patients under your care.</p>
+</div>
+<div class="flex items-center gap-sm">
+<button class="flex items-center gap-sm px-lg py-2.5 bg-surface-container-lowest border border-outline-variant rounded-lg text-on-surface font-title-md hover:bg-surface-container-low transition-all active:scale-95">
+<span class="material-symbols-outlined">file_download</span>
+                        Export List
+                    </button>
+<button class="flex items-center gap-sm px-lg py-2.5 bg-primary text-on-primary rounded-lg font-title-md shadow-sm hover:shadow-md transition-all active:scale-95">
+<span class="material-symbols-outlined">person_add</span>
+                        Add Patient
+                    </button>
+</div>
+</div>
+<!-- Stats Bar -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-lg">
+<div class="bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-surface-container-highest flex items-center gap-lg">
+<div class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">group</span>
+</div>
+<div>
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Total Patients</div>
+<div class="font-headline-md text-headline-md text-on-surface">1,284</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-surface-container-highest flex items-center gap-lg">
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">calendar_today</span>
+</div>
+<div>
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Appointments Today</div>
+<div class="font-headline-md text-headline-md text-on-surface">24</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-surface-container-highest flex items-center gap-lg">
+<div class="w-12 h-12 rounded-full bg-tertiary-fixed flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">pending_actions</span>
+</div>
+<div>
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Pending Reviews</div>
+<div class="font-headline-md text-headline-md text-on-surface">18</div>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-surface-container-highest flex items-center gap-lg">
+<div class="w-12 h-12 rounded-full bg-error-container flex items-center justify-center text-error">
+<span class="material-symbols-outlined">warning</span>
+</div>
+<div>
+<div class="font-label-sm text-label-sm text-on-surface-variant uppercase">Critical Alerts</div>
+<div class="font-headline-md text-headline-md text-on-surface">03</div>
+</div>
+</div>
+</div>
+<!-- Filters & Search -->
+<div class="bg-surface-container-lowest p-md rounded-xl border border-surface-container-highest shadow-sm flex flex-col lg:flex-row gap-md items-center">
+<div class="flex-1 w-full relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2.5 bg-surface-container-low border border-outline-variant rounded-lg font-body-sm focus:ring-2 focus:ring-primary/20 transition-all outline-none" placeholder="Search by name, ID, or condition..." type="text"/>
+</div>
+<div class="flex flex-wrap items-center gap-sm w-full lg:w-auto">
+<select class="bg-surface-container-low border border-outline-variant rounded-lg px-md py-2.5 font-label-md text-on-surface focus:ring-2 focus:ring-primary/20 outline-none">
+<option>Department: All</option>
+<option>Cardiology</option>
+<option>Neurology</option>
+<option>Pediatrics</option>
+<option>Oncology</option>
+</select>
+<select class="bg-surface-container-low border border-outline-variant rounded-lg px-md py-2.5 font-label-md text-on-surface focus:ring-2 focus:ring-primary/20 outline-none">
+<option>Status: All</option>
+<option>Active</option>
+<option>Inactive</option>
+<option>Pending</option>
+</select>
+<select class="bg-surface-container-low border border-outline-variant rounded-lg px-md py-2.5 font-label-md text-on-surface focus:ring-2 focus:ring-primary/20 outline-none">
+<option>Priority: All</option>
+<option>High</option>
+<option>Medium</option>
+<option>Low</option>
+</select>
+<button class="flex items-center gap-sm px-md py-2.5 bg-surface-container-low border border-outline-variant rounded-lg text-on-surface-variant font-label-md hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+                        More Filters
+                    </button>
+</div>
+</div>
+<!-- Patient Table -->
+<div class="bg-surface-container-lowest rounded-xl border border-surface-container-highest shadow-sm overflow-hidden">
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="px-lg py-md font-label-sm text-label-sm text-outline uppercase tracking-wider">Patient Name / ID</th>
+<th class="px-lg py-md font-label-sm text-label-sm text-outline uppercase tracking-wider">Age/Gender</th>
+<th class="px-lg py-md font-label-sm text-label-sm text-outline uppercase tracking-wider">Department</th>
+<th class="px-lg py-md font-label-sm text-label-sm text-outline uppercase tracking-wider">Last Visit</th>
+<th class="px-lg py-md font-label-sm text-label-sm text-outline uppercase tracking-wider">Status</th>
+<th class="px-lg py-md font-label-sm text-label-sm text-outline uppercase tracking-wider">Priority</th>
+<th class="px-lg py-md font-label-sm text-label-sm text-outline uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-highest">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors cursor-pointer group">
+<td class="px-lg py-lg">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container/30 overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A studio portrait of an elderly Caucasian woman with silver hair and kind eyes. She is wearing a soft pastel blue knit sweater. The lighting is soft and flattering, emphasizing a dignified and healthy look. The background is a clean, neutral studio gray that fits a medical record interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBPZhmXOGX1wDiybap2yxEjiGNnK2bQwNtBzgEIU8NTkqrVsJqn_SA4lVXbLcyvgmy6iUkCgI2C-r_dky2Hp9SAbd_3TFODlf3Mipk7dtF918TREMKEuEucu7M6EmsaFoGTzQzXpAqeWHTtBrtkmhaP9SBixyzyV_HHtU0QLrSezygVn95aTH9jMoiZ-eRA0lMxgS_Dq6cpGDS_PLc63tS6L3hE21r2OQl58wcwek6NmM3QTIbTqLfTg"/>
+</div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface group-hover:text-primary transition-colors">Elena Rodriguez</span>
+<span class="font-label-sm text-label-sm text-outline">#MB-20491</span>
+</div>
+</div>
+</td>
+<td class="px-lg py-lg">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface">68 Yrs</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Female</span>
+</div>
+</td>
+<td class="px-lg py-lg">
+<span class="font-body-md text-body-md text-on-surface">Cardiology</span>
+</td>
+<td class="px-lg py-lg">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface">Oct 12, 2023</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Routine Check</span>
+</div>
+</td>
+<td class="px-lg py-lg">
+<span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 font-label-sm text-label-sm">Active</span>
+</td>
+<td class="px-lg py-lg">
+<span class="px-3 py-1 rounded-full bg-orange-100 text-orange-800 font-label-sm text-label-sm">Medium</span>
+</td>
+<td class="px-lg py-lg text-right">
+<div class="flex items-center justify-end gap-sm">
+<button class="p-2 rounded-lg text-on-surface-variant hover:bg-primary-container/10 hover:text-primary transition-all" title="View Records">
+<span class="material-symbols-outlined">clinical_notes</span>
+</button>
+<button class="p-2 rounded-lg text-on-surface-variant hover:bg-primary-container/10 hover:text-primary transition-all" title="Message">
+<span class="material-symbols-outlined">chat</span>
+</button>
+<button class="p-2 rounded-lg text-on-surface-variant hover:bg-primary-container/10 hover:text-primary transition-all" title="Schedule">
+<span class="material-symbols-outlined">event</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors cursor-pointer group">
+<td class="px-lg py-lg">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container/30 overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A portrait of a young adult African American man with a friendly, professional appearance. He is wearing a minimalist dark green shirt. The lighting is clear and bright, like high-key studio lighting, showcasing a modern healthcare patient profile aesthetic. The background is a crisp off-white." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOVLzmZmMA9qUO4seA771c46aNMCIA5BvJn23LbT7QIq5Vq048ZuhrLIPcWLkBUrdEL7Dc6hIHsn4gGpOZ-2T-NkH2bV7MGfoaVBJEnRlbpoWh6TXc4BUH6neyo-dz1xCUcJa5fNb2GKDgzbJ2MrPUQFCxfSOCxkFerZPbrzNa-Nd9DpzOB52wsvIjNaV2MpsSoPrNlA7fVT4KrZ9ABntp0dcMardBfrtav1zYwzCBPu44UIvxzIaEsg"/>
+</div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface group-hover:text-primary transition-colors">Marcus Chen</span>
+<span class="font-label-sm text-label-sm text-outline">#MB-21034</span>
+</div>
+</div>
+</td>
+<td class="px-lg py-lg">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface">32 Yrs</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Male</span>
+</div>
+</td>
+<td class="px-lg py-lg">
+<span class="font-body-md text-body-md text-on-surface">Cardiology</span>
+</td>
+<td class="px-lg py-lg">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface">Sep 28, 2023</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Post-Op Review</span>
+</div>
+</td>
+<td class="px-lg py-lg">
+<span class="px-3 py-1 rounded-full bg-red-100 text-red-800 font-label-sm text-label-sm">Pending</span>
+</td>
+<td class="px-lg py-lg">
+<span class="px-3 py-1 rounded-full bg-red-100 text-red-800 font-label-sm text-label-sm">High</span>
+</td>
+<td class="px-lg py-lg text-right">
+<div class="flex items-center justify-end gap-sm">
+<button class="p-2 rounded-lg text-on-surface-variant hover:bg-primary-container/10 hover:text-primary transition-all" title="View Records">
+<span class="material-symbols-outlined">clinical_notes</span>
+</button>
+<button class="p-2 rounded-lg text-on-surface-variant hover:bg-primary-container/10 hover:text-primary transition-all" title="Message">
+<span class="material-symbols-outlined">chat</span>
+</button>
+<button class="p-2 rounded-lg text-on-surface-variant hover:bg-primary-container/10 hover:text-primary transition-all" title="Schedule">
+<span class="material-symbols-outlined">event</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors cursor-pointer group">
+<td class="px-lg py-lg">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container/30 overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A portrait of a middle-aged South Asian man with a well-groomed beard and glasses. He is wearing a dark navy polo shirt. The lighting is professional and soft, creating a trust-inspiring medical portal profile. The setting is a blurred office environment with a clean, clinical aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5LDrv3FxFtp2NlOY5xw75PDftgj3807myKIYoXmvGZ8V4NBsV7L4ZpLnu9mPFPbHjEl1tA8exsu3WcX8XKjWz1tvnn05qB5WhFUfQQeCQ-xdgluBUL0jHHNeshUs51FrJ2MF5LBzqg4Pjqf3NVaoevIrYYqEARJi68QWvPLNOoqKAGgukhuXNgUKcvUOFBGKzHRKC9Fb5oJCzcDSoOF0b1vVHjwXy35MEwQgtLWs27JtDGVxRskP1WQ"/>
+</div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface group-hover:text-primary transition-colors">Amitav Sharma</span>
+<span class="font-label-sm text-label-sm text-outline">#MB-19822</span>
+</div>
+</div>
+</td>
+<td class="px-lg py-lg">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface">45 Yrs</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Male</span>
+</div>
+</td>
+<td class="px-lg py-lg">
+<span class="font-body-md text-body-md text-on-surface">Cardiology</span>
+</td>
+<td class="px-lg py-lg">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface">Aug 15, 2023</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Consultation</span>
+</div>
+</td>
+<td class="px-lg py-lg">
+<span class="px-3 py-1 rounded-full bg-gray-100 text-gray-800 font-label-sm text-label-sm">Inactive</span>
+</td>
+<td class="px-lg py-lg">
+<span class="px-3 py-1 rounded-full bg-blue-100 text-blue-800 font-label-sm text-label-sm">Low</span>
+</td>
+<td class="px-lg py-lg text-right">
+<div class="flex items-center justify-end gap-sm">
+<button class="p-2 rounded-lg text-on-surface-variant hover:bg-primary-container/10 hover:text-primary transition-all" title="View Records">
+<span class="material-symbols-outlined">clinical_notes</span>
+</button>
+<button class="p-2 rounded-lg text-on-surface-variant hover:bg-primary-container/10 hover:text-primary transition-all" title="Message">
+<span class="material-symbols-outlined">chat</span>
+</button>
+<button class="p-2 rounded-lg text-on-surface-variant hover:bg-primary-container/10 hover:text-primary transition-all" title="Schedule">
+<span class="material-symbols-outlined">event</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors cursor-pointer group">
+<td class="px-lg py-lg">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container/30 overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A portrait of a young Hispanic woman with dark hair tied back, wearing a simple beige blouse. She has a gentle, pleasant expression. The background is a minimalist medical exam room with soft teal and white tones, creating a calm and professional healthcare atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2BExb10ytRTlVLe9uX4phgXTStV06e4I0KT22Tv18Xd9oH4tD-dxbn_-D2hlhsvydtOsxEXwcpXZrkDLtW86dcJF79muf7K4FYXG_cNlR7qxiJ1efjwJMXn1ez4LFzeNhW2VlB2hT8DrIVb0LnjODHR-W9mJkEI02VjMv51FOHCwO5qH7NgsCBAhV7zfWu2UntKjAQJPyIrtEUL3z9qGFjFuzOkPmplDszpuh-Ferz7qZC9g_hXpFYw"/>
+</div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface group-hover:text-primary transition-colors">Sofia Mendez</span>
+<span class="font-label-sm text-label-sm text-outline">#MB-22105</span>
+</div>
+</div>
+</td>
+<td class="px-lg py-lg">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface">29 Yrs</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Female</span>
+</div>
+</td>
+<td class="px-lg py-lg">
+<span class="font-body-md text-body-md text-on-surface">Cardiology</span>
+</td>
+<td class="px-lg py-lg">
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface">Nov 03, 2023</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Follow-up</span>
+</div>
+</td>
+<td class="px-lg py-lg">
+<span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 font-label-sm text-label-sm">Active</span>
+</td>
+<td class="px-lg py-lg">
+<span class="px-3 py-1 rounded-full bg-orange-100 text-orange-800 font-label-sm text-label-sm">Medium</span>
+</td>
+<td class="px-lg py-lg text-right">
+<div class="flex items-center justify-end gap-sm">
+<button class="p-2 rounded-lg text-on-surface-variant hover:bg-primary-container/10 hover:text-primary transition-all" title="View Records">
+<span class="material-symbols-outlined">clinical_notes</span>
+</button>
+<button class="p-2 rounded-lg text-on-surface-variant hover:bg-primary-container/10 hover:text-primary transition-all" title="Message">
+<span class="material-symbols-outlined">chat</span>
+</button>
+<button class="p-2 rounded-lg text-on-surface-variant hover:bg-primary-container/10 hover:text-primary transition-all" title="Schedule">
+<span class="material-symbols-outlined">event</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="bg-surface-container-low px-lg py-md flex items-center justify-between border-t border-surface-container-highest">
+<div class="font-label-md text-label-md text-on-surface-variant">
+                        Showing <span class="font-bold">1 - 10</span> of <span class="font-bold">1,284</span> patients
+                    </div>
+<div class="flex items-center gap-xs">
+<button class="p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-lg bg-primary text-on-primary font-label-md flex items-center justify-center">1</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-highest text-on-surface-variant font-label-md flex items-center justify-center">2</button>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-highest text-on-surface-variant font-label-md flex items-center justify-center">3</button>
+<span class="px-2 text-on-surface-variant">...</span>
+<button class="w-8 h-8 rounded-lg hover:bg-surface-container-highest text-on-surface-variant font-label-md flex items-center justify-center">129</button>
+<button class="p-2 rounded-lg text-on-surface-variant hover:bg-surface-container-highest transition-all">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Bento Preview Section -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-lg h-auto lg:h-[400px]">
+<!-- Upcoming Appointments Bento -->
+<div class="lg:col-span-2 glass-card rounded-2xl p-xl shadow-lg flex flex-col">
+<div class="flex items-center justify-between mb-lg">
+<h2 class="font-title-lg text-title-lg text-on-surface">Upcoming Appointments</h2>
+<button class="text-primary font-label-md hover:underline">View All Schedule</button>
+</div>
+<div class="flex-1 space-y-md custom-scrollbar overflow-y-auto pr-md">
+<div class="flex items-center gap-lg p-md rounded-xl hover:bg-surface/50 transition-colors border border-transparent hover:border-surface-container-highest">
+<div class="text-center min-w-[60px]">
+<div class="font-label-sm text-label-sm text-primary uppercase">Nov 08</div>
+<div class="font-headline-md text-headline-md">09:30</div>
+</div>
+<div class="flex-1 flex items-center gap-md border-l border-outline-variant pl-lg">
+<div class="w-12 h-12 rounded-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A portrait of a young boy around 8 years old, smiling brightly. He is wearing a colorful striped t-shirt. The background is soft and slightly blurred, suggesting a pediatric clinic waiting room. The aesthetic is warm and inviting, perfect for a modern medical scheduler." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUeIi_wTDInSxyJ8GLiosjv-NkMXMSoZlNTd70JWJE6WTU89xu0z8IXi7tI6u8IYAN8UuZZ5EDqbN5TNo-9DU19ZRKAa7SzaQxFrqSt-otNitjuonoBo51rUd61b0vMfItN5UC5tMVnKkWS-zIoGnSTlkY2D1Gi2w_9AbkuYgkL1YcABghR5DsAkHsYwKEl0tSPZ8WBnP9UgOHqxrTK5DXSneMCNqlMNIuWy273OvmgTDZBLt3ObLlmQ"/>
+</div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md">Leo Jackson</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Annual Pediatric Heart Checkup</span>
+</div>
+</div>
+<span class="px-3 py-1 rounded-full bg-primary-container text-on-primary-container font-label-sm text-label-sm">Confirmed</span>
+</div>
+<div class="flex items-center gap-lg p-md rounded-xl hover:bg-surface/50 transition-colors border border-transparent hover:border-surface-container-highest">
+<div class="text-center min-w-[60px]">
+<div class="font-label-sm text-label-sm text-primary uppercase">Nov 08</div>
+<div class="font-headline-md text-headline-md">11:00</div>
+</div>
+<div class="flex-1 flex items-center gap-md border-l border-outline-variant pl-lg">
+<div class="w-12 h-12 rounded-full overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A middle-aged woman with glasses and short brown hair, looking composed and professional in a casual navy blouse. The portrait is high-clarity and set against a bright, clinical background, suitable for an electronic medical record interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRPYgFh-2OY3dcHX2GEWHmDF8JoWoVCPaF7kYDG5lJiBt_r05mJCLjeHUqaGaM6hreVdKKE1Xcdy_r5A1FAO4qXfKXWKdgGfCT4Fhkc8vjZrFlDEbo2OJLdhTfNxfLq-XhPCRwpPqHNwc2kPRJKjm15hgsfhkhlknn2SIKCBg-B9hZ_l7nSTYp4PjBtYLu8C75OxO5EZy8dwhd3C_sjaC4F9-5apFTsARqryVpboteLnRdvrVXY9rZUA"/>
+</div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md">Sarah Jenkins</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Stress Test Results Discussion</span>
+</div>
+</div>
+<span class="px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">In Lobby</span>
+</div>
+</div>
+</div>
+<!-- Clinical Activity Bento -->
+<div class="bg-primary-container rounded-2xl p-xl shadow-lg text-on-primary-container flex flex-col justify-between relative overflow-hidden">
+<div class="relative z-10">
+<h2 class="font-title-lg text-title-lg mb-xs">Patient Health Trends</h2>
+<p class="font-label-md text-label-md opacity-80">Average Recovery Rate</p>
+</div>
+<div class="relative z-10 flex flex-col items-center py-md">
+<span class="text-[64px] font-bold leading-none tracking-tight">84%</span>
+<div class="flex items-center gap-xs text-primary-fixed">
+<span class="material-symbols-outlined">trending_up</span>
+<span class="font-label-md text-label-md">+5.2% from last month</span>
+</div>
+</div>
+<div class="relative z-10">
+<button class="w-full py-3 bg-primary-fixed text-on-primary-fixed rounded-xl font-bold hover:bg-primary-fixed-dim transition-all active:scale-95">
+                            Detailed Analytics
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile Navigation -->
+<nav class="md:hidden fixed bottom-0 w-full bg-surface shadow-[0_-1px_10px_rgba(0,0,0,0.05)] px-md h-16 flex items-center justify-between z-50">
+<button class="flex flex-col items-center gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-sm text-[10px]">Home</span>
+</button>
+<button class="flex flex-col items-center gap-xs text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-label-sm text-[10px]">Patients</span>
+</button>
+<button class="flex items-center justify-center -mt-10 w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg border-4 border-background">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="flex flex-col items-center gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-label-sm text-[10px]">Schedule</span>
+</button>
+<button class="flex flex-col items-center gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-[10px]">Profile</span>
+</button>
+</nav>
+<script src="scripts.js"></script></body></html>

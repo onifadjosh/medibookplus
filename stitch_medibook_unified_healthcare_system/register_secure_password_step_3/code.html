@@ -1,0 +1,327 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>MediBook+ | Secure Password</title>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#ffffff",
+                    "primary": "#006767",
+                    "tertiary-fixed": "#ffdbca",
+                    "on-secondary-fixed-variant": "#38485d",
+                    "on-primary-fixed-variant": "#004f4f",
+                    "error": "#ba1a1a",
+                    "surface-container-high": "#e4e9e8",
+                    "background": "#f6faf9",
+                    "inverse-primary": "#6ad7d7",
+                    "on-error-container": "#93000a",
+                    "surface-bright": "#f6faf9",
+                    "error-container": "#ffdad6",
+                    "surface-dim": "#d6dbda",
+                    "surface-container": "#eaefee",
+                    "on-tertiary-fixed-variant": "#743408",
+                    "on-tertiary-fixed": "#331100",
+                    "surface-variant": "#dfe3e3",
+                    "on-primary-fixed": "#002020",
+                    "on-primary-container": "#f3fffe",
+                    "surface": "#f6faf9",
+                    "primary-fixed": "#88f4f3",
+                    "tertiary-fixed-dim": "#ffb68f",
+                    "surface-container-highest": "#dfe3e3",
+                    "outline-variant": "#bcc9c8",
+                    "secondary-container": "#d0e1fb",
+                    "on-tertiary-container": "#fffbff",
+                    "on-surface": "#171d1c",
+                    "surface-tint": "#006a6a",
+                    "on-secondary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#b7c8e1",
+                    "outline": "#6d7979",
+                    "on-secondary-container": "#54647a",
+                    "on-tertiary": "#ffffff",
+                    "tertiary": "#8f491d",
+                    "on-background": "#171d1c",
+                    "secondary": "#505f76",
+                    "surface-container-low": "#f0f5f4",
+                    "secondary-fixed": "#d3e4fe",
+                    "inverse-surface": "#2c3131",
+                    "on-error": "#ffffff",
+                    "on-surface-variant": "#3d4949",
+                    "inverse-on-surface": "#edf2f1",
+                    "tertiary-container": "#ad6033",
+                    "on-secondary-fixed": "#0b1c30",
+                    "primary-fixed-dim": "#6ad7d7",
+                    "primary-container": "#008282"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1440px",
+                    "sm": "8px",
+                    "xs": "4px",
+                    "margin-desktop": "32px",
+                    "2xl": "48px",
+                    "xl": "32px",
+                    "md": "16px",
+                    "base": "8px",
+                    "margin-mobile": "16px",
+                    "lg": "24px",
+                    "gutter": "24px",
+                    "3xl": "64px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "title-md": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "title-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+        }
+        .progress-dot-active {
+            width: 32px;
+            height: 8px;
+            background-color: #006767;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        .progress-dot-inactive {
+            width: 8px;
+            height: 8px;
+            background-color: #dfe3e3;
+            border-radius: 4px;
+        }
+        .clinical-shadow {
+            box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.05);
+        }
+        .input-focus-ring:focus {
+            outline: none;
+            border-color: #006767;
+            box-shadow: 0 0 0 2px rgba(0, 103, 103, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface-container-lowest fixed top-0 w-full z-50 clinical-shadow">
+<div class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop py-4 max-w-container-max mx-auto">
+<div class="text-title-lg font-title-lg font-bold text-primary">MediBook+</div>
+<div class="flex items-center gap-md">
+<span class="text-label-sm font-label-sm text-on-secondary-fixed-variant hidden md:block">Help</span>
+<span class="material-symbols-outlined text-primary cursor-pointer" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+</header>
+<main class="flex-grow pt-24 pb-12 flex items-center justify-center px-margin-mobile">
+<div class="w-full max-w-[500px]">
+<!-- Registration Header -->
+<div class="mb-xl text-center">
+<h1 class="text-headline-md font-headline-md text-on-surface mb-xs">Create Secure Password</h1>
+<p class="text-body-md font-body-md text-on-surface-variant">Protect your medical data with a strong key.</p>
+</div>
+<!-- Progress Indicator -->
+<div class="flex justify-center items-center gap-xs mb-xl">
+<div class="progress-dot-inactive bg-primary/20"></div>
+<div class="progress-dot-inactive bg-primary/20"></div>
+<div class="progress-dot-active"></div>
+<div class="progress-dot-inactive"></div>
+<span class="ml-sm text-label-sm font-label-sm text-primary uppercase tracking-wider">Step 3 of 4</span>
+</div>
+<!-- Main Form Card -->
+<section class="bg-surface-container-lowest clinical-shadow rounded-xl p-lg md:p-xl border border-surface-variant/30">
+<form class="space-y-lg" id="passwordForm">
+<!-- Password Field -->
+<div class="space-y-sm">
+<label class="text-label-md font-label-md text-on-surface flex justify-between" for="password">
+<span>New Password</span>
+<button class="text-primary text-label-sm hover:underline" onclick="toggleVisibility('password')" type="button">Show</button>
+</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border border-outline-variant rounded px-md py-3 text-body-md input-focus-ring transition-all" id="password" name="password" oninput="checkStrength()" placeholder="••••••••••••" type="password">
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline" data-icon="lock">lock</span>
+</div>
+</div>
+</div>
+<!-- Strength Checklist -->
+<div class="bg-surface-container p-md rounded-lg space-y-sm">
+<p class="text-label-sm font-label-sm text-on-surface-variant mb-base uppercase">Security Requirements</p>
+<div class="flex items-center gap-sm text-body-sm transition-colors duration-200" id="req-length">
+<span class="material-symbols-outlined text-[18px]" data-icon="check_circle">check_circle</span>
+<span>Minimum 8 characters</span>
+</div>
+<div class="flex items-center gap-sm text-body-sm transition-colors duration-200" id="req-upper">
+<span class="material-symbols-outlined text-[18px]" data-icon="check_circle">check_circle</span>
+<span>Include an uppercase letter</span>
+</div>
+<div class="flex items-center gap-sm text-body-sm transition-colors duration-200" id="req-symbol">
+<span class="material-symbols-outlined text-[18px]" data-icon="check_circle">check_circle</span>
+<span>One symbol (#, $, %, etc.)</span>
+</div>
+</div>
+<!-- Confirm Password Field -->
+<div class="space-y-sm">
+<label class="text-label-md font-label-md text-on-surface" for="confirm_password">Confirm Password</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border border-outline-variant rounded px-md py-3 text-body-md input-focus-ring transition-all" id="confirm_password" name="confirm_password" oninput="checkMatch()" placeholder="••••••••••••" type="password">
+<div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-outline" data-icon="verified_user">verified_user</span>
+</div>
+</div>
+<p class="text-error text-label-sm hidden" id="match-error">Passwords do not match</p>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col md:flex-row gap-md pt-md">
+<button class="order-2 md:order-1 flex-1 py-3 px-lg text-primary border border-primary/20 rounded font-label-md hover:bg-primary-fixed-dim/10 transition-all" type="button">
+                            Back
+                        </button>
+<button class="order-1 md:order-2 flex-[2] py-3 px-lg bg-primary text-on-primary rounded font-label-md hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-sm" disabled="" id="submit-btn" type="submit">
+                            Continue to Final Step
+                        </button>
+</div>
+</form>
+</section>
+<!-- Security Notice -->
+<div class="mt-xl flex items-start gap-md p-md bg-secondary-container/30 rounded-lg">
+<span class="material-symbols-outlined text-primary" data-icon="security">security</span>
+<div>
+<p class="text-label-md font-label-md text-on-secondary-container">Clinical Standard Security</p>
+<p class="text-body-sm font-body-sm text-on-secondary-container/80">Your password is encrypted locally before transmission. We never store plain-text passwords.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-background w-full px-margin-mobile md:px-margin-desktop py-lg flex flex-col md:flex-row justify-between items-center gap-md border-t border-surface-variant/20">
+<div class="text-label-md font-label-md font-bold text-on-surface">MediBook+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant">© 2024 MediBook+ Clinical. All rights reserved.</p>
+<div class="flex gap-md">
+<a class="text-label-sm font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-label-sm font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-label-sm font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Security Standards</a>
+</div>
+</footer>
+<script>
+        function toggleVisibility(id) {
+            const el = document.getElementById(id);
+            const btn = el.parentElement.previousElementSibling.querySelector('button');
+            if (el.type === 'password') {
+                el.type = 'text';
+                btn.textContent = 'Hide';
+            } else {
+                el.type = 'password';
+                btn.textContent = 'Show';
+            }
+        }
+
+        function updateRequirement(id, isValid) {
+            const el = document.getElementById(id);
+            const icon = el.querySelector('.material-symbols-outlined');
+            if (isValid) {
+                el.classList.remove('text-on-surface-variant');
+                el.classList.add('text-primary');
+                icon.style.fontVariationSettings = "'FILL' 1";
+            } else {
+                el.classList.add('text-on-surface-variant');
+                el.classList.remove('text-primary');
+                icon.style.fontVariationSettings = "'FILL' 0";
+            }
+        }
+
+        function checkStrength() {
+            const val = document.getElementById('password').value;
+            const hasLength = val.length >= 8;
+            const hasUpper = /[A-Z]/.test(val);
+            const hasSymbol = /[!@#$%^&*(),.?":{}|<>]/.test(val);
+
+            updateRequirement('req-length', hasLength);
+            updateRequirement('req-upper', hasUpper);
+            updateRequirement('req-symbol', hasSymbol);
+            
+            validateForm();
+        }
+
+        function checkMatch() {
+            const pass = document.getElementById('password').value;
+            const confirm = document.getElementById('confirm_password').value;
+            const error = document.getElementById('match-error');
+            
+            if (confirm.length > 0 && pass !== confirm) {
+                error.classList.remove('hidden');
+            } else {
+                error.classList.add('hidden');
+            }
+            validateForm();
+        }
+
+        function validateForm() {
+            const val = document.getElementById('password').value;
+            const confirm = document.getElementById('confirm_password').value;
+            const hasLength = val.length >= 8;
+            const hasUpper = /[A-Z]/.test(val);
+            const hasSymbol = /[!@#$%^&*(),.?":{}|<>]/.test(val);
+            const matches = val === confirm && val.length > 0;
+            
+            const btn = document.getElementById('submit-btn');
+            if (hasLength && hasUpper && hasSymbol && matches) {
+                btn.disabled = false;
+            } else {
+                btn.disabled = true;
+            }
+        }
+
+        // Add some atmospheric micro-interaction for focus states
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.parentElement.classList.add('translate-x-1');
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.parentElement.classList.remove('translate-x-1');
+            });
+        });
+
+        // Initialize state
+        checkStrength();
+    </script>
+</body></html>

@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MediFlow Admin - Medical Records</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/><link href="tailwind.css" rel="stylesheet"/></head>
+<body class="text-on-surface">
+<!-- Side Navigation Bar -->
+<aside class="w-64 h-full fixed left-0 top-0 bg-surface-container-lowest shadow-sm flex flex-col py-md px-sm overflow-y-auto z-50">
+<div class="mb-3xl px-md">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">MediFlow Admin</h1>
+<p class="font-label-md text-label-md text-on-surface-variant">General Hospital</p>
+</div>
+<nav class="flex-1 space-y-sm">
+<a class="flex items-center gap-md px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface-variant cursor-pointer active:scale-95 transition-transform" href="admin_hospital_management_dashboard.html">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface-variant cursor-pointer active:scale-95 transition-transform" href="admin_patient_doctor_management.html">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Patients</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface-variant cursor-pointer active:scale-95 transition-transform" href="admin_doctor_management_directory.html">
+<span class="material-symbols-outlined">medical_services</span>
+<span class="font-label-md text-label-md">Doctors</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface-variant cursor-pointer active:scale-95 transition-transform" href="admin_hospital_departments_overview.html">
+<span class="material-symbols-outlined">domain</span>
+<span class="font-label-md text-label-md">Departments</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface-variant cursor-pointer active:scale-95 transition-transform" href="admin_master_appointment_schedule.html">
+<span class="material-symbols-outlined">event</span>
+<span class="font-label-md text-label-md">Appointments</span>
+</a>
+<!-- Active Tab: Medical Records -->
+<a class="flex items-center gap-md px-md py-sm rounded-lg bg-surface-container-low text-primary font-bold border-r-4 border-primary cursor-pointer active:scale-95 transition-transform" href="admin_centralized_medical_records_portal.html">
+<span class="material-symbols-outlined">description</span>
+<span class="font-label-md text-label-md">Medical Records</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface-variant cursor-pointer active:scale-95 transition-transform" href="admin_advanced_hospital_reports_analytics.html">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface-variant cursor-pointer active:scale-95 transition-transform" href="admin_hospital_billing_revenue_management.html">
+<span class="material-symbols-outlined">payments</span>
+<span class="font-label-md text-label-md">Billing</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg hover:bg-surface-container-low transition-colors text-on-surface-variant cursor-pointer active:scale-95 transition-transform" href="admin_global_hospital_settings.html">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto px-md py-md border-t border-surface-container-high flex items-center gap-sm">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A professional headshot of a healthcare administrator, middle-aged with a kind expression, wearing professional attire in a bright, modern office with soft daylight and teal accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKmE-V7ZQansGqa5I2zcxvSmUc8AeSIhkeHHuPXa4Qjh_8Q0GwjWhnysZJnhd11MiGumfDZK9tgwHrA-aNH-18Oxae0O7bMgkj7yhikl3gDBvdDpyikIPGLPxwQx-Jx44Mg7xfry-rZgnPLH0Z0hB68T6VDHyI-DDJeL1Uyabv1a-pi84QCSUygYS7kOyM4x8w5tXVOMMndzTtegDIP7MRU7zUtaYwQge2gpRDsJ48yLX7XOh3d5_A0w"/>
+<div class="overflow-hidden">
+<p class="font-label-md text-label-md font-bold truncate">Dr. Sarah Jenkins</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant truncate">Admin Director</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<main class="ml-64 min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="h-16 w-full sticky top-0 z-40 bg-surface shadow-sm flex justify-between items-center px-lg">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full pl-10 pr-md py-2 focus:ring-2 focus:ring-primary text-body-md font-body-md transition-shadow" placeholder="Search patient EMR, record ID, or clinician..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<button class="relative p-2 hover:bg-surface-container-low rounded-full transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+</button>
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant mx-2"></div>
+<button class="bg-primary text-on-primary px-lg py-2 rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity flex items-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                    New Record
+                </button>
+</div>
+</header>
+<!-- Screen Content -->
+<div class="p-xl space-y-xl max-w-[1600px] mx-auto">
+<!-- Page Header & Stats Bento -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-lg">
+<div class="lg:col-span-8 flex flex-col justify-center">
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Centralized EMR Portal</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mt-sm">Manage, verify, and transfer secure medical records with real-time audit logging and version control.</p>
+</div>
+<div class="lg:col-span-4 grid grid-cols-2 gap-md">
+<div class="bg-surface-container-low p-md rounded-xl border border-surface-container-high">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Queue Status</span>
+<div class="flex items-baseline gap-2 mt-2">
+<span class="font-headline-md text-headline-md text-primary">12</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Pending</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-md rounded-xl border border-surface-container-high">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Verified Today</span>
+<div class="flex items-baseline gap-2 mt-2">
+<span class="font-headline-md text-headline-md text-secondary">84</span>
+<span class="material-symbols-outlined text-primary text-[18px]">trending_up</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Main Records Table & Filters -->
+<section class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden flex flex-col border border-surface-container-high">
+<!-- Filters Bar -->
+<div class="p-lg border-b border-surface-container-high flex flex-wrap gap-md items-center justify-between">
+<div class="flex gap-sm">
+<button class="flex items-center gap-2 px-md py-2 bg-primary text-on-primary rounded-lg font-label-md text-label-md">
+                            All Records
+                        </button>
+<button class="flex items-center gap-2 px-md py-2 hover:bg-surface-container-low rounded-lg font-label-md text-label-md text-on-surface-variant transition-colors border border-outline-variant">
+                            Lab Reports
+                        </button>
+<button class="flex items-center gap-2 px-md py-2 hover:bg-surface-container-low rounded-lg font-label-md text-label-md text-on-surface-variant transition-colors border border-outline-variant">
+                            Imaging
+                        </button>
+<button class="flex items-center gap-2 px-md py-2 hover:bg-surface-container-low rounded-lg font-label-md text-label-md text-on-surface-variant transition-colors border border-outline-variant">
+                            Clinical Notes
+                        </button>
+</div>
+<div class="flex gap-md items-center">
+<div class="flex items-center gap-2 px-md py-2 bg-surface-container-low rounded-lg text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+<span class="font-label-md text-label-md">More Filters</span>
+</div>
+<div class="h-6 w-[1px] bg-outline-variant"></div>
+<span class="text-label-sm text-on-surface-variant">Sorted by: <span class="font-bold text-on-surface">Recent First</span></span>
+</div>
+</div>
+<!-- Data Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/50">
+<th class="px-lg py-md font-label-sm text-label-sm text-on-surface-variant uppercase">Patient &amp; ID</th>
+<th class="px-lg py-md font-label-sm text-label-sm text-on-surface-variant uppercase">Record Type</th>
+<th class="px-lg py-md font-label-sm text-label-sm text-on-surface-variant uppercase">Date Created</th>
+<th class="px-lg py-md font-label-sm text-label-sm text-on-surface-variant uppercase">Status</th>
+<th class="px-lg py-md font-label-sm text-label-sm text-on-surface-variant uppercase">Version</th>
+<th class="px-lg py-md font-label-sm text-label-sm text-on-surface-variant uppercase text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-high">
+<tr class="hover:bg-surface-container-low/30 transition-colors group">
+<td class="px-lg py-lg">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold">EM</div>
+<div>
+<p class="font-title-md text-title-md">Elena Martinez</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">ID: #EM-90210</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-lg">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">science</span>
+<span class="font-body-md text-body-md">Blood Panel (Metabolic)</span>
+</div>
+</td>
+<td class="px-lg py-lg font-body-md text-body-md text-on-surface-variant">Oct 24, 2023</td>
+<td class="px-lg py-lg">
+<span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-label-sm font-bold flex items-center gap-1 w-fit">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                        Verified
+                                    </span>
+</td>
+<td class="px-lg py-lg">
+<span class="font-body-sm text-body-sm bg-surface-container-low px-2 py-1 rounded">v2.4</span>
+</td>
+<td class="px-lg py-lg text-right">
+<button class="p-2 hover:bg-primary-container/10 text-primary rounded-full transition-colors">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/30 transition-colors group">
+<td class="px-lg py-lg">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center text-secondary font-bold">JH</div>
+<div>
+<p class="font-title-md text-title-md">James Hudson</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">ID: #JH-44102</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-lg">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary text-[20px]">radiology</span>
+<span class="font-body-md text-body-md">Chest X-Ray</span>
+</div>
+</td>
+<td class="px-lg py-lg font-body-md text-body-md text-on-surface-variant">Oct 25, 2023</td>
+<td class="px-lg py-lg">
+<span class="px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-label-sm font-bold flex items-center gap-1 w-fit">
+<span class="material-symbols-outlined text-[14px]">pending</span>
+                                        Pending
+                                    </span>
+</td>
+<td class="px-lg py-lg">
+<span class="font-body-sm text-body-sm bg-surface-container-low px-2 py-1 rounded">v1.0</span>
+</td>
+<td class="px-lg py-lg text-right">
+<button class="p-2 hover:bg-primary-container/10 text-primary rounded-full transition-colors">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/30 transition-colors group">
+<td class="px-lg py-lg">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold">LR</div>
+<div>
+<p class="font-title-md text-title-md">Linda Ross</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">ID: #LR-12883</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-lg">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[20px]">edit_note</span>
+<span class="font-body-md text-body-md">Psychiatric Evaluation</span>
+</div>
+</td>
+<td class="px-lg py-lg font-body-md text-body-md text-on-surface-variant">Oct 23, 2023</td>
+<td class="px-lg py-lg">
+<span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-label-sm font-bold flex items-center gap-1 w-fit">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                                        Verified
+                                    </span>
+</td>
+<td class="px-lg py-lg">
+<span class="font-body-sm text-body-sm bg-surface-container-low px-2 py-1 rounded">v3.1</span>
+</td>
+<td class="px-lg py-lg text-right">
+<button class="p-2 hover:bg-primary-container/10 text-primary rounded-full transition-colors">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button class="p-2 hover:bg-surface-container-low rounded-full transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="p-lg border-t border-surface-container-high flex justify-between items-center bg-surface-container-lowest">
+<span class="text-body-sm text-on-surface-variant">Showing 1 to 10 of 2,490 records</span>
+<div class="flex gap-2">
+<button class="p-2 rounded-lg border border-outline-variant hover:bg-surface-container-low transition-colors disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="px-4 py-2 bg-primary text-on-primary rounded-lg font-label-md">1</button>
+<button class="px-4 py-2 hover:bg-surface-container-low rounded-lg font-label-md">2</button>
+<button class="px-4 py-2 hover:bg-surface-container-low rounded-lg font-label-md">3</button>
+<button class="p-2 rounded-lg border border-outline-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Bottom Sections: Request Queue & Audit Logs -->
+<section class="grid grid-cols-1 xl:grid-cols-2 gap-xl">
+<!-- Request Queue (Transfers) -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container-high flex flex-col h-[400px]">
+<div class="p-lg border-b border-surface-container-high flex justify-between items-center">
+<h3 class="font-title-lg text-title-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">sync_alt</span>
+                            Record Transfer Queue
+                        </h3>
+<span class="px-2 py-1 bg-primary-container/10 text-primary text-label-sm font-bold rounded">4 Active</span>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar p-lg space-y-md">
+<!-- Request Item -->
+<div class="p-md bg-surface-container-low rounded-xl border border-surface-container-high flex justify-between items-center">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-tertiary">festival</span>
+</div>
+<div>
+<p class="font-title-md text-title-md">Mayo Clinic Transfer</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Request for Patient: #JH-44102</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="px-3 py-1 bg-primary text-on-primary rounded-lg text-label-sm font-bold hover:opacity-90">Approve</button>
+<button class="px-3 py-1 border border-outline-variant rounded-lg text-label-sm font-bold hover:bg-surface-container-high">Details</button>
+</div>
+</div>
+<!-- Request Item -->
+<div class="p-md bg-surface-container-low rounded-xl border border-surface-container-high flex justify-between items-center">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-tertiary">home_health</span>
+</div>
+<div>
+<p class="font-title-md text-title-md">St. Mary's Specialty</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Request for Patient: #EM-90210</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="px-3 py-1 bg-primary text-on-primary rounded-lg text-label-sm font-bold hover:opacity-90">Approve</button>
+<button class="px-3 py-1 border border-outline-variant rounded-lg text-label-sm font-bold hover:bg-surface-container-high">Details</button>
+</div>
+</div>
+<!-- Request Item -->
+<div class="p-md bg-surface-container-low rounded-xl border border-surface-container-high flex justify-between items-center">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-tertiary">domain</span>
+</div>
+<div>
+<p class="font-title-md text-title-md">County Health Services</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Request for Patient: #LR-12883</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="px-3 py-1 bg-primary text-on-primary rounded-lg text-label-sm font-bold hover:opacity-90">Approve</button>
+<button class="px-3 py-1 border border-outline-variant rounded-lg text-label-sm font-bold hover:bg-surface-container-high">Details</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Access Audit Logs -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm border border-surface-container-high flex flex-col h-[400px]">
+<div class="p-lg border-b border-surface-container-high flex justify-between items-center">
+<h3 class="font-title-lg text-title-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">security</span>
+                            Security Access Logs
+                        </h3>
+<button class="text-primary font-label-md hover:underline">Download CSV</button>
+</div>
+<div class="flex-1 overflow-y-auto custom-scrollbar">
+<table class="w-full text-left">
+<tbody class="divide-y divide-surface-container-high">
+<tr class="hover:bg-surface-container-low/30">
+<td class="px-lg py-md">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">person</span>
+</div>
+<div>
+<p class="font-label-md text-label-md">Dr. Robert Chen</p>
+<p class="text-[11px] text-on-surface-variant font-medium uppercase tracking-tight">Oncology Dept</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<p class="font-body-sm text-body-sm">Viewed EMR <span class="font-bold">#EM-90210</span></p>
+<p class="text-[11px] text-on-surface-variant">Auth Method: Biometric</p>
+</td>
+<td class="px-lg py-md text-right">
+<p class="font-label-sm text-label-sm">2 mins ago</p>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/30">
+<td class="px-lg py-md">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">person</span>
+</div>
+<div>
+<p class="font-label-md text-label-md">Nurse Amy Wu</p>
+<p class="text-[11px] text-on-surface-variant font-medium uppercase tracking-tight">Emergency</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<p class="font-body-sm text-body-sm">Exported Imaging <span class="font-bold">#JH-44102</span></p>
+<p class="text-[11px] text-on-surface-variant">Auth Method: SSO</p>
+</td>
+<td class="px-lg py-md text-right">
+<p class="font-label-sm text-label-sm">15 mins ago</p>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/30">
+<td class="px-lg py-md">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">person</span>
+</div>
+<div>
+<p class="font-label-md text-label-md">System Admin</p>
+<p class="text-[11px] text-on-surface-variant font-medium uppercase tracking-tight">Global IT</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<p class="font-body-sm text-body-sm">Created version <span class="font-bold">v2.4</span> for <span class="font-bold">#EM-90210</span></p>
+<p class="text-[11px] text-on-surface-variant">Batch Update</p>
+</td>
+<td class="px-lg py-md text-right">
+<p class="font-label-sm text-label-sm">1 hour ago</p>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/30">
+<td class="px-lg py-md">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">person</span>
+</div>
+<div>
+<p class="font-label-md text-label-md">Dr. Sarah Jenkins</p>
+<p class="text-[11px] text-on-surface-variant font-medium uppercase tracking-tight">Admin</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<p class="font-body-sm text-body-sm">Verified Record <span class="font-bold">#LR-12883</span></p>
+<p class="text-[11px] text-on-surface-variant">Manual Audit</p>
+</td>
+<td class="px-lg py-md text-right">
+<p class="font-label-sm text-label-sm">2 hours ago</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Version Control Sidebar (Contextual, Hidden by Default) -->
+<div class="fixed right-0 top-0 h-full w-96 bg-surface-container-lowest shadow-2xl z-[60] transform translate-x-full transition-transform duration-300 border-l border-surface-container-high flex flex-col" id="versionSidebar">
+<div class="p-lg border-b border-surface-container-high flex justify-between items-center bg-surface">
+<div>
+<h3 class="font-title-lg text-title-lg">Version History</h3>
+<p class="text-body-sm text-on-surface-variant">Record #EM-90210</p>
+</div>
+<button class="p-2 hover:bg-surface-container-low rounded-full" onclick="toggleSidebar()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto p-lg space-y-lg">
+<div class="relative pl-8 border-l-2 border-primary/20 space-y-xl">
+<!-- Version Entry -->
+<div class="relative">
+<span class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-primary border-4 border-surface-container-lowest"></span>
+<div class="flex justify-between items-start">
+<div>
+<p class="font-label-md text-label-md font-bold text-primary">v2.4 - Current Version</p>
+<p class="text-body-sm text-on-surface-variant mt-1">Oct 24, 2023 at 04:30 PM</p>
+</div>
+<span class="material-symbols-outlined text-primary">check_circle</span>
+</div>
+<div class="mt-md p-md bg-surface-container-low rounded-lg text-body-sm">
+                        Updated lipid panel results after second lab verification. Corrected typo in doctor's signature.
+                    </div>
+</div>
+<!-- Version Entry -->
+<div class="relative">
+<span class="absolute -left-[37px] top-1 w-4 h-4 rounded-full bg-outline-variant border-4 border-surface-container-lowest"></span>
+<div class="flex justify-between items-start">
+<div>
+<p class="font-label-md text-label-md font-bold">v2.3</p>
+<p class="text-body-sm text-on-surface-variant mt-1">Oct 22, 2023 at 09:12 AM</p>
+</div>
+</div>
+<div class="mt-md p-md bg-surface-container-low/50 rounded-lg text-body-sm">
+                        Initial lab result import. Metadata tagging added.
+                    </div>
+</div>
+</div>
+</div>
+<div class="p-lg border-t border-surface-container-high bg-surface-container-low">
+<button class="w-full bg-primary text-on-primary py-3 rounded-lg font-bold hover:opacity-90">Restore Version v2.3</button>
+</div>
+</div>
+<script src="scripts.js"></script></body></html>

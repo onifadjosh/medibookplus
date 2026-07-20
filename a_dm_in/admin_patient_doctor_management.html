@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MediBook+ Admin | Patient &amp; Doctor Management</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/><link href="tailwind.css" rel="stylesheet"/></head>
+<body class="bg-surface-bright text-on-surface min-h-screen flex overflow-hidden">
+<!-- Side Navigation Shell -->
+<aside class="hidden md:flex flex-col h-screen p-md gap-sm bg-surface-container-low w-64 shrink-0">
+<div class="px-md py-lg flex items-center gap-sm">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white">
+<span class="material-symbols-outlined">medical_services</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary tracking-tight">MediBook+</h1>
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-widest opacity-70">Healthcare Suite</p>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-xs mt-lg">
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all duration-200" href="admin_hospital_management_dashboard.html">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all duration-200" href="admin_master_appointment_schedule.html">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="font-label-md text-label-md">Appointments</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all duration-200" href="doctor_messages_consultations_hub.html">
+<span class="material-symbols-outlined">chat</span>
+<span class="font-label-md text-label-md">Messages</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-primary font-bold bg-secondary-container rounded-lg translate-x-1 duration-200" href="admin_patient_doctor_management.html">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-md text-label-md">Patients</span>
+</a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all duration-200" href="admin_global_hospital_settings.html">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto pt-lg border-t border-outline-variant/30">
+<button class="w-full py-md px-lg bg-primary text-white rounded-xl font-title-md text-title-md flex items-center justify-center gap-sm hover:opacity-90 transition-all shadow-sm">
+<span class="material-symbols-outlined">add</span>
+<span>New Appointment</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 h-screen flex flex-col overflow-hidden relative">
+<!-- Top App Bar Shell -->
+<header class="flex justify-between items-center w-full px-margin-desktop h-16 z-50 bg-surface-bright shadow-sm shrink-0">
+<div class="flex items-center gap-lg flex-1">
+<div class="relative w-full max-w-md hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-md py-sm bg-surface-container-low border-none rounded-full font-body-sm text-body-sm focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Search patients, doctors, records..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-sm text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-surface-bright"></span>
+</button>
+<button class="p-sm text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant/30 mx-sm"></div>
+<div class="flex items-center gap-sm cursor-pointer hover:bg-surface-container-high p-xs pr-md rounded-full transition-all">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="Close-up professional headshot of a female hospital administrator in her 40s wearing a modern tailored blazer, smiling confidently with a blurred clinical office background. High-quality corporate photography with soft, warm studio lighting that complements the healthcare brand colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD04cxZ4HkSheW5Mr8E7XUCZsZSthNa-IyvlbLyixsg99VzhPHjHskMScba4pb8qErpQj3WV6zKQddDtPErXiQ0EJ_G74YDcFf8kb-pA6SdOm5icw9FzGLaDSRkg--xHjcGgQOSj3EMeL4zCYP_meK-N6yHczMe1FeldWcDS3kdH-fntv7fmEXL7ARW0SYpTBTqy_skQr13bIsN77-WPXs2OHdzUo-GoGdNSfsjpGqK3R92oBHuBdrt8Q"/>
+<span class="font-label-md text-label-md font-semibold text-on-surface hidden sm:block">Admin Sarah</span>
+</div>
+</div>
+</header>
+<!-- Dynamic Content Area -->
+<div class="flex-1 overflow-y-auto custom-scrollbar p-margin-desktop space-y-3xl">
+<!-- Patient Management Section -->
+<section class="fade-in">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-lg mb-xl">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Patient Directory</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage medical records and patient status updates.</p>
+</div>
+<div class="flex items-center gap-sm">
+<div class="flex bg-surface-container rounded-lg p-1">
+<button class="px-md py-sm bg-surface-container-lowest shadow-sm rounded-md font-label-md text-label-md text-primary flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">list</span> Table
+                            </button>
+<button class="px-md py-sm hover:bg-surface-container-high rounded-md font-label-md text-label-md text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">grid_view</span> Grid
+                            </button>
+</div>
+<button class="flex items-center gap-sm px-lg py-sm bg-surface-container-low border border-outline-variant text-on-surface rounded-lg font-label-md text-label-md hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined">download</span> Export CSV
+                        </button>
+</div>
+</div>
+<!-- Patient Filter Bar -->
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-sm mb-lg flex flex-wrap items-center gap-md">
+<div class="flex-1 min-w-[240px] relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-md py-sm border border-outline-variant rounded-lg font-body-sm text-body-sm focus:border-primary focus:ring-0" placeholder="Filter by name, ID or email..." type="text"/>
+</div>
+<select class="py-sm px-lg border border-outline-variant rounded-lg font-body-sm text-body-sm bg-surface-container-low text-on-surface focus:ring-0">
+<option>All Status</option>
+<option>Active</option>
+<option>On Treatment</option>
+<option>Recovered</option>
+</select>
+<button class="p-sm border border-outline-variant rounded-lg hover:bg-surface-container-high">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+<!-- Patient Table -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden border border-outline-variant/20">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low">
+<th class="px-lg py-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Photo &amp; Name</th>
+<th class="px-lg py-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Patient ID</th>
+<th class="px-lg py-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Contact Info</th>
+<th class="px-lg py-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="px-lg py-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<!-- Table Row 1 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors cursor-pointer group">
+<td class="px-lg py-lg">
+<div class="flex items-center gap-md">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A high-resolution portrait of an elderly man with silver hair and a kind expression. He is wearing a soft blue polo shirt. The lighting is bright and natural, set in a clean minimalist medical center lobby with light teal accents, maintaining a professional yet empathetic healthcare aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfH4yfOscdTTZuS3gP4pxSb6nB70onnSW008csSPWFzxwiXJGVLeT_VWfIxWaHaQ7ZjVkb9sM51_rX4Syo7twbtbG-ZFOj_3pW3Yuf0ALbdeeBlZ6NQfr9JGK2G9icDP4DIICqwjJszWXDkFIHF_oVPW_EZxtb_qrjVldX-m7mwZy3XALT8t1e2isRxkytwdKiFs62qfJGrXB-v3WjrOTlxGC-3FQP5aRgnHEZMkla85xA4oOfhg0Dhg"/>
+<div>
+<p class="font-title-md text-title-md text-on-surface group-hover:text-primary transition-colors">Arthur P. Miller</p>
+<p class="text-body-sm text-on-surface-variant">Last visit: Oct 24, 2023</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-lg font-body-md text-body-md text-on-surface-variant">#MB-29402</td>
+<td class="px-lg py-lg">
+<div class="space-y-xs">
+<div class="flex items-center gap-xs text-body-sm text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-primary">mail</span> arthur.miller@email.com
+                                        </div>
+<div class="flex items-center gap-xs text-body-sm text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-primary">call</span> +1 (555) 012-3456
+                                        </div>
+</div>
+</td>
+<td class="px-lg py-lg">
+<span class="inline-flex items-center px-sm py-1 bg-primary/10 text-primary text-label-sm font-label-sm rounded-full">Active</span>
+</td>
+<td class="px-lg py-lg text-right">
+<button class="p-sm text-on-surface-variant hover:text-primary hover:bg-surface-container-high rounded-lg transition-all">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Table Row 2 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors cursor-pointer group">
+<td class="px-lg py-lg">
+<div class="flex items-center gap-md">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Close-up professional medical portrait of a young woman with curly dark hair wearing glasses. She looks relaxed and confident. Background features out-of-focus medical equipment and a bright white wall, lit with soft daylight. Aesthetic is high-end clinical SaaS, clean and trust-inspiring." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWBighgkOAzWpdo0pVkdIq2hJO1tcoEh2Hww9EhNm_qj4dBeKZQVRDpTNr2k3Q6WUIaWA40hAOn5oq95jF_SLKH7SiWNzf7GeYLusuSRaPrPFunSQgwQHBhJgcukCJUmCAT21kPa3l8sl2unFGF7KzP5KWUG_MxArcQ1T6qDVeam8oL6tcMgkMWVxCb1hj86Ohd7LTsByGbRa8DXP6cSRByOFRC-9VD-ooBXg4cKYo9eYQcFnMvUEmpQ"/>
+<div>
+<p class="font-title-md text-title-md text-on-surface group-hover:text-primary transition-colors">Elena Rodriguez</p>
+<p class="text-body-sm text-on-surface-variant">Last visit: Oct 21, 2023</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-lg font-body-md text-body-md text-on-surface-variant">#MB-29415</td>
+<td class="px-lg py-lg">
+<div class="space-y-xs">
+<div class="flex items-center gap-xs text-body-sm text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-primary">mail</span> elena.rod@email.com
+                                        </div>
+<div class="flex items-center gap-xs text-body-sm text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-primary">call</span> +1 (555) 987-6543
+                                        </div>
+</div>
+</td>
+<td class="px-lg py-lg">
+<span class="inline-flex items-center px-sm py-1 bg-tertiary/10 text-tertiary text-label-sm font-label-sm rounded-full">On Treatment</span>
+</td>
+<td class="px-lg py-lg text-right">
+<button class="p-sm text-on-surface-variant hover:text-primary hover:bg-surface-container-high rounded-lg transition-all">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Table Row 3 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors cursor-pointer group">
+<td class="px-lg py-lg">
+<div class="flex items-center gap-md">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Portrait of a professional middle-aged man with short cropped hair and a subtle smile. He is wearing a clean white t-shirt under a light gray cardigan. Bright, modern clinic background with soft teal accents and warm wood textures. The photo evokes reliability and medical trust." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeLyddSN7ljVsB1n9viOPzT4ZH7Ogc6y17mYdNf7R00cZhK8w88v1wPFXy87yMLheVb6rfJmUkoyFjNvMbcreC5PZwsG3C25rBqoE0KBFyhOfbRwliVofcoq4XE0rr3QG1YmgQ3zI9xrOJA7AiJlVN0izEksjodLd54T-QP0b-kCb7mQFC2p_wc3MPXJuKNXvXbmrpcMxLgQQHLd6iSHewBOL5Ig1bOahjo3bHvT7kP7Nk2NzyNr-RnQ"/>
+<div>
+<p class="font-title-md text-title-md text-on-surface group-hover:text-primary transition-colors">James Wilson</p>
+<p class="text-body-sm text-on-surface-variant">Last visit: Oct 18, 2023</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-lg font-body-md text-body-md text-on-surface-variant">#MB-30112</td>
+<td class="px-lg py-lg">
+<div class="space-y-xs">
+<div class="flex items-center gap-xs text-body-sm text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-primary">mail</span> j.wilson92@email.com
+                                        </div>
+<div class="flex items-center gap-xs text-body-sm text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-primary">call</span> +1 (555) 444-3322
+                                        </div>
+</div>
+</td>
+<td class="px-lg py-lg">
+<span class="inline-flex items-center px-sm py-1 bg-secondary/10 text-secondary text-label-sm font-label-sm rounded-full">Recovered</span>
+</td>
+<td class="px-lg py-lg text-right">
+<button class="p-sm text-on-surface-variant hover:text-primary hover:bg-surface-container-high rounded-lg transition-all">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="p-md bg-surface-container-low flex items-center justify-between">
+<p class="text-body-sm text-on-surface-variant">Showing 3 of 1,248 patients</p>
+<div class="flex gap-xs">
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant bg-surface-bright text-outline hover:text-primary">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-primary bg-primary text-white">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant bg-surface-bright hover:bg-surface-container-high">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant bg-surface-bright hover:bg-surface-container-high">3</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant bg-surface-bright text-outline hover:text-primary">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Doctor Management Section -->
+<section class="fade-in" style="animation-delay: 0.1s;">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-lg mb-xl">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Medical Staff</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Monitor practitioner availability and daily workloads.</p>
+</div>
+<div class="flex items-center gap-sm">
+<div class="flex bg-surface-container rounded-lg p-1">
+<button class="px-md py-sm hover:bg-surface-container-high rounded-md font-label-md text-label-md text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">list</span> Table
+                            </button>
+<button class="px-md py-sm bg-surface-container-lowest shadow-sm rounded-md font-label-md text-label-md text-primary flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">grid_view</span> Grid
+                            </button>
+</div>
+</div>
+</div>
+<!-- Doctor Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-lg">
+<!-- Doctor Card 1 -->
+<div class="glass-card rounded-2xl p-lg flex flex-col hover:shadow-xl transition-all duration-300 group">
+<div class="flex items-start justify-between mb-lg">
+<div class="relative">
+<img class="w-16 h-16 rounded-2xl object-cover shadow-sm" data-alt="A professional studio portrait of a male doctor in his 40s wearing a clean white lab coat and a stethoscope. He has a warm, confident smile. The lighting is bright and airy with a minimalist medical clinic background featuring light teal and gray tones. High-end modern healthcare aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4LCib_OVbkXKhyOyBEad0DqoKkdcrgFvm5JukqW6PkHF2ju2Pl5MFHXEpMn2_LHBpRp7NJ-0u51TY6HkyWX5GyhADoMNIIkahS8YRaP1fAV3tTIXpoCa4sVWCUDp8bZMOuFteW0MWeW9mxrd40mKXVyD6DQeJVhZbWeHkO7vPhExmSmk2U3jOcXD19q13CGo9x2Sn2-XfLh6UXCmgRUVlmDxhlx9enLVwUHDkAmn0WJYRM7GxqQqFSQ"/>
+<span class="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-500 border-2 border-surface-bright rounded-full"></span>
+</div>
+<div class="flex gap-xs">
+<button class="p-xs text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-xs text-on-surface-variant hover:text-error transition-colors"><span class="material-symbols-outlined">block</span></button>
+<button class="p-xs text-on-surface-variant hover:text-error transition-colors"><span class="material-symbols-outlined">delete</span></button>
+</div>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-xs">Dr. Julian Vance</h3>
+<p class="text-label-md font-label-md text-primary mb-md">Senior Cardiologist</p>
+<div class="grid grid-cols-2 gap-md mb-lg p-md bg-surface-container-low rounded-xl">
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase">Availability</p>
+<p class="font-title-md text-title-md text-on-surface">09:00 - 17:00</p>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase">Today</p>
+<p class="font-title-md text-title-md text-primary">8 Appointments</p>
+</div>
+</div>
+<button class="w-full py-sm border border-primary text-primary rounded-lg font-label-md hover:bg-primary hover:text-white transition-all mt-auto">View Schedule</button>
+</div>
+<!-- Doctor Card 2 -->
+<div class="glass-card rounded-2xl p-lg flex flex-col hover:shadow-xl transition-all duration-300 group">
+<div class="flex items-start justify-between mb-lg">
+<div class="relative">
+<img class="w-16 h-16 rounded-2xl object-cover shadow-sm" data-alt="Close-up portrait of a female doctor of Asian descent, wearing a stethoscope over a modern navy blue medical scrub. She has a friendly, professional demeanor. Background is a bright, modern hospital corridor with soft lens blur. The color palette is clean whites and hospital teals, high-clarity photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxbwck5cshHsbwSrKeRy6jGEholDIj8kbzUtuJGTRc2vaHMvFLCWq9E4iqz5J3e067EKjX7HfFJFw7tcMp4LNN-0l_YRJcO6aHl8T_4u1Ax4Q2yG-E7Bl0nTOT1RzfOOUDykmpnALBi2UkVyC9SPlJ0aRSkWbbrL7XP-djgDdgcj7_QqTdsJ95in_74CVBTmdC6J8o5n9YiedkMjmREbG-hW55FjpIpzoJKLckl-a6ipdO-vHRTdRVJg"/>
+<span class="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-500 border-2 border-surface-bright rounded-full"></span>
+</div>
+<div class="flex gap-xs">
+<button class="p-xs text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-xs text-on-surface-variant hover:text-error transition-colors"><span class="material-symbols-outlined">block</span></button>
+<button class="p-xs text-on-surface-variant hover:text-error transition-colors"><span class="material-symbols-outlined">delete</span></button>
+</div>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-xs">Dr. Sarah Chen</h3>
+<p class="text-label-md font-label-md text-primary mb-md">Neurology Specialist</p>
+<div class="grid grid-cols-2 gap-md mb-lg p-md bg-surface-container-low rounded-xl">
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase">Availability</p>
+<p class="font-title-md text-title-md text-on-surface">08:00 - 16:00</p>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase">Today</p>
+<p class="font-title-md text-title-md text-primary">12 Appointments</p>
+</div>
+</div>
+<button class="w-full py-sm border border-primary text-primary rounded-lg font-label-md hover:bg-primary hover:text-white transition-all mt-auto">View Schedule</button>
+</div>
+<!-- Doctor Card 3 -->
+<div class="glass-card rounded-2xl p-lg flex flex-col hover:shadow-xl transition-all duration-300 group">
+<div class="flex items-start justify-between mb-lg">
+<div class="relative">
+<img class="w-16 h-16 rounded-2xl object-cover shadow-sm" data-alt="Professional medical headshot of a middle-aged male doctor with a beard, wearing a white coat. He appears trustworthy and experienced. The lighting is soft and professional, with a modern clinical office background. The overall tone is corporate, clean, and professional for a high-end medical software interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYV5UijIfOsY4ffi38FyCRBpTiYHizyCgrx_tn8I90yPmMSgJZT1HPpqYfM8ia7UikrcE0HGXfCisycTKJYEtTHNh1ofwwvnl0RJt8SHyr9wYeG3WSLBU3ZVp9xSwR7oc3htL3UMWSF8IxHEz5PfOEl3P2YgTycQZVYskACUTReHb_a0-QXl5fFqGjXFBSA6Q5kNcn7eMHTcB7bxnAfrOqrFTCR9X5OKeYypi-mE9hqc_mmZEqj9zhYA"/>
+<span class="absolute -bottom-1 -right-1 w-4 h-4 bg-amber-500 border-2 border-surface-bright rounded-full"></span>
+</div>
+<div class="flex gap-xs">
+<button class="p-xs text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-xs text-on-surface-variant hover:text-error transition-colors"><span class="material-symbols-outlined">block</span></button>
+<button class="p-xs text-on-surface-variant hover:text-error transition-colors"><span class="material-symbols-outlined">delete</span></button>
+</div>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-xs">Dr. Marcus Thorne</h3>
+<p class="text-label-md font-label-md text-primary mb-md">General Practitioner</p>
+<div class="grid grid-cols-2 gap-md mb-lg p-md bg-surface-container-low rounded-xl">
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase">Availability</p>
+<p class="font-title-md text-title-md text-on-surface">10:00 - 19:00</p>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase">Today</p>
+<p class="font-title-md text-title-md text-primary">5 Appointments</p>
+</div>
+</div>
+<button class="w-full py-sm border border-primary text-primary rounded-lg font-label-md hover:bg-primary hover:text-white transition-all mt-auto">View Schedule</button>
+</div>
+<!-- Doctor Card 4 -->
+<div class="glass-card rounded-2xl p-lg flex flex-col hover:shadow-xl transition-all duration-300 group opacity-75 grayscale hover:grayscale-0 hover:opacity-100">
+<div class="flex items-start justify-between mb-lg">
+<div class="relative">
+<img class="w-16 h-16 rounded-2xl object-cover shadow-sm" data-alt="Portrait of a professional female doctor in a white lab coat, looking poised and focused. Minimalist clinical setting with soft natural light. High-clarity digital photography emphasizing trust and medical expertise in a corporate SaaS context. Soft teal and white color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-1DZ2RK6Qj1aHFx4pHRrlofh6cGUc1ui0zOyuBi8J6u1d3AlgH9Hx-ws1GmpJHrT8H3XHYfXkz2kbxifSN3qeF0SRIiayNpUjlFqDvi_UGqZAAgz0plRQja-Exk_vLPbOhd02ebOPmdmavQ4U3qAfKO4LM2_0e1hQkRQXkOq09NywekaJGKhSmJmEXERddcfGOeoDolO-wVYtkLvHvcEs1YCDSTw-XjxMympYtkjZkEkUG-0gxaHVpQ"/>
+<span class="absolute -bottom-1 -right-1 w-4 h-4 bg-on-surface-variant border-2 border-surface-bright rounded-full"></span>
+</div>
+<div class="flex gap-xs">
+<button class="p-xs text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-xs text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined">check_circle</span></button>
+<button class="p-xs text-on-surface-variant hover:text-error transition-colors"><span class="material-symbols-outlined">delete</span></button>
+</div>
+</div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-xs">Dr. Elena Kostic</h3>
+<p class="text-label-md font-label-md text-primary mb-md">Dermatologist (On Leave)</p>
+<div class="grid grid-cols-2 gap-md mb-lg p-md bg-surface-container-low rounded-xl">
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase">Availability</p>
+<p class="font-title-md text-title-md text-on-surface">N/A</p>
+</div>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase">Today</p>
+<p class="font-title-md text-title-md text-on-surface-variant">0 Appointments</p>
+</div>
+</div>
+<button class="w-full py-sm border border-outline-variant text-on-surface-variant rounded-lg font-label-md hover:bg-surface-container-high transition-all mt-auto">View Profile</button>
+</div>
+</div>
+</section>
+</div>
+<!-- Floating Action Button -->
+<button class="fixed bottom-margin-desktop right-margin-desktop w-14 h-14 bg-primary text-white rounded-full flex items-center justify-center shadow-xl hover:scale-105 active:scale-95 duration-150 group z-[60]">
+<span class="material-symbols-outlined text-[28px] group-hover:rotate-90 transition-transform">add</span>
+<span class="absolute right-16 bg-inverse-surface text-inverse-on-surface px-md py-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap text-label-md pointer-events-none shadow-lg">Add New Doctor</span>
+</button>
+</main>
+<!-- Micro-interaction Script -->
+<script src="scripts.js"></script></body></html>
