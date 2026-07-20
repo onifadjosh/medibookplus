@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MediBook+ | EMR Clinician Dashboard</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/><link href="tailwind.css" rel="stylesheet"/></head>
+<body class="bg-background font-body-md text-on-background min-h-screen flex">
+<!-- Side Navigation Bar -->
+<aside class="hidden md:flex flex-col h-screen p-md gap-sm bg-surface-container-low w-64 fixed left-0 top-0 border-r border-outline-variant z-40">
+<div class="mb-xl flex items-center gap-sm px-sm pt-2">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-white text-lg" style="font-variation-settings: 'FILL' 1;">medical_services</span>
+</div>
+<h1 class="font-title-lg text-primary tracking-tight font-extrabold text-xl">MediBook+</h1>
+</div>
+<nav class="flex-1 flex flex-col gap-xs">
+<a class="flex items-center gap-md px-md py-3 text-primary font-bold bg-primary/10 rounded-xl transition-all" href="admin_hospital_management_dashboard.html">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md px-md py-3 text-on-surface-variant hover:bg-surface-container-highest rounded-xl transition-all group" href="admin_master_appointment_schedule.html">
+<span class="material-symbols-outlined group-hover:text-primary">calendar_today</span>
+<span class="font-label-md text-label-md">Appointments</span>
+</a>
+<a class="flex items-center gap-md px-md py-3 text-on-surface-variant hover:bg-surface-container-highest rounded-xl transition-all group" href="doctor_messages_consultations_hub.html">
+<span class="material-symbols-outlined group-hover:text-primary">chat</span>
+<span class="font-label-md text-label-md">Messages</span>
+</a>
+<a class="flex items-center gap-md px-md py-3 text-on-surface-variant hover:bg-surface-container-highest rounded-xl transition-all group" href="admin_patient_doctor_management.html">
+<span class="material-symbols-outlined group-hover:text-primary">group</span>
+<span class="font-label-md text-label-md">Patients</span>
+</a>
+<a class="flex items-center gap-md px-md py-3 text-on-surface-variant hover:bg-surface-container-highest rounded-xl transition-all group" href="admin_global_hospital_settings.html">
+<span class="material-symbols-outlined group-hover:text-primary">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto px-sm pb-md">
+<button class="w-full bg-primary text-white py-3 px-md rounded-xl font-title-md flex items-center justify-center gap-sm shadow-md hover:brightness-110 active:scale-95 transition-all">
+<span class="material-symbols-outlined">add_circle</span>
+            New Session
+        </button>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 md:ml-64 min-h-screen bg-surface-bright flex flex-col">
+<!-- Top App Bar -->
+<header class="flex justify-between items-center w-full px-xl h-16 bg-white border-b border-outline-variant/30 sticky top-0 z-30">
+<div class="flex items-center gap-lg flex-1 max-w-2xl">
+<div class="relative w-full hidden lg:block">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant text-base">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full py-2 pl-12 pr-6 focus:ring-2 focus:ring-primary/20 text-body-sm font-body-md" placeholder="Search Patient ID, Name, or Lab Case..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<div class="flex items-center gap-xs px-4 py-1.5 bg-primary/5 border border-primary/20 rounded-full text-[11px] font-bold text-primary uppercase tracking-wider">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+                EMR CONNECTED
+            </div>
+<div class="flex items-center gap-md">
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
+</button>
+<div class="h-8 w-px bg-outline-variant/50"></div>
+<div class="flex items-center gap-sm">
+<div class="text-right hidden sm:block">
+<p class="font-label-md font-bold text-on-surface leading-none">Dr. James Wilson</p>
+<p class="text-[10px] text-on-surface-variant mt-1">Senior Cardiologist</p>
+</div>
+<img class="w-9 h-9 rounded-full object-cover border-2 border-primary/10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkSbzdMCV1dVEYlzT5GZpc5O88zYnLGHI4pQ_ZOUeY1b6gSvdvXT77h406Qd2bR1nGIKt9DIkj65ZkQbxy4Dcr7183c9cMQmD-jSV1kXXPI9-a08NePJx_ksInOxusDQVHNUZxuEWOT3TAvOiGw8Pj4KsvYm7hYVgLRPTdEIguW3zVL0LCGzoiTJ6i060fgN6tZ6w8DmjVf48mlJR5PJi7GfiPRIY2lU774C4xoJQMUDe87td404Gt3A"/>
+</div>
+</div>
+</div>
+</header>
+<div class="p-xl grid grid-cols-12 gap-xl">
+<!-- Left Section (8/12) -->
+<div class="col-span-12 lg:col-span-8 space-y-xl">
+<!-- Stats Grid -->
+<section class="grid grid-cols-2 md:grid-cols-4 gap-lg">
+<div class="bg-primary p-lg rounded-2xl text-white shadow-sm flex flex-col justify-between min-h-[120px]">
+<p class="text-[10px] font-bold opacity-80 uppercase tracking-widest">Total Load</p>
+<div class="flex items-baseline gap-xs">
+<span class="text-4xl font-bold">18</span>
+<span class="text-xs opacity-70">pts/day</span>
+</div>
+<div class="w-full bg-white/20 h-1.5 rounded-full overflow-hidden mt-3">
+<div class="bg-white h-full" style="width: 65%;"></div>
+</div>
+</div>
+<div class="bg-white p-lg rounded-2xl border border-outline-variant/30 shadow-sm flex flex-col justify-between">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Avg. Session</p>
+<div class="flex items-baseline gap-xs">
+<span class="text-4xl font-bold text-on-surface">14</span>
+<span class="text-xs text-on-surface-variant">min</span>
+</div>
+<p class="text-[10px] text-primary flex items-center gap-xs font-bold mt-2">
+<span class="material-symbols-outlined text-[14px]">trending_down</span> -2m from yesterday
+                    </p>
+</div>
+<div class="bg-white p-lg rounded-2xl border border-outline-variant/30 shadow-sm flex flex-col justify-between">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Efficiency</p>
+<div class="flex items-baseline gap-xs text-on-surface">
+<span class="text-4xl font-bold">92</span>
+<span class="text-lg font-bold">%</span>
+</div>
+<p class="text-[10px] text-on-surface-variant mt-2 font-medium">Target: 85%</p>
+</div>
+<div class="bg-white p-lg rounded-2xl border border-outline-variant/30 shadow-sm flex flex-col justify-between">
+<p class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Pending Lab</p>
+<div class="flex items-baseline gap-xs">
+<span class="text-4xl font-bold text-status-critical">04</span>
+<span class="text-xs text-on-surface-variant font-medium ml-1">High Priority</span>
+</div>
+<p class="text-[10px] text-on-surface-variant mt-2">7 total pending cases</p>
+</div>
+</section>
+<!-- Active Consultation Card -->
+<section class="bg-white rounded-3xl border-2 border-primary shadow-lg overflow-hidden">
+<div class="bg-primary/5 px-xl py-lg flex justify-between items-center border-b border-primary/10">
+<div class="flex items-center gap-md">
+<div class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse shadow-[0_0_8px_rgba(0,103,103,0.5)]"></div>
+<h3 class="font-title-lg font-bold text-primary">Active Consultation</h3>
+</div>
+<div class="flex items-center gap-lg">
+<div class="flex items-center gap-sm bg-white px-6 py-2 rounded-full border border-primary/20 shadow-sm">
+<span class="material-symbols-outlined text-primary text-xl">timer</span>
+<span class="font-mono text-lg font-bold text-on-surface">12:45</span>
+</div>
+<button class="bg-primary text-white px-8 py-2.5 rounded-xl text-label-md font-bold shadow-md hover:shadow-lg transition-all active:scale-95">End Session</button>
+</div>
+</div>
+<div class="p-xl flex flex-col lg:flex-row gap-xl items-center">
+<div class="flex gap-lg items-center flex-1">
+<div class="relative">
+<img class="w-20 h-20 rounded-full object-cover ring-4 ring-primary/10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBy9mh47NSNhI0FoQ4E93LzbloWZbPiVYTzVN2PCG5MKFMaiPGzDnUaM5NeBCeMxVDVxfAgVSNB5FySOyhz5rJ13Fo1JjyzY14IVaqX40ueqmW8td2_-hwqGKVbZdTqBPk8iYgOXEF9txY_gObDAc8ICpJbLnda2gq4kIJVmr92Q7Z70Y4juf6NVOUTSpJ1ESk0WhTd4OxPDzsiUytnUio_M7Re79P92kb2kbIpIenvp5t8-815jlXtNg"/>
+<div class="absolute -bottom-1 -right-1 w-6 h-6 bg-status-normal rounded-full border-2 border-white flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-[14px]" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+</div>
+<div>
+<h4 class="text-2xl font-bold text-on-surface">Eleanor Vance <span class="text-on-surface-variant font-medium text-sm ml-3 opacity-60">ID: #PX-9921</span></h4>
+<div class="flex flex-wrap gap-sm mt-3">
+<span class="px-3 py-1 bg-surface-container rounded-lg text-[11px] font-bold text-on-surface-variant border border-outline-variant/30">Age: 72</span>
+<span class="px-3 py-1 bg-error/10 rounded-lg text-[11px] font-bold text-error border border-error/20">Hypertension</span>
+<span class="px-3 py-1 bg-status-urgent/10 rounded-lg text-[11px] font-bold text-status-urgent border border-status-urgent/20">Aspirin Sensitivity</span>
+</div>
+</div>
+</div>
+<div class="flex gap-md h-full self-stretch lg:w-auto w-full">
+<div class="flex-1 lg:min-w-[120px] bg-surface-container-low rounded-2xl p-lg border border-outline-variant/30 text-center flex flex-col justify-center">
+<p class="text-[10px] text-on-surface-variant uppercase font-bold tracking-widest mb-2">Vitals BP</p>
+<p class="text-3xl font-black text-on-surface leading-none">132/88</p>
+</div>
+<div class="flex-1 lg:min-w-[120px] bg-surface-container-low rounded-2xl p-lg border border-outline-variant/30 text-center flex flex-col justify-center">
+<p class="text-[10px] text-on-surface-variant uppercase font-bold tracking-widest mb-2">HR (BPM)</p>
+<p class="text-3xl font-black text-status-urgent leading-none">78</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Consultation Queue Section -->
+<section class="bg-white rounded-3xl p-xl border border-outline-variant/30 shadow-sm">
+<div class="flex justify-between items-center mb-xl">
+<div>
+<h3 class="font-headline-md font-bold text-on-surface">Consultation Queue</h3>
+<p class="text-xs text-on-surface-variant mt-1">Real-time patient check-in status</p>
+</div>
+<div class="flex bg-surface-container p-1 rounded-xl">
+<button class="px-8 py-2 bg-white shadow-sm rounded-lg text-xs font-bold text-primary">Queue View</button>
+<button class="px-8 py-2 text-xs font-bold text-on-surface-variant hover:text-on-surface transition-colors">Calendar</button>
+</div>
+</div>
+<div class="relative space-y-6 timeline-line pl-12">
+<!-- Critical Queue Item -->
+<div class="relative group">
+<div class="absolute -left-[44px] top-4 w-8 h-8 bg-status-critical rounded-full ring-4 ring-white z-10 flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-white text-lg" style="font-variation-settings: 'FILL' 1;">priority_high</span>
+</div>
+<div class="bg-white border-2 border-status-critical/10 p-lg rounded-2xl flex items-center justify-between hover:bg-surface-container-low transition-all hover:border-status-critical/30 cursor-pointer">
+<div class="flex gap-lg items-center">
+<div class="text-right min-w-[70px]">
+<p class="text-sm font-black text-on-surface">10:45 AM</p>
+<p class="text-[10px] text-status-critical font-black uppercase tracking-tighter mt-1">CRITICAL</p>
+</div>
+<img class="w-12 h-12 rounded-full border-2 border-outline-variant/50 shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxt6mb1SFU954kesK4HjAFHE2k4yTh5U-o_Kq50G4am-0pxpiwkWPeX-VcEXY-QNcgugZNe_qReBRDXwVxilCR7XXDZlwLCo3LJVXsJDaaeGruSj8Wb5Kzgrho0KEZ6Agw5x2ECDHVEjXOKGgeSkJV2GztsieG8UeHyqyIXHNUdC7EVvkSGrzzOFYirphL2sIGTYGGqErMKY1b-WYAeW-4egvonyBno__94qH2-zvi8gvsMuStUjOKDQ"/>
+<div>
+<p class="text-md font-bold text-on-surface">Julian Rossi</p>
+<p class="text-xs text-on-surface-variant font-medium mt-1">Post-op chest pain check • Dr. Reed Refer</p>
+</div>
+</div>
+<div class="flex gap-md items-center">
+<button class="px-6 py-2.5 bg-status-critical text-white rounded-xl text-xs font-bold shadow-sm hover:brightness-110 active:scale-95 transition-all">Start Now</button>
+<button class="p-2.5 hover:bg-white hover:shadow-sm rounded-xl border border-outline-variant/30 text-on-surface-variant"><span class="material-symbols-outlined text-lg">more_vert</span></button>
+</div>
+</div>
+</div>
+<!-- Urgent Queue Item -->
+<div class="relative group">
+<div class="absolute -left-[44px] top-4 w-8 h-8 bg-status-urgent rounded-full ring-4 ring-white z-10 flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-white text-lg">warning</span>
+</div>
+<div class="bg-white border border-outline-variant/50 p-lg rounded-2xl flex items-center justify-between hover:bg-surface-container-low transition-all cursor-pointer">
+<div class="flex gap-lg items-center">
+<div class="text-right min-w-[70px]">
+<p class="text-sm font-black text-on-surface">11:30 AM</p>
+<p class="text-[10px] text-status-urgent font-black uppercase tracking-tighter mt-1">URGENT</p>
+</div>
+<img class="w-12 h-12 rounded-full border-2 border-outline-variant/50 shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsBOapm_Vua8Eh1806E5PqoR9h85YDk3ONxrjmOTCF2Sq2Yjm3ABIvHFXe38egUGf1Jzt9ZHvtQ_zm9Akaqv4-7LSKtjcRbrVyftSxDSuNNkFs-7Rtgx9KTHZRy0OS8Py3kkHtvHBvWa1NdcdRLSDbSH-q_Z6ITa_zMxYdymxLwn61AC9m87QyEZB5rbarqdLVSloGn0WXGCrjPyCM0bMMuOeRIDosjajlemZEJuvCfo_IwTRUsLvVCQ"/>
+<div>
+<p class="text-md font-bold text-on-surface">Mark Thompson</p>
+<p class="text-xs text-on-surface-variant font-medium mt-1">Abnormal Lab Review • Lipid Panel</p>
+</div>
+</div>
+<div class="flex gap-md items-center">
+<button class="px-6 py-2.5 bg-surface-container-high text-on-surface font-bold rounded-xl text-xs hover:bg-surface-container-highest transition-all">View Record</button>
+<button class="p-2.5 hover:bg-white rounded-xl border border-outline-variant/30 text-on-surface-variant"><span class="material-symbols-outlined text-lg">more_vert</span></button>
+</div>
+</div>
+</div>
+<!-- Normal Queue Item -->
+<div class="relative group">
+<div class="absolute -left-[44px] top-4 w-8 h-8 bg-status-normal rounded-full ring-4 ring-white z-10 flex items-center justify-center shadow-md">
+<span class="material-symbols-outlined text-white text-lg">calendar_today</span>
+</div>
+<div class="bg-white border border-outline-variant/50 p-lg rounded-2xl flex items-center justify-between hover:bg-surface-container-low transition-all cursor-pointer">
+<div class="flex gap-lg items-center">
+<div class="text-right min-w-[70px]">
+<p class="text-sm font-black text-on-surface">01:15 PM</p>
+<p class="text-[10px] text-status-normal font-black uppercase tracking-tighter mt-1">NORMAL</p>
+</div>
+<div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center font-bold text-on-secondary-container shadow-inner border border-outline-variant/20 text-md">SH</div>
+<div>
+<p class="text-md font-bold text-on-surface">Sarah Higgins</p>
+<p class="text-xs text-on-surface-variant font-medium mt-1">Annual Screening • Preventive Care</p>
+</div>
+</div>
+<div class="flex gap-md items-center">
+<button class="px-6 py-2.5 bg-surface-container-high text-on-surface font-bold rounded-xl text-xs hover:bg-surface-container-highest transition-all">View Record</button>
+<button class="p-2.5 hover:bg-white rounded-xl border border-outline-variant/30 text-on-surface-variant"><span class="material-symbols-outlined text-lg">more_vert</span></button>
+</div>
+</div>
+</div>
+</div>
+<button class="w-full mt-xl py-4 border-2 border-dashed border-outline-variant/30 rounded-2xl text-xs font-bold text-on-surface-variant hover:bg-surface-container-low hover:border-primary/40 hover:text-primary transition-all uppercase tracking-widest">
+                    Load Full Today's Schedule (12 Total Patients)
+                </button>
+</section>
+</div>
+<!-- Right Utilities Section (4/12) -->
+<div class="col-span-12 lg:col-span-4 space-y-xl">
+<!-- Quick Clinical Notes -->
+<section class="bg-white rounded-3xl p-lg border border-outline-variant/30 shadow-sm flex flex-col h-full min-h-[300px]">
+<div class="flex justify-between items-center mb-lg">
+<h4 class="font-title-md font-bold text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">edit_note</span>
+                        Clinical Notes
+                    </h4>
+<span class="px-2 py-0.5 bg-primary/10 text-[9px] text-primary font-black rounded uppercase tracking-wider">AUTO-SAVING</span>
+</div>
+<textarea class="flex-1 w-full min-h-[160px] bg-surface-container-low border border-outline-variant/30 rounded-2xl p-lg text-sm font-body-md focus:ring-2 focus:ring-primary/20 focus:border-primary resize-none placeholder:opacity-40" placeholder="Type rapid findings or clinical observations here..."></textarea>
+<div class="grid grid-cols-2 gap-md mt-lg">
+<button class="py-3 bg-primary text-white text-[11px] font-bold rounded-xl hover:brightness-110 shadow-sm transition-all">Append to EMR</button>
+<button class="py-3 bg-surface-container-highest text-on-surface-variant text-[11px] font-bold rounded-xl hover:bg-outline-variant/20 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">mic</span>
+                        Voice Dictate
+                    </button>
+</div>
+</section>
+<!-- Pending Lab Results -->
+<section class="bg-white rounded-3xl p-lg border border-outline-variant/30 shadow-sm">
+<h4 class="font-title-md font-bold text-on-surface mb-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">biotech</span>
+                    Pending Lab Results
+                </h4>
+<div class="space-y-md">
+<div class="flex items-center justify-between p-lg bg-status-critical/5 rounded-2xl border border-status-critical/10 hover:bg-status-critical/10 transition-colors">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 bg-status-critical/20 rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-status-critical text-xl">lab_profile</span>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">M. Thompson</p>
+<p class="text-[10px] text-status-critical font-black uppercase tracking-tighter mt-0.5">Critical Lipid Level</p>
+</div>
+</div>
+<button class="text-xs font-bold text-primary hover:underline bg-white px-4 py-1.5 rounded-lg border border-primary/20 shadow-sm">Review</button>
+</div>
+<div class="flex items-center justify-between p-lg bg-surface-container-low rounded-2xl border border-outline-variant/30">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-xl">science</span>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Eleanor Vance</p>
+<p class="text-[10px] text-on-surface-variant uppercase font-bold mt-0.5">CBC Panel • In Queue</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant text-lg">schedule</span>
+</div>
+</div>
+<button class="w-full mt-lg text-xs font-bold text-primary py-2 hover:bg-primary/5 rounded-xl transition-all">View All Results (12)</button>
+</section>
+<!-- Rx Shortcuts -->
+<section class="bg-white rounded-3xl p-lg border border-outline-variant/30 shadow-sm">
+<h4 class="font-title-md font-bold text-on-surface mb-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">medication</span>
+                    Rx Shortcuts
+                </h4>
+<div class="space-y-2">
+<div class="flex items-center justify-between px-lg py-3 hover:bg-primary/5 rounded-2xl border border-outline-variant/20 cursor-pointer transition-all group">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary/60 group-hover:text-primary transition-colors">pill</span>
+<p class="text-sm font-medium text-on-surface">Atorvastatin 20mg</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">add_circle</span>
+</div>
+<div class="flex items-center justify-between px-lg py-3 hover:bg-primary/5 rounded-2xl border border-outline-variant/20 cursor-pointer transition-all group">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary/60 group-hover:text-primary transition-colors">pill</span>
+<p class="text-sm font-medium text-on-surface">Lisinopril 10mg</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">add_circle</span>
+</div>
+<div class="flex items-center justify-between px-lg py-3 hover:bg-primary/5 rounded-2xl border border-outline-variant/20 cursor-pointer transition-all group">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary/60 group-hover:text-primary transition-colors">medication</span>
+<p class="text-sm font-medium text-on-surface">Metformin 500mg</p>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">add_circle</span>
+</div>
+</div>
+<button class="w-full mt-lg text-[11px] font-bold text-primary py-2 hover:bg-primary/5 rounded-xl transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">settings_applications</span>
+                    Manage Presets
+                </button>
+</section>
+<!-- Inter-Clinical Feed -->
+<section class="bg-white rounded-3xl p-lg border border-outline-variant/30 shadow-sm">
+<h4 class="font-title-md font-bold text-on-surface mb-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-lg">hub</span>
+                    Inter-Clinical Feed
+                </h4>
+<div class="space-y-lg h-60 overflow-y-auto custom-scrollbar pr-md">
+<div class="flex gap-md">
+<div class="w-9 h-9 rounded-full bg-secondary-container shrink-0 flex items-center justify-center text-[10px] font-bold border border-outline-variant/20 shadow-sm">DR</div>
+<div class="bg-surface-container-low p-md rounded-2xl flex-1 border border-outline-variant/10">
+<p class="text-[11px] font-bold text-on-surface">Dr. Sarah Reed <span class="font-medium opacity-40 ml-2">08:30 AM</span></p>
+<p class="text-xs text-on-surface-variant mt-1.5 leading-relaxed">Vance BP was stable during PT today. No intervention needed.</p>
+</div>
+</div>
+<div class="flex gap-md">
+<div class="w-9 h-9 rounded-full bg-primary-container shrink-0 flex items-center justify-center text-[10px] font-bold border border-outline-variant/20 shadow-sm text-white">LP</div>
+<div class="bg-surface-container-low p-md rounded-2xl flex-1 border border-outline-variant/10">
+<p class="text-[11px] font-bold text-on-surface">Lab Tech #42 <span class="font-medium opacity-40 ml-2">09:12 AM</span></p>
+<p class="text-xs text-on-surface-variant mt-1.5 leading-relaxed">Rossi lipid panel completed. Values are dangerously elevated.</p>
+</div>
+</div>
+<div class="flex gap-md">
+<div class="w-9 h-9 rounded-full bg-surface-container shrink-0 flex items-center justify-center text-[10px] font-bold border border-outline-variant/20 shadow-sm">NS</div>
+<div class="bg-surface-container-low p-md rounded-2xl flex-1 border border-outline-variant/10">
+<p class="text-[11px] font-bold text-on-surface">Nurse Smith <span class="font-medium opacity-40 ml-2">09:45 AM</span></p>
+<p class="text-xs text-on-surface-variant mt-1.5 leading-relaxed">Patient Sarah Higgins checked in and is in Waiting Room B.</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Mobile Navigation -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-white border-t border-outline-variant flex justify-around items-center px-md z-50 shadow-2xl">
+<a class="flex flex-col items-center gap-1 text-primary" href="admin_hospital_management_dashboard.html">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="text-[10px] font-black uppercase">Dashboard</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="text-[10px] font-bold">Appts</span>
+</a>
+<button class="w-14 h-14 bg-primary rounded-full -mt-10 flex items-center justify-center text-white shadow-[0_8px_16px_rgba(0,103,103,0.3)] ring-4 ring-white active:scale-90 transition-all">
+<span class="material-symbols-outlined text-2xl">add</span>
+</button>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="admin_patient_doctor_management.html">
+<span class="material-symbols-outlined">group</span>
+<span class="text-[10px] font-bold">Patients</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant" href="admin_global_hospital_settings.html">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-[10px] font-bold">Settings</span>
+</a>
+</nav>
+<script src="scripts.js"></script></body></html>

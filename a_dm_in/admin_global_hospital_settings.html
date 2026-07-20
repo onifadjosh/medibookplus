@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MediFlow Admin - Hospital Settings</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/><link href="tailwind.css" rel="stylesheet"/></head>
+<body class="bg-surface text-on-surface">
+<!-- Side Navigation Shell -->
+<aside class="w-64 h-full fixed left-0 top-0 bg-surface-container-lowest dark:bg-inverse-surface shadow-sm flex flex-col py-md px-sm overflow-y-auto z-50">
+<div class="px-md mb-3xl">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">MediFlow Admin</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">General Hospital</p>
+</div>
+<nav class="flex-1 space-y-xs">
+<a class="flex items-center gap-md px-md py-md rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors cursor-pointer active:scale-95 transition-transform" href="admin_hospital_management_dashboard.html">
+<span class="material-symbols-outlined">dashboard</span> Dashboard
+            </a>
+<a class="flex items-center gap-md px-md py-md rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors cursor-pointer active:scale-95 transition-transform" href="admin_patient_doctor_management.html">
+<span class="material-symbols-outlined">person</span> Patients
+            </a>
+<a class="flex items-center gap-md px-md py-md rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors cursor-pointer active:scale-95 transition-transform" href="admin_doctor_management_directory.html">
+<span class="material-symbols-outlined">medical_services</span> Doctors
+            </a>
+<a class="flex items-center gap-md px-md py-md rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors cursor-pointer active:scale-95 transition-transform" href="admin_hospital_departments_overview.html">
+<span class="material-symbols-outlined">domain</span> Departments
+            </a>
+<a class="flex items-center gap-md px-md py-md rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors cursor-pointer active:scale-95 transition-transform" href="admin_master_appointment_schedule.html">
+<span class="material-symbols-outlined">event</span> Appointments
+            </a>
+<a class="flex items-center gap-md px-md py-md rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors cursor-pointer active:scale-95 transition-transform" href="admin_centralized_medical_records_portal.html">
+<span class="material-symbols-outlined">description</span> Medical Records
+            </a>
+<a class="flex items-center gap-md px-md py-md rounded-lg font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low transition-colors cursor-pointer active:scale-95 transition-transform" href="admin_advanced_hospital_reports_analytics.html">
+<span class="material-symbols-outlined">assessment</span> Reports
+            </a>
+<a class="flex items-center gap-md px-md py-md rounded-lg font-label-md text-label-md text-primary dark:text-primary-fixed-dim font-bold border-r-4 border-primary bg-surface-container-low transition-colors cursor-pointer active:scale-95 transition-transform" href="admin_global_hospital_settings.html">
+<span class="material-symbols-outlined">settings</span> Settings
+            </a>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<div class="ml-64 min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="h-16 w-full sticky top-0 z-40 bg-surface dark:bg-background shadow-sm flex justify-between items-center px-lg">
+<div class="flex items-center gap-md w-full max-w-xl">
+<div class="relative w-full focus-within:ring-2 focus-within:ring-primary rounded-lg overflow-hidden flex items-center bg-surface-container px-md">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+<input class="bg-transparent border-none focus:ring-0 w-full py-2 font-body-md text-body-md text-on-surface" placeholder="Search configuration..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<button class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary-fixed-dim flex items-center justify-center text-primary-fixed overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional portrait of a hospital administrator in a clean modern medical facility setting. The lighting is bright and airy with soft blues and whites in the background, matching the clinical yet approachable branding. High clarity and high-end digital photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPqduHNjIaarInxsANAUgArz8lpWER8QbvrprW2nboQzfnQ6X-vrppJm0G-A2p2xbHezobC246S6HF2a-dyUmlcaU1CwGGY2H55xLSvqwLxrWIBuCT_wBNzHTmpxIhwirnjoHyzRSktHTP9MSF5vL1XbzdynWYopaJQNZqXJRfDoDmopqAXWBgL7lJSOf4G-9Xtqzwqs7-HkZKsi4ua0I7WlsEu37e5n-jT1_971t01OqlZDY3-tUicQ"/>
+</div>
+</div>
+</header>
+<!-- Page Canvas -->
+<main class="p-xl flex-1 max-w-7xl w-full mx-auto">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md mb-xl">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">System Configuration</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage hospital-wide settings, permissions, and integrations.</p>
+</div>
+<div class="flex gap-md">
+<button class="px-lg py-sm rounded-lg border border-outline-variant font-label-md text-label-md text-on-surface-variant hover:bg-surface-container-low transition-all">Discard Changes</button>
+<button class="px-lg py-sm rounded-lg bg-primary text-on-primary font-label-md text-label-md shadow-sm hover:opacity-90 active:scale-95 transition-all">Save Settings</button>
+</div>
+</div>
+<!-- Bento Layout Container -->
+<div class="grid grid-cols-12 gap-lg">
+<!-- Vertical Tabs (Left Column) -->
+<nav class="col-span-12 lg:col-span-3 space-y-sm">
+<button class="tab-btn w-full flex items-center gap-md px-lg py-md rounded-xl font-title-md text-title-md text-primary bg-surface-container-lowest shadow-sm transition-all text-left" id="tab-facility" onclick="switchTab('facility')">
+<span class="material-symbols-outlined">apartment</span> Facility Profile
+                    </button>
+<button class="tab-btn w-full flex items-center gap-md px-lg py-md rounded-xl font-title-md text-title-md text-on-surface-variant hover:bg-surface-container-low transition-all text-left" id="tab-staff" onclick="switchTab('staff')">
+<span class="material-symbols-outlined">security</span> Staff Access Levels
+                    </button>
+<button class="tab-btn w-full flex items-center gap-md px-lg py-md rounded-xl font-title-md text-title-md text-on-surface-variant hover:bg-surface-container-low transition-all text-left" id="tab-portal" onclick="switchTab('portal')">
+<span class="material-symbols-outlined">patient_list</span> Patient Portal
+                    </button>
+<button class="tab-btn w-full flex items-center gap-md px-lg py-md rounded-xl font-title-md text-title-md text-on-surface-variant hover:bg-surface-container-low transition-all text-left" id="tab-api" onclick="switchTab('api')">
+<span class="material-symbols-outlined">api</span> Integration API
+                    </button>
+<button class="tab-btn w-full flex items-center gap-md px-lg py-md rounded-xl font-title-md text-title-md text-on-surface-variant hover:bg-surface-container-low transition-all text-left" id="tab-notifications" onclick="switchTab('notifications')">
+<span class="material-symbols-outlined">notifications_active</span> Notifications
+                    </button>
+</nav>
+<!-- Content Area (Right Column) -->
+<div class="col-span-12 lg:col-span-9">
+<!-- Facility Profile Tab Content -->
+<section class="animate-fade-in bg-surface-container-lowest rounded-xl p-xl shadow-sm space-y-2xl" id="content-facility">
+<div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-sm">Facility Profile</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Update the public identity of your healthcare facility.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-xl">
+<div class="space-y-sm">
+<label class="font-label-md text-label-md text-on-surface-variant">Hospital Name</label>
+<input class="w-full bg-surface-container px-md py-sm rounded-lg border-none focus:ring-2 focus:ring-primary font-body-md" type="text" value="MediFlow General Hospital"/>
+</div>
+<div class="space-y-sm">
+<label class="font-label-md text-label-md text-on-surface-variant">Registration ID</label>
+<input class="w-full bg-surface-container px-md py-sm rounded-lg border-none focus:ring-2 focus:ring-primary font-body-md" readonly="" type="text" value="HOSP-492-AXL"/>
+</div>
+<div class="col-span-full space-y-sm">
+<label class="font-label-md text-label-md text-on-surface-variant">Facility Logo</label>
+<div class="flex items-center gap-lg p-lg border-2 border-dashed border-outline-variant rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors cursor-pointer">
+<div class="w-16 h-16 rounded-lg bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined text-4xl">domain</span>
+</div>
+<div>
+<p class="font-title-md text-title-md text-on-surface">Click to upload new logo</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">PNG or SVG, max 2MB. 512x512 recommended.</p>
+</div>
+</div>
+</div>
+<div class="col-span-full space-y-sm">
+<label class="font-label-md text-label-md text-on-surface-variant">Address</label>
+<textarea class="w-full bg-surface-container px-md py-sm rounded-lg border-none focus:ring-2 focus:ring-primary font-body-md" rows="3">120 Medical Plaza Blvd, Tech District, San Francisco, CA 94105</textarea>
+</div>
+</div>
+<div class="pt-xl border-t border-surface-container">
+<h4 class="font-title-md text-title-md text-on-surface mb-lg">Regional Settings</h4>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-xl">
+<div class="space-y-sm">
+<label class="font-label-md text-label-md text-on-surface-variant">Timezone</label>
+<select class="w-full bg-surface-container px-md py-sm rounded-lg border-none focus:ring-2 focus:ring-primary font-body-md appearance-none">
+<option>(GMT-08:00) Pacific Time</option>
+<option>(GMT-05:00) Eastern Time</option>
+</select>
+</div>
+<div class="space-y-sm">
+<label class="font-label-md text-label-md text-on-surface-variant">Primary Language</label>
+<select class="w-full bg-surface-container px-md py-sm rounded-lg border-none focus:ring-2 focus:ring-primary font-body-md appearance-none">
+<option>English (United States)</option>
+<option>Spanish (ES)</option>
+</select>
+</div>
+</div>
+</div>
+</section>
+<!-- Staff Access Levels Content (Hidden by default) -->
+<section class="hidden animate-fade-in bg-surface-container-lowest rounded-xl p-xl shadow-sm space-y-2xl" id="content-staff">
+<div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-sm">Staff Access Levels (RBAC)</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Define granular permissions for different employee roles.</p>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low">
+<th class="px-md py-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider rounded-l-lg">Role</th>
+<th class="px-md py-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-center">Patients</th>
+<th class="px-md py-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-center">Billing</th>
+<th class="px-md py-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-center">Medical Records</th>
+<th class="px-md py-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-center rounded-r-lg">Admin</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<tr>
+<td class="px-md py-lg font-title-md text-title-md">Lead Physician</td>
+<td class="px-md py-lg text-center"><span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+<td class="px-md py-lg text-center"><span class="material-symbols-outlined text-outline-variant">block</span></td>
+<td class="px-md py-lg text-center"><span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+<td class="px-md py-lg text-center"><span class="material-symbols-outlined text-outline-variant">block</span></td>
+</tr>
+<tr>
+<td class="px-md py-lg font-title-md text-title-md">Nurse Practitioner</td>
+<td class="px-md py-lg text-center"><span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+<td class="px-md py-lg text-center"><span class="material-symbols-outlined text-outline-variant">block</span></td>
+<td class="px-md py-lg text-center"><span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+<td class="px-md py-lg text-center"><span class="material-symbols-outlined text-outline-variant">block</span></td>
+</tr>
+<tr>
+<td class="px-md py-lg font-title-md text-title-md">Billing Manager</td>
+<td class="px-md py-lg text-center"><span class="material-symbols-outlined text-outline-variant">block</span></td>
+<td class="px-md py-lg text-center"><span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span></td>
+<td class="px-md py-lg text-center"><span class="material-symbols-outlined text-outline-variant">block</span></td>
+<td class="px-md py-lg text-center"><span class="material-symbols-outlined text-outline-variant">block</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<button class="w-full py-md border-2 border-dashed border-outline-variant rounded-xl text-primary font-label-md hover:bg-surface-container-low transition-all">+ Add Custom Access Role</button>
+</section>
+<!-- System Notifications Content (Hidden by default) -->
+<section class="hidden animate-fade-in bg-surface-container-lowest rounded-xl p-xl shadow-sm space-y-2xl" id="content-notifications">
+<div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-sm">System Notifications</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Control how staff and patients receive updates.</p>
+</div>
+<div class="space-y-lg">
+<div class="flex items-center justify-between p-lg rounded-xl bg-surface-container-low border border-surface-container">
+<div class="max-w-md">
+<p class="font-title-md text-title-md text-on-surface">Emergency Alerts</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Override silent mode on staff devices for critical code alerts.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between p-lg rounded-xl bg-surface-container-low border border-surface-container">
+<div class="max-w-md">
+<p class="font-title-md text-title-md text-on-surface">Appointment Reminders</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Send SMS and Email reminders to patients 24h before visits.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex items-center justify-between p-lg rounded-xl bg-surface-container-low border border-surface-container">
+<div class="max-w-md">
+<p class="font-title-md text-title-md text-on-surface">Daily Summary Reports</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Email department heads a summary of the previous day's metrics.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</section>
+<!-- Fallback for other tabs (Simulation) -->
+<section class="hidden animate-fade-in bg-surface-container-lowest rounded-xl p-xl shadow-sm" id="content-portal">
+<div class="text-center py-3xl">
+<span class="material-symbols-outlined text-surface-dim text-6xl mb-md">construction</span>
+<h3 class="font-headline-md text-headline-md text-on-surface">Patient Portal Config</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Detailed branding and workflow settings for the patient-facing app.</p>
+</div>
+</section>
+<section class="hidden animate-fade-in bg-surface-container-lowest rounded-xl p-xl shadow-sm space-y-xl" id="content-api">
+<div>
+<h3 class="font-title-lg text-title-lg text-on-surface mb-sm">Integration API Keys</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Securely manage connections to third-party medical software.</p>
+</div>
+<div class="p-lg rounded-xl border-2 border-primary-container bg-primary-container/5 space-y-md">
+<div class="flex justify-between items-center">
+<p class="font-title-md text-title-md text-primary">Live Production Key</p>
+<span class="px-sm py-xs bg-primary text-on-primary text-label-sm rounded">ACTIVE</span>
+</div>
+<div class="flex items-center gap-md bg-surface-container p-md rounded-lg">
+<code class="flex-1 font-mono text-body-sm text-on-surface">pk_live_4920_xxxxxxxxxxxxxxxxxxxxxx</code>
+<button class="text-primary hover:underline font-label-md">Reveal Key</button>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Dashboard Visual Micro-Interactions Background -->
+<div class="mt-2xl">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<div class="bg-primary/5 p-lg rounded-2xl border border-primary/10 flex flex-col items-center text-center">
+<div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary mb-md">
+<span class="material-symbols-outlined">update</span>
+</div>
+<h4 class="font-title-md text-title-md text-on-surface">Audit Logs</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Last setting changed by Admin-12 on 24 Oct, 2023</p>
+</div>
+<div class="bg-tertiary/5 p-lg rounded-2xl border border-tertiary/10 flex flex-col items-center text-center">
+<div class="w-12 h-12 rounded-full bg-tertiary/20 flex items-center justify-center text-tertiary mb-md">
+<span class="material-symbols-outlined">backup</span>
+</div>
+<h4 class="font-title-md text-title-md text-on-surface">Auto-Backup</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Cloud redundancy active. Last backup 2h ago.</p>
+</div>
+<div class="bg-secondary/5 p-lg rounded-2xl border border-secondary/10 flex flex-col items-center text-center">
+<div class="w-12 h-12 rounded-full bg-secondary/20 flex items-center justify-center text-secondary mb-md">
+<span class="material-symbols-outlined">verified_user</span>
+</div>
+<h4 class="font-title-md text-title-md text-on-surface">System Health</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Security modules functioning at 100% capacity.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Info -->
+<footer class="p-lg ml-64 text-center border-t border-surface-container">
+<p class="font-label-sm text-label-sm text-on-surface-variant">MediFlow Hospital Management v4.2.0 • HIPAA Compliant Environment</p>
+</footer>
+</div>
+<script src="scripts.js"></script></body></html>

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Appointments Management | MediFlow Admin</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/><link href="tailwind.css" rel="stylesheet"/></head>
+<body class="bg-surface text-on-surface">
+<!-- SideNavBar (Execution from JSON) -->
+<aside class="w-64 h-full fixed left-0 top-0 bg-surface-container-lowest flex flex-col py-md px-sm overflow-y-auto shadow-sm z-50">
+<div class="mb-3xl px-md">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">MediFlow Admin</h1>
+<p class="font-body-sm text-body-sm text-on-surface-variant">General Hospital</p>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- Appointments is ACTIVE -->
+<a class="flex items-center px-md py-sm rounded-lg transition-colors text-primary font-bold border-r-4 border-primary hover:bg-surface-container-low" href="admin_master_appointment_schedule.html">
+<span class="material-symbols-outlined mr-md">event</span>
+<span class="font-label-md text-label-md">Appointments</span>
+</a>
+<a class="flex items-center px-md py-sm rounded-lg transition-colors text-on-surface-variant hover:bg-surface-container-low" href="admin_hospital_management_dashboard.html">
+<span class="material-symbols-outlined mr-md">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center px-md py-sm rounded-lg transition-colors text-on-surface-variant hover:bg-surface-container-low" href="admin_patient_doctor_management.html">
+<span class="material-symbols-outlined mr-md">person</span>
+<span class="font-label-md text-label-md">Patients</span>
+</a>
+<a class="flex items-center px-md py-sm rounded-lg transition-colors text-on-surface-variant hover:bg-surface-container-low" href="admin_doctor_management_directory.html">
+<span class="material-symbols-outlined mr-md">medical_services</span>
+<span class="font-label-md text-label-md">Doctors</span>
+</a>
+<a class="flex items-center px-md py-sm rounded-lg transition-colors text-on-surface-variant hover:bg-surface-container-low" href="admin_hospital_departments_overview.html">
+<span class="material-symbols-outlined mr-md">domain</span>
+<span class="font-label-md text-label-md">Departments</span>
+</a>
+<a class="flex items-center px-md py-sm rounded-lg transition-colors text-on-surface-variant hover:bg-surface-container-low" href="admin_centralized_medical_records_portal.html">
+<span class="material-symbols-outlined mr-md">description</span>
+<span class="font-label-md text-label-md">Medical Records</span>
+</a>
+<a class="flex items-center px-md py-sm rounded-lg transition-colors text-on-surface-variant hover:bg-surface-container-low" href="admin_advanced_hospital_reports_analytics.html">
+<span class="material-symbols-outlined mr-md">assessment</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+<a class="flex items-center px-md py-sm rounded-lg transition-colors text-on-surface-variant hover:bg-surface-container-low" href="admin_global_hospital_settings.html">
+<span class="material-symbols-outlined mr-md">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto p-md border-t border-surface-container">
+<div class="flex items-center gap-sm">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold">JD</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">John Doe</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Admin</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopNavBar (Execution from JSON) -->
+<header class="h-16 w-full sticky top-0 z-40 bg-surface flex justify-between items-center px-lg ml-64 shadow-sm">
+<div class="flex items-center gap-md flex-1">
+<div class="relative w-full max-w-md focus-within:ring-2 focus-within:ring-primary rounded-lg transition-all">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-lg pl-10 pr-4 py-2 font-body-md text-body-md focus:ring-0" placeholder="Search patients, doctors, or ID..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-lg ml-md">
+<button class="relative hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="hover:text-primary transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant"></div>
+<img class="w-8 h-8 rounded-full object-cover shadow-sm" data-alt="A clean, professional headshot of a healthcare administrator in a bright office environment, reflecting the corporate modern and high-clarity style of the hospital SaaS platform. The lighting is soft and natural, emphasizing a trustworthy and reliable professional character." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCUHc4QYxO2TLxhCKU2LBQa9k7tBUN-IkJ1ZFivbnaQPFnRgsq4UwLDkIWmGAyXMns12sa1MOqLRNyO-f5IZPQxbfCVTlC6SIdnlvmD_YmLLeBu8MuZlSpDfDcIJFQwqEEleRZ3xbeyRs1_Ojh--Qw-misZkm-FK1ZDH403e8wsZexhgfd2byGl_lvAG6I5At90G6rP3l7nw15KmzwpyMg71mZ9C9RCcQHsnCTfTdHb3nOahpMiFvGlJg"/>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 p-lg min-h-[calc(100vh-64px)]">
+<!-- Header & Primary Filters -->
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-lg gap-md">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Appointment Master</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Manage scheduling, facility allocation, and patient follow-ups.</p>
+</div>
+<div class="flex items-center gap-sm">
+<button class="flex items-center gap-xs px-md py-2 border border-outline rounded-lg font-label-md text-label-md hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[20px]">calendar_today</span>
+                    Today: Oct 24, 2023
+                </button>
+<button class="flex items-center gap-xs px-md py-2 bg-primary text-on-primary rounded-lg font-label-md text-label-md shadow-sm hover:opacity-90 active:scale-95 transition-all">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                    New Appointment
+                </button>
+</div>
+</div>
+<!-- Filter Bar -->
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-sm mb-lg flex flex-wrap items-center gap-md">
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant px-1">Department</span>
+<select class="border-outline-variant bg-surface-container-low rounded-lg font-body-sm py-1.5 focus:ring-primary focus:border-primary">
+<option>All Departments</option>
+<option>Cardiology</option>
+<option>Neurology</option>
+<option>Pediatrics</option>
+</select>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant px-1">Status</span>
+<select class="border-outline-variant bg-surface-container-low rounded-lg font-body-sm py-1.5 focus:ring-primary focus:border-primary">
+<option>All Status</option>
+<option>Scheduled</option>
+<option>Completed</option>
+<option>Cancelled</option>
+<option>No-show</option>
+</select>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant px-1">Date Range</span>
+<div class="flex items-center gap-2">
+<input class="border-outline-variant bg-surface-container-low rounded-lg font-body-sm py-1.5 focus:ring-primary focus:border-primary" type="date"/>
+<span class="text-on-surface-variant">-</span>
+<input class="border-outline-variant bg-surface-container-low rounded-lg font-body-sm py-1.5 focus:ring-primary focus:border-primary" type="date"/>
+</div>
+</div>
+<div class="ml-auto flex items-center gap-2 mt-auto pb-1">
+<button class="p-2 rounded-lg hover:bg-surface-container-low text-on-surface-variant" title="Export PDF">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+</button>
+<button class="p-2 rounded-lg hover:bg-surface-container-low text-on-surface-variant" title="Print List">
+<span class="material-symbols-outlined">print</span>
+</button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="bento-grid">
+<!-- Timeline / Room Allocation (Large Section) -->
+<div class="col-span-12 lg:col-span-8 bg-surface-container-lowest rounded-xl shadow-sm p-lg flex flex-col">
+<div class="flex items-center justify-between mb-md">
+<h3 class="font-title-md text-title-md text-on-surface">Facility Room Allocation</h3>
+<div class="flex items-center bg-surface-container rounded-lg p-1">
+<button class="px-md py-1 bg-surface-container-lowest rounded-md shadow-sm font-label-md text-label-md">Timeline</button>
+<button class="px-md py-1 font-label-md text-label-md text-on-surface-variant">Grid View</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<div class="min-w-[800px]">
+<!-- Timeline Header -->
+<div class="flex items-center border-b border-surface-container mb-2">
+<div class="w-40 flex-shrink-0 font-label-sm text-label-sm text-on-surface-variant p-2">Rooms</div>
+<div class="flex-1 flex font-label-sm text-label-sm text-on-surface-variant text-center">
+<div class="w-[100px] py-2 border-l border-surface-container">08:00</div>
+<div class="w-[100px] py-2 border-l border-surface-container">09:00</div>
+<div class="w-[100px] py-2 border-l border-surface-container">10:00</div>
+<div class="w-[100px] py-2 border-l border-surface-container">11:00</div>
+<div class="w-[100px] py-2 border-l border-surface-container">12:00</div>
+<div class="w-[100px] py-2 border-l border-surface-container">13:00</div>
+<div class="w-[100px] py-2 border-l border-surface-container">14:00</div>
+<div class="w-[100px] py-2 border-l border-surface-container">15:00</div>
+</div>
+</div>
+<!-- Timeline Rows -->
+<div class="space-y-4 py-md relative timeline-grid">
+<!-- Current Time Indicator -->
+<div class="absolute top-0 bottom-0 left-[240px] w-0.5 bg-error z-10">
+<div class="absolute -top-1 -left-1 w-2.5 h-2.5 bg-error rounded-full"></div>
+</div>
+<div class="flex items-center group">
+<div class="w-40 flex-shrink-0">
+<p class="font-label-md text-label-md">Room 101 <span class="text-on-surface-variant font-normal">(ER)</span></p>
+</div>
+<div class="flex-1 relative h-10">
+<div class="absolute left-0 w-[150px] h-full bg-secondary-container rounded-lg border-l-4 border-secondary p-2 flex items-center overflow-hidden cursor-pointer hover:shadow-md transition-shadow">
+<p class="text-xs font-bold text-on-secondary-container truncate">P. Sarah Johnson</p>
+</div>
+<div class="absolute left-[160px] w-[120px] h-full bg-primary-container rounded-lg border-l-4 border-primary p-2 flex items-center overflow-hidden cursor-pointer hover:shadow-md transition-shadow">
+<p class="text-xs font-bold text-on-primary-container truncate">P. Mark Stevens</p>
+</div>
+</div>
+</div>
+<div class="flex items-center">
+<div class="w-40 flex-shrink-0">
+<p class="font-label-md text-label-md">Room 102 <span class="text-on-surface-variant font-normal">(ICU)</span></p>
+</div>
+<div class="flex-1 relative h-10">
+<div class="absolute left-[80px] w-[200px] h-full bg-tertiary-container rounded-lg border-l-4 border-tertiary p-2 flex items-center overflow-hidden">
+<p class="text-xs font-bold text-on-tertiary-container truncate">Scheduled Maintenance</p>
+</div>
+</div>
+</div>
+<div class="flex items-center">
+<div class="w-40 flex-shrink-0">
+<p class="font-label-md text-label-md">Room 103 <span class="text-on-surface-variant font-normal">(Gen)</span></p>
+</div>
+<div class="flex-1 relative h-10">
+<div class="absolute left-[300px] w-[180px] h-full bg-secondary-container rounded-lg border-l-4 border-secondary p-2 flex items-center overflow-hidden">
+<p class="text-xs font-bold text-on-secondary-container truncate">P. Elena Vance</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Summary Stats Card -->
+<div class="col-span-12 lg:col-span-4 bg-primary text-on-primary rounded-xl p-lg flex flex-col justify-between relative overflow-hidden">
+<div class="relative z-10">
+<h3 class="font-title-md text-title-md mb-2">Today's Overview</h3>
+<div class="grid grid-cols-2 gap-md">
+<div>
+<p class="text-3xl font-bold">42</p>
+<p class="text-sm opacity-80">Total Visits</p>
+</div>
+<div>
+<p class="text-3xl font-bold">18</p>
+<p class="text-sm opacity-80">Completed</p>
+</div>
+<div>
+<p class="text-3xl font-bold">4</p>
+<p class="text-sm opacity-80 text-secondary-fixed">Pending</p>
+</div>
+<div>
+<p class="text-3xl font-bold">2</p>
+<p class="text-sm opacity-80">Canceled</p>
+</div>
+</div>
+</div>
+<div class="relative z-10 mt-xl">
+<button class="w-full bg-surface-container-lowest text-primary py-3 rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">send</span>
+                        Bulk Reminders
+                    </button>
+</div>
+</div>
+<!-- Appointment List Table -->
+<div class="col-span-12 bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden border border-surface-container">
+<div class="p-lg flex items-center justify-between border-b border-surface-container">
+<h3 class="font-title-md text-title-md text-on-surface">Detailed Appointments List</h3>
+<div class="flex items-center gap-sm">
+<span class="text-on-surface-variant font-label-md text-label-md">Sort by:</span>
+<button class="flex items-center gap-xs font-label-md text-label-md text-primary">
+                            Latest
+                            <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">
+<tr>
+<th class="px-lg py-4">Patient Name</th>
+<th class="px-lg py-4">Doctor</th>
+<th class="px-lg py-4">Department</th>
+<th class="px-lg py-4">Date &amp; Time</th>
+<th class="px-lg py-4">Status</th>
+<th class="px-lg py-4 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm text-on-surface divide-y divide-surface-container">
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-lg py-4">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-secondary font-bold">AM</div>
+<div>
+<p class="font-bold">Alice Morgan</p>
+<p class="text-xs text-on-surface-variant">ID: #AP-8821</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-4">Dr. Robert Chen</td>
+<td class="px-lg py-4">Cardiology</td>
+<td class="px-lg py-4">Oct 24, 09:30 AM</td>
+<td class="px-lg py-4">
+<span class="px-2 py-1 bg-secondary-container text-on-secondary-container rounded-full text-xs font-bold uppercase tracking-tight">Scheduled</span>
+</td>
+<td class="px-lg py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-primary hover:bg-surface-container-high rounded-full" title="Reschedule">
+<span class="material-symbols-outlined">schedule_send</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full" title="More Options">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-lg py-4">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-secondary font-bold">JW</div>
+<div>
+<p class="font-bold">John Wickham</p>
+<p class="text-xs text-on-surface-variant">ID: #AP-8832</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-4">Dr. Sarah Miller</td>
+<td class="px-lg py-4">Neurology</td>
+<td class="px-lg py-4">Oct 24, 10:45 AM</td>
+<td class="px-lg py-4">
+<span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-bold uppercase tracking-tight">Completed</span>
+</td>
+<td class="px-lg py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-primary hover:bg-surface-container-high rounded-full" title="Reschedule">
+<span class="material-symbols-outlined">schedule_send</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full" title="More Options">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-lg py-4">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-secondary font-bold">BK</div>
+<div>
+<p class="font-bold">Benjamin Knight</p>
+<p class="text-xs text-on-surface-variant">ID: #AP-8845</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-4">Dr. Emily Stone</td>
+<td class="px-lg py-4">Pediatrics</td>
+<td class="px-lg py-4">Oct 24, 11:30 AM</td>
+<td class="px-lg py-4">
+<span class="px-2 py-1 bg-red-100 text-red-800 rounded-full text-xs font-bold uppercase tracking-tight">No-show</span>
+</td>
+<td class="px-lg py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-primary hover:bg-surface-container-high rounded-full" title="Reschedule">
+<span class="material-symbols-outlined">schedule_send</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full" title="More Options">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-lg flex items-center justify-between bg-surface-container-low">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Showing 1-10 of 42 results</span>
+<div class="flex items-center gap-xs">
+<button class="p-1 rounded hover:bg-surface-container-highest transition-colors disabled:opacity-30" disabled="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded bg-primary text-on-primary font-bold text-xs">1</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-highest font-bold text-xs">2</button>
+<button class="w-8 h-8 rounded hover:bg-surface-container-highest font-bold text-xs">3</button>
+<button class="p-1 rounded hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Modals (Initially Hidden) - Shared logic -->
+<div class="fixed inset-0 bg-black/40 backdrop-blur-md z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300" id="reminderModal">
+<div class="bg-surface-container-lowest w-full max-w-md rounded-xl shadow-2xl p-xl scale-95 transition-transform duration-300">
+<div class="flex items-center justify-between mb-lg">
+<h3 class="font-headline-md text-headline-md text-on-surface">Send Reminder</h3>
+<button class="p-2 hover:bg-surface-container-low rounded-full" onclick="closeModal()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-xl">Automated reminder will be sent to the patient's registered mobile and email.</p>
+<div class="space-y-md mb-xl">
+<div class="flex items-center gap-md p-md bg-surface-container-low rounded-lg">
+<span class="material-symbols-outlined text-primary">sms</span>
+<div>
+<p class="font-label-md text-label-md">SMS Notification</p>
+<p class="text-xs text-on-surface-variant">Enabled (Carrier rates apply)</p>
+</div>
+<input checked="" class="ml-auto text-primary focus:ring-primary rounded" type="checkbox"/>
+</div>
+<div class="flex items-center gap-md p-md bg-surface-container-low rounded-lg">
+<span class="material-symbols-outlined text-primary">mail</span>
+<div>
+<p class="font-label-md text-label-md">Email Notification</p>
+<p class="text-xs text-on-surface-variant">Custom template: MediFlow_Reminder_v2</p>
+</div>
+<input checked="" class="ml-auto text-primary focus:ring-primary rounded" type="checkbox"/>
+</div>
+</div>
+<div class="flex gap-md">
+<button class="flex-1 py-3 border border-outline rounded-lg font-bold text-on-surface-variant hover:bg-surface-container-low transition-colors" onclick="closeModal()">Cancel</button>
+<button class="flex-1 py-3 bg-primary text-on-primary rounded-lg font-bold hover:opacity-90 transition-all" onclick="showSuccess()">Send Now</button>
+</div>
+</div>
+</div>
+<script src="scripts.js"></script></body></html>

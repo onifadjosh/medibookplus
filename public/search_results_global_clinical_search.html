@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MediBook+ | Advanced Patient Search</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+
+
+<link href="tailwind.css" rel="stylesheet"/><link href="custom.css" rel="stylesheet"/></head>
+<body class="bg-background text-on-background font-body-md min-h-screen">
+<!-- TopNavBar -->
+<header class="w-full sticky top-0 bg-background/80 backdrop-blur-md shadow-sm z-50">
+<nav class="flex justify-between items-center h-16 px-margin-desktop max-w-container-max mx-auto">
+<div class="flex items-center gap-xl">
+<span class="font-title-lg text-title-lg text-primary font-bold">MediBook+</span>
+<div class="hidden md:flex gap-lg items-center">
+<a class="text-primary font-title-md border-b-2 border-primary pb-1" href="#">Solutions</a>
+<a class="text-secondary font-body-md hover:text-primary transition-colors" href="#">Pricing</a>
+<a class="text-secondary font-body-md hover:text-primary transition-colors" href="#">Resources</a>
+<a class="text-secondary font-body-md hover:text-primary transition-colors" href="contact_us.html">Contact</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="px-lg py-sm text-secondary font-label-md hover:bg-surface-container-low transition-colors duration-200 cursor-pointer active:scale-95 rounded-lg">Sign In</button>
+<button class="px-lg py-sm bg-primary text-on-primary font-label-md rounded-lg shadow-sm hover:opacity-90 transition-all cursor-pointer active:scale-95">Request Demo</button>
+</div>
+</nav>
+</header>
+<main class="max-w-container-max mx-auto px-margin-desktop py-xl flex gap-xl">
+<!-- Side Navigation (Omnibar Context) -->
+<aside class="hidden lg:flex flex-col w-64 shrink-0 gap-lg">
+<div class="bg-surface-container-low border border-outline-variant p-md rounded-xl space-y-sm">
+<div class="px-sm py-xs mb-sm">
+<h3 class="font-label-sm text-label-sm text-outline uppercase tracking-wider">Search Categories</h3>
+</div>
+<a class="w-full flex items-center gap-sm px-md py-sm bg-secondary-container text-on-secondary-container font-semibold rounded-lg text-left" href="search_results_global_clinical_search.html">
+<span class="material-symbols-outlined text-[20px]">person_search</span>
+<span class="font-label-md">All Results</span>
+</a>
+<button class="w-full flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg text-left transition-all">
+<span class="material-symbols-outlined text-[20px]">medical_services</span>
+<span class="font-label-md">Doctors</span>
+</button>
+<button class="w-full flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg text-left transition-all">
+<span class="material-symbols-outlined text-[20px]">account_balance</span>
+<span class="font-label-md">Departments</span>
+</button>
+<button class="w-full flex items-center gap-sm px-md py-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg text-left transition-all">
+<span class="material-symbols-outlined text-[20px]">article</span>
+<span class="font-label-md">Medical Articles</span>
+</button>
+</div>
+<div class="bg-tertiary-fixed text-on-tertiary-fixed p-lg rounded-xl relative overflow-hidden group">
+<div class="relative z-10">
+<h4 class="font-title-md text-title-md mb-xs">Need Urgent Care?</h4>
+<p class="font-body-sm text-body-sm mb-md opacity-90">Find the nearest open clinic in seconds.</p>
+<button class="px-md py-xs bg-on-tertiary-fixed text-white font-label-md rounded-lg shadow-md active:scale-95 transition-transform">Map View</button>
+</div>
+<span class="material-symbols-outlined absolute -bottom-4 -right-4 text-9xl opacity-10 rotate-12 group-hover:rotate-0 transition-transform duration-500">emergency</span>
+</div>
+</aside>
+<!-- Search Canvas -->
+<section class="flex-grow">
+<!-- Search Omnibar -->
+<div class="relative mb-xl">
+<div class="flex items-center bg-white border-2 border-primary-container rounded-2xl shadow-lg p-2 transition-shadow focus-within:shadow-xl focus-within:ring-2 focus-within:ring-primary/20">
+<span class="material-symbols-outlined text-primary mx-md">search</span>
+<input class="flex-grow border-none focus:ring-0 text-title-md font-body-md placeholder:text-outline-variant" placeholder="Search patients, doctors, or medical papers..." type="text" value="Cardio"/>
+<div class="flex items-center gap-sm border-l border-outline-variant px-md ml-md">
+<span class="bg-surface-container-highest px-sm py-1 rounded text-label-sm font-label-sm text-outline">ESC</span>
+<span class="text-body-sm text-outline">to close</span>
+</div>
+</div>
+<div class="mt-md flex gap-sm overflow-x-auto pb-2 scrollbar-hide">
+<span class="px-md py-1 bg-primary/10 text-primary border border-primary/20 rounded-full font-label-sm whitespace-nowrap cursor-pointer hover:bg-primary/20 transition-colors">Cardiology</span>
+<span class="px-md py-1 bg-surface-container-high text-on-surface-variant rounded-full font-label-sm whitespace-nowrap cursor-pointer hover:bg-surface-container-highest transition-colors">Heart Surgery</span>
+<span class="px-md py-1 bg-surface-container-high text-on-surface-variant rounded-full font-label-sm whitespace-nowrap cursor-pointer hover:bg-surface-container-highest transition-colors">Diagnostic Tests</span>
+<span class="px-md py-1 bg-surface-container-high text-on-surface-variant rounded-full font-label-sm whitespace-nowrap cursor-pointer hover:bg-surface-container-highest transition-colors">Pediatric Care</span>
+</div>
+</div>
+<!-- Results Density -->
+<div class="space-y-2xl">
+<!-- Section: Doctors -->
+<div>
+<div class="flex justify-between items-end mb-lg">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Doctors</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">4 specialists matching "<span class="font-semibold">Cardio</span>"</p>
+</div>
+<a class="text-primary font-label-md hover:underline flex items-center gap-xs" href="#">View all specialists <span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<!-- Doctor Card 1 -->
+<div class="glass-card border border-outline-variant p-lg rounded-2xl shadow-sm hover:shadow-md hover:border-primary/50 transition-all group">
+<div class="flex gap-md">
+<div class="w-16 h-16 rounded-xl overflow-hidden shrink-0 border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a female cardiologist in a clean, modern medical setting. She is wearing a white coat and a stethoscope, smiling with confidence. The background is a blurred high-end clinic with soft teal accents and warm lighting, creating a trustworthy and premium atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaqRmJ8kEp9bIfFctKDerjwSUwTdSMewORNE7GPugkErio0g6kj7vWJfqWdFZdalvEQHMfjfCqBevYha8gIe_uu9qXQOmXrrkREr-CpiAub1BF0LpL8-mBRtQGG2rqY76bsTmUzb-hNlS98FWy1e-tNVm8aklQ9CdxdXCaTNaMjdWV0ceC2SDHUp19JR1WgZ_2SL67WI63jIiG6JTxWz4qNLxZkWANgOMpEWZ3aMWJ-LLlxDQjslxxyg"/>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h3 class="font-title-md text-title-md"><span class="search-highlight">Cardio</span>logist Sarah Chen</h3>
+<span class="flex items-center gap-xs text-tertiary font-label-sm"><span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span> 4.9</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Senior Heart Surgeon • 12 yrs exp.</p>
+<div class="mt-md flex gap-sm">
+<button class="flex-grow py-sm bg-primary text-on-primary rounded-lg font-label-md active:scale-95 transition-all">Book</button>
+<button class="px-md py-sm bg-secondary-container text-on-secondary-container rounded-lg font-label-md hover:bg-secondary-container/80 transition-all">View Profile</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Doctor Card 2 -->
+<div class="glass-card border border-outline-variant p-lg rounded-2xl shadow-sm hover:shadow-md hover:border-primary/50 transition-all group">
+<div class="flex gap-md">
+<div class="w-16 h-16 rounded-xl overflow-hidden shrink-0 border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional portrait of a male doctor in a modern healthcare facility. He has a stethoscope around his neck and is looking towards the camera with a calm, reassuring expression. The lighting is bright and clean, typical of a high-end medical center, with subtle teal tones and a minimalist background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8KIORR92q88dkGPoIDzBW-2jfaqOd2r_3l8KN6O1a5REe1mwTz8HwiS76Amtfq-4dxKtX6rNstT1s94n-nWsu_fI82GxTd1k28HtN2BARky-bVU1iyBjlvlFZSAhEG9mn5lbv_DeJpMVPjmNa2ASOKJ9gWBuCCTm3VPUEvCbZ7vpKXo7KkpNOj2Buy4_RP-06Y9pBoxaJEhcA7H29j31zoK8o_q0xZFoQCLdnZmarrM9fkl6R6_rqnA"/>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h3 class="font-title-md text-title-md">Dr. James Wilson</h3>
+<span class="flex items-center gap-xs text-tertiary font-label-sm"><span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span> 4.7</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Pediatric <span class="search-highlight">Cardio</span>logy • 8 yrs exp.</p>
+<div class="mt-md flex gap-sm">
+<button class="flex-grow py-sm bg-primary text-on-primary rounded-lg font-label-md active:scale-95 transition-all">Book</button>
+<button class="px-md py-sm bg-secondary-container text-on-secondary-container rounded-lg font-label-md hover:bg-secondary-container/80 transition-all">View Profile</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Section: Departments (Bento Style) -->
+<div>
+<div class="flex justify-between items-end mb-lg">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Departments</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Relevant clinics and wards</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<div class="md:col-span-2 bg-surface-container-low border border-outline-variant rounded-2xl p-lg flex items-center justify-between group cursor-pointer hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-lg">
+<div class="w-16 h-16 bg-primary-container text-on-primary-container rounded-2xl flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl">favorite</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md group-hover:text-primary transition-colors">Advanced <span class="search-highlight">Cardio</span>vascular Unit</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Main Building, Wing B • Floor 4</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:translate-x-1 transition-transform">chevron_right</span>
+</div>
+<div class="bg-surface-container-low border border-outline-variant rounded-2xl p-lg flex flex-col justify-between group cursor-pointer hover:bg-surface-container transition-colors">
+<div class="w-12 h-12 bg-secondary-container text-on-secondary-container rounded-xl flex items-center justify-center mb-md">
+<span class="material-symbols-outlined">ecg_heart</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md">EKG Center</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Diagnostic Block</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Section: Articles (High Density List) -->
+<div>
+<div class="flex justify-between items-end mb-lg">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Clinical Resources</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Latest research and patient guides</p>
+</div>
+</div>
+<div class="space-y-md">
+<!-- Article 1 -->
+<div class="flex items-center gap-lg p-md hover:bg-surface-container-low rounded-xl transition-colors cursor-pointer border-b border-outline-variant/30">
+<div class="shrink-0">
+<span class="material-symbols-outlined text-primary text-2xl">description</span>
+</div>
+<div class="flex-grow">
+<h4 class="font-title-md text-title-md">New Guidelines for Post-<span class="search-highlight">Cardio</span> Surgery Care 2024</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Medical Journal • Dr. A. Sterling • 15 min read</p>
+</div>
+<div class="hidden sm:flex items-center gap-xs text-outline font-label-sm">
+<span class="material-symbols-outlined text-[16px]">visibility</span> 1.2k
+                            </div>
+</div>
+<!-- Article 2 -->
+<div class="flex items-center gap-lg p-md hover:bg-surface-container-low rounded-xl transition-colors cursor-pointer border-b border-outline-variant/30">
+<div class="shrink-0">
+<span class="material-symbols-outlined text-primary text-2xl">menu_book</span>
+</div>
+<div class="flex-grow">
+<h4 class="font-title-md text-title-md">Patient Guide: Living with <span class="search-highlight">Cardio</span>myopathy</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Patient Education • Health Board • 5 min read</p>
+</div>
+<div class="hidden sm:flex items-center gap-xs text-outline font-label-sm">
+<span class="material-symbols-outlined text-[16px]">visibility</span> 850
+                            </div>
+</div>
+<!-- Article 3 -->
+<div class="flex items-center gap-lg p-md hover:bg-surface-container-low rounded-xl transition-colors cursor-pointer border-b border-outline-variant/30">
+<div class="shrink-0">
+<span class="material-symbols-outlined text-primary text-2xl">science</span>
+</div>
+<div class="flex-grow">
+<h4 class="font-title-md text-title-md">Phase III Results: Novel <span class="search-highlight">Cardio</span>protective Agents</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Research Paper • BioGen Labs • 25 min read</p>
+</div>
+<div class="hidden sm:flex items-center gap-xs text-outline font-label-sm">
+<span class="material-symbols-outlined text-[16px]">visibility</span> 420
+                            </div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Right Panel: Quick Context -->
+<aside class="hidden xl:flex flex-col w-80 shrink-0 gap-lg">
+<div class="bg-white border border-outline-variant rounded-2xl p-lg shadow-sm">
+<h3 class="font-title-md text-title-md mb-md">Quick Summary</h3>
+<div class="space-y-md">
+<div class="flex items-start gap-md">
+<span class="w-2 h-2 rounded-full bg-primary mt-2"></span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Most searches for "<span class="font-semibold">Cardio</span>" lead to Sarah Chen's profile.</p>
+</div>
+<div class="flex items-start gap-md">
+<span class="w-2 h-2 rounded-full bg-tertiary mt-2"></span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">The Advanced CV Unit has high patient volume today.</p>
+</div>
+</div>
+<div class="mt-lg pt-lg border-t border-outline-variant">
+<button class="w-full py-sm bg-surface-container-highest text-on-surface font-label-md rounded-lg hover:bg-outline-variant/20 transition-colors">Refine by Date</button>
+</div>
+</div>
+<div class="bg-primary-container text-on-primary-container rounded-2xl p-lg relative overflow-hidden">
+<h3 class="font-title-md text-title-md mb-xs">Hospital Stats</h3>
+<div class="mt-md flex flex-col gap-sm">
+<div class="flex justify-between items-center">
+<span class="font-label-sm opacity-80">Doctors Online</span>
+<span class="font-bold">142</span>
+</div>
+<div class="w-full bg-on-primary-container/20 h-1 rounded-full overflow-hidden">
+<div class="bg-primary-fixed w-[85%] h-full"></div>
+</div>
+<div class="flex justify-between items-center mt-sm">
+<span class="font-label-sm opacity-80">ER Wait Time</span>
+<span class="font-bold">12 min</span>
+</div>
+</div>
+<span class="material-symbols-outlined absolute -bottom-2 -right-2 text-6xl opacity-10">query_stats</span>
+</div>
+</aside>
+</main>
+<!-- Footer -->
+<footer class="w-full py-xl bg-surface-container-highest mt-3xl border-t border-outline-variant">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop max-w-container-max mx-auto gap-lg">
+<div class="flex flex-col items-center md:items-start gap-xs">
+<span class="font-title-md text-title-md text-on-surface font-bold">MediBook+</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 MediBook+ SaaS. All rights reserved.</p>
+</div>
+<div class="flex gap-lg flex-wrap justify-center">
+<a class="text-on-surface-variant hover:text-primary transition-opacity duration-200 font-body-sm text-body-sm hover:underline" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant hover:text-primary transition-opacity duration-200 font-body-sm text-body-sm hover:underline" href="#">Terms of Service</a>
+<a class="text-on-surface-variant hover:text-primary transition-opacity duration-200 font-body-sm text-body-sm hover:underline" href="#">HIPAA Compliance</a>
+<a class="text-on-surface-variant hover:text-primary transition-opacity duration-200 font-body-sm text-body-sm hover:underline" href="#">Security</a>
+</div>
+</div>
+</footer>
+<!-- FAB (Suppressed based on logic for details, but kept for context as this is a high-level search) -->
+<button class="fixed bottom-margin-desktop right-margin-desktop w-14 h-14 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-40 group">
+<span class="material-symbols-outlined text-2xl">add</span>
+<span class="absolute right-16 bg-inverse-surface text-inverse-on-surface px-md py-sm rounded-lg text-label-md whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">Add Patient</span>
+</button>
+
+<script src="scripts.js"></script></body></html>

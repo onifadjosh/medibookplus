@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MediFlow Admin - Departments Management</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/><link href="tailwind.css" rel="stylesheet"/></head>
+<body class="bg-surface text-on-surface">
+<!-- Side Navigation Shell -->
+<aside class="w-64 h-full fixed left-0 top-0 bg-surface-container-lowest shadow-sm flex flex-col py-md px-sm overflow-y-auto z-50">
+<div class="mb-3xl px-md">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">MediFlow Admin</h1>
+<p class="text-on-surface-variant font-label-md">General Hospital</p>
+</div>
+<nav class="flex-1 space-y-sm">
+<a class="px-md py-sm text-on-surface-variant font-label-md flex items-center gap-md hover:bg-surface-container-low transition-colors cursor-pointer active:scale-95 rounded-lg" href="admin_hospital_management_dashboard.html">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="px-md py-sm text-on-surface-variant font-label-md flex items-center gap-md hover:bg-surface-container-low transition-colors cursor-pointer active:scale-95 rounded-lg" href="admin_patient_doctor_management.html">
+<span class="material-symbols-outlined">person</span>
+<span>Patients</span>
+</a>
+<a class="px-md py-sm text-on-surface-variant font-label-md flex items-center gap-md hover:bg-surface-container-low transition-colors cursor-pointer active:scale-95 rounded-lg" href="admin_doctor_management_directory.html">
+<span class="material-symbols-outlined">medical_services</span>
+<span>Doctors</span>
+</a>
+<!-- ACTIVE TAB: Departments -->
+<a class="px-md py-sm text-primary font-bold border-r-4 border-primary flex items-center gap-md bg-surface-container-low cursor-pointer rounded-l-lg" href="admin_hospital_departments_overview.html">
+<span class="material-symbols-outlined">domain</span>
+<span>Departments</span>
+</a>
+<a class="px-md py-sm text-on-surface-variant font-label-md flex items-center gap-md hover:bg-surface-container-low transition-colors cursor-pointer active:scale-95 rounded-lg" href="admin_master_appointment_schedule.html">
+<span class="material-symbols-outlined">event</span>
+<span>Appointments</span>
+</a>
+<a class="px-md py-sm text-on-surface-variant font-label-md flex items-center gap-md hover:bg-surface-container-low transition-colors cursor-pointer active:scale-95 rounded-lg" href="admin_centralized_medical_records_portal.html">
+<span class="material-symbols-outlined">description</span>
+<span>Medical Records</span>
+</a>
+<a class="px-md py-sm text-on-surface-variant font-label-md flex items-center gap-md hover:bg-surface-container-low transition-colors cursor-pointer active:scale-95 rounded-lg" href="admin_advanced_hospital_reports_analytics.html">
+<span class="material-symbols-outlined">assessment</span>
+<span>Reports</span>
+</a>
+<a class="px-md py-sm text-on-surface-variant font-label-md flex items-center gap-md hover:bg-surface-container-low transition-colors cursor-pointer active:scale-95 rounded-lg mt-auto" href="admin_global_hospital_settings.html">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+</aside>
+<!-- Top Navigation Bar -->
+<header class="h-16 w-full sticky top-0 z-40 flex justify-between items-center px-lg ml-64 bg-surface shadow-sm">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full py-2 pl-10 pr-4 focus:ring-2 focus:ring-primary text-body-md" placeholder="Search departments, staff, or beds..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<button class="relative p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="flex items-center gap-sm border-l border-outline-variant pl-lg ml-sm">
+<div class="text-right">
+<p class="font-title-md text-on-surface">Dr. Sarah Jenkins</p>
+<p class="font-label-sm text-on-surface-variant">Administrator</p>
+</div>
+<img class="w-10 h-10 rounded-full border-2 border-primary-fixed-dim object-cover" data-alt="Professional headshot of a female hospital administrator in a minimalist modern medical office environment with soft, diffused lighting and neutral tones of white and light teal." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnBwNwOBJ3AFbXjE-iVHRJY5rQUpQSW3UFPljb9HKJWOiLbw6vcYhBtxMFpch4pafFfdk65bF92NYOet_aJJLjEYn1kvdhyyLh5LawXj7nkTWXuvfECgzsoLDnr7IGXYrYcpZLxXeV2qjieB_CS6vMl3_kMRdl5VOoUWnnPYi45T_AbZUVawiSwDcTpNrUqGv6b5rJ4RK-axdlOYK1ToeaEtthBL5xaaTfI4kdIeCjXvnG1iIc5ZDL4w"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-64 p-xl">
+<div class="flex justify-between items-end mb-2xl">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Departmental Oversight</h2>
+<p class="text-body-lg text-on-surface-variant">Real-time resource utilization and efficiency metrics across General Hospital.</p>
+</div>
+<div class="flex gap-md">
+<button class="flex items-center gap-xs px-lg py-md bg-surface-container-high text-on-surface font-label-md rounded-lg hover:bg-surface-container-highest transition-all">
+<span class="material-symbols-outlined text-[20px]">filter_list</span>
+                    Filter View
+                </button>
+<button class="flex items-center gap-xs px-lg py-md bg-primary text-on-primary font-label-md rounded-lg shadow-md hover:opacity-90 transition-all active:scale-95">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                    New Department
+                </button>
+</div>
+</div>
+<!-- Dashboard Summary Grid -->
+<section class="grid grid-cols-1 md:grid-cols-4 gap-lg mb-2xl">
+<div class="bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-outline-variant/30">
+<p class="text-label-md text-on-surface-variant mb-xs">Total Departments</p>
+<div class="flex items-baseline gap-sm">
+<h3 class="text-display-lg font-display-lg text-primary">12</h3>
+<span class="text-label-sm text-primary">+1 this month</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-outline-variant/30">
+<p class="text-label-md text-on-surface-variant mb-xs">Average Occupancy</p>
+<div class="flex items-baseline gap-sm">
+<h3 class="text-display-lg font-display-lg text-tertiary">84%</h3>
+<span class="text-label-sm text-tertiary">Peak: 92%</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-outline-variant/30">
+<p class="text-label-md text-on-surface-variant mb-xs">Critical Alert Depts</p>
+<div class="flex items-baseline gap-sm">
+<h3 class="text-display-lg font-display-lg text-error">2</h3>
+<span class="text-label-sm text-error">Action required</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-outline-variant/30">
+<p class="text-label-md text-on-surface-variant mb-xs">Staff Efficiency</p>
+<div class="flex items-baseline gap-sm">
+<h3 class="text-display-lg font-display-lg text-primary-container">96%</h3>
+<span class="text-label-sm text-primary-container">Excellent</span>
+</div>
+</div>
+</section>
+<!-- Departments Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-xl">
+<!-- Cardiology Card -->
+<div class="department-card-hover bg-surface-container-lowest rounded-xl p-lg flex flex-col border border-outline-variant/50">
+<div class="flex justify-between items-start mb-lg">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 bg-primary-container/10 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[32px]">favorite</span>
+</div>
+<div>
+<h4 class="font-title-lg text-title-lg">Cardiology</h4>
+<p class="text-label-md text-on-surface-variant">Floor 4, Wing A</p>
+</div>
+</div>
+<span class="px-sm py-1 bg-secondary-container/30 text-on-secondary-container text-label-sm rounded-full">Stable</span>
+</div>
+<div class="flex items-center gap-md mb-lg">
+<img class="w-10 h-10 rounded-full object-cover grayscale-[0.5]" data-alt="Close up portrait of an experienced male cardiologist in professional medical attire, silver hair, looking confident and approachable, clean laboratory background with soft focus medical equipment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuChg_dns_NaEPSh5gkoutyN5ti90aQrlC6dygOPsKWwrK7Pwj13bdtQYtmzzjvlImDXTQMAG_roTz6_YN-ZPguAvFluui5-_m43irWy_2Eh163_EvOxVQfnW6_lcb7PT3nvqjp6NWiQTLx8swWjFc1JmkaxZCJAy4gZu9Eyhg8n1mQE7kzckLT2EMFwF8l0EW_k2IyOBTLnWckrvyvAeVKjoWg_3Vyv6ePfZg5V60DMUlJkKCkPM6vH7g"/>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase">Department Head</p>
+<p class="font-title-md text-on-surface">Dr. Michael Chen</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-md mb-lg">
+<div class="bg-surface p-md rounded-lg">
+<p class="text-label-sm text-on-surface-variant">Staff Count</p>
+<p class="font-title-lg text-primary">48</p>
+</div>
+<div class="bg-surface p-md rounded-lg">
+<p class="text-label-sm text-on-surface-variant">Patients</p>
+<p class="font-title-lg text-primary">132</p>
+</div>
+</div>
+<div class="mb-lg">
+<div class="flex justify-between items-end mb-xs">
+<p class="text-label-md font-bold">Bed Occupancy</p>
+<p class="text-label-md text-primary">78%</p>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-1000" style="width: 78%"></div>
+</div>
+</div>
+<div class="flex-1 mb-lg min-h-[60px]">
+<p class="text-label-sm text-on-surface-variant mb-sm">7-Day Patient Trend</p>
+<svg class="w-full h-12" viewbox="0 0 100 30">
+<path class="trend-line" d="M0,25 Q15,5 30,15 T60,10 T100,20" fill="none" stroke="#006767" stroke-width="2"></path>
+<path d="M0,25 Q15,5 30,15 T60,10 T100,20 L100,30 L0,30 Z" fill="url(#grad1)" opacity="0.1"></path>
+<defs>
+<lineargradient id="grad1" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#006767;stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:#006767;stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+</svg>
+</div>
+<button class="w-full py-md border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary hover:text-on-primary transition-all active:scale-95">
+                    Manage Resources
+                </button>
+</div>
+<!-- Oncology Card (High Occupancy) -->
+<div class="department-card-hover bg-surface-container-lowest rounded-xl p-lg flex flex-col border border-outline-variant/50">
+<div class="flex justify-between items-start mb-lg">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 bg-tertiary-container/10 rounded-lg flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-[32px]">biotech</span>
+</div>
+<div>
+<h4 class="font-title-lg text-title-lg">Oncology</h4>
+<p class="text-label-md text-on-surface-variant">Floor 2, Wing C</p>
+</div>
+</div>
+<span class="px-sm py-1 bg-error-container text-on-error-container text-label-sm rounded-full font-bold">Near Capacity</span>
+</div>
+<div class="flex items-center gap-md mb-lg">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Portrait of a female oncology department head in a modern hospital setting, professional blue scrubs, stethoscope around neck, bright intelligent expression, clinical background with soft teal accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuChL0bq3N-fDjRBs5XFzB5yP45TK2URs7d0mBgcUKHzNpGiQslUlSQtp1_pNoEbEqwX84dSd83Qth7K88MdoZkMgg9it9QapjII_tZx0CtSlcm1Blps0cq7hC9VP45yU7aTAoncuAGMxwi1iQIjZHlVRxSVeUgszDHZcoKP9ThEXl9IQfdYlvyx41Z_Q-W3iXBgJzXcS3YsUcbptDxedkfXQuuxxo61cXWIc1tMUDlbsO7fGjtXxVY0dA"/>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase">Department Head</p>
+<p class="font-title-md text-on-surface">Dr. Elena Rodriguez</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-md mb-lg">
+<div class="bg-surface p-md rounded-lg">
+<p class="text-label-sm text-on-surface-variant">Staff Count</p>
+<p class="font-title-lg text-primary">32</p>
+</div>
+<div class="bg-surface p-md rounded-lg">
+<p class="text-label-sm text-on-surface-variant">Patients</p>
+<p class="font-title-lg text-primary">89</p>
+</div>
+</div>
+<div class="mb-lg">
+<div class="flex justify-between items-end mb-xs">
+<p class="text-label-md font-bold">Bed Occupancy</p>
+<p class="text-label-md text-tertiary">94%</p>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-tertiary rounded-full transition-all duration-1000" style="width: 94%"></div>
+</div>
+</div>
+<div class="flex-1 mb-lg min-h-[60px]">
+<p class="text-label-sm text-on-surface-variant mb-sm">7-Day Patient Trend</p>
+<svg class="w-full h-12" viewbox="0 0 100 30">
+<path class="trend-line" d="M0,20 L20,18 L40,10 L60,8 L80,5 L100,2" fill="none" stroke="#8f491d" stroke-width="2"></path>
+<path d="M0,20 L20,18 L40,10 L60,8 L80,5 L100,2 L100,30 L0,30 Z" fill="#8f491d" opacity="0.1"></path>
+</svg>
+</div>
+<button class="w-full py-md border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary hover:text-on-primary transition-all active:scale-95">
+                    Manage Resources
+                </button>
+</div>
+<!-- Pediatrics Card -->
+<div class="department-card-hover bg-surface-container-lowest rounded-xl p-lg flex flex-col border border-outline-variant/50">
+<div class="flex justify-between items-start mb-lg">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 bg-secondary-container/20 rounded-lg flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[32px]">child_care</span>
+</div>
+<div>
+<h4 class="font-title-lg text-title-lg">Pediatrics</h4>
+<p class="text-label-md text-on-surface-variant">Floor 1, West Block</p>
+</div>
+</div>
+<span class="px-sm py-1 bg-secondary-container/30 text-on-secondary-container text-label-sm rounded-full">Stable</span>
+</div>
+<div class="flex items-center gap-md mb-lg">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Cheerful male pediatrician in light-colored clinical attire, warm smile, child-friendly colorful clinic background with soft lighting, high-end healthcare aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTlXsYY4tmD6cJLsIAMBlUribZOZSBrpwxJ7zMaVWQCWTBhrjwQzPDE6yrQwL7cZbUu__aRCBVtIcKFemVOhHfOwiJUur7VSIxES68lohNmjpnpeydlUSQ4iCC9ifPaw3vOM0FNvzsWn-SsG7lPzziQP36emAaFw5-MzwP1uNkgXR3ZWLus94N1C252kTawuUSwrWT6PhDBoOQgUN4clOPt8lrXQ4v-iBrkRgqjol9IuOHF8AmWKtoQA"/>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase">Department Head</p>
+<p class="font-title-md text-on-surface">Dr. James Wilson</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-md mb-lg">
+<div class="bg-surface p-md rounded-lg">
+<p class="text-label-sm text-on-surface-variant">Staff Count</p>
+<p class="font-title-lg text-primary">56</p>
+</div>
+<div class="bg-surface p-md rounded-lg">
+<p class="text-label-sm text-on-surface-variant">Patients</p>
+<p class="font-title-lg text-primary">64</p>
+</div>
+</div>
+<div class="mb-lg">
+<div class="flex justify-between items-end mb-xs">
+<p class="text-label-md font-bold">Bed Occupancy</p>
+<p class="text-label-md text-primary">62%</p>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-1000" style="width: 62%"></div>
+</div>
+</div>
+<div class="flex-1 mb-lg min-h-[60px]">
+<p class="text-label-sm text-on-surface-variant mb-sm">7-Day Patient Trend</p>
+<svg class="w-full h-12" viewbox="0 0 100 30">
+<path class="trend-line" d="M0,15 L20,16 L40,14 L60,15 L80,14 L100,15" fill="none" stroke="#505f76" stroke-width="2"></path>
+</svg>
+</div>
+<button class="w-full py-md border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary hover:text-on-primary transition-all active:scale-95">
+                    Manage Resources
+                </button>
+</div>
+<!-- Neurology Card -->
+<div class="department-card-hover bg-surface-container-lowest rounded-xl p-lg flex flex-col border border-outline-variant/50">
+<div class="flex justify-between items-start mb-lg">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 bg-primary-container/10 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[32px]">psychology</span>
+</div>
+<div>
+<h4 class="font-title-lg text-title-lg">Neurology</h4>
+<p class="text-label-md text-on-surface-variant">Floor 5, Wing B</p>
+</div>
+</div>
+<span class="px-sm py-1 bg-secondary-container/30 text-on-secondary-container text-label-sm rounded-full">Stable</span>
+</div>
+<div class="flex items-center gap-md mb-lg">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Portrait of a focused male neurologist in a clean, high-tech hospital lab, white coat, holding a tablet, sophisticated lighting, background showing brain scan data on screens in soft teal hues." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBLFNdGPwhymTXTIIGsfQq8DG9g45N-MVPgm4r50hBB7sGzJokdLtyW8vv05OXsyEpWB3OBW6MG54UODuvoRASj4C2zFcuA-Q0QZomX3XtL3N6FUYRkve5ZVwn4Xl9rYqUZujgwo5dOZzpHR4gslFUbSEkeJqCBa4Or-R57cQs8ANM1ZDtl5JQuRpUse3gE3DcrIQ1ki-KmCoQMNru46lgHjbweDBWlO_Z1kfbG59VAhevK8-lIJpEsRA"/>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase">Department Head</p>
+<p class="font-title-md text-on-surface">Dr. Robert Lee</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-md mb-lg">
+<div class="bg-surface p-md rounded-lg">
+<p class="text-label-sm text-on-surface-variant">Staff Count</p>
+<p class="font-title-lg text-primary">24</p>
+</div>
+<div class="bg-surface p-md rounded-lg">
+<p class="text-label-sm text-on-surface-variant">Patients</p>
+<p class="font-title-lg text-primary">42</p>
+</div>
+</div>
+<div class="mb-lg">
+<div class="flex justify-between items-end mb-xs">
+<p class="text-label-md font-bold">Bed Occupancy</p>
+<p class="text-label-md text-primary">85%</p>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-1000" style="width: 85%"></div>
+</div>
+</div>
+<div class="flex-1 mb-lg min-h-[60px]">
+<p class="text-label-sm text-on-surface-variant mb-sm">7-Day Patient Trend</p>
+<svg class="w-full h-12" viewbox="0 0 100 30">
+<path class="trend-line" d="M0,28 L20,25 L40,20 L60,22 L80,10 L100,5" fill="none" stroke="#006767" stroke-width="2"></path>
+</svg>
+</div>
+<button class="w-full py-md border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary hover:text-on-primary transition-all active:scale-95">
+                    Manage Resources
+                </button>
+</div>
+<!-- Emergency Card -->
+<div class="department-card-hover bg-surface-container-lowest rounded-xl p-lg flex flex-col border border-outline-variant/50">
+<div class="flex justify-between items-start mb-lg">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 bg-error-container/20 rounded-lg flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-[32px]">emergency</span>
+</div>
+<div>
+<h4 class="font-title-lg text-title-lg">Emergency</h4>
+<p class="text-label-md text-on-surface-variant">Ground Floor, Entrance C</p>
+</div>
+</div>
+<span class="px-sm py-1 bg-error-container text-on-error-container text-label-sm rounded-full font-bold">Critical Flow</span>
+</div>
+<div class="flex items-center gap-md mb-lg">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Action shot of a female ER department head, dynamic lighting, focused expression, medical facility setting with blurred movement in the background, sharp focus on the professional subject, high-contrast healthcare photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuANXzFWGHlDOGnZvSbHFYH4nilH7bvAhS4VJThFR8tAldbqhULlBMJcX5iJ1QJCujtVuVAAYo48LQCTBa9NbykVHqFSI_wP-0h4O8GyJoWJdSMBvfVCBvSup4KUU49MrOz9XCjgsXt46fEMCehA6j2vGtjoO9jjfFyj7XChDznikDDy63hpjJMMrp8QPaqE_VE2QKfhshqSHZGT9ckW0HZdy71Q9Pp2bP8Ch-rl4XrLnJ6eu5_Y0P8a3g"/>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase">Department Head</p>
+<p class="font-title-md text-on-surface">Dr. Sarah Connor</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-md mb-lg">
+<div class="bg-surface p-md rounded-lg">
+<p class="text-label-sm text-on-surface-variant">Staff Count</p>
+<p class="font-title-lg text-primary">112</p>
+</div>
+<div class="bg-surface p-md rounded-lg">
+<p class="text-label-sm text-on-surface-variant">Active Cases</p>
+<p class="font-title-lg text-primary">245</p>
+</div>
+</div>
+<div class="mb-lg">
+<div class="flex justify-between items-end mb-xs">
+<p class="text-label-md font-bold">Flow Status</p>
+<p class="text-label-md text-error">Critical</p>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-error rounded-full transition-all duration-1000" style="width: 98%"></div>
+</div>
+</div>
+<div class="flex-1 mb-lg min-h-[60px]">
+<p class="text-label-sm text-on-surface-variant mb-sm">Wait Time Trend</p>
+<svg class="w-full h-12" viewbox="0 0 100 30">
+<path class="trend-line" d="M0,25 L20,20 L40,25 L60,10 L80,2 L100,5" fill="none" stroke="#ba1a1a" stroke-width="2"></path>
+</svg>
+</div>
+<button class="w-full py-md border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary hover:text-on-primary transition-all active:scale-95">
+                    Manage Resources
+                </button>
+</div>
+<!-- Orthopedics Card -->
+<div class="department-card-hover bg-surface-container-lowest rounded-xl p-lg flex flex-col border border-outline-variant/50">
+<div class="flex justify-between items-start mb-lg">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 bg-primary-container/10 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[32px]">skeleton</span>
+</div>
+<div>
+<h4 class="font-title-lg text-title-lg">Orthopedics</h4>
+<p class="text-label-md text-on-surface-variant">Floor 3, Wing D</p>
+</div>
+</div>
+<span class="px-sm py-1 bg-secondary-container/30 text-on-secondary-container text-label-sm rounded-full">Stable</span>
+</div>
+<div class="flex items-center gap-md mb-lg">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="Professional portrait of a male orthopedic surgeon, wearing a white clinical coat, standing in front of an X-ray light box showing a joint scan, clean minimalist hospital room, bright and clear lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWLZX_3ZRgZMFRqm7EVeesVA-8UPPwDcRfZbxxh96sn4hK24AsWVc-ICddBDorBw_YIg01Fgx9ov0i-lrPhp0hxa_qDEFBmkG1czGjqzVvlLXujwojsJvwwxaj6ChC5S33FhjXMByalmg4fooRwjokkRuK22XiLCj5IzmVCS6Qmh2pskVbI2B9jtr9moBro2V0X8K9nUdBxpdqdymkcNhVAWuAbm1_zP2cyR9CtnjZ3PwlssZSbbTdGw"/>
+<div>
+<p class="text-label-sm text-on-surface-variant uppercase">Department Head</p>
+<p class="font-title-md text-on-surface">Dr. Kevin Adams</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-md mb-lg">
+<div class="bg-surface p-md rounded-lg">
+<p class="text-label-sm text-on-surface-variant">Staff Count</p>
+<p class="font-title-lg text-primary">38</p>
+</div>
+<div class="bg-surface p-md rounded-lg">
+<p class="text-label-sm text-on-surface-variant">Patients</p>
+<p class="font-title-lg text-primary">54</p>
+</div>
+</div>
+<div class="mb-lg">
+<div class="flex justify-between items-end mb-xs">
+<p class="text-label-md font-bold">Bed Occupancy</p>
+<p class="text-label-md text-primary">45%</p>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full transition-all duration-1000" style="width: 45%"></div>
+</div>
+</div>
+<div class="flex-1 mb-lg min-h-[60px]">
+<p class="text-label-sm text-on-surface-variant mb-sm">7-Day Patient Trend</p>
+<svg class="w-full h-12" viewbox="0 0 100 30">
+<path class="trend-line" d="M0,10 L20,12 L40,15 L60,20 L80,22 L100,25" fill="none" stroke="#006767" stroke-width="2"></path>
+</svg>
+</div>
+<button class="w-full py-md border-2 border-primary text-primary font-bold rounded-lg hover:bg-primary hover:text-on-primary transition-all active:scale-95">
+                    Manage Resources
+                </button>
+</div>
+</div>
+<!-- Quick Stats Footer -->
+<footer class="mt-3xl pt-xl border-t border-outline-variant flex flex-col md:flex-row justify-between items-center gap-lg">
+<div class="flex items-center gap-xl">
+<div class="flex items-center gap-xs">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<span class="text-label-sm text-on-surface-variant">Normal</span>
+</div>
+<div class="flex items-center gap-xs">
+<div class="w-3 h-3 rounded-full bg-tertiary"></div>
+<span class="text-label-sm text-on-surface-variant">High Traffic</span>
+</div>
+<div class="flex items-center gap-xs">
+<div class="w-3 h-3 rounded-full bg-error"></div>
+<span class="text-label-sm text-on-surface-variant">Critical Capacity</span>
+</div>
+</div>
+<div class="text-body-sm text-on-surface-variant">
+                Last updated: Oct 24, 2023 at 14:32 PM (System sync every 5 mins)
+            </div>
+</footer>
+</main>
+<!-- FAB for Global Resource Management -->
+<button class="fixed bottom-lg right-lg w-14 h-14 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50">
+<span class="material-symbols-outlined text-[28px]">analytics</span>
+</button>
+<script src="scripts.js"></script></body></html>

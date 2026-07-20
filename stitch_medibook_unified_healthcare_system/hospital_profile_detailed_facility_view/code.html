@@ -1,0 +1,473 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>MediBook+ | St. Catherine's Medical Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #bcc9c8;
+            border-radius: 10px;
+        }
+        .active-tab-indicator {
+            view-transition-name: active-tab;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#ad6033",
+                    "primary-fixed-dim": "#6ad7d7",
+                    "error": "#ba1a1a",
+                    "surface-container-high": "#e4e9e8",
+                    "background": "#f6faf9",
+                    "primary-container": "#008282",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#006a6a",
+                    "surface-container-low": "#f0f5f4",
+                    "on-error": "#ffffff",
+                    "on-tertiary": "#ffffff",
+                    "on-surface-variant": "#3d4949",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#ffdbca",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-on-surface": "#edf2f1",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-fixed-variant": "#743408",
+                    "inverse-surface": "#2c3131",
+                    "surface-container-highest": "#dfe3e3",
+                    "primary-fixed": "#88f4f3",
+                    "surface-container": "#eaefee",
+                    "secondary-fixed-dim": "#b7c8e1",
+                    "on-primary-container": "#f3fffe",
+                    "on-primary-fixed": "#002020",
+                    "secondary-fixed": "#d3e4fe",
+                    "on-surface": "#171d1c",
+                    "surface-bright": "#f6faf9",
+                    "on-error-container": "#93000a",
+                    "inverse-primary": "#6ad7d7",
+                    "tertiary-fixed-dim": "#ffb68f",
+                    "surface-dim": "#d6dbda",
+                    "on-primary-fixed-variant": "#004f4f",
+                    "tertiary": "#8f491d",
+                    "surface-variant": "#dfe3e3",
+                    "on-secondary-container": "#54647a",
+                    "primary": "#006767",
+                    "on-secondary-fixed": "#0b1c30",
+                    "outline": "#6d7979",
+                    "on-tertiary-fixed": "#331100",
+                    "on-tertiary-container": "#fffbff",
+                    "on-secondary-fixed-variant": "#38485d",
+                    "on-background": "#171d1c",
+                    "secondary": "#505f76",
+                    "outline-variant": "#bcc9c8",
+                    "surface": "#f6faf9",
+                    "secondary-container": "#d0e1fb"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "8px",
+                    "margin-mobile": "16px",
+                    "base": "8px",
+                    "3xl": "64px",
+                    "margin-desktop": "32px",
+                    "container-max": "1440px",
+                    "xl": "32px",
+                    "gutter": "24px",
+                    "md": "16px",
+                    "lg": "24px",
+                    "xs": "4px",
+                    "2xl": "48px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Inter"],
+                    "title-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "title-lg": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen custom-scrollbar">
+<!-- TopNavBar -->
+<header class="w-full sticky top-0 bg-background/80 backdrop-blur-md shadow-sm z-50">
+<nav class="flex justify-between items-center h-16 px-margin-desktop max-w-container-max mx-auto">
+<div class="flex items-center gap-xl">
+<span class="font-title-lg text-title-lg text-primary font-bold">MediBook+</span>
+<div class="hidden md:flex gap-lg">
+<a class="text-secondary font-body-md hover:text-primary transition-colors duration-200" href="#">Solutions</a>
+<a class="text-secondary font-body-md hover:text-primary transition-colors duration-200" href="#">Pricing</a>
+<a class="text-secondary font-body-md hover:text-primary transition-colors duration-200" href="#">Resources</a>
+<a class="text-secondary font-body-md hover:text-primary transition-colors duration-200" href="#">Contact</a>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="text-primary font-title-md cursor-pointer active:scale-95 transition-transform px-md py-sm rounded-lg hover:bg-surface-container-low">Sign In</button>
+<button class="bg-primary text-on-primary font-title-md cursor-pointer active:scale-95 transition-transform px-lg py-sm rounded-lg shadow-sm">Request Demo</button>
+</div>
+</nav>
+</header>
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop py-lg space-y-2xl">
+<!-- Hero Section -->
+<section class="relative h-[400px] rounded-2xl overflow-hidden shadow-sm group">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" data-alt="A wide architectural shot of a modern, high-end hospital building made of glass and sleek white panels. The building is surrounded by lush green landscaping and a clear blue sky, evoking a sense of calm and technological advanced healthcare. The lighting is bright and airy, reflecting a clean, light-mode aesthetic with soft shadows." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCUn6Nh1MYclPTlqPUfWln_iIdTXhvBARCxIKJ4rTn9qQ9YyTZ1_y36FlSndRt1sKQRd5TAZGfIHMBUgeUhJ22VHZsCwpKi54i6NH05YX9irH1LeaPRzL6ZF45WLg_5CqhX_LaQ__Vi92VD1VXHbq1x4TDy-S1ZiQryNcurYLVcKmKnLUxxLdTrEhXwp-U8xeclYZxCe7aZLCEt_dLOmI6zCb10_9WPgSiUxP4aTHvNPGFMzPdtrfjqPQ')">
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-xl md:p-2xl flex flex-col md:flex-row justify-between items-end gap-lg">
+<div class="space-y-sm text-white">
+<div class="flex items-center gap-sm">
+<span class="bg-primary-container text-on-primary-container text-label-sm px-md py-xs rounded-full">Premier Health Partner</span>
+<div class="flex items-center text-tertiary-fixed">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="font-title-md ml-1">4.9 (2.4k Reviews)</span>
+</div>
+</div>
+<h1 class="font-display-lg text-white leading-tight">St. Catherine's Medical Center</h1>
+<p class="font-body-lg text-white/90 max-w-2xl">Excellence in specialized cardiac, neurological, and pediatric care since 1995. Advancing health through innovation and compassionate service.</p>
+</div>
+<div class="flex gap-sm">
+<button class="bg-white/10 backdrop-blur-md border border-white/20 text-white font-title-md px-lg py-md rounded-xl hover:bg-white/20 transition-all active:scale-95 flex items-center gap-2">
+<span class="material-symbols-outlined">share</span> Share
+                    </button>
+<button class="bg-primary text-on-primary font-title-md px-xl py-md rounded-xl shadow-lg hover:shadow-primary/25 transition-all active:scale-95 flex items-center gap-2">
+<span class="material-symbols-outlined">calendar_month</span> Book Appointment
+                    </button>
+</div>
+</div>
+</section>
+<!-- Profile Navigation Tabs -->
+<nav class="flex border-b border-outline-variant overflow-x-auto no-scrollbar sticky top-16 bg-background z-40 py-2">
+<div class="flex gap-xl px-2">
+<button class="tab-btn pb-4 font-title-md text-primary border-b-2 border-primary relative active" onclick="switchTab(this, 'overview')">
+                    Overview
+                </button>
+<button class="tab-btn pb-4 font-body-md text-on-surface-variant hover:text-primary transition-colors" onclick="switchTab(this, 'services')">
+                    Services
+                </button>
+<button class="tab-btn pb-4 font-body-md text-on-surface-variant hover:text-primary transition-colors" onclick="switchTab(this, 'equipment')">
+                    Equipment
+                </button>
+<button class="tab-btn pb-4 font-body-md text-on-surface-variant hover:text-primary transition-colors" onclick="switchTab(this, 'doctors')">
+                    Doctors
+                </button>
+<button class="tab-btn pb-4 font-body-md text-on-surface-variant hover:text-primary transition-colors" onclick="switchTab(this, 'reviews')">
+                    Reviews
+                </button>
+</div>
+</nav>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-xl">
+<!-- Main Content Area -->
+<div class="lg:col-span-8 space-y-xl">
+<!-- Overview Content -->
+<div class="tab-content space-y-xl" id="overview-content">
+<div class="bg-surface-container-low rounded-2xl p-xl shadow-sm space-y-lg">
+<h2 class="font-headline-md text-on-surface">About the Facility</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<div class="space-y-md">
+<p class="text-on-surface-variant leading-relaxed">St. Catherine's Medical Center is a state-of-the-art multi-specialty hospital. We integrate clinical care, biomedical research, and medical education to provide the highest standard of health services to our patients.</p>
+<ul class="space-y-sm">
+<li class="flex items-center gap-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-primary">check_circle</span> 500+ Bed Capacity
+                                    </li>
+<li class="flex items-center gap-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-primary">check_circle</span> 24/7 Emergency Response
+                                    </li>
+<li class="flex items-center gap-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-primary">check_circle</span> ISO 9001 Certified
+                                    </li>
+</ul>
+</div>
+<div class="rounded-xl overflow-hidden h-48">
+<img class="w-full h-full object-cover" data-alt="A brightly lit, modern hospital reception area with high ceilings, minimalist furniture in teal and white, and friendly staff. Large windows show a peaceful garden outside, emphasizing a premium and patient-centric atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZ3ct3V56msVq5t30L0zvmPmKDcUOrc9po6bP8c3uxWxX7HTqaZ8qgEM15uNv6-s48XL-gXq1ciYADBODRgZYni1twUocnMNOsxaksk3EhDG4_cQqe5S8gf3lKH9VTEoAkS6x5aPzlAKgdgVzTM-Df0OueuWBitI9ILW6mLzTSVHzXmN1OrMJEVkuZ-LUTlOVDUBWGPy-jRnjsEXV-TiUCO6lTWFuXdEjSdLSaVEOAmFZFgHE8RSmf_A">
+</div>
+</div>
+</div>
+<!-- Bento Grid for Stats -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-lg">
+<div class="bg-primary-container p-xl rounded-2xl text-on-primary-container flex flex-col items-center justify-center text-center">
+<span class="font-display-lg block">98%</span>
+<span class="font-label-md">Success Rate</span>
+</div>
+<div class="bg-surface-container-high p-xl rounded-2xl flex flex-col items-center justify-center text-center">
+<span class="font-headline-lg text-primary block">120+</span>
+<span class="font-label-md">Specialists</span>
+</div>
+<div class="bg-surface-container-high p-xl rounded-2xl flex flex-col items-center justify-center text-center">
+<span class="font-headline-lg text-primary block">15</span>
+<span class="font-label-md">Global Awards</span>
+</div>
+<div class="bg-secondary-container p-xl rounded-2xl text-on-secondary-container flex flex-col items-center justify-center text-center">
+<span class="font-headline-lg block">2k+</span>
+<span class="font-label-md">Staff Members</span>
+</div>
+</div>
+<!-- Services Preview (Bento Cards) -->
+<div class="space-y-lg">
+<div class="flex justify-between items-center">
+<h2 class="font-headline-md text-on-surface">Top Specialties</h2>
+<button class="text-primary font-title-md hover:underline">View All</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<div class="bg-white p-lg rounded-2xl border border-outline-variant hover:shadow-lg transition-all cursor-pointer group">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-md group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">cardiology</span>
+</div>
+<h3 class="font-title-lg mb-sm">Cardiology</h3>
+<p class="text-body-sm text-on-surface-variant">Advanced cardiac diagnostics and minimally invasive heart procedures.</p>
+</div>
+<div class="bg-white p-lg rounded-2xl border border-outline-variant hover:shadow-lg transition-all cursor-pointer group">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-md group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">neurology</span>
+</div>
+<h3 class="font-title-lg mb-sm">Neurology</h3>
+<p class="text-body-sm text-on-surface-variant">Comprehensive brain and nerve care using robotic-assisted tech.</p>
+</div>
+<div class="bg-white p-lg rounded-2xl border border-outline-variant hover:shadow-lg transition-all cursor-pointer group">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-md group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">child_care</span>
+</div>
+<h3 class="font-title-lg mb-sm">Pediatrics</h3>
+<p class="text-body-sm text-on-surface-variant">Dedicated children's wing with expert neonatal and pediatric care.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Placeholder for other tabs (Content dynamic injection logic) -->
+<div class="tab-content hidden space-y-xl" id="services-content">
+<h2 class="font-headline-md">Our Clinical Services</h2>
+<div class="grid grid-cols-1 gap-md">
+<!-- Repeated service cards -->
+<div class="flex items-center justify-between p-lg bg-white rounded-xl border border-outline-variant">
+<div class="flex items-center gap-lg">
+<span class="material-symbols-outlined text-primary text-3xl">biotech</span>
+<div>
+<h4 class="font-title-md">Diagnostic Imaging</h4>
+<p class="text-body-sm text-on-surface-variant">CT Scan, MRI, Ultrasound, and X-Ray</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+</div>
+<!-- More services... -->
+</div>
+</div>
+</div>
+<!-- Sidebar Info -->
+<aside class="lg:col-span-4 space-y-xl">
+<!-- Quick Contact Card -->
+<div class="bg-white rounded-2xl p-xl shadow-sm border border-outline-variant space-y-xl sticky top-28">
+<div>
+<h3 class="font-title-lg mb-lg">Contact Information</h3>
+<div class="space-y-lg">
+<div class="flex items-start gap-md">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<div>
+<p class="font-title-md">Address</p>
+<p class="text-on-surface-variant text-body-sm">1248 Medical Center Drive, West Hills, CA 91307</p>
+</div>
+</div>
+<div class="flex items-start gap-md">
+<span class="material-symbols-outlined text-primary">call</span>
+<div>
+<p class="font-title-md">Phone</p>
+<p class="text-on-surface-variant text-body-sm">+1 (555) 012-3456</p>
+</div>
+</div>
+<div class="flex items-start gap-md">
+<span class="material-symbols-outlined text-primary">mail</span>
+<div>
+<p class="font-title-md">Email</p>
+<p class="text-on-surface-variant text-body-sm">contact@stcatherines.med</p>
+</div>
+</div>
+<div class="flex items-start gap-md">
+<span class="material-symbols-outlined text-primary">schedule</span>
+<div>
+<p class="font-title-md">Visiting Hours</p>
+<p class="text-on-surface-variant text-body-sm">Mon-Sun: 08:00 AM - 09:00 PM</p>
+</div>
+</div>
+</div>
+</div>
+<div class="h-48 rounded-xl overflow-hidden border border-outline-variant relative">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist digital map view showing a medical campus with teal-colored building icons and clear street names. The map style is modern, using a light-mode color palette of soft grays, whites, and brand teal highlights for the hospital location." data-location="West Hills, CA" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCN1yHETrzCwTfhdIeSyl6EIbQNWIsY5bWgY6gfBvNJYTYi22j6tSH7A4pX0gOHnMFvXQEndalm3kbgiI-Fnard7NeFvgjfmF8tliRMxF0-nbFxm3-XXUv9r4lVIO7Guehvry1-Wrg0e4VZXnnPLv5r89CLTn8RlfDh6rz1pRnwhseRbdRfz7qavXEnEd36_tcBAg5ynVVr73l9NWtIlusqSXTACq2zKGTDI53REM1l7lRr-acw53eXng">
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="bg-primary text-on-primary p-2 rounded-full shadow-lg pulse">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+</div>
+</div>
+<div class="space-y-sm">
+<button class="w-full bg-primary text-on-primary font-title-md py-md rounded-xl hover:shadow-md transition-all active:scale-[0.98]">Get Directions</button>
+<button class="w-full bg-surface-container-high text-on-surface font-title-md py-md rounded-xl hover:bg-surface-container-highest transition-all active:scale-[0.98]">Emergency Line</button>
+</div>
+<div class="pt-lg border-t border-outline-variant">
+<p class="text-label-sm text-on-surface-variant mb-md">AFFILIATIONS</p>
+<div class="flex gap-lg grayscale opacity-60">
+<span class="font-bold text-title-md">JCI</span>
+<span class="font-bold text-title-md">WHO</span>
+<span class="font-bold text-title-md">AHCA</span>
+</div>
+</div>
+</div>
+</aside>
+</div>
+<!-- Featured Doctors Section (Horizontal Scroll) -->
+<section class="space-y-lg">
+<div class="flex justify-between items-center">
+<h2 class="font-headline-md text-on-surface">Meet Our Specialists</h2>
+<div class="flex gap-sm">
+<button class="p-2 rounded-full border border-outline-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="p-2 rounded-full border border-outline-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="flex gap-lg overflow-x-auto pb-4 no-scrollbar">
+<!-- Doctor Card 1 -->
+<div class="min-w-[280px] bg-white rounded-2xl border border-outline-variant overflow-hidden hover:shadow-lg transition-shadow group cursor-pointer">
+<div class="h-64 relative">
+<img class="w-full h-full object-cover" data-alt="A professional portrait of a senior male doctor with a kind expression, wearing a white lab coat and stethoscope. The background is a soft-focus medical office with light teal accents, consistent with a premium healthcare SaaS aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtl-u2SuIdTyeQtJGa47fLM80VgCzxOOi3HuY4oII1l_dhM6vnaneIuG_uEQxBgcIupkEo76ON-3elhBM81WMjqUsaawSru1L8gLr_lsuP1Ou23djIP-g3G81UkaEAffFNLTW9Va5DUVvpivCcNkwnmIIRG6gGt_ywI4Jrvbddc0jvKBYElR8562cK-4W7hE8s-m5X2emlvuvJTUnBZIeEPQQLuRKE81YYb6VN1vYKlVNvdDiCMtFofw">
+<div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg text-label-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary">star</span> 4.9
+                        </div>
+</div>
+<div class="p-lg">
+<h4 class="font-title-md group-hover:text-primary transition-colors">Dr. Sarah Jenkins</h4>
+<p class="text-body-sm text-primary font-medium mb-md">Senior Cardiologist</p>
+<p class="text-label-sm text-on-surface-variant mb-lg">15+ Years Experience • Johns Hopkins Alumna</p>
+<button class="w-full py-sm rounded-lg border border-primary text-primary font-title-md hover:bg-primary hover:text-on-primary transition-all">Book Consult</button>
+</div>
+</div>
+<!-- Doctor Card 2 -->
+<div class="min-w-[280px] bg-white rounded-2xl border border-outline-variant overflow-hidden hover:shadow-lg transition-shadow group cursor-pointer">
+<div class="h-64 relative">
+<img class="w-full h-full object-cover" data-alt="A professional portrait of a confident female neurologist in her 40s, wearing business attire under a white lab coat. She is smiling warmly in a modern clinic setting with clean lines and soft, natural lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiCASZCgOUoII1z-M5DnkIWsLEUMR1MiAqLCsehoT9KexX7JbgNFLdVljLTncex59jUsvFXcIMenEoN6Cm2fLAP9s-g-x96jBIziHo2poGTgXf1czunUIbPuuZ5zJ6ly0vuUAXFabMkbrG_UQxPB-TFchSLb4sS7JgVl18mTl1JIMZlbCUu_J0Oxg66KlE7iIjAhzMU31URHzD0y1aYgS8jPrBd--YJReEwlqbPoywq7ZnGtygR6oY9g">
+<div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg text-label-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary">star</span> 5.0
+                        </div>
+</div>
+<div class="p-lg">
+<h4 class="font-title-md group-hover:text-primary transition-colors">Dr. Marcus Thorne</h4>
+<p class="text-body-sm text-primary font-medium mb-md">Neurosurgeon</p>
+<p class="text-label-sm text-on-surface-variant mb-lg">12+ Years Experience • Harvard Medical</p>
+<button class="w-full py-sm rounded-lg border border-primary text-primary font-title-md hover:bg-primary hover:text-on-primary transition-all">Book Consult</button>
+</div>
+</div>
+<!-- Doctor Card 3 -->
+<div class="min-w-[280px] bg-white rounded-2xl border border-outline-variant overflow-hidden hover:shadow-lg transition-shadow group cursor-pointer">
+<div class="h-64 relative">
+<img class="w-full h-full object-cover" data-alt="A friendly male pediatrician holding a reflex hammer, wearing a playful bowtie under his white coat. The background shows a colorful, child-friendly examination room with soft-focus toys and pastel wall colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmpumgc4sNv2xfmpzBIVkPIGbHtmNbBOa2UcL9YUzTYsc7otAtOSsjOt-oHDOx9N0SAkmaNFAJsO2EXgtmB35gwdhypglR52Se8CJkJSaBPt8YuQM61jDu3PygkTS8doIFNpulAlSEN4iZWpswAZGZA2ePARZ3prXrA4qGQ4cV_HPFCboX8FC-8YAegkC5LnEaQutaQnGqiiWlhY61LjkE1E4kxDEATH2vztQiF9VWnLhxMP-K_SeoOQ">
+<div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg text-label-sm font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-tertiary">star</span> 4.8
+                        </div>
+</div>
+<div class="p-lg">
+<h4 class="font-title-md group-hover:text-primary transition-colors">Dr. Elena Rodriguez</h4>
+<p class="text-body-sm text-primary font-medium mb-md">Chief Pediatrician</p>
+<p class="text-label-sm text-on-surface-variant mb-lg">20+ Years Experience • Stanford Medicine</p>
+<button class="w-full py-sm rounded-lg border border-primary text-primary font-title-md hover:bg-primary hover:text-on-primary transition-all">Book Consult</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest w-full py-xl border-t border-outline-variant">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop max-w-container-max mx-auto gap-lg">
+<div class="flex flex-col items-center md:items-start gap-xs">
+<span class="font-title-md text-title-md text-on-surface font-bold">MediBook+</span>
+<p class="text-on-surface-variant font-body-sm">© 2024 MediBook+ SaaS. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-lg">
+<a class="text-on-surface-variant font-body-sm hover:text-primary hover:underline transition-opacity duration-200" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant font-body-sm hover:text-primary hover:underline transition-opacity duration-200" href="#">Terms of Service</a>
+<a class="text-on-surface-variant font-body-sm hover:text-primary hover:underline transition-opacity duration-200" href="#">HIPAA Compliance</a>
+<a class="text-on-surface-variant font-body-sm hover:text-primary hover:underline transition-opacity duration-200" href="#">Security</a>
+</div>
+</div>
+</footer>
+<script>
+        function switchTab(btn, tabName) {
+            // Update Tab Styling
+            document.querySelectorAll('.tab-btn').forEach(b => {
+                b.classList.remove('text-primary', 'border-b-2', 'border-primary', 'active');
+                b.classList.add('text-on-surface-variant');
+            });
+            btn.classList.add('text-primary', 'border-b-2', 'border-primary', 'active');
+            btn.classList.remove('text-on-surface-variant');
+
+            // Toggle Content
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+            const content = document.getElementById(tabName + '-content');
+            if (content) content.classList.remove('hidden');
+        }
+
+        // Simple smooth scroll and intersection observer could be added here for animations
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-4');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-4');
+            observer.observe(section);
+        });
+    </script>
+</body></html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html lang="en" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/><link href="tailwind.css" rel="stylesheet"/></head>
+<body class="bg-surface text-on-surface min-h-screen flex">
+<!-- Left Navigation Sidebar -->
+<aside class="hidden md:flex flex-col h-screen p-md gap-sm bg-surface-container-low w-64 fixed left-0 top-0 z-40 border-r border-outline-variant/20">
+<div class="flex items-center gap-sm px-sm mb-xl"><div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary"><span class="material-symbols-outlined" data-icon="medical_services">medical_services</span></div><div><p class="text-title-md font-bold leading-none">MediBook+</p><p class="text-[10px] text-on-surface-variant opacity-70 uppercase tracking-tighter">Healthcare Suite</p></div></div>
+<button class="mb-lg w-full bg-primary text-on-primary py-md px-lg rounded-lg font-semibold flex items-center justify-center gap-sm hover:brightness-110 transition-all shadow-sm">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+        New Appointment
+    </button>
+<nav class="flex-1 space-y-xs">
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant font-medium hover:bg-surface-container-highest rounded-lg transition-all" href="admin_hospital_management_dashboard.html">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+            Dashboard
+        </a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant font-medium hover:bg-surface-container-highest rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+            Profile
+        </a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant font-medium hover:bg-surface-container-highest rounded-lg transition-all" href="admin_master_appointment_schedule.html">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+            Appointments
+        </a>
+<a class="flex items-center gap-md px-md py-sm text-on-surface-variant font-medium hover:bg-surface-container-highest rounded-lg transition-all" href="doctor_messages_consultations_hub.html">
+<span class="material-symbols-outlined" data-icon="chat">chat</span>
+            Messages
+        </a>
+<a class="flex items-center gap-md px-md py-sm text-primary font-bold bg-primary/10 rounded-lg transition-all" href="admin_global_hospital_settings.html">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+            Settings
+        </a>
+</nav>
+<div class="mt-auto p-sm bg-surface-container-high rounded-xl flex items-center gap-md">
+<img class="w-10 h-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrYUMfkAsfBOzqj24xOdeUv8fDTZzubqgKM8icrrGOXN7K3_GEh7Pk747Bk2sEywtBh9FoDCKjNuSl2n-erVgGewkwE-WOdJPofed4PZLNg-VB86v5gPsZtpPRS36ohJ6VLc9iqnFEqCjZ9cjtB3pfDMVlyrauDdW3gnv1OvPHurMG27U6GUARzM9z6d3bUC58nHY7CdELxEIXdY8tyjA8APLY3g-GBh2bjRrxtTyhz6M1m6Ux1c0oBQ"/>
+<div class="overflow-hidden">
+<p class="text-[13px] font-semibold truncate">Dr. Julian Vance</p>
+<p class="text-[11px] text-on-surface-variant truncate">Cardiologist</p>
+</div>
+</div>
+</aside>
+<!-- Top Navigation Bar -->
+<header class="md:ml-64 flex justify-between items-center w-[calc(100%-16rem)] px-xl h-16 z-30 bg-surface-bright border-b border-outline-variant/10 fixed top-0 left-64 right-0"><div class="flex-1 flex justify-center"><div class="flex bg-surface-container-low px-md py-1.5 rounded-full items-center gap-sm border border-outline-variant/30"><span class="material-symbols-outlined text-outline text-[20px]" data-icon="search">search</span><input class="bg-transparent border-none focus:ring-0 text-sm w-96" placeholder="Search patients, records..." type="text"/></div></div><div class="flex items-center gap-md"><button class="p-sm text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full relative"><span class="material-symbols-outlined" data-icon="notifications">notifications</span><span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span></button></div></header><div class="md:ml-64 fixed top-16 left-64 right-0 h-16 bg-surface-bright border-b border-outline-variant/10 z-30 flex items-center justify-between px-xl"><div class="flex items-center gap-md"><h1 class="text-lg font-bold">Doctor Profile &amp; Availability</h1></div><div class="flex items-center gap-md"><button class="px-lg py-2 text-on-surface-variant font-semibold hover:bg-surface-container-high rounded-lg transition-all">Discard Changes</button><button class="px-lg py-2 bg-primary text-on-primary rounded-lg font-semibold hover:brightness-110 shadow-sm transition-all">Save Changes</button></div></div>
+<!-- Main High-Fidelity Content Area -->
+<main class="mt-32 md:ml-64 flex-1 flex flex-row overflow-hidden h-[calc(100vh-8rem)]">
+<!-- Profile & Settings Panel (Left Sidebar within Main Content) -->
+<aside class="w-80 border-r border-outline-variant/20 bg-surface-container-lowest overflow-y-auto p-lg flex flex-col gap-lg">
+<!-- Minimal Profile Section -->
+<div class="text-center space-y-md">
+<div class="relative w-24 h-24 mx-auto">
+<img class="w-full h-full rounded-full object-cover border-4 border-white shadow-md" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxHVZZ7x8WQepTlwgCwZjf6g7OY8VSV30DqSiycpfVtK5tJqm0hkrl64lb--rBiihSwxTzDT9SEs-_Pcd5dZH47E8aUtFPYWlR6sHFSsXzFlGDV8Q4ZgcmiILM-6ZTCzKd3Q_UwRW1rhfel8QrDZoCRqN0NksduUyGmsSvekS-tpCxgR7--MvtSCfVgEtKIk-G564AtRjz6c5JUNiOJH7JaSMryiyWJI9WLTK8X1a5suSzXbnuEzU19Q"/>
+<button class="absolute bottom-0 right-0 bg-primary text-on-primary p-1 rounded-full shadow-lg">
+<span class="material-symbols-outlined text-[16px]">edit</span>
+</button>
+</div>
+<div>
+<h3 class="font-bold text-lg">Dr. Julian Vance</h3>
+<p class="text-sm text-primary font-semibold">Chief Cardiologist</p>
+</div>
+</div>
+<div class="space-y-xl">
+<!-- Availability Types -->
+<div class="space-y-sm">
+<h4 class="text-[12px] font-bold text-outline uppercase tracking-wider">Availability Modes</h4>
+<div class="space-y-2">
+<label class="flex items-center justify-between p-3 border border-outline-variant/50 rounded-xl hover:bg-surface-container-low cursor-pointer transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="repeat">repeat</span>
+<span class="text-sm font-medium">Recurring</span>
+</div>
+<input checked="" class="rounded text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between p-3 border border-outline-variant/50 rounded-xl hover:bg-surface-container-low cursor-pointer transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="videocam">videocam</span>
+<span class="text-sm font-medium">Telemedicine</span>
+</div>
+<input checked="" class="rounded text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+</label>
+<label class="flex items-center justify-between p-3 border border-outline-variant/50 rounded-xl hover:bg-surface-container-low cursor-pointer transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="apartment">apartment</span>
+<span class="text-sm font-medium">Clinic Visit</span>
+</div>
+<input class="rounded text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+</label>
+</div>
+</div>
+<!-- Global Settings -->
+<div class="space-y-sm">
+<h4 class="text-[12px] font-bold text-outline uppercase tracking-wider">Global Settings</h4>
+<div class="space-y-2">
+<button class="w-full flex items-center justify-between p-3 border border-outline-variant/50 rounded-xl hover:bg-error/5 group transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-error" data-icon="flight_takeoff">flight_takeoff</span>
+<span class="text-sm font-medium group-hover:text-error">Vacation Mode</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[18px]">chevron_right</span>
+</button>
+<button class="w-full flex items-center justify-between p-3 border border-outline-variant/50 rounded-xl hover:bg-surface-container-low transition-all">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="event_busy">event_busy</span>
+<span class="text-sm font-medium">Holiday Settings</span>
+</div>
+<span class="material-symbols-outlined text-outline text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Advanced Configuration -->
+<div class="space-y-md">
+<h4 class="text-[12px] font-bold text-outline uppercase tracking-wider">Configuration</h4>
+<div class="space-y-3">
+<div class="space-y-1">
+<label class="text-[12px] text-on-surface-variant font-medium">Max. Patients / Hour</label>
+<input class="w-full text-sm border-outline-variant rounded-lg bg-surface-container-low focus:ring-primary" type="number" value="3"/>
+</div>
+<div class="space-y-1">
+<label class="text-[12px] text-on-surface-variant font-medium">Buffer Time (mins)</label>
+<select class="w-full text-sm border-outline-variant rounded-lg bg-surface-container-low focus:ring-primary">
+<option>5 min</option>
+<option selected="">10 min</option>
+<option>15 min</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+</aside>
+<!-- Center Panel: Calendar & Scheduler -->
+<div class="flex-1 bg-surface-bright flex flex-col p-xl overflow-hidden">
+<div class="flex items-center justify-between mb-lg">
+<div>
+<h2 class="text-2xl font-bold">Schedule Management</h2>
+<p class="text-sm text-on-surface-variant">Drag and drop to adjust your consultation blocks</p>
+</div>
+<!-- View Tabs -->
+<div class="flex bg-surface-container-low p-1 rounded-xl border border-outline-variant/30">
+<button class="px-6 py-2 bg-white text-primary font-bold rounded-lg shadow-sm text-sm">Weekly</button>
+<button class="px-6 py-2 text-on-surface-variant font-medium text-sm hover:text-primary transition-colors">Monthly</button>
+</div>
+</div>
+<!-- Legend -->
+<div class="flex items-center gap-xl mb-md">
+<div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full status-available"></div><span class="text-[12px] font-medium">Available</span></div>
+<div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full status-busy"></div><span class="text-[12px] font-medium">Busy</span></div>
+<div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full status-break"></div><span class="text-[12px] font-medium">Break</span></div>
+<div class="flex items-center gap-2"><div class="w-3 h-3 rounded-full status-vacation"></div><span class="text-[12px] font-medium">Vacation</span></div>
+</div>
+<!-- Scrollable Scheduler Area -->
+<div class="flex-1 bg-white rounded-2xl border border-outline-variant/20 shadow-sm overflow-hidden flex flex-col">
+<!-- Table Header -->
+<div class="grid grid-cols-8 border-b border-outline-variant/10 bg-surface-container-low/30">
+<div class="p-4 border-r border-outline-variant/10"></div>
+<div class="p-4 text-center text-sm font-bold border-r border-outline-variant/10">Mon <span class="block text-[11px] font-normal text-outline">12 Sep</span></div>
+<div class="p-4 text-center text-sm font-bold border-r border-outline-variant/10">Tue <span class="block text-[11px] font-normal text-outline">13 Sep</span></div>
+<div class="p-4 text-center text-sm font-bold border-r border-outline-variant/10">Wed <span class="block text-[11px] font-normal text-outline">14 Sep</span></div>
+<div class="p-4 text-center text-sm font-bold border-r border-outline-variant/10">Thu <span class="block text-[11px] font-normal text-outline">15 Sep</span></div>
+<div class="p-4 text-center text-sm font-bold border-r border-outline-variant/10 text-primary">Fri <span class="block text-[11px] font-normal text-outline">16 Sep</span></div>
+<div class="p-4 text-center text-sm font-bold border-r border-outline-variant/10">Sat <span class="block text-[11px] font-normal text-outline">17 Sep</span></div>
+<div class="p-4 text-center text-sm font-bold">Sun <span class="block text-[11px] font-normal text-outline">18 Sep</span></div>
+</div>
+<!-- Drag-and-drop representation -->
+<div class="flex-1 overflow-y-auto">
+<div class="grid grid-cols-8 relative h-[800px]">
+<!-- Time Labels -->
+<div class="col-span-1 border-r border-outline-variant/10 divide-y divide-outline-variant/10">
+<div class="h-16 flex items-start justify-end pr-4 pt-2 text-[11px] text-outline">08:00 AM</div>
+<div class="h-16 flex items-start justify-end pr-4 pt-2 text-[11px] text-outline">09:00 AM</div>
+<div class="h-16 flex items-start justify-end pr-4 pt-2 text-[11px] text-outline">10:00 AM</div>
+<div class="h-16 flex items-start justify-end pr-4 pt-2 text-[11px] text-outline">11:00 AM</div>
+<div class="h-16 flex items-start justify-end pr-4 pt-2 text-[11px] text-outline">12:00 PM</div>
+<div class="h-16 flex items-start justify-end pr-4 pt-2 text-[11px] text-outline">01:00 PM</div>
+<div class="h-16 flex items-start justify-end pr-4 pt-2 text-[11px] text-outline">02:00 PM</div>
+<div class="h-16 flex items-start justify-end pr-4 pt-2 text-[11px] text-outline">03:00 PM</div>
+<div class="h-16 flex items-start justify-end pr-4 pt-2 text-[11px] text-outline">04:00 PM</div>
+<div class="h-16 flex items-start justify-end pr-4 pt-2 text-[11px] text-outline">05:00 PM</div>
+</div>
+<!-- Visual blocks -->
+<div class="col-span-7 grid grid-cols-7 relative">
+<!-- Monday Blocks -->
+<div class="relative border-r border-outline-variant/5">
+<div class="absolute top-0 left-1 right-1 h-32 status-available rounded-lg border-2 border-white/20 p-2 shadow-sm cursor-grab active:cursor-grabbing">
+<span class="text-[10px] text-white font-bold leading-none block">Clinic Hours</span>
+<span class="text-[9px] text-white/80">08:00 - 10:00</span>
+</div>
+<div class="absolute top-64 left-1 right-1 h-16 status-break rounded-lg border-2 border-white/20 p-2 shadow-sm flex items-center justify-center">
+<span class="text-[10px] text-white font-bold">Lunch</span>
+</div>
+</div>
+<!-- Tuesday Blocks -->
+<div class="relative border-r border-outline-variant/5">
+<div class="absolute top-16 left-1 right-1 h-48 status-available rounded-lg border-2 border-white/20 p-2 shadow-sm cursor-grab">
+<span class="text-[10px] text-white font-bold leading-none block">Telemedicine</span>
+<span class="text-[9px] text-white/80">09:00 - 12:00</span>
+</div>
+</div>
+<!-- Friday (Today) Highlighting -->
+<div class="relative border-r border-outline-variant/5 bg-primary/5">
+<div class="absolute top-0 left-1 right-1 h-32 status-available rounded-lg border-2 border-white/20 p-2 shadow-sm">
+<span class="text-[10px] text-white font-bold leading-none block">Clinic Hours</span>
+<span class="text-[9px] text-white/80">08:00 - 10:00</span>
+</div>
+<div class="absolute top-36 left-1 right-1 h-20 status-busy rounded-lg border-2 border-white/20 p-2 shadow-sm">
+<span class="text-[10px] text-white font-bold leading-none block">Reserved</span>
+<span class="text-[9px] text-white/80">Surgery Prep</span>
+</div>
+</div>
+<!-- Saturday / Sunday -->
+<div class="relative border-r border-outline-variant/5 bg-surface-container-low/30"></div>
+<div class="relative bg-surface-container-low/30"></div>
+<!-- Grid lines overlay -->
+<div class="absolute inset-0 pointer-events-none divide-y divide-outline-variant/5">
+<div class="h-16"></div><div class="h-16"></div><div class="h-16"></div><div class="h-16"></div><div class="h-16"></div><div class="h-16"></div><div class="h-16"></div><div class="h-16"></div><div class="h-16"></div><div class="h-16"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Sidebar: Schedule Preview Panel -->
+<aside class="w-80 border-l border-outline-variant/20 bg-surface-container-lowest overflow-y-auto p-lg flex flex-col gap-lg">
+<div class="flex items-center justify-between">
+<h4 class="font-bold text-lg">Schedule Preview</h4>
+<span class="text-[11px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full">LIVE</span>
+</div>
+<div class="space-y-xl">
+<!-- Day Summary Card -->
+<div class="bg-primary/5 rounded-2xl p-lg border border-primary/10 space-y-md">
+<div class="flex items-center gap-3">
+<div class="bg-primary text-white p-2 rounded-lg">
+<span class="material-symbols-outlined text-[20px]" data-icon="summarize">summarize</span>
+</div>
+<div>
+<p class="text-[11px] text-outline font-bold uppercase tracking-wider">Today, Sep 16</p>
+<p class="text-sm font-bold">Friday Summary</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<div class="space-y-1">
+<p class="text-[11px] text-on-surface-variant">Total Hours</p>
+<p class="text-lg font-bold">8.5h</p>
+</div>
+<div class="space-y-1">
+<p class="text-[11px] text-on-surface-variant">Total Slots</p>
+<p class="text-lg font-bold">14</p>
+</div>
+</div>
+</div>
+<!-- Conflicting Alerts -->
+<div class="space-y-sm">
+<h4 class="text-[12px] font-bold text-outline uppercase tracking-wider">Break Coordination</h4>
+<div class="bg-surface-container-low rounded-xl p-md border border-outline-variant/30 flex gap-3">
+<span class="material-symbols-outlined text-orange-500 text-[20px]">info</span>
+<div class="space-y-xs">
+<p class="text-[12px] font-bold leading-tight">Lunch Break Synced</p>
+<p class="text-[11px] text-on-surface-variant leading-relaxed">12:00 PM - 01:00 PM is automatically blocked across all clinics.</p>
+</div>
+</div>
+</div>
+<!-- Upcomming Slots Preview -->
+<div class="space-y-md">
+<h4 class="text-[12px] font-bold text-outline uppercase tracking-wider">Configured Slots</h4>
+<div class="space-y-3">
+<div class="flex items-center gap-4 p-3 hover:bg-surface-container-low rounded-xl transition-all border border-transparent hover:border-outline-variant/30">
+<div class="w-10 text-center">
+<p class="text-[11px] font-bold leading-none">08</p>
+<p class="text-[9px] text-outline uppercase">AM</p>
+</div>
+<div class="flex-1">
+<p class="text-sm font-semibold">General Consult</p>
+<p class="text-[11px] text-on-surface-variant">4 slots • Available</p>
+</div>
+<div class="w-2 h-2 rounded-full status-available"></div>
+</div>
+<div class="flex items-center gap-4 p-3 hover:bg-surface-container-low rounded-xl transition-all border border-transparent hover:border-outline-variant/30">
+<div class="w-10 text-center">
+<p class="text-[11px] font-bold leading-none">12</p>
+<p class="text-[9px] text-outline uppercase">PM</p>
+</div>
+<div class="flex-1">
+<p class="text-sm font-semibold text-outline">Lunch Break</p>
+<p class="text-[11px] text-on-surface-variant">Unavailable</p>
+</div>
+<div class="w-2 h-2 rounded-full status-break"></div>
+</div>
+</div>
+</div>
+<!-- Action Area -->
+<div class="mt-auto pt-lg">
+<button class="w-full py-3 bg-primary/10 text-primary font-bold rounded-xl text-sm hover:bg-primary/20 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">print</span>
+                    Print Schedule
+                </button>
+</div>
+</div>
+</aside>
+</main>
+<!-- Success Notification Toast -->
+<div class="fixed bottom-margin-desktop right-margin-desktop translate-y-20 opacity-0 bg-inverse-surface text-inverse-on-surface px-xl py-lg rounded-xl shadow-2xl z-[100] transition-all duration-500 flex items-center gap-lg" id="saveToast">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px] text-on-primary" data-icon="check" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div class="space-y-xs">
+<p class="font-label-md font-bold">Schedule Updated</p>
+<p class="text-body-sm opacity-80">Your new availability is now live for all patients.</p>
+</div>
+<button class="ml-lg opacity-60 hover:opacity-100" onclick="hideToast()">
+<span class="material-symbols-outlined text-[20px]" data-icon="close">close</span>
+</button>
+</div>
+<script src="scripts.js"></script></body></html>

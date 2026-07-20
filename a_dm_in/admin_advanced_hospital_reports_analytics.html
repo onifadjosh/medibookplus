@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MediFlow Admin - Reports &amp; Analytics</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/><link href="tailwind.css" rel="stylesheet"/></head>
+<body class="text-on-surface">
+<!-- Side Navigation Bar -->
+<aside class="w-64 h-full fixed left-0 top-0 bg-surface-container-lowest dark:bg-inverse-surface shadow-sm flex flex-col py-md px-sm overflow-y-auto z-50">
+<div class="flex items-center gap-md px-md mb-3xl">
+<div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-white">
+<span class="material-symbols-outlined">health_metrics</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim leading-none">MediFlow Admin</h1>
+<p class="text-label-sm font-label-sm text-on-surface-variant opacity-70">General Hospital</p>
+</div>
+</div>
+<nav class="flex-1 space-y-xs">
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors transition-transform active:scale-95 cursor-pointer font-label-md text-label-md" href="admin_hospital_management_dashboard.html">
+<span class="material-symbols-outlined">dashboard</span> Dashboard
+            </a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors transition-transform active:scale-95 cursor-pointer font-label-md text-label-md" href="admin_patient_doctor_management.html">
+<span class="material-symbols-outlined">person</span> Patients
+            </a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors transition-transform active:scale-95 cursor-pointer font-label-md text-label-md" href="admin_doctor_management_directory.html">
+<span class="material-symbols-outlined">medical_services</span> Doctors
+            </a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors transition-transform active:scale-95 cursor-pointer font-label-md text-label-md" href="admin_hospital_departments_overview.html">
+<span class="material-symbols-outlined">domain</span> Departments
+            </a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors transition-transform active:scale-95 cursor-pointer font-label-md text-label-md" href="admin_master_appointment_schedule.html">
+<span class="material-symbols-outlined">event</span> Appointments
+            </a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-on-surface-variant hover:bg-surface-container-low transition-colors transition-transform active:scale-95 cursor-pointer font-label-md text-label-md" href="admin_centralized_medical_records_portal.html">
+<span class="material-symbols-outlined">description</span> Medical Records
+            </a>
+<a class="flex items-center gap-md px-md py-sm rounded-lg text-primary dark:text-primary-fixed-dim font-bold border-r-4 border-primary bg-surface-container-low transition-colors font-label-md text-label-md" href="admin_advanced_hospital_reports_analytics.html">
+<span class="material-symbols-outlined">assessment</span> Reports
+            </a>
+</nav>
+<div class="mt-auto pt-lg px-md border-t border-outline-variant">
+<a class="flex items-center gap-md py-sm text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">
+<span class="material-symbols-outlined">settings</span> Settings
+            </a>
+</div>
+</aside>
+<!-- Main Content Shell -->
+<main class="ml-64 min-h-screen bg-surface">
+<!-- Top Nav Bar -->
+<header class="h-16 w-full sticky top-0 z-40 bg-surface dark:bg-background shadow-sm flex justify-between items-center px-lg">
+<div class="flex items-center gap-lg">
+<div class="relative focus-within:ring-2 focus-within:ring-primary rounded-lg">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-body-md">search</span>
+<input class="bg-surface-container border-none rounded-lg pl-10 pr-4 py-2 w-64 text-body-sm focus:ring-0 focus:outline-none" placeholder="Search reports..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="flex items-center gap-sm ml-sm">
+<div class="text-right">
+<p class="text-label-md font-label-md leading-none">Admin User</p>
+<p class="text-label-sm font-label-sm text-on-surface-variant">Chief Administrator</p>
+</div>
+<img class="w-10 h-10 rounded-full border-2 border-primary-fixed object-cover" data-alt="A professional headshot of a healthcare administrator in a bright, modern clinic setting. They are wearing a sharp charcoal suit with a friendly and confident expression. The background is softly blurred with clean hospital architecture and natural daylight streaming through large windows, creating a trust-inspiring healthcare SaaS aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmqGg1eQofv0Jt7tmuBqr-NlmBmWGqVbPNY5yxJHH_F8UBzcJx_1ZXbt2IDamw8VFJVjDJnjai1t5xbU_YXCCcTJL3mkC1-9JvBfLhyE7-H18ZHgwMX_0fgEm7ndDiu2aTcT2nQpa6a72pYohjtCqa1hFd9apXNWBBYbH7RNHBwXY7UV2vSxaFaFFauHcS_oxrDFDptYocHVY1Mz4Y2N31Toai5s4qq9NG6RIzkjPd-MO7Z9rZDFWIhw"/>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<div class="p-xl space-y-xl max-w-7xl mx-auto">
+<!-- Page Header & Actions -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-md">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Reports &amp; Analytics</h2>
+<p class="text-body-md text-on-surface-variant">Advanced operational and clinical insights for Q3 2023.</p>
+</div>
+<div class="flex items-center gap-sm">
+<button class="flex items-center gap-xs px-md py-2 border border-outline rounded-lg text-label-md font-label-md hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined text-[18px]">calendar_today</span> Last 30 Days
+                    </button>
+<div class="h-8 w-px bg-outline-variant mx-sm"></div>
+<button class="flex items-center gap-xs px-md py-2 border border-outline rounded-lg text-label-md font-label-md hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined text-[18px]">download</span> Export
+                    </button>
+<button class="flex items-center gap-xs px-md py-2 bg-primary text-white rounded-lg text-label-md font-label-md hover:opacity-90 transition-all shadow-sm">
+<span class="material-symbols-outlined text-[18px]">schedule_send</span> Schedule Report
+                    </button>
+</div>
+</div>
+<!-- Dashboard Tabs -->
+<div class="flex items-center gap-xl border-b border-outline-variant">
+<button class="px-xs py-sm text-label-md font-bold text-primary border-b-2 border-primary">Clinical Outcomes</button>
+<button class="px-xs py-sm text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors">Financial Performance</button>
+<button class="px-xs py-sm text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors">Operational Efficiency</button>
+<button class="px-xs py-sm text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors">Custom Queries</button>
+</div>
+<!-- Bento Grid Dashboard -->
+<div class="bento-grid">
+<!-- Clinical Outcomes Main Chart (Box Plot Style Representation) -->
+<div class="col-span-12 lg:col-span-8 bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-outline-variant/30 flex flex-col gap-md h-[450px]">
+<div class="flex items-center justify-between">
+<div>
+<h3 class="text-title-lg font-title-lg">Patient Recovery Duration</h3>
+<p class="text-label-sm text-on-surface-variant">Variation across departments (Box Plot Analysis)</p>
+</div>
+<div class="flex gap-sm">
+<span class="flex items-center gap-xs text-label-sm"><span class="w-3 h-3 rounded-full bg-primary"></span> Target</span>
+<span class="flex items-center gap-xs text-label-sm"><span class="w-3 h-3 rounded-full bg-tertiary"></span> Outlier</span>
+</div>
+</div>
+<!-- Mock Box Plot Visualization -->
+<div class="flex-1 flex items-end justify-around pt-xl gap-4">
+<!-- Dep 1 -->
+<div class="flex flex-col items-center flex-1 h-full relative">
+<div class="absolute top-0 text-[10px] text-on-surface-variant font-bold">14 Days</div>
+<div class="w-1 bg-outline-variant h-3/4 mb-10"></div>
+<div class="absolute bottom-1/3 w-full h-24 bg-primary/20 border-x-2 border-primary rounded-sm flex items-center justify-center">
+<div class="w-full h-0.5 bg-primary"></div>
+</div>
+<div class="w-2 h-2 rounded-full bg-tertiary absolute top-10"></div>
+<span class="text-label-sm mt-2">Cardiology</span>
+</div>
+<!-- Dep 2 -->
+<div class="flex flex-col items-center flex-1 h-full relative">
+<div class="w-1 bg-outline-variant h-1/2 mb-10"></div>
+<div class="absolute bottom-1/4 w-full h-16 bg-primary/20 border-x-2 border-primary rounded-sm flex items-center justify-center">
+<div class="w-full h-0.5 bg-primary"></div>
+</div>
+<span class="text-label-sm mt-2">Neurology</span>
+</div>
+<!-- Dep 3 -->
+<div class="flex flex-col items-center flex-1 h-full relative">
+<div class="w-1 bg-outline-variant h-4/5 mb-10"></div>
+<div class="absolute bottom-1/2 w-full h-28 bg-primary/20 border-x-2 border-primary rounded-sm flex items-center justify-center">
+<div class="w-full h-0.5 bg-primary"></div>
+</div>
+<div class="w-2 h-2 rounded-full bg-tertiary absolute top-4"></div>
+<span class="text-label-sm mt-2">Orthopedics</span>
+</div>
+<!-- Dep 4 -->
+<div class="flex flex-col items-center flex-1 h-full relative">
+<div class="w-1 bg-outline-variant h-2/3 mb-10"></div>
+<div class="absolute bottom-1/3 w-full h-20 bg-primary/20 border-x-2 border-primary rounded-sm flex items-center justify-center">
+<div class="w-full h-0.5 bg-primary"></div>
+</div>
+<span class="text-label-sm mt-2">Oncology</span>
+</div>
+</div>
+</div>
+<!-- Summary Statistics Side -->
+<div class="col-span-12 lg:col-span-4 space-y-lg">
+<div class="bg-primary text-white p-lg rounded-xl shadow-md h-full relative overflow-hidden group">
+<div class="absolute -right-4 -bottom-4 opacity-10 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[120px]">trending_up</span>
+</div>
+<h4 class="text-label-md font-label-md uppercase tracking-wider opacity-80">Patient Satisfaction</h4>
+<div class="mt-md flex items-baseline gap-sm">
+<span class="text-[44px] font-bold leading-none">94.8%</span>
+<span class="text-label-sm bg-white/20 px-2 py-0.5 rounded">+2.4%</span>
+</div>
+<p class="mt-lg text-body-sm opacity-90">Sustained improvement across inpatient units following the Q2 feedback cycle implementation.</p>
+<button class="mt-xl text-label-md font-bold underline underline-offset-4 flex items-center gap-xs">
+                            View Detailed Feedback <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+<div class="bg-surface-container-lowest p-lg rounded-xl border border-outline-variant/30 shadow-sm flex flex-col justify-between h-[200px]">
+<div class="flex justify-between items-start">
+<div>
+<h4 class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-widest">Readmission Rate</h4>
+<p class="text-headline-md font-headline-md mt-1">4.2%</p>
+</div>
+<div class="p-2 bg-error-container text-on-error-container rounded-lg">
+<span class="material-symbols-outlined">warning</span>
+</div>
+</div>
+<div class="w-full h-2 bg-surface-container-high rounded-full overflow-hidden">
+<div class="w-[65%] h-full bg-error rounded-full"></div>
+</div>
+<p class="text-label-sm text-on-surface-variant">Critical threshold is <span class="font-bold">5.0%</span>. Monitoring closely.</p>
+</div>
+</div>
+<!-- Operational Efficiency Heatmap -->
+<div class="col-span-12 lg:col-span-6 bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-outline-variant/30 h-[400px] flex flex-col">
+<div class="flex items-center justify-between mb-lg">
+<div>
+<h3 class="text-title-lg font-title-lg">Wait Time Density</h3>
+<p class="text-label-sm text-on-surface-variant">Heatmap of ER congestion by hour and day</p>
+</div>
+<select class="bg-surface border-none rounded-lg text-label-sm focus:ring-1 focus:ring-primary py-1 px-3">
+<option>Main ER</option>
+<option>Trauma Center</option>
+</select>
+</div>
+<!-- Heatmap Representation -->
+<div class="flex-1 grid grid-cols-7 grid-rows-6 gap-1">
+<!-- Legend and grid placeholder -->
+</div>
+<div class="mt-md flex justify-between items-center">
+<span class="text-label-sm text-on-surface-variant">Mon - Sun</span>
+<div class="flex gap-xs items-center">
+<span class="text-label-sm">Low</span>
+<div class="flex gap-[1px]">
+<div class="w-3 h-3 bg-primary-container/20"></div>
+<div class="w-3 h-3 bg-primary-container/40"></div>
+<div class="w-3 h-3 bg-primary-container/60"></div>
+<div class="w-3 h-3 bg-primary"></div>
+</div>
+<span class="text-label-sm">High</span>
+</div>
+</div>
+</div>
+<!-- Financial Performance - Stacked Bars -->
+<div class="col-span-12 lg:col-span-6 bg-surface-container-lowest p-lg rounded-xl shadow-sm border border-outline-variant/30 h-[400px] flex flex-col">
+<div class="flex items-center justify-between mb-lg">
+<div>
+<h3 class="text-title-lg font-title-lg">Revenue vs Operational Cost</h3>
+<p class="text-label-sm text-on-surface-variant">Monthly Stacked Bar Comparison</p>
+</div>
+<div class="flex gap-md">
+<div class="flex items-center gap-xs text-label-sm"><span class="w-3 h-3 rounded-sm bg-primary"></span> Revenue</div>
+<div class="flex items-center gap-xs text-label-sm"><span class="w-3 h-3 rounded-sm bg-secondary-container"></span> Op. Cost</div>
+</div>
+</div>
+<div class="flex-1 flex items-end justify-around gap-md px-md">
+<!-- Bar Groups -->
+<div class="flex flex-col-reverse items-center gap-xs w-full">
+<div class="w-full bg-secondary-container rounded-t-sm h-16"></div>
+<div class="w-full bg-primary rounded-t-sm h-32"></div>
+<span class="text-label-sm mt-2">Apr</span>
+</div>
+<div class="flex flex-col-reverse items-center gap-xs w-full">
+<div class="w-full bg-secondary-container rounded-t-sm h-20"></div>
+<div class="w-full bg-primary rounded-t-sm h-40"></div>
+<span class="text-label-sm mt-2">May</span>
+</div>
+<div class="flex flex-col-reverse items-center gap-xs w-full">
+<div class="w-full bg-secondary-container rounded-t-sm h-14"></div>
+<div class="w-full bg-primary rounded-t-sm h-48"></div>
+<span class="text-label-sm mt-2">Jun</span>
+</div>
+<div class="flex flex-col-reverse items-center gap-xs w-full">
+<div class="w-full bg-secondary-container rounded-t-sm h-18"></div>
+<div class="w-full bg-primary rounded-t-sm h-44"></div>
+<span class="text-label-sm mt-2">Jul</span>
+</div>
+<div class="flex flex-col-reverse items-center gap-xs w-full">
+<div class="w-full bg-secondary-container rounded-t-sm h-22"></div>
+<div class="w-full bg-primary rounded-t-sm h-52"></div>
+<span class="text-label-sm mt-2">Aug</span>
+</div>
+</div>
+</div>
+<!-- Export & Scheduled Reports Section -->
+<div class="col-span-12 glass-card p-xl rounded-2xl flex flex-col md:flex-row gap-xl items-center">
+<div class="flex-1 flex gap-lg items-center">
+<div class="p-4 bg-tertiary-container/20 text-tertiary rounded-full">
+<span class="material-symbols-outlined text-[32px]">mail</span>
+</div>
+<div>
+<h3 class="text-title-lg font-title-lg text-tertiary">Automated Reporting</h3>
+<p class="text-body-md text-on-surface-variant">Scheduled to deliver 'Board Summary' every Monday at 08:00 AM to 14 recipients.</p>
+</div>
+</div>
+<div class="flex gap-md shrink-0">
+<div class="flex -space-x-3 overflow-hidden">
+<img class="inline-block h-10 w-10 rounded-full ring-2 ring-white" data-alt="Close up photo of an executive medical professional, focusing on their thoughtful expression and sophisticated style in a high-end corporate hospital lobby. The lighting is warm and directional, highlighting textures of professional attire and silver hair, against a backdrop of marble and glass architecture typical of a world-class healthcare facility." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoRBvSHuiuFeZBgTdbYh0snexL6zEbBhntlCU8NOwDCWsELtwhtNY1tDNUZ79jmJzMutEmgPCyatRLRaE5xdsqBJG_DbFG3EErh5xJ69gbY4QyFsq9fkokCfBqNRMpJM6cZ6Anu6akZEgRiLwYYztxjZqagkV0HBp6aoxIy6jOslRNSM3COK7dhBjpfJzB7DGMsIsU7ssy5ZTRz4MDhokNLvlmyupNMjaYEpURcGYTv8Wd1CO301Y-6Q"/>
+<img class="inline-block h-10 w-10 rounded-full ring-2 ring-white" data-alt="Portrait of a modern healthcare leader with an engaging smile, set in a brightly lit corridor of a futuristic clinical center. They are wearing a designer professional uniform, exuding confidence and approachability. The background features high-tech screens and clean, minimalist surfaces with a teal-accented light-mode palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDf-bgJB8c3YeaPgCaRAMWQZD4zR_zTeJya_hiBpZ05pzO_Xyq7nkdaYWr6lgAe1wuR04KfOA65RYep40hbW-gSLjAKNhLucNsPD6zwFQ-g1oPoGbadpqoQonszZwjbO1OFFhYQZweH0Q2lxRYDUo8dFU_UyMOX9nQgaWe7ZAds84oBCHdl2hFFVNENEKw0cBiQRVmptkX0buxIuflcoso9rpp803VU0cjK7SDb6QSqgGf4D3U2UCJ9DQ"/>
+<img class="inline-block h-10 w-10 rounded-full ring-2 ring-white" data-alt="Detailed professional portrait of a senior hospital administrator in a contemporary boardroom setting. Soft ambient light emphasizes a clean-cut aesthetic, with a backdrop of sleek office technology and architectural details. The color palette is composed of soft greys, whites, and deep teals, suggesting a high-trust, premium medical brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBq6NBLn2qi96LwYfcGn86GyD4BvzuWzHUITRLL-JR59hpBCDt8fvrUVkJudqnil-nt0zvk7joaSXX5I_W7MsNAm66cnqqVFdgoyDufxTRoEP6Oc3z9qzrnLqBNVU1hKc_iAoibLP-TvLDAdpWY9AJOcLc6IqdVUGtNdxvdpL-RhzBBElY6-N-EetTCIdagjtHL_JvBX-lPhQJ2Z20Eldhyl2uhoYeyvtSokyqJ8MO2pQ2NHb-b420dzA"/>
+<div class="flex items-center justify-center h-10 w-10 rounded-full ring-2 ring-white bg-surface-container-high text-label-sm font-bold">+11</div>
+</div>
+<button class="px-xl py-3 border-2 border-tertiary text-tertiary rounded-full font-bold hover:bg-tertiary hover:text-white transition-all active:scale-95">Manage Schedules</button>
+</div>
+</div>
+<!-- Recent Custom Reports Table -->
+<div class="col-span-12 bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/30 overflow-hidden">
+<div class="px-lg py-md bg-surface-container-low border-b border-outline-variant/30 flex justify-between items-center">
+<h3 class="text-title-md font-title-md">Generated Report History</h3>
+<button class="text-primary text-label-md font-bold flex items-center gap-xs">View All <span class="material-symbols-outlined text-[16px]">chevron_right</span></button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface text-on-surface-variant border-b border-outline-variant/30">
+<th class="px-lg py-md font-label-sm text-label-sm uppercase tracking-wider">Report Name</th>
+<th class="px-lg py-md font-label-sm text-label-sm uppercase tracking-wider">Date Generated</th>
+<th class="px-lg py-md font-label-sm text-label-sm uppercase tracking-wider">Parameters</th>
+<th class="px-lg py-md font-label-sm text-label-sm uppercase tracking-wider">Status</th>
+<th class="px-lg py-md font-label-sm text-label-sm uppercase tracking-wider text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/30">
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-lg py-md font-label-md text-label-md text-on-surface">Annual Operational Audit 2023</td>
+<td class="px-lg py-md font-body-sm text-body-sm">Oct 12, 2023</td>
+<td class="px-lg py-md">
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container rounded text-[11px] font-bold">ALL DEPARTMENTS</span>
+</td>
+<td class="px-lg py-md">
+<span class="flex items-center gap-xs text-label-sm text-primary"><span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span> Complete</span>
+</td>
+<td class="px-lg py-md text-right">
+<button class="text-primary hover:underline font-label-md">Download PDF</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-lg py-md font-label-md text-label-md text-on-surface">Physician Performance Matrix</td>
+<td class="px-lg py-md font-body-sm text-body-sm">Oct 10, 2023</td>
+<td class="px-lg py-md">
+<span class="px-2 py-0.5 bg-tertiary-container/20 text-tertiary rounded text-[11px] font-bold">CARDIOLOGY</span>
+</td>
+<td class="px-lg py-md">
+<span class="flex items-center gap-xs text-label-sm text-primary"><span class="w-1.5 h-1.5 rounded-full bg-primary"></span> Complete</span>
+</td>
+<td class="px-lg py-md text-right">
+<button class="text-primary hover:underline font-label-md">Download CSV</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-lg py-md font-label-md text-label-md text-on-surface">Medicare Billing Discrepancies</td>
+<td class="px-lg py-md font-body-sm text-body-sm">Oct 08, 2023</td>
+<td class="px-lg py-md">
+<span class="px-2 py-0.5 bg-secondary-container text-on-secondary-container rounded text-[11px] font-bold">FINANCE</span>
+</td>
+<td class="px-lg py-md">
+<span class="flex items-center gap-xs text-label-sm text-error"><span class="w-1.5 h-1.5 rounded-full bg-error"></span> Failed</span>
+</td>
+<td class="px-lg py-md text-right">
+<button class="text-on-surface-variant hover:text-primary transition-colors font-label-md">Retry Generation</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="p-xl border-t border-outline-variant/30 flex justify-between items-center text-on-surface-variant max-w-7xl mx-auto">
+<p class="text-label-sm">© 2023 MediFlow Healthcare Solutions. All rights reserved.</p>
+<div class="flex gap-lg">
+<a class="text-label-sm hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-label-sm hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-label-sm hover:text-primary transition-colors" href="#">Support Center</a>
+</div>
+</footer>
+</main>
+<!-- Micro-interaction Scripts -->
+<script src="scripts.js"></script></body></html>
