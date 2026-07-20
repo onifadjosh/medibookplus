@@ -28,7 +28,12 @@ if (el_loginForm) {
             btn.classList.add('bg-tertiary-container');
             btn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Verified';
             setTimeout(() => {
-                window.location.href = '../patient/pages/dashboard.html';
+                const role = localStorage.getItem('userRole');
+                if (role === 'provider') {
+                    window.location.href = '../doctor/dashboard.html';
+                } else {
+                    window.location.href = '../patient/pages/dashboard.html';
+                }
             }, 1000);
         }, 1500);
     });
@@ -277,6 +282,7 @@ function selectRole(role) {
             
             // Set navigation logic
             continueBtn.onclick = function() {
+                localStorage.setItem('userRole', role);
                 if (role === 'patient') {
                     window.location.href = 'register_patient_onboarding.html';
                 } else if (role === 'provider') {

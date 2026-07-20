@@ -21,24 +21,42 @@
 <p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-widest opacity-70">Healthcare Suite</p>
 </div>
 </div>
-<nav class="flex-1 flex flex-col gap-xs mt-lg">
-<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all duration-200" href="admin_hospital_management_dashboard.html">
+<nav class="flex-1 space-y-sm overflow-y-auto custom-scrollbar mt-lg">
+<!-- Inactive Tabs -->
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-surface-container-highest rounded-lg transition-all active:scale-95" href="admin_hospital_management_dashboard.html">
 <span class="material-symbols-outlined">dashboard</span>
 <span class="font-label-md text-label-md">Dashboard</span>
 </a>
-<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all duration-200" href="admin_master_appointment_schedule.html">
-<span class="material-symbols-outlined">calendar_today</span>
+<!-- Patients (Active) -->
+<a class="flex items-center gap-md bg-secondary-container text-on-secondary-container rounded-lg px-md py-sm font-bold transition-transform active:scale-95" href="admin_patient_doctor_management.html">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Patients</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-surface-container-highest rounded-lg transition-all active:scale-95" href="admin_doctor_management_directory.html">
+<span class="material-symbols-outlined">medical_services</span>
+<span class="font-label-md text-label-md">Doctors</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-surface-container-highest rounded-lg transition-all active:scale-95" href="admin_hospital_departments_overview.html">
+<span class="material-symbols-outlined">domain</span>
+<span class="font-label-md text-label-md">Departments</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-surface-container-highest rounded-lg transition-all active:scale-95" href="admin_master_appointment_schedule.html">
+<span class="material-symbols-outlined">event</span>
 <span class="font-label-md text-label-md">Appointments</span>
 </a>
-<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all duration-200" href="doctor_messages_consultations_hub.html">
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-surface-container-highest rounded-lg transition-all active:scale-95" href="doctor_messages_consultations_hub.html">
 <span class="material-symbols-outlined">chat</span>
 <span class="font-label-md text-label-md">Messages</span>
 </a>
-<a class="flex items-center gap-md px-md py-sm text-primary font-bold bg-secondary-container rounded-lg translate-x-1 duration-200" href="admin_patient_doctor_management.html">
-<span class="material-symbols-outlined">group</span>
-<span class="font-label-md text-label-md">Patients</span>
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-surface-container-highest rounded-lg transition-all active:scale-95" href="admin_centralized_medical_records_portal.html">
+<span class="material-symbols-outlined">description</span>
+<span class="font-label-md text-label-md">Medical Records</span>
 </a>
-<a class="flex items-center gap-md px-md py-sm text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all duration-200" href="admin_global_hospital_settings.html">
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-surface-container-highest rounded-lg transition-all active:scale-95" href="admin_advanced_hospital_reports_analytics.html">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-surface-container-highest rounded-lg transition-all active:scale-95" href="admin_global_hospital_settings.html">
 <span class="material-symbols-outlined">settings</span>
 <span class="font-label-md text-label-md">Settings</span>
 </a>
