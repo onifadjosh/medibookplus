@@ -1,0 +1,214 @@
+.patient-profile-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  padding: var(--space-xl);
+  margin-bottom: var(--space-xl);
+}
+
+.patient-profile-hero {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1 1 auto;
+}
+
+.patient-profile-photo-wrap {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid rgba(0, 103, 103, 0.16);
+  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+}
+
+.patient-profile-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.patient-profile-summary {
+  min-width: 0;
+}
+
+.patient-profile-name-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-bottom: 0.35rem;
+}
+
+.patient-profile-name {
+  font-size: clamp(1.3rem, 1.2rem + 0.6vw, 1.7rem);
+  font-weight: 800;
+  margin: 0;
+  color: var(--color-on-surface);
+}
+
+.patient-profile-subtitle {
+  font-size: var(--fs-body-sm);
+  color: var(--color-on-surface-variant);
+  margin: 0;
+}
+
+.patient-profile-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+  font-size: 0.82rem;
+  color: var(--color-on-surface-variant);
+}
+
+.patient-profile-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.patient-profile-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+.patient-profile-tabs-card {
+  padding: var(--space-xl);
+}
+
+.patient-tabs {
+  border-bottom: 1px solid rgba(189, 201, 200, 0.35);
+  margin-bottom: 1.1rem;
+}
+
+.patient-tabs .nav-link {
+  color: var(--color-on-surface-variant);
+  font-weight: 700;
+  border: none;
+  border-radius: 0;
+  padding: 0.7rem 0.9rem;
+}
+
+.patient-tabs .nav-link.active {
+  color: var(--color-primary);
+  background: transparent;
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.patient-tab-content {
+  padding-top: 0.25rem;
+}
+
+.info-card {
+  background-color: var(--color-surface-container-low);
+  border: 1px solid rgba(189, 201, 200, 0.25);
+  border-radius: var(--radius-xl);
+  padding: 1rem;
+}
+
+.info-card-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-on-surface-variant);
+  margin-bottom: 0.8rem;
+}
+
+.info-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.info-card-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.9rem;
+  color: var(--color-on-surface);
+}
+
+.info-card-label {
+  color: var(--color-on-surface-variant);
+}
+
+.metric-card {
+  background: linear-gradient(135deg, rgba(0, 103, 103, 0.08), rgba(255,255,255,0.95));
+  border: 1px solid rgba(0, 103, 103, 0.12);
+  border-radius: var(--radius-xl);
+  padding: 1rem;
+}
+
+.metric-card-title {
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-on-surface-variant);
+  margin-bottom: 0.45rem;
+}
+
+.metric-card-value {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--color-on-surface);
+  margin: 0;
+}
+
+.patient-table {
+  margin-bottom: 0;
+}
+
+.patient-table th {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-on-surface-variant);
+}
+
+.patient-table td {
+  vertical-align: middle;
+  color: var(--color-on-surface);
+}
+
+.document-card {
+  background-color: var(--color-surface-container-low);
+  border: 1px solid rgba(189, 201, 200, 0.25);
+  border-radius: var(--radius-xl);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.document-card h3 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--color-on-surface);
+}
+
+.document-meta {
+  font-size: 0.8rem;
+  color: var(--color-on-surface-variant);
+}
+
+@media (max-width: 767.98px) {
+  .patient-profile-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .patient-profile-actions {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+}
