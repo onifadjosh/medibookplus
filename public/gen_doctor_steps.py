@@ -1,6 +1,6 @@
 import os
 
-base_dir = '/home/plutodev/Documents/medibookplus/public'
+base_dir = '/home/plutodev/Documents/mediumplus/public'
 
 with open(os.path.join(base_dir, 'register_doctor_credentials_step_3.html'), 'r') as f:
     template = f.read()

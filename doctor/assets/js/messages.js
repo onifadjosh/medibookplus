@@ -1,5 +1,5 @@
 /* ==========================================================================
-   MediBook+ | Messages Module
+   Medium+ | Messages Module
    Vanilla JS interactions only. No backend calls — all data is local/dummy
    and stands in for future API integration.
    ========================================================================== */

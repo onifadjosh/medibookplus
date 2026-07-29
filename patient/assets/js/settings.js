@@ -42,7 +42,7 @@ const NOTIFICATION_TOGGLES = [
   { key: 'notifications.smsNotifications', label: 'SMS Notifications', desc: 'Text messages for time-sensitive alerts.' },
   { key: 'notifications.pushNotifications', label: 'Push Notifications', desc: 'Browser and mobile app push alerts.' },
   { key: 'notifications.appointmentReminders', label: 'Appointment Reminders', desc: 'Reminders before upcoming appointments.' },
-  { key: 'notifications.marketingUpdates', label: 'Marketing Updates', desc: 'News, offers, and product updates from MediBook+.' },
+  { key: 'notifications.marketingUpdates', label: 'Marketing Updates', desc: 'News, offers, and product updates from Medium+.' },
 ];
 
 const PRIVACY_TOGGLES = [

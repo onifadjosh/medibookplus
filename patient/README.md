@@ -1,7 +1,7 @@
-# MediBook+ — Patient Frontend
+# Medium+ — Patient Frontend
 
 A modular, framework-free frontend (HTML5 + CSS3 + vanilla ES6 modules +
-Bootstrap 5) for the MediBook+ Smart Hospital Appointment and Digital
+Bootstrap 5) for the Medium+ Smart Hospital Appointment and Digital
 Patient Registration System. Built so a Node.js + Express + MongoDB backend
 can be dropped in later by editing a single file — nothing else in the UI
 layer needs to change.
@@ -35,7 +35,7 @@ The JavaScript uses native ES modules (`import`/`export`), which browsers
 ## Project structure
 
 ```
-medibook/
+mediumplus/
 ├── README.md
 ├── assets/
 │   ├── css/
@@ -309,7 +309,7 @@ is `services/api.js`'s `subscribeToMessages()` implementation.
 
 ## Naming conventions
 
-- CSS classes: `mb-` prefix (MediBook), BEM-ish `__element` naming, no
+- CSS classes: `mb-` prefix (Medium+), BEM-ish `__element` naming, no
   modifier classes beyond semantic ones like `.active`, `.confirmed`.
 - JS DOM hooks: `data-*` attributes (e.g. `data-quick-stats`,
   `data-hero-doctor-name`) — never hook JS to a CSS class, so styling can
