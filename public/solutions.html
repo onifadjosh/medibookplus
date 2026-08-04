@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Solutions | Medium+ Healthcare Platform</title>
+    <meta name="description" content="Discover how Medium+ serves patients, doctors, and healthcare administrators with smart scheduling, secure records, and seamless telehealth." />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link href="tailwind.css" rel="stylesheet" />
+    <link href="custom.css" rel="stylesheet" />
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+
+    <!-- Navigation -->
+    <header class="bg-surface-container-lowest shadow-[0px_4px_15px_0px_rgba(0,0,0,0.05)] flex justify-between items-center w-full px-margin-desktop h-16 sticky top-0 z-50">
+        <div class="flex items-center gap-sm">
+            <a href="index.html">
+                <img src="./logo.jpeg" alt="Medium+" style="height: 32px; display: inline-block;" />
+            </a>
+        </div>
+        <nav class="hidden md:flex items-center gap-lg">
+            <a class="text-secondary hover:bg-surface-container-high transition-colors font-body-md text-body-md px-2 py-1 rounded" href="index.html">Home</a>
+            <a class="text-primary border-b-2 border-primary font-body-md text-body-md py-1" href="solutions.html">Solutions</a>
+            <a class="text-secondary hover:bg-surface-container-high transition-colors font-body-md text-body-md px-2 py-1 rounded" href="resources.html">Resources</a>
+        </nav>
+        <div class="flex items-center gap-md">
+            <a class="bg-primary text-on-primary px-lg py-sm rounded-lg font-title-md text-title-md hover:shadow-lg transition-all active:scale-95" href="onboarding_feature_walkthrough.html?next=login">Sign in</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="hero-gradient pt-20 pb-16 px-margin-desktop text-center">
+            <div class="max-w-3xl mx-auto space-y-lg">
+                <div class="inline-flex items-center gap-sm bg-primary-fixed text-on-primary-fixed px-md py-sm rounded-full">
+                    <span class="material-symbols-outlined text-[16px]">widgets</span>
+                    <span class="font-label-md text-label-md uppercase tracking-wider">One Platform. Every Role.</span>
+                </div>
+                <h1 class="font-display-lg text-display-lg leading-tight text-on-surface">
+                    A Solution Built for<br /><span class="text-primary">Every Side of Healthcare</span>
+                </h1>
+                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+                    Whether you're a patient booking a visit, a doctor managing your schedule, or an admin overseeing an entire facility — Medium+ has a tailored experience for you.
+                </p>
+            </div>
+        </section>
+
+        <!-- Role Tabs / Cards -->
+        <section class="py-3xl px-margin-desktop">
+            <div class="max-w-container-max mx-auto space-y-3xl">
+
+                <!-- For Patients -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-2xl items-center">
+                    <div class="space-y-lg">
+                        <div class="inline-flex items-center gap-sm bg-secondary-container text-on-secondary-container px-md py-sm rounded-full">
+                            <span class="material-symbols-outlined text-[16px]">person</span>
+                            <span class="font-label-md text-label-md font-semibold">For Patients</span>
+                        </div>
+                        <h2 class="font-headline-lg text-headline-lg text-on-surface">Healthcare Access, <span class="text-primary">On Your Terms</span></h2>
+                        <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                            Find verified doctors, book appointments in seconds, receive reminders, and manage your entire health journey — all from one easy-to-use portal.
+                        </p>
+                        <ul class="space-y-md">
+                            <li class="flex items-start gap-md">
+                                <span class="material-symbols-outlined text-primary mt-1">check_circle</span>
+                                <div>
+                                    <p class="font-title-md text-title-md">Search & Book Appointments</p>
+                                    <p class="font-body-sm text-body-sm text-on-surface-variant">Browse doctors by specialty, location, and availability — and book instantly.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-md">
+                                <span class="material-symbols-outlined text-primary mt-1">check_circle</span>
+                                <div>
+                                    <p class="font-title-md text-title-md">Digital Health Records</p>
+                                    <p class="font-body-sm text-body-sm text-on-surface-variant">Access your prescriptions, test results, and visit notes securely from anywhere.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-md">
+                                <span class="material-symbols-outlined text-primary mt-1">check_circle</span>
+                                <div>
+                                    <p class="font-title-md text-title-md">Appointment Reminders</p>
+                                    <p class="font-body-sm text-body-sm text-on-surface-variant">Never miss a visit with automated SMS and in-app reminders.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-md">
+                                <span class="material-symbols-outlined text-primary mt-1">check_circle</span>
+                                <div>
+                                    <p class="font-title-md text-title-md">Telehealth Consultations</p>
+                                    <p class="font-body-sm text-body-sm text-on-surface-variant">Connect with your doctor via secure video call — no travel needed.</p>
+                                </div>
+                            </li>
+                        </ul>
+                        <a href="onboarding_feature_walkthrough.html?next=register" class="inline-flex items-center gap-sm bg-primary text-on-primary px-xl py-md rounded-xl font-title-md hover:shadow-lg transition-all active:scale-95">
+                            Register as Patient
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </a>
+                    </div>
+                    <div class="bg-surface-container-low rounded-3xl p-2xl space-y-lg border border-outline-variant/30">
+                        <div class="flex items-center gap-md p-lg bg-surface-container-lowest rounded-2xl shadow-sm">
+                            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                                <span class="material-symbols-outlined text-primary">search</span>
+                            </div>
+                            <div>
+                                <p class="font-title-md text-title-md">Find a Doctor</p>
+                                <p class="font-body-sm text-body-sm text-on-surface-variant">Search by specialty or symptom</p>
+                            </div>
+                            <span class="material-symbols-outlined text-primary ml-auto">chevron_right</span>
+                        </div>
+                        <div class="flex items-center gap-md p-lg bg-surface-container-lowest rounded-2xl shadow-sm">
+                            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                                <span class="material-symbols-outlined text-primary">calendar_month</span>
+                            </div>
+                            <div>
+                                <p class="font-title-md text-title-md">Book Appointment</p>
+                                <p class="font-body-sm text-body-sm text-on-surface-variant">Pick a time that works for you</p>
+                            </div>
+                            <span class="material-symbols-outlined text-primary ml-auto">chevron_right</span>
+                        </div>
+                        <div class="flex items-center gap-md p-lg bg-primary rounded-2xl shadow-sm">
+                            <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+                                <span class="material-symbols-outlined text-white">check_circle</span>
+                            </div>
+                            <div>
+                                <p class="font-title-md text-title-md text-white">Confirmed!</p>
+                                <p class="font-body-sm text-body-sm text-white/80">Reminder set automatically</p>
+                            </div>
+                            <span class="material-symbols-outlined text-white ml-auto">notifications_active</span>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="border-outline-variant/30" />
+
+                <!-- For Doctors -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-2xl items-center">
+                    <div class="bg-surface-container-low rounded-3xl p-2xl border border-outline-variant/30 order-2 lg:order-1">
+                        <div class="grid grid-cols-2 gap-md">
+                            <div class="bg-surface-container-lowest p-lg rounded-2xl shadow-sm text-center space-y-xs">
+                                <span class="material-symbols-outlined text-primary text-[32px]">calendar_view_week</span>
+                                <p class="font-title-sm text-title-sm">Weekly Schedule</p>
+                                <p class="font-body-sm text-body-sm text-on-surface-variant">At a glance</p>
+                            </div>
+                            <div class="bg-surface-container-lowest p-lg rounded-2xl shadow-sm text-center space-y-xs">
+                                <span class="material-symbols-outlined text-primary text-[32px]">folder_shared</span>
+                                <p class="font-title-sm text-title-sm">Patient Records</p>
+                                <p class="font-body-sm text-body-sm text-on-surface-variant">Instant access</p>
+                            </div>
+                            <div class="bg-surface-container-lowest p-lg rounded-2xl shadow-sm text-center space-y-xs">
+                                <span class="material-symbols-outlined text-primary text-[32px]">forum</span>
+                                <p class="font-title-sm text-title-sm">Messaging</p>
+                                <p class="font-body-sm text-body-sm text-on-surface-variant">Secure patient chat</p>
+                            </div>
+                            <div class="bg-primary p-lg rounded-2xl shadow-sm text-center space-y-xs">
+                                <span class="material-symbols-outlined text-white text-[32px]">video_call</span>
+                                <p class="font-title-sm text-title-sm text-white">Telehealth</p>
+                                <p class="font-body-sm text-body-sm text-white/80">Built-in video</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="space-y-lg order-1 lg:order-2">
+                        <div class="inline-flex items-center gap-sm bg-tertiary-container text-on-tertiary-container px-md py-sm rounded-full">
+                            <span class="material-symbols-outlined text-[16px]">stethoscope</span>
+                            <span class="font-label-md text-label-md font-semibold">For Doctors</span>
+                        </div>
+                        <h2 class="font-headline-lg text-headline-lg text-on-surface">Less Admin. <span class="text-primary">More Medicine.</span></h2>
+                        <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                            Medium+ gives clinicians a streamlined dashboard to manage appointments, patient records, prescriptions, and video calls — all in one place.
+                        </p>
+                        <ul class="space-y-md">
+                            <li class="flex items-start gap-md">
+                                <span class="material-symbols-outlined text-primary mt-1">check_circle</span>
+                                <div>
+                                    <p class="font-title-md text-title-md">Smart Calendar Management</p>
+                                    <p class="font-body-sm text-body-sm text-on-surface-variant">Set your availability and let patients book slots automatically.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-md">
+                                <span class="material-symbols-outlined text-primary mt-1">check_circle</span>
+                                <div>
+                                    <p class="font-title-md text-title-md">Electronic Medical Records (EMR)</p>
+                                    <p class="font-body-sm text-body-sm text-on-surface-variant">View full patient history, add notes, and issue prescriptions digitally.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-md">
+                                <span class="material-symbols-outlined text-primary mt-1">check_circle</span>
+                                <div>
+                                    <p class="font-title-md text-title-md">Secure Patient Messaging</p>
+                                    <p class="font-body-sm text-body-sm text-on-surface-variant">Follow up with patients through encrypted, HIPAA-compliant chat.</p>
+                                </div>
+                            </li>
+                        </ul>
+                        <a href="onboarding_feature_walkthrough.html?next=register" class="inline-flex items-center gap-sm bg-primary text-on-primary px-xl py-md rounded-xl font-title-md hover:shadow-lg transition-all active:scale-95">
+                            Join as a Doctor
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+
+                <hr class="border-outline-variant/30" />
+
+                <!-- For Admins -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-2xl items-center">
+                    <div class="space-y-lg">
+                        <div class="inline-flex items-center gap-sm bg-primary-container text-on-primary-container px-md py-sm rounded-full">
+                            <span class="material-symbols-outlined text-[16px]">admin_panel_settings</span>
+                            <span class="font-label-md text-label-md font-semibold">For Hospital Admins</span>
+                        </div>
+                        <h2 class="font-headline-lg text-headline-lg text-on-surface">Run Your Facility <span class="text-primary">With Clarity</span></h2>
+                        <p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                            Hospital administrators get a powerful command center to manage departments, staff, appointments, and reports — with full visibility across the facility.
+                        </p>
+                        <ul class="space-y-md">
+                            <li class="flex items-start gap-md">
+                                <span class="material-symbols-outlined text-primary mt-1">check_circle</span>
+                                <div>
+                                    <p class="font-title-md text-title-md">Doctor & Staff Management</p>
+                                    <p class="font-body-sm text-body-sm text-on-surface-variant">Add, manage, and monitor all clinical staff from a single dashboard.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-md">
+                                <span class="material-symbols-outlined text-primary mt-1">check_circle</span>
+                                <div>
+                                    <p class="font-title-md text-title-md">Department Overview</p>
+                                    <p class="font-body-sm text-body-sm text-on-surface-variant">Track activity across departments, specialties, and appointment queues.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-md">
+                                <span class="material-symbols-outlined text-primary mt-1">check_circle</span>
+                                <div>
+                                    <p class="font-title-md text-title-md">Reports & Analytics</p>
+                                    <p class="font-body-sm text-body-sm text-on-surface-variant">Generate facility reports, view appointment trends, and monitor operations.</p>
+                                </div>
+                            </li>
+                        </ul>
+                        <a href="onboarding_feature_walkthrough.html?next=register" class="inline-flex items-center gap-sm bg-primary text-on-primary px-xl py-md rounded-xl font-title-md hover:shadow-lg transition-all active:scale-95">
+                            Request Admin Access
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </a>
+                    </div>
+                    <div class="bg-surface-container-low rounded-3xl p-2xl border border-outline-variant/30 space-y-md">
+                        <div class="flex items-center justify-between p-lg bg-surface-container-lowest rounded-2xl">
+                            <div class="flex items-center gap-md">
+                                <span class="material-symbols-outlined text-primary">local_hospital</span>
+                                <div>
+                                    <p class="font-title-md">Departments</p>
+                                    <p class="font-body-sm text-on-surface-variant">Manage all units</p>
+                                </div>
+                            </div>
+                            <span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+                        </div>
+                        <div class="flex items-center justify-between p-lg bg-surface-container-lowest rounded-2xl">
+                            <div class="flex items-center gap-md">
+                                <span class="material-symbols-outlined text-primary">people</span>
+                                <div>
+                                    <p class="font-title-md">Staff Directory</p>
+                                    <p class="font-body-sm text-on-surface-variant">All doctors & nurses</p>
+                                </div>
+                            </div>
+                            <span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+                        </div>
+                        <div class="flex items-center justify-between p-lg bg-surface-container-lowest rounded-2xl">
+                            <div class="flex items-center gap-md">
+                                <span class="material-symbols-outlined text-primary">bar_chart</span>
+                                <div>
+                                    <p class="font-title-md">Reports & Analytics</p>
+                                    <p class="font-body-sm text-on-surface-variant">Facility performance</p>
+                                </div>
+                            </div>
+                            <span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
+                        </div>
+                        <div class="flex items-center justify-between p-lg bg-primary rounded-2xl">
+                            <div class="flex items-center gap-md">
+                                <span class="material-symbols-outlined text-white">settings</span>
+                                <div>
+                                    <p class="font-title-md text-white">System Settings</p>
+                                    <p class="font-body-sm text-white/80">Global configuration</p>
+                                </div>
+                            </div>
+                            <span class="material-symbols-outlined text-white">chevron_right</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Bottom CTA -->
+        <section class="py-2xl px-margin-desktop">
+            <div class="max-w-4xl mx-auto bg-primary-container text-on-primary-container p-2xl rounded-3xl text-center space-y-lg shadow-xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 p-lg opacity-10">
+                    <span class="material-symbols-outlined text-[180px]">medical_services</span>
+                </div>
+                <h2 class="font-display-lg text-display-lg relative z-10">Ready to Get Started?</h2>
+                <p class="font-body-lg opacity-90 max-w-xl mx-auto relative z-10">Join Medium+ and experience healthcare management the way it was always meant to be.</p>
+                <div class="flex flex-col md:flex-row gap-md justify-center relative z-10">
+                    <a class="bg-on-primary-container text-primary-container px-3xl py-md rounded-xl font-title-md hover:bg-on-primary transition-all shadow-lg active:scale-95" href="onboarding_feature_walkthrough.html?next=login">
+                        Book an Appointment
+                    </a>
+                    <a class="bg-transparent border-2 border-on-primary-container text-on-primary-container px-3xl py-md rounded-xl font-title-md hover:bg-on-primary-container hover:text-primary-container transition-all active:scale-95" href="contact_us.html">
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface-dim text-on-surface-variant py-xl px-margin-desktop border-t border-outline-variant">
+        <div class="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-md">
+            <img src="./logo.jpeg" alt="Medium+" style="height: 28px;" />
+            <p class="font-label-sm text-label-sm">© 2024 Medium+. All rights reserved.</p>
+            <div class="flex gap-lg font-label-sm text-label-sm">
+                <a class="hover:text-primary" href="#">Privacy Policy</a>
+                <a class="hover:text-primary" href="#">Terms of Service</a>
+                <a class="hover:text-primary" href="contact_us.html">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
