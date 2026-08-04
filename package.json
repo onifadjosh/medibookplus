@@ -1,5 +1,5 @@
 {
-  "name": "medibookplus",
+  "name": "mediumplus",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -8,15 +8,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/onifadjosh/medibookplus.git"
+    "url": "git+https://github.com/onifadjosh/mediumplus.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/onifadjosh/medibookplus/issues"
+    "url": "https://github.com/onifadjosh/mediumplus/issues"
   },
-  "homepage": "https://github.com/onifadjosh/medibookplus#readme",
+  "homepage": "https://github.com/onifadjosh/mediumplus#readme",
   "devDependencies": {
     "@tailwindcss/container-queries": "^0.1.1",
     "@tailwindcss/forms": "^0.5.11",

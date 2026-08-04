@@ -1,5 +1,5 @@
 /* ==========================================================================
-   MediBook+ | Appointments List
+   Medium+ | Appointments List
    Vanilla JS interactions only. No backend calls — all data is local/dummy
    and stands in for future API integration.
    ========================================================================== */

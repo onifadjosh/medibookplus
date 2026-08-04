@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Resources | Medium+ Healthcare Platform</title>
+    <meta name="description" content="Get help with Medium+. Browse FAQs, platform guides, and contact support for patients, doctors, and admins." />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link href="tailwind.css?v=3" rel="stylesheet" />
+    <link href="custom.css" rel="stylesheet" />
+    <style>
+        .faq-item .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+        .faq-item.open .faq-answer { max-height: 300px; }
+        .faq-item.open .faq-icon { transform: rotate(180deg); }
+        .faq-icon { transition: transform 0.3s ease; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+
+    <!-- Navigation -->
+    <header class="bg-surface-container-lowest shadow-[0px_4px_15px_0px_rgba(0,0,0,0.05)] flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop h-16 sticky top-0 z-50">
+        <div class="flex items-center gap-sm">
+            <a href="index.html">
+                <img src="./logo.jpeg" alt="Medium+" style="height: 32px; display: inline-block;" />
+            </a>
+        </div>
+        <nav class="hidden md:flex items-center gap-lg">
+            <a class="text-secondary hover:bg-surface-container-high transition-colors font-body-md text-body-md px-2 py-1 rounded" href="index.html">Home</a>
+            <a class="text-secondary hover:bg-surface-container-high transition-colors font-body-md text-body-md px-2 py-1 rounded" href="solutions.html">Solutions</a>
+            <a class="text-primary border-b-2 border-primary font-body-md text-body-md py-1" href="resources.html">Resources</a>
+        </nav>
+        <div class="flex items-center gap-sm md:gap-md">
+            <a class="hidden md:block bg-primary text-on-primary px-lg py-sm rounded-lg font-title-md text-title-md hover:shadow-lg transition-all active:scale-95" href="login_secure_entry.html">Sign in</a>
+            <!-- Mobile menu toggle -->
+            <button class="md:hidden p-2 cursor-pointer active:opacity-80 flex items-center justify-center" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <span class="material-symbols-outlined text-primary">menu</span>
+            </button>
+        </div>
+    </header>
+    <!-- Mobile Menu Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden bg-surface-container-lowest w-full absolute top-16 left-0 z-40 border-b border-outline-variant shadow-lg flex flex-col p-md gap-md">
+        <a href="index.html" class="text-secondary font-title-md py-2 border-b border-outline-variant/30">Home</a>
+        <a href="solutions.html" class="text-secondary font-title-md py-2 border-b border-outline-variant/30">Solutions</a>
+        <a href="resources.html" class="text-primary font-title-md py-2 border-b border-outline-variant/30">Resources</a>
+        <a href="login_secure_entry.html" class="bg-primary text-on-primary px-md py-sm text-center rounded-lg font-title-md">Sign in</a>
+    </div>
+
+    <main>
+        <!-- Hero -->
+        <section class="hero-gradient pt-20 pb-16 px-margin-desktop text-center">
+            <div class="max-w-3xl mx-auto space-y-lg">
+                <div class="inline-flex items-center gap-sm bg-primary-fixed text-on-primary-fixed px-md py-sm rounded-full">
+                    <span class="material-symbols-outlined text-[16px]">menu_book</span>
+                    <span class="font-label-md text-label-md uppercase tracking-wider">Help & Guides</span>
+                </div>
+                <h1 class="font-display-lg text-display-lg leading-tight text-on-surface">
+                    Everything You Need<br /><span class="text-primary">to Get the Most from Medium+</span>
+                </h1>
+                <p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">
+                    Find answers, read guides, and reach out to support. We're here to help patients, doctors, and administrators every step of the way.
+                </p>
+                <!-- Search -->
+                <div class="flex max-w-lg mx-auto mt-lg">
+                    <input id="faqSearch" type="text" placeholder="Search for help, e.g. 'book appointment'..."
+                        class="flex-1 bg-surface-container-lowest border border-outline-variant rounded-l-xl px-lg py-md font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary" />
+                    <button class="bg-primary text-on-primary px-lg rounded-r-xl font-title-md hover:shadow-md transition-all">
+                        <span class="material-symbols-outlined">search</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Links -->
+        <section class="py-2xl px-margin-desktop bg-surface-container-low">
+            <div class="max-w-container-max mx-auto">
+                <h2 class="font-headline-md text-headline-md text-on-surface text-center mb-xl">Browse by Category</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+                    <a href="#patient-guides" class="group bg-surface-container-lowest p-xl rounded-2xl border border-outline-variant/30 hover:shadow-lg hover:border-primary/30 transition-all text-center space-y-md">
+                        <div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-primary text-[32px] group-hover:text-white">person</span>
+                        </div>
+                        <h3 class="font-title-lg text-title-lg">Patient Guides</h3>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant">How to book, manage appointments, and access your records.</p>
+                    </a>
+                    <a href="#doctor-guides" class="group bg-surface-container-lowest p-xl rounded-2xl border border-outline-variant/30 hover:shadow-lg hover:border-primary/30 transition-all text-center space-y-md">
+                        <div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-primary text-[32px] group-hover:text-white">stethoscope</span>
+                        </div>
+                        <h3 class="font-title-lg text-title-lg">Doctor Guides</h3>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant">Set up your profile, manage your schedule, and use the EMR tools.</p>
+                    </a>
+                    <a href="#faq" class="group bg-surface-container-lowest p-xl rounded-2xl border border-outline-variant/30 hover:shadow-lg hover:border-primary/30 transition-all text-center space-y-md">
+                        <div class="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mx-auto group-hover:bg-primary group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-primary text-[32px] group-hover:text-white">help</span>
+                        </div>
+                        <h3 class="font-title-lg text-title-lg">FAQs</h3>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant">Common questions about the platform, accounts, and security.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Patient Guides -->
+        <section id="patient-guides" class="py-3xl px-margin-desktop">
+            <div class="max-w-container-max mx-auto">
+                <div class="flex items-center gap-md mb-xl">
+                    <div class="w-10 h-10 bg-secondary-container rounded-xl flex items-center justify-center">
+                        <span class="material-symbols-outlined text-on-secondary-container">person</span>
+                    </div>
+                    <h2 class="font-headline-md text-headline-md text-on-surface">Patient Guides</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
+                    <div class="bg-surface-container-low p-xl rounded-2xl border border-outline-variant/30 hover:shadow-md transition-all space-y-md cursor-pointer">
+                        <span class="material-symbols-outlined text-primary text-[32px]">calendar_month</span>
+                        <h3 class="font-title-lg text-title-lg">How to Book an Appointment</h3>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant">Step-by-step guide to searching for a doctor and scheduling a visit.</p>
+                        <span class="inline-flex items-center gap-xs text-primary font-title-md text-title-md hover:underline">Read Guide <span class="material-symbols-outlined text-[16px]">arrow_forward</span></span>
+                    </div>
+                    <div class="bg-surface-container-low p-xl rounded-2xl border border-outline-variant/30 hover:shadow-md transition-all space-y-md cursor-pointer">
+                        <span class="material-symbols-outlined text-primary text-[32px]">folder_open</span>
+                        <h3 class="font-title-lg text-title-lg">Accessing Your Health Records</h3>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant">How to view prescriptions, lab results, and visit summaries.</p>
+                        <span class="inline-flex items-center gap-xs text-primary font-title-md text-title-md hover:underline">Read Guide <span class="material-symbols-outlined text-[16px]">arrow_forward</span></span>
+                    </div>
+                    <div class="bg-surface-container-low p-xl rounded-2xl border border-outline-variant/30 hover:shadow-md transition-all space-y-md cursor-pointer">
+                        <span class="material-symbols-outlined text-primary text-[32px]">video_call</span>
+                        <h3 class="font-title-lg text-title-lg">Starting a Telehealth Session</h3>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant">How to join a video consultation with your doctor from home.</p>
+                        <span class="inline-flex items-center gap-xs text-primary font-title-md text-title-md hover:underline">Read Guide <span class="material-symbols-outlined text-[16px]">arrow_forward</span></span>
+                    </div>
+                    <div class="bg-surface-container-low p-xl rounded-2xl border border-outline-variant/30 hover:shadow-md transition-all space-y-md cursor-pointer">
+                        <span class="material-symbols-outlined text-primary text-[32px]">manage_accounts</span>
+                        <h3 class="font-title-lg text-title-lg">Updating Your Profile</h3>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant">Keep your personal and health information up to date.</p>
+                        <span class="inline-flex items-center gap-xs text-primary font-title-md text-title-md hover:underline">Read Guide <span class="material-symbols-outlined text-[16px]">arrow_forward</span></span>
+                    </div>
+                    <div class="bg-surface-container-low p-xl rounded-2xl border border-outline-variant/30 hover:shadow-md transition-all space-y-md cursor-pointer">
+                        <span class="material-symbols-outlined text-primary text-[32px]">notifications</span>
+                        <h3 class="font-title-lg text-title-lg">Managing Notifications</h3>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant">Customize your appointment reminders and alerts.</p>
+                        <span class="inline-flex items-center gap-xs text-primary font-title-md text-title-md hover:underline">Read Guide <span class="material-symbols-outlined text-[16px]">arrow_forward</span></span>
+                    </div>
+                    <div class="bg-surface-container-low p-xl rounded-2xl border border-outline-variant/30 hover:shadow-md transition-all space-y-md cursor-pointer">
+                        <span class="material-symbols-outlined text-primary text-[32px]">lock_reset</span>
+                        <h3 class="font-title-lg text-title-lg">Resetting Your Password</h3>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant">Forgot your password? Here's how to regain access to your account.</p>
+                        <span class="inline-flex items-center gap-xs text-primary font-title-md text-title-md hover:underline">Read Guide <span class="material-symbols-outlined text-[16px]">arrow_forward</span></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Doctor Guides -->
+        <section id="doctor-guides" class="py-3xl px-margin-desktop bg-surface-container-low">
+            <div class="max-w-container-max mx-auto">
+                <div class="flex items-center gap-md mb-xl">
+                    <div class="w-10 h-10 bg-tertiary-container rounded-xl flex items-center justify-center">
+                        <span class="material-symbols-outlined text-on-tertiary-container">stethoscope</span>
+                    </div>
+                    <h2 class="font-headline-md text-headline-md text-on-surface">Doctor Guides</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+                    <div class="bg-surface-container-lowest p-xl rounded-2xl border border-outline-variant/30 hover:shadow-md transition-all flex gap-lg">
+                        <span class="material-symbols-outlined text-primary text-[32px] flex-shrink-0">badge</span>
+                        <div class="space-y-xs">
+                            <h3 class="font-title-lg text-title-lg">Setting Up Your Doctor Profile</h3>
+                            <p class="font-body-sm text-body-sm text-on-surface-variant">Add your specialties, qualifications, bio, and profile photo so patients can find you easily.</p>
+                            <span class="inline-flex items-center gap-xs text-primary font-title-md text-title-md hover:underline cursor-pointer">Read Guide <span class="material-symbols-outlined text-[16px]">arrow_forward</span></span>
+                        </div>
+                    </div>
+                    <div class="bg-surface-container-lowest p-xl rounded-2xl border border-outline-variant/30 hover:shadow-md transition-all flex gap-lg">
+                        <span class="material-symbols-outlined text-primary text-[32px] flex-shrink-0">event_available</span>
+                        <div class="space-y-xs">
+                            <h3 class="font-title-lg text-title-lg">Managing Your Availability</h3>
+                            <p class="font-body-sm text-body-sm text-on-surface-variant">Block time, set recurring hours, and control which appointment slots are open.</p>
+                            <span class="inline-flex items-center gap-xs text-primary font-title-md text-title-md hover:underline cursor-pointer">Read Guide <span class="material-symbols-outlined text-[16px]">arrow_forward</span></span>
+                        </div>
+                    </div>
+                    <div class="bg-surface-container-lowest p-xl rounded-2xl border border-outline-variant/30 hover:shadow-md transition-all flex gap-lg">
+                        <span class="material-symbols-outlined text-primary text-[32px] flex-shrink-0">description</span>
+                        <div class="space-y-xs">
+                            <h3 class="font-title-lg text-title-lg">Writing Clinical Notes & Prescriptions</h3>
+                            <p class="font-body-sm text-body-sm text-on-surface-variant">Use the EMR editor to document visits and issue digital prescriptions securely.</p>
+                            <span class="inline-flex items-center gap-xs text-primary font-title-md text-title-md hover:underline cursor-pointer">Read Guide <span class="material-symbols-outlined text-[16px]">arrow_forward</span></span>
+                        </div>
+                    </div>
+                    <div class="bg-surface-container-lowest p-xl rounded-2xl border border-outline-variant/30 hover:shadow-md transition-all flex gap-lg">
+                        <span class="material-symbols-outlined text-primary text-[32px] flex-shrink-0">forum</span>
+                        <div class="space-y-xs">
+                            <h3 class="font-title-lg text-title-lg">Messaging Patients</h3>
+                            <p class="font-body-sm text-body-sm text-on-surface-variant">Send follow-up messages and respond to patient queries through the secure inbox.</p>
+                            <span class="inline-flex items-center gap-xs text-primary font-title-md text-title-md hover:underline cursor-pointer">Read Guide <span class="material-symbols-outlined text-[16px]">arrow_forward</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="py-3xl px-margin-desktop">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="font-headline-lg text-headline-lg text-on-surface text-center mb-2xl">Frequently Asked Questions</h2>
+                <div class="space-y-md" id="faqList">
+
+                    <div class="faq-item bg-surface-container-low rounded-2xl border border-outline-variant/30 overflow-hidden">
+                        <button class="w-full flex items-center justify-between p-xl text-left" onclick="toggleFaq(this)">
+                            <span class="font-title-md text-title-md">Is Medium+ free to use for patients?</span>
+                            <span class="material-symbols-outlined faq-icon text-primary flex-shrink-0">expand_more</span>
+                        </button>
+                        <div class="faq-answer px-xl pb-xl">
+                            <p class="font-body-md text-body-md text-on-surface-variant">Yes. Patients can register and book appointments on Medium+ at no cost. Fees, if any, are determined by the individual healthcare provider or facility you book with.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item bg-surface-container-low rounded-2xl border border-outline-variant/30 overflow-hidden">
+                        <button class="w-full flex items-center justify-between p-xl text-left" onclick="toggleFaq(this)">
+                            <span class="font-title-md text-title-md">Is my health data private and secure?</span>
+                            <span class="material-symbols-outlined faq-icon text-primary flex-shrink-0">expand_more</span>
+                        </button>
+                        <div class="faq-answer px-xl pb-xl">
+                            <p class="font-body-md text-body-md text-on-surface-variant">Absolutely. Medium+ is built with HIPAA compliance and end-to-end encryption. Your health records and personal data are never shared with third parties without your explicit consent.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item bg-surface-container-low rounded-2xl border border-outline-variant/30 overflow-hidden">
+                        <button class="w-full flex items-center justify-between p-xl text-left" onclick="toggleFaq(this)">
+                            <span class="font-title-md text-title-md">How do I cancel or reschedule an appointment?</span>
+                            <span class="material-symbols-outlined faq-icon text-primary flex-shrink-0">expand_more</span>
+                        </button>
+                        <div class="faq-answer px-xl pb-xl">
+                            <p class="font-body-md text-body-md text-on-surface-variant">Log in to your patient dashboard, go to "My Appointments", and select the appointment you'd like to change. You can reschedule or cancel directly from there, subject to the provider's cancellation policy.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item bg-surface-container-low rounded-2xl border border-outline-variant/30 overflow-hidden">
+                        <button class="w-full flex items-center justify-between p-xl text-left" onclick="toggleFaq(this)">
+                            <span class="font-title-md text-title-md">How do doctors join Medium+?</span>
+                            <span class="material-symbols-outlined faq-icon text-primary flex-shrink-0">expand_more</span>
+                        </button>
+                        <div class="faq-answer px-xl pb-xl">
+                            <p class="font-body-md text-body-md text-on-surface-variant">Doctors can register via the "Join as a Doctor" flow on the registration page. After submitting your credentials, our team will verify your information and activate your account within 24–48 hours.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item bg-surface-container-low rounded-2xl border border-outline-variant/30 overflow-hidden">
+                        <button class="w-full flex items-center justify-between p-xl text-left" onclick="toggleFaq(this)">
+                            <span class="font-title-md text-title-md">Can I use Medium+ on my phone?</span>
+                            <span class="material-symbols-outlined faq-icon text-primary flex-shrink-0">expand_more</span>
+                        </button>
+                        <div class="faq-answer px-xl pb-xl">
+                            <p class="font-body-md text-body-md text-on-surface-variant">Yes. Medium+ is fully responsive and works on all modern browsers on smartphones, tablets, and desktops. A dedicated mobile app is currently in development.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item bg-surface-container-low rounded-2xl border border-outline-variant/30 overflow-hidden">
+                        <button class="w-full flex items-center justify-between p-xl text-left" onclick="toggleFaq(this)">
+                            <span class="font-title-md text-title-md">How do I contact support?</span>
+                            <span class="material-symbols-outlined faq-icon text-primary flex-shrink-0">expand_more</span>
+                        </button>
+                        <div class="faq-answer px-xl pb-xl">
+                            <p class="font-body-md text-body-md text-on-surface-variant">You can reach us via the <a href="contact_us.html" class="text-primary hover:underline">Contact Us</a> page. Our support team is available Monday–Friday, 9am–6pm. For urgent matters, use the in-app help button.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Still need help -->
+        <section class="py-2xl px-margin-desktop bg-surface-container-low">
+            <div class="max-w-container-max mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+                    <div class="bg-surface-container-lowest p-xl rounded-2xl border border-outline-variant/30 text-center space-y-md">
+                        <span class="material-symbols-outlined text-primary text-[40px]">mail</span>
+                        <h3 class="font-title-lg text-title-lg">Email Support</h3>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant">Send us a message and we'll respond within 24 hours.</p>
+                        <a href="contact_us.html" class="inline-flex items-center gap-xs text-primary font-title-md hover:underline">Send a Message <span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
+                    </div>
+                    <div class="bg-surface-container-lowest p-xl rounded-2xl border border-outline-variant/30 text-center space-y-md">
+                        <span class="material-symbols-outlined text-primary text-[40px]">forum</span>
+                        <h3 class="font-title-lg text-title-lg">In-App Help</h3>
+                        <p class="font-body-sm text-body-sm text-on-surface-variant">Use the help button inside your dashboard to get contextual support.</p>
+                        <a href="onboarding_feature_walkthrough.html?next=login" class="inline-flex items-center gap-xs text-primary font-title-md hover:underline">Go to Dashboard <span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
+                    </div>
+                    <div class="bg-primary p-xl rounded-2xl text-center space-y-md">
+                        <span class="material-symbols-outlined text-white text-[40px]">contact_support</span>
+                        <h3 class="font-title-lg text-title-lg text-white">Still Stuck?</h3>
+                        <p class="font-body-sm text-body-sm text-white/80">Our team is happy to walk you through anything step by step.</p>
+                        <a href="contact_us.html" class="inline-flex items-center gap-xs text-white font-title-md hover:underline">Talk to Us <span class="material-symbols-outlined text-[16px]">arrow_forward</span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface-dim text-on-surface-variant py-xl px-margin-desktop border-t border-outline-variant">
+        <div class="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-md">
+            <img src="./logo.jpeg" alt="Medium+" style="height: 28px;" />
+            <p class="font-label-sm text-label-sm">© 2024 Medium+. All rights reserved.</p>
+            <div class="flex gap-lg font-label-sm text-label-sm">
+                <a class="hover:text-primary" href="#">Privacy Policy</a>
+                <a class="hover:text-primary" href="#">Terms of Service</a>
+                <a class="hover:text-primary" href="contact_us.html">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleFaq(btn) {
+            const item = btn.closest('.faq-item');
+            item.classList.toggle('open');
+        }
+        // Search FAQ
+        document.getElementById('faqSearch').addEventListener('input', function() {
+            const q = this.value.toLowerCase();
+            document.querySelectorAll('.faq-item').forEach(item => {
+                const text = item.innerText.toLowerCase();
+                item.style.display = text.includes(q) ? '' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>

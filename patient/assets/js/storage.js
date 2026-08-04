@@ -6,12 +6,12 @@
  * call is try/caught so a locked-down browser (private mode, disabled
  * storage) degrades gracefully instead of throwing.
  *
- * All keys are namespaced under "medibook:" to avoid colliding with other
+ * All keys are namespaced under "mediumplus:" to avoid colliding with other
  * scripts on the same origin.
  * ---------------------------------------------------------------------------
  */
 
-const NAMESPACE = 'medibook';
+const NAMESPACE = 'mediumplus';
 
 const namespacedKey = (key) => `${NAMESPACE}:${key}`;
 

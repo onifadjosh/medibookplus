@@ -1,5 +1,5 @@
 /* ==========================================================================
-   MediBook+ | Utilities
+   Medium+ | Utilities
    Small, single-purpose helper classes reused across every component.
    If a rule only ever applies to one component, it belongs in
    components.css / layout.css instead.
@@ -36,7 +36,7 @@
 /* ---- Spacing utilities --------------------------------------------------
    Bootstrap-style shorthand (mt-*, mb-*) mapped to our own spacing tokens.
    Note: "mb-" here means "margin-bottom", same as Bootstrap's convention —
-   coincidentally the same two letters as our "MediBook" component prefix
+   coincidentally the same two letters as our "Medium+" component prefix
    (.mb-btn, .mb-panel, etc.), but exact-string class matching means there's
    no actual collision. Used sparingly for one-off spacing tweaks; anything
    reused more than once should get a real component/utility of its own. */

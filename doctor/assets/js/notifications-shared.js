@@ -1,5 +1,5 @@
 /* ==========================================================================
-   MediBook+ | Notification Bell (shared)
+   Medium+ | Notification Bell (shared)
    Vanilla JS — dropdown panel with dummy data. No backend calls.
    Include on every page that has the topbar notification bell.
    ========================================================================== */

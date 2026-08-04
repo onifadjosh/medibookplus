@@ -53,7 +53,7 @@ export const patient = {
    * instead of duplicating it here.
    */
   contact: {
-    email: 'john.doe@medibook-demo.com',
+    email: 'john.doe@mediumplus-demo.com',
     phone: '+1 (555) 123-4567',
   },
   personal: {
