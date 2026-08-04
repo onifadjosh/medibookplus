@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Medium+ | Register Your Hospital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link href="tailwind.css" rel="stylesheet" />
+    <link href="custom.css" rel="stylesheet" />
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+
+    <!-- Nav -->
+    <header class="bg-surface-container-lowest shadow-[0px_4px_15px_0px_rgba(0,0,0,0.05)] sticky top-0 z-50 h-16 flex items-center px-margin-mobile md:px-margin-desktop justify-between">
+        <a href="index.html"><img src="./logo.jpeg" alt="Medium+" style="height:32px;" /></a>
+        <a href="login_secure_entry.html" class="text-label-md font-label-md text-secondary hover:text-primary transition-colors">Sign In</a>
+    </header>
+
+    <main class="flex-grow flex items-center justify-center py-2xl px-margin-mobile">
+        <div class="w-full max-w-[640px] flex flex-col gap-xl">
+
+            <!-- Progress -->
+            <div class="w-full">
+                <div class="flex justify-between items-center mb-md">
+                    <span class="font-label-md text-label-md text-primary font-bold uppercase tracking-wider">Hospital Registration</span>
+                    <span class="font-label-sm text-label-sm text-on-surface-variant">Pending Approval</span>
+                </div>
+                <div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+                    <div class="h-full bg-primary w-full step-transition"></div>
+                </div>
+            </div>
+
+            <!-- Info Banner -->
+            <div class="bg-secondary-container/40 border border-secondary-container rounded-xl p-lg flex items-start gap-md">
+                <span class="material-symbols-outlined text-primary flex-shrink-0">info</span>
+                <div>
+                    <p class="font-title-sm text-title-sm text-on-surface mb-xs">How Hospital Registration Works</p>
+                    <p class="font-body-sm text-body-sm text-on-surface-variant">After submitting your facility details, our platform superadmin will review and approve your application. Once approved, you'll receive an email and can log in as an admin to manage your doctors and patients.</p>
+                </div>
+            </div>
+
+            <!-- Form Card -->
+            <div class="bg-surface-container-lowest rounded-xl p-lg md:p-xl border border-outline-variant/30 shadow-sm">
+                <div class="mb-xl">
+                    <h1 class="font-headline-lg text-on-surface mb-sm">Register Your Facility</h1>
+                    <p class="font-body-md text-on-surface-variant">Tell us about your hospital or clinic so we can set up your Medium+ environment.</p>
+                </div>
+
+                <form id="hospital-form" class="flex flex-col gap-lg" onsubmit="submitHospital(event)">
+
+                    <!-- Hospital Name -->
+                    <div class="flex flex-col gap-xs">
+                        <label class="font-label-md text-label-md text-on-surface-variant" for="hospital_name">Hospital / Clinic Name <span class="text-error">*</span></label>
+                        <div class="relative">
+                            <span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant/60">local_hospital</span>
+                            <input class="w-full h-12 pl-12 pr-md bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-on-surface" id="hospital_name" name="hospital_name" placeholder="St. Mary's General Hospital" required type="text" />
+                        </div>
+                    </div>
+
+                    <!-- Email + Phone -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+                        <div class="flex flex-col gap-xs">
+                            <label class="font-label-md text-label-md text-on-surface-variant" for="hospital_email">Official Email <span class="text-error">*</span></label>
+                            <div class="relative">
+                                <span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant/60">mail</span>
+                                <input class="w-full h-12 pl-12 pr-md bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-on-surface" id="hospital_email" name="email" placeholder="admin@hospital.com" required type="email" />
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-xs">
+                            <label class="font-label-md text-label-md text-on-surface-variant" for="hospital_phone">Phone Number <span class="text-error">*</span></label>
+                            <div class="relative">
+                                <span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant/60">call</span>
+                                <input class="w-full h-12 pl-12 pr-md bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-on-surface" id="hospital_phone" name="phone" placeholder="08012345678" required type="tel" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Address -->
+                    <div class="flex flex-col gap-xs">
+                        <label class="font-label-md text-label-md text-on-surface-variant" for="hospital_address">Street Address <span class="text-error">*</span></label>
+                        <div class="relative">
+                            <span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant/60">location_on</span>
+                            <input class="w-full h-12 pl-12 pr-md bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-on-surface" id="hospital_address" name="address" placeholder="123 Medical Drive" required type="text" />
+                        </div>
+                    </div>
+
+                    <!-- City + State -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+                        <div class="flex flex-col gap-xs">
+                            <label class="font-label-md text-label-md text-on-surface-variant" for="hospital_city">City <span class="text-error">*</span></label>
+                            <input class="w-full h-12 px-md bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-on-surface" id="hospital_city" name="city" placeholder="Lagos" required type="text" />
+                        </div>
+                        <div class="flex flex-col gap-xs">
+                            <label class="font-label-md text-label-md text-on-surface-variant" for="hospital_state">State / Region <span class="text-error">*</span></label>
+                            <input class="w-full h-12 px-md bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-on-surface" id="hospital_state" name="state" placeholder="Lagos State" required type="text" />
+                        </div>
+                    </div>
+
+                    <!-- Admin Info Section -->
+                    <div class="pt-md border-t border-outline-variant/30">
+                        <h2 class="font-title-lg text-on-surface mb-md">Admin Account Details</h2>
+                        <p class="font-body-sm text-on-surface-variant mb-lg">This will be the primary administrator account for your facility.</p>
+
+                        <div class="flex flex-col gap-lg">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+                                <div class="flex flex-col gap-xs">
+                                    <label class="font-label-md text-label-md text-on-surface-variant" for="admin_first">First Name <span class="text-error">*</span></label>
+                                    <input class="w-full h-12 px-md bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-on-surface" id="admin_first" name="adminFirstName" placeholder="John" required type="text" />
+                                </div>
+                                <div class="flex flex-col gap-xs">
+                                    <label class="font-label-md text-label-md text-on-surface-variant" for="admin_last">Last Name <span class="text-error">*</span></label>
+                                    <input class="w-full h-12 px-md bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-on-surface" id="admin_last" name="adminLastName" placeholder="Doe" required type="text" />
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-xs">
+                                <label class="font-label-md text-label-md text-on-surface-variant" for="admin_password">Password <span class="text-error">*</span></label>
+                                <div class="relative">
+                                    <span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant/60">lock</span>
+                                    <input class="w-full h-12 pl-12 pr-md bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-on-surface" id="admin_password" name="password" placeholder="Min 8 chars, uppercase, number, special char" required type="password" />
+                                </div>
+                                <p class="font-label-sm text-on-surface-variant mt-xs">Min 8 characters · 1 uppercase · 1 number · 1 special character</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Error Display -->
+                    <div id="error-msg" class="hidden bg-error-container text-on-error-container p-md rounded-lg font-body-sm"></div>
+
+                    <!-- Actions -->
+                    <div class="flex flex-col-reverse md:flex-row items-center justify-between gap-md mt-md pt-lg border-t border-outline-variant/30">
+                        <a href="register_role_selection_step_2.html" class="w-full md:w-auto px-lg py-sm font-label-md text-label-md text-secondary border border-outline-variant rounded-lg hover:bg-surface-container transition-all text-center">
+                            ← Back
+                        </a>
+                        <button id="submit-btn" class="w-full md:w-auto px-2xl h-12 font-label-md text-label-md bg-primary text-on-primary rounded-lg shadow-sm hover:brightness-110 active:scale-[0.98] transition-all flex items-center justify-center gap-sm" type="submit">
+                            <span>Submit Application</span>
+                            <span class="material-symbols-outlined text-[20px]">send</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Trust badges -->
+            <div class="flex flex-col md:flex-row items-center justify-center gap-lg text-on-surface-variant opacity-60">
+                <div class="flex items-center gap-sm">
+                    <span class="material-symbols-outlined text-[18px]">lock</span>
+                    <span class="font-label-sm uppercase tracking-widest">HIPAA Compliant</span>
+                </div>
+                <div class="flex items-center gap-sm">
+                    <span class="material-symbols-outlined text-[18px]">verified_user</span>
+                    <span class="font-label-sm uppercase tracking-widest">Verified Platform</span>
+                </div>
+                <div class="flex items-center gap-sm">
+                    <span class="material-symbols-outlined text-[18px]">security</span>
+                    <span class="font-label-sm uppercase tracking-widest">Encrypted Data</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center p-margin-mobile">
+        <div class="bg-surface-container-lowest rounded-2xl p-2xl max-w-md w-full text-center shadow-2xl space-y-lg">
+            <div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+                <span class="material-symbols-outlined text-primary text-[48px]" style="font-variation-settings:'FILL' 1;">task_alt</span>
+            </div>
+            <h2 class="font-headline-md text-on-surface">Application Submitted!</h2>
+            <p class="font-body-md text-on-surface-variant">Your hospital registration is now <strong>pending approval</strong> by our platform administrators. You'll receive a confirmation email once your facility is approved — usually within 24–48 hours.</p>
+            <a href="index.html" class="inline-block w-full bg-primary text-on-primary py-md rounded-xl font-title-md hover:shadow-lg transition-all">Return to Home</a>
+        </div>
+    </div>
+
+    <script>
+        async function submitHospital(e) {
+            e.preventDefault();
+            const btn = document.getElementById('submit-btn');
+            const err = document.getElementById('error-msg');
+            btn.disabled = true;
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> Submitting...';
+            err.classList.add('hidden');
+
+            const form = e.target;
+            const body = {
+                name: form.hospital_name.value,
+                email: form.email.value,
+                phone: form.phone.value,
+                address: form.address.value,
+                city: form.city.value,
+                state: form.state.value,
+                adminFirstName: form.adminFirstName.value,
+                adminLastName: form.adminLastName.value,
+                password: form.password.value,
+            };
+
+            try {
+                const res = await fetch('https://medium-server-377j.onrender.com/api/hospitals/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body),
+                });
+                const data = await res.json();
+                if (data.success) {
+                    document.getElementById('success-modal').classList.remove('hidden');
+                } else {
+                    err.textContent = data.message || 'Registration failed. Please try again.';
+                    err.classList.remove('hidden');
+                    btn.disabled = false;
+                    btn.innerHTML = '<span>Submit Application</span><span class="material-symbols-outlined text-[20px]">send</span>';
+                }
+            } catch (e) {
+                err.textContent = 'Network error. Please check your connection and try again.';
+                err.classList.remove('hidden');
+                btn.disabled = false;
+                btn.innerHTML = '<span>Submit Application</span><span class="material-symbols-outlined text-[20px]">send</span>';
+            }
+        }
+    </script>
+</body>
+</html>

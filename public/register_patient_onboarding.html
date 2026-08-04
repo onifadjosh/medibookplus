@@ -11,7 +11,7 @@
 
 <link href="tailwind.css" rel="stylesheet"/><link href="custom.css" rel="stylesheet"/></head>
 <body class="min-h-screen flex flex-col text-on-background">
-<!-- Top Navigation Bar (Shared Component Strategy) -->
+<!-- Top Navigation Bar -->
 <header class="bg-surface-container-lowest flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop h-16 sticky top-0 z-50 shadow-[0px_4px_15px_0px_rgba(0,0,0,0.05)]">
 <div class="flex items-center gap-sm">
 <span class="font-headline-md text-headline-md font-bold text-primary"><img src="./logo.jpeg" alt="Medium+" style="height: 32px; display: inline-block;" /></span>
@@ -29,57 +29,71 @@
 <!-- Progress Indicator Section -->
 <div class="w-full">
 <div class="flex justify-between items-center mb-md">
-<span class="font-label-md text-label-md text-primary font-bold uppercase tracking-wider">Step 1 of 4</span>
-<span class="font-label-md text-label-md text-on-surface-variant">Personal Details</span>
+<span class="font-label-md text-label-md text-primary font-bold uppercase tracking-wider">Patient Registration</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Basic Details</span>
 </div>
 <div class="h-1.5 w-full bg-surface-container-highest rounded-full overflow-hidden flex">
-<!-- Current progress bar -->
-<div class="h-full bg-primary w-1/4 step-transition"></div>
+<div class="h-full bg-primary w-full step-transition"></div>
 </div>
 </div>
 <!-- Registration Content Area -->
 <div class="registration-card bg-surface-container-lowest rounded-xl p-lg md:p-xl border border-outline-variant/30">
 <div class="mb-xl">
-<h1 class="font-headline-lg text-headline-lg md:text-headline-lg text-on-surface mb-sm">Welcome to Medium+</h1>
-<p class="font-body-md text-body-md text-on-surface-variant">To begin your healthcare journey, please provide your basic contact information. This helps us ensure your medical records remain secure and accessible.</p>
+<h1 class="font-headline-lg text-headline-lg md:text-headline-lg text-on-surface mb-sm">Create Your Patient Account</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Fill in your details below to join Medium+ and start booking appointments with your hospital.</p>
 </div>
-<form class="flex flex-col gap-lg" id="registration-form">
+<form class="flex flex-col gap-lg" id="registration-form" onsubmit="submitPatient(event)">
 <!-- Name Input Group -->
 <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
 <div class="flex flex-col gap-xs">
-<label class="font-label-md text-label-md text-on-surface-variant" for="first_name">First Name</label>
-<input class="w-full h-12 px-md bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-body-md text-on-surface" id="first_name" name="first_name" placeholder="John" required="" type="text"/>
+<label class="font-label-md text-label-md text-on-surface-variant" for="first_name">First Name <span class="text-error">*</span></label>
+<input class="w-full h-12 px-md bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-body-md text-on-surface" id="first_name" name="firstName" placeholder="Jane" required="" type="text"/>
 </div>
 <div class="flex flex-col gap-xs">
-<label class="font-label-md text-label-md text-on-surface-variant" for="last_name">Last Name</label>
-<input class="w-full h-12 px-md bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-body-md text-on-surface" id="last_name" name="last_name" placeholder="Doe" required="" type="text"/>
+<label class="font-label-md text-label-md text-on-surface-variant" for="last_name">Last Name <span class="text-error">*</span></label>
+<input class="w-full h-12 px-md bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-body-md text-on-surface" id="last_name" name="lastName" placeholder="Doe" required="" type="text"/>
 </div>
 </div>
 <!-- Email Input Group -->
 <div class="flex flex-col gap-xs">
-<label class="font-label-md text-label-md text-on-surface-variant" for="email">Email Address</label>
+<label class="font-label-md text-label-md text-on-surface-variant" for="email">Email Address <span class="text-error">*</span></label>
 <div class="relative">
 <span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant/60" data-icon="mail">mail</span>
-<input class="w-full h-12 pl-12 pr-md bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-body-md text-on-surface" id="email" name="email" placeholder="john.doe@example.com" required="" type="email"/>
+<input class="w-full h-12 pl-12 pr-md bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-body-md text-on-surface" id="email" name="email" placeholder="jane.doe@example.com" required="" type="email"/>
 </div>
-<p class="font-label-sm text-label-sm text-on-surface-variant mt-xs">We'll use this for appointment confirmations and health alerts.</p>
 </div>
 <!-- Phone Input Group -->
 <div class="flex flex-col gap-xs">
-<label class="font-label-md text-label-md text-on-surface-variant" for="phone">Mobile Phone Number</label>
+<label class="font-label-md text-label-md text-on-surface-variant" for="phone">Mobile Phone Number <span class="text-error">*</span></label>
 <div class="relative">
 <span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant/60" data-icon="call">call</span>
-<input class="w-full h-12 pl-12 pr-md bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-body-md text-on-surface" id="phone" name="phone" placeholder="+1 (555) 000-0000" required="" type="tel"/>
+<input class="w-full h-12 pl-12 pr-md bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-body-md text-on-surface" id="phone" name="phone" placeholder="08012345678" required="" type="tel"/>
 </div>
 </div>
-<!-- Date of Birth (Optional but recommended for registration context) -->
+<!-- Hospital Dropdown — required by API -->
 <div class="flex flex-col gap-xs">
-<label class="font-label-md text-label-md text-on-surface-variant" for="dob">Date of Birth</label>
+<label class="font-label-md text-label-md text-on-surface-variant" for="hospitalId">Select Your Hospital <span class="text-error">*</span></label>
 <div class="relative">
-<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant/60" data-icon="calendar_today">calendar_today</span>
-<input class="w-full h-12 pl-12 pr-md bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-body-md text-on-surface" id="dob" name="dob" required="" type="date"/>
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant/60">local_hospital</span>
+<select class="w-full h-12 pl-12 pr-md bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-on-surface appearance-none cursor-pointer" id="hospitalId" name="hospitalId" required="">
+<option value="">Loading hospitals...</option>
+</select>
+<span class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
 </div>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-xs">You will be registered under this hospital. Only that hospital's doctors will be visible to you.</p>
 </div>
+<!-- Password -->
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant" for="password">Password <span class="text-error">*</span></label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant/60">lock</span>
+<input class="w-full h-12 pl-12 pr-12 bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-on-surface" id="password" name="password" placeholder="Min 8 chars, uppercase, number, special char" required="" type="password"/>
+<button type="button" class="absolute right-md top-1/2 -translate-y-1/2 text-on-surface-variant" onclick="togglePwd('password','pwd-eye')"><span class="material-symbols-outlined" id="pwd-eye">visibility</span></button>
+</div>
+<p class="font-label-sm text-on-surface-variant mt-xs">Min 8 characters · 1 uppercase · 1 lowercase · 1 number · 1 special character</p>
+</div>
+<!-- Error msg -->
+<div id="error-msg" class="hidden bg-error-container text-on-error-container p-md rounded-lg font-body-sm"></div>
 <!-- Terms checkbox -->
 <div class="flex items-start gap-md mt-sm">
 <input class="mt-1 w-5 h-5 text-primary border-outline-variant rounded focus:ring-primary" id="terms" name="terms" required="" type="checkbox"/>
@@ -89,11 +103,11 @@
 </div>
 <!-- Action Buttons -->
 <div class="flex flex-col-reverse md:flex-row items-center justify-between gap-md mt-xl pt-lg border-t border-outline-variant/30">
-<a class="w-full md:w-auto px-lg py-sm font-label-md text-label-md text-secondary border border-outline-variant rounded-lg hover:bg-surface-container transition-all cursor-pointer" href="login_secure_entry.html" type="button">
-                            Back to Login
+<a class="w-full md:w-auto px-lg py-sm font-label-md text-label-md text-secondary border border-outline-variant rounded-lg hover:bg-surface-container transition-all cursor-pointer text-center" href="register_role_selection_step_2.html" type="button">
+                            ← Back
                         </a>
-<button class="w-full md:w-auto px-2xl h-12 font-label-md text-label-md bg-primary text-on-primary rounded-lg shadow-sm hover:brightness-110 active:scale-[0.98] transition-all flex items-center justify-center gap-sm cursor-pointer" type="submit">
-<span class="">Next Step</span>
+<button class="w-full md:w-auto px-2xl h-12 font-label-md text-label-md bg-primary text-on-primary rounded-lg shadow-sm hover:brightness-110 active:scale-[0.98] transition-all flex items-center justify-center gap-sm cursor-pointer" id="submit-btn" type="submit">
+<span>Create Account</span>
 <span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
 </button>
 </div>
@@ -116,8 +130,95 @@
 </div>
 </div>
 </main>
-<!-- Side-decoration logic (Subtle background elements for premium feel) -->
+
+<!-- Success Modal -->
+<div id="success-modal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center p-margin-mobile">
+<div class="bg-surface-container-lowest rounded-2xl p-2xl max-w-md w-full text-center shadow-2xl space-y-lg">
+<div class="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto">
+<span class="material-symbols-outlined text-primary text-[48px]" style="font-variation-settings:'FILL' 1;">task_alt</span>
+</div>
+<h2 class="font-headline-md text-on-surface" id="success-name">Welcome!</h2>
+<p class="font-body-md text-on-surface-variant" id="success-msg">Your patient account has been created.</p>
+<a href="login_secure_entry.html" class="inline-block w-full bg-primary text-on-primary py-md rounded-xl font-title-md hover:shadow-lg transition-all">Go to Login</a>
+</div>
+</div>
+
+<!-- Side-decoration logic -->
 <div class="fixed top-[20%] -right-32 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-10 pointer-events-none"></div>
 <div class="fixed bottom-[10%] -left-32 w-80 h-80 bg-tertiary-container/5 rounded-full blur-3xl -z-10 pointer-events-none"></div>
 
-<script src="scripts.js"></script></body></html>
+<script>
+async function loadHospitals() {
+    const sel = document.getElementById('hospitalId');
+    try {
+        const res = await fetch('https://medium-server-377j.onrender.com/api/hospitals');
+        const data = await res.json();
+        sel.innerHTML = '<option value="">— Select a Hospital —</option>';
+        if (data.success && data.data) {
+            const hospitals = Array.isArray(data.data) ? data.data : (data.data.hospitals || []);
+            hospitals.forEach(h => {
+                const opt = document.createElement('option');
+                opt.value = h._id || h.id;
+                opt.textContent = h.name;
+                sel.appendChild(opt);
+            });
+        }
+    } catch(e) {
+        sel.innerHTML = '<option value="">Unable to load hospitals — check connection</option>';
+    }
+}
+
+function togglePwd(inputId, iconId) {
+    const inp = document.getElementById(inputId);
+    const icon = document.getElementById(iconId);
+    if (inp.type === 'password') { inp.type = 'text'; icon.textContent = 'visibility_off'; }
+    else { inp.type = 'password'; icon.textContent = 'visibility'; }
+}
+
+async function submitPatient(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submit-btn');
+    const err = document.getElementById('error-msg');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> Creating account...';
+    err.classList.add('hidden');
+
+    const form = e.target;
+    const body = {
+        firstName: form.firstName.value,
+        lastName: form.lastName.value,
+        email: form.email.value,
+        phone: form.phone.value,
+        password: form.password.value,
+        hospitalId: form.hospitalId.value,
+    };
+
+    try {
+        const res = await fetch('https://medium-server-377j.onrender.com/api/auth/register/patient', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body),
+        });
+        const data = await res.json();
+        if (data.success) {
+            localStorage.setItem('token', data.data.token);
+            localStorage.setItem('user', JSON.stringify(data.data.user));
+            document.getElementById('success-name').textContent = 'Welcome, ' + data.data.user.firstName + '!';
+            document.getElementById('success-msg').textContent = 'Your patient ID is ' + (data.data.user.patientId || '') + '. You can now log in and book appointments.';
+            document.getElementById('success-modal').classList.remove('hidden');
+        } else {
+            err.textContent = data.message || 'Registration failed. Please try again.';
+            err.classList.remove('hidden');
+            btn.disabled = false;
+            btn.innerHTML = '<span>Create Account</span><span class="material-symbols-outlined text-[20px]">arrow_forward</span>';
+        }
+    } catch(ex) {
+        err.textContent = 'Network error. Please check your connection.';
+        err.classList.remove('hidden');
+        btn.disabled = false;
+        btn.innerHTML = '<span>Create Account</span><span class="material-symbols-outlined text-[20px]">arrow_forward</span>';
+    }
+}
+
+loadHospitals();
+</script></body></html>

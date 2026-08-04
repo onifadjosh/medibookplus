@@ -13,14 +13,14 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet" />
-    <link href="tailwind.css" rel="stylesheet" />
+    <link href="tailwind.css?v=3" rel="stylesheet" />
     <link href="custom.css" rel="stylesheet" />
 </head>
 
 <body class="bg-background text-on-background font-body-md overflow-x-hidden">
     <!-- Top Navigation Bar -->
     <header
-        class="bg-surface-container-lowest shadow-[0px_4px_15px_0px_rgba(0,0,0,0.05)] flex justify-between items-center w-full px-margin-desktop h-16 sticky top-0 z-50">
+        class="bg-surface-container-lowest shadow-[0px_4px_15px_0px_rgba(0,0,0,0.05)] flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop h-16 sticky top-0 z-50">
         <div class="flex items-center gap-sm">
             <span class="font-headline-md text-headline-md font-bold text-primary"><img src="./logo.jpeg" alt="Medium+" style="height: 32px; display: inline-block;" /></span>
         </div>
@@ -33,14 +33,25 @@
             <a class="text-secondary hover:bg-surface-container-high transition-colors font-body-md text-body-md px-2 py-1 rounded"
                 href="resources.html">Resources</a>
         </nav>
-        <div class="flex items-center gap-md">
+        <div class="flex items-center gap-sm md:gap-md">
             <button
-                class="material-symbols-outlined text-primary p-2 cursor-pointer active:opacity-80">notifications</button>
-            <button class="material-symbols-outlined text-primary p-2 cursor-pointer active:opacity-80">help</button>
-            <a class="bg-primary text-on-primary px-lg py-sm rounded-lg font-title-md text-title-md hover:shadow-lg transition-all active:scale-95"
-                href="onboarding_feature_walkthrough.html?next=login">Sign in</a>
+                class="hidden md:block material-symbols-outlined text-primary p-2 cursor-pointer active:opacity-80">notifications</button>
+            <button class="hidden md:block material-symbols-outlined text-primary p-2 cursor-pointer active:opacity-80">help</button>
+            <a class="hidden md:block bg-primary text-on-primary px-lg py-sm rounded-lg font-title-md text-title-md hover:shadow-lg transition-all active:scale-95"
+                href="login_secure_entry.html">Sign in</a>
+            <!-- Mobile menu toggle -->
+            <button class="md:hidden p-2 cursor-pointer active:opacity-80 flex items-center justify-center" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <span class="material-symbols-outlined text-primary">menu</span>
+            </button>
         </div>
     </header>
+    <!-- Mobile Menu Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden bg-surface-container-lowest w-full absolute top-16 left-0 z-40 border-b border-outline-variant shadow-lg flex flex-col p-md gap-md">
+        <a href="index.html" class="text-primary font-title-md py-2 border-b border-outline-variant/30">Home</a>
+        <a href="solutions.html" class="text-secondary font-title-md py-2 border-b border-outline-variant/30">Solutions</a>
+        <a href="resources.html" class="text-secondary font-title-md py-2 border-b border-outline-variant/30">Resources</a>
+        <a href="login_secure_entry.html" class="bg-primary text-on-primary px-md py-sm text-center rounded-lg font-title-md">Sign in</a>
+    </div>
     <main>
         <!-- Hero Section -->
         <section class="relative hero-gradient pt-24 pb-32 px-margin-desktop min-h-[90vh] flex items-center">
