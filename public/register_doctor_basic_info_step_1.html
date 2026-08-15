@@ -139,7 +139,7 @@
                         <label class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wide">Department <span class="text-error">*</span></label>
                         <div class="relative">
                             <span class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline text-lg">category</span>
-                            <select class="w-full pl-12 pr-10 py-3 rounded-lg border border-outline-variant bg-surface-container-lowest text-body-md font-body-md input-focus-ring transition-all appearance-none cursor-pointer" required name="department" id="departmentId">
+                            <select class="w-full pl-12 pr-10 py-3 rounded-lg border border-outline-variant bg-surface-container-lowest text-body-md font-body-md input-focus-ring transition-all appearance-none cursor-pointer" required name="departmentId" id="departmentId">
                                 <option value="">Loading departments...</option>
                             </select>
                             <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
@@ -190,14 +190,12 @@
 <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBB8C6-3Ip8bI7gHAn8Jzfmw0SLQxvm89zIhkbbv5iIlYy-DSGG7W_ycv1Z7w9kwY1n2MrWLyQqUp8W9cqopcojFiL7KNkHYnLWyxId6PdrnB1tI1YUxA6iCi4574rtYJHt4ZFIdFp1hk7xryYi6-oJgbl8BfUW-t0g9l-LD3puRCRJXzW3O-eKUOPillKPmfZy--02_tjeqC_5O--JuOFTgsKEBETvbixGpLHOY7ECL3TdA4Hah9epjA" alt=""/>
 </div>
 
+<script src="api.js"></script>
 <script>
-const API = 'https://medium-server-377j.onrender.com';
-
 async function loadHospitals() {
     const sel = document.getElementById('hospitalId');
     try {
-        const res = await fetch(API + '/api/hospitals');
-        const data = await res.json();
+        const data = await API.hospitals.list();
         sel.innerHTML = '<option value="">— Select a Hospital —</option>';
         if (data.success && data.data) {
             const hospitals = Array.isArray(data.data) ? data.data : (data.data.hospitals || []);
@@ -216,16 +214,14 @@ async function loadHospitals() {
 async function loadDepartments() {
     const sel = document.getElementById('departmentId');
     try {
-        const res = await fetch(API + '/api/departments');
-        const data = await res.json();
+        const data = await API.public.departments();
         sel.innerHTML = '<option value="">— Select a Department —</option>';
         if (data.success && data.data) {
             const depts = Array.isArray(data.data) ? data.data : (data.data.departments || []);
             depts.forEach(d => {
                 const opt = document.createElement('option');
-                const name = typeof d === 'string' ? d : (d.name || d);
-                opt.value = name;
-                opt.textContent = name;
+                opt.value = d._id || d.id || (typeof d === 'string' ? d : d.name);
+                opt.textContent = d.name || (typeof d === 'string' ? d : '');
                 sel.appendChild(opt);
             });
         }
@@ -260,17 +256,12 @@ async function submitDoctor(e) {
         phone: form.phone.value,
         password: form.password.value,
         hospitalId: form.hospitalId.value,
-        department: form.department.value,
+        department: form.departmentId.value,
         specialization: form.specialization.value,
     };
 
     try {
-        const res = await fetch(API + '/api/auth/register/doctor', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(body),
-        });
-        const data = await res.json();
+        const data = await API.auth.registerDoctor(body);
         if (data.success) {
             document.getElementById('success-modal').classList.remove('hidden');
         } else {

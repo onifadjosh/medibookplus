@@ -83,7 +83,7 @@
 <div class="aspect-video rounded-xl overflow-hidden custom-shadow">
 <img class="w-full h-full object-cover" data-alt="A high-end, minimalist 3D rendering of a modern hospital patient lounge. The space features floor-to-ceiling windows, soft architectural lighting, and designer furniture in muted teal and neutral tones. The atmosphere is calming, sterile but welcoming, embodying the luxury healthcare experience of Medium+." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBevzsQ7ejJOMUVCd1T8sRo7Y-vH73yubGWMNFk9NNSFiwF5Nzf1lBjvD2NS7Hr_cYaaMzrZeAn0Wxr2xJgsoMXq_qLojqf9gho2UnnyNoTHPnT-LL1Y7hUw2fAfGEaqQGZRhftIMphRMl4fqUOgx1rZx3E1ZTJs6J2iYTqFf0WDYTtJCTcO61j1qQnX-F2dYKXwd7ZluV6FjYZ3D6ylXFYtINyG-Ln0AK1mos60GTSJWhprGimNcvKiw"/>
 </div>
-<div class="mt-lg space-y-lg"><div class="bg-surface-container-low p-lg rounded-xl border border-outline-variant/20 custom-shadow"><div class="flex items-center gap-sm mb-md text-primary"><span class="material-symbols-outlined">info</span><h3 class="font-title-md text-title-md text-on-surface">Health Summary</h3></div><div class="grid grid-cols-2 gap-md"><div class="space-y-xs"><p class="text-label-sm text-on-surface-variant uppercase">Blood Group</p><p class="text-body-md font-semibold">O+</p></div><div class="space-y-xs"><p class="text-label-sm text-on-surface-variant uppercase">Insurance</p><p class="text-green-700 font-semibold">Active</p></div><div class="col-span-2 space-y-xs"><p class="text-label-sm text-on-surface-variant uppercase">Allergies</p><p class="text-body-md">Penicillin, Peanuts</p></div></div></div><div class="bg-primary/10 p-lg rounded-xl border border-primary/20 flex items-center justify-between"><div class="flex items-center gap-md"><span class="material-symbols-outlined text-primary">notifications_active</span><div><p class="text-title-md font-bold text-primary">Next Appointment</p><p class="text-body-sm text-on-surface-variant">In 3 Days</p></div></div><span class="material-symbols-outlined text-primary">chevron_right</span></div></div></div>
+<div class="mt-lg space-y-lg"><div class="bg-surface-container-low p-lg rounded-xl border border-outline-variant/20 custom-shadow"><div class="flex items-center gap-sm mb-md text-primary"><span class="material-symbols-outlined">info</span><h3 class="font-title-md text-title-md text-on-surface">Health Summary</h3></div><div class="grid grid-cols-2 gap-md"><div class="space-y-xs"><p class="text-label-sm text-on-surface-variant uppercase">Blood Group</p><p class="text-body-md font-semibold">O+</p></div><div class="space-y-xs"><p class="text-label-sm text-on-surface-variant uppercase">Insurance</p><p class="text-green-700 font-semibold">Active</p></div><div class="col-span-2 space-y-xs"><p class="text-label-sm text-on-surface-variant uppercase">Allergies</p><p class="text-body-md" id="displayAllergies">Penicillin, Peanuts</p></div></div></div><div class="bg-primary/10 p-lg rounded-xl border border-primary/20 flex items-center justify-between"><div class="flex items-center gap-md"><span class="material-symbols-outlined text-primary">notifications_active</span><div><p class="text-title-md font-bold text-primary">Next Appointment</p><p class="text-body-sm text-on-surface-variant">In 3 Days</p></div></div><span class="material-symbols-outlined text-primary">chevron_right</span></div></div></div>
 </div>
 </section>
 <!-- Quick Stats -->
@@ -120,7 +120,7 @@
 <!-- Quick Actions Grid -->
 <section>
 <h2 class="font-title-lg text-title-lg text-on-surface mb-lg">Quick Actions</h2>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter"><button class="group bg-surface-container-lowest p-lg rounded-xl border border-outline-variant/20 custom-shadow hover:border-primary/50 transition-all text-left"><div class="w-12 h-12 rounded-full bg-primary text-on-primary flex items-center justify-center mb-md group-hover:scale-110 transition-transform"><span class="material-symbols-outlined">add_circle</span></div><h3 class="font-title-md text-title-md mb-xs">Book Appointment</h3><p class="font-body-sm text-body-sm text-on-surface-variant">Schedule a new visit.</p></button><button class="group bg-surface-container-lowest p-lg rounded-xl border border-outline-variant/20 custom-shadow hover:border-primary/50 transition-all text-left"><div class="w-12 h-12 rounded-full bg-secondary-container text-secondary flex items-center justify-center mb-md group-hover:scale-110 transition-transform"><span class="material-symbols-outlined">badge</span></div><h3 class="font-title-md text-title-md mb-xs">Digital Card</h3><p class="font-body-sm text-body-sm text-on-surface-variant">Insurance and ID.</p></button><button class="group bg-surface-container-lowest p-lg rounded-xl border border-outline-variant/20 custom-shadow hover:border-primary/50 transition-all text-left"><div class="w-12 h-12 rounded-full bg-on-primary-fixed-variant/10 text-primary flex items-center justify-center mb-md group-hover:scale-110 transition-transform"><span class="material-symbols-outlined">folder_shared</span></div><h3 class="font-title-md text-title-md mb-xs">Medical Records</h3><p class="font-body-sm text-body-sm text-on-surface-variant">Access your history.</p></button><button class="group bg-surface-container-lowest p-lg rounded-xl border border-outline-variant/20 custom-shadow hover:border-primary/50 transition-all text-left"><div class="w-12 h-12 rounded-full bg-tertiary-container/20 text-tertiary flex items-center justify-center mb-md group-hover:scale-110 transition-transform"><span class="material-symbols-outlined">prescriptions</span></div><h3 class="font-title-md text-title-md mb-xs">Request Prescription</h3><p class="font-body-sm text-body-sm text-on-surface-variant">Renew your meds.</p></button><button class="group bg-surface-container-lowest p-lg rounded-xl border border-outline-variant/20 custom-shadow hover:border-primary/50 transition-all text-left"><div class="w-12 h-12 rounded-full bg-tertiary-container/30 text-tertiary flex items-center justify-center mb-md group-hover:scale-110 transition-transform"><span class="material-symbols-outlined">person_edit</span></div><h3 class="font-title-md text-title-md mb-xs">Update Profile</h3><p class="font-body-sm text-body-sm text-on-surface-variant">Manage your info.</p></button><button class="group bg-surface-container-lowest p-lg rounded-xl border border-outline-variant/20 custom-shadow hover:border-primary/50 transition-all text-left"><div class="w-12 h-12 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center mb-md group-hover:scale-110 transition-transform"><span class="material-symbols-outlined">call</span></div><h3 class="font-title-md text-title-md mb-xs">Contact Hospital</h3><p class="font-body-sm text-body-sm text-on-surface-variant">Get in touch with us.</p></button></div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter"><button class="group bg-surface-container-lowest p-lg rounded-xl border border-outline-variant/20 custom-shadow hover:border-primary/50 transition-all text-left" onclick="window.location.href='patient_booking_directory.html'"><div class="w-12 h-12 rounded-full bg-primary text-on-primary flex items-center justify-center mb-md group-hover:scale-110 transition-transform"><span class="material-symbols-outlined">add_circle</span></div><h3 class="font-title-md text-title-md mb-xs">Book Appointment</h3><p class="font-body-sm text-body-sm text-on-surface-variant">Schedule a new visit.</p></button><button class="group bg-surface-container-lowest p-lg rounded-xl border border-outline-variant/20 custom-shadow hover:border-primary/50 transition-all text-left"><div class="w-12 h-12 rounded-full bg-secondary-container text-secondary flex items-center justify-center mb-md group-hover:scale-110 transition-transform"><span class="material-symbols-outlined">badge</span></div><h3 class="font-title-md text-title-md mb-xs">Digital Card</h3><p class="font-body-sm text-body-sm text-on-surface-variant">Insurance and ID.</p></button><button class="group bg-surface-container-lowest p-lg rounded-xl border border-outline-variant/20 custom-shadow hover:border-primary/50 transition-all text-left"><div class="w-12 h-12 rounded-full bg-on-primary-fixed-variant/10 text-primary flex items-center justify-center mb-md group-hover:scale-110 transition-transform"><span class="material-symbols-outlined">folder_shared</span></div><h3 class="font-title-md text-title-md mb-xs">Medical Records</h3><p class="font-body-sm text-body-sm text-on-surface-variant">Access your history.</p></button><button class="group bg-surface-container-lowest p-lg rounded-xl border border-outline-variant/20 custom-shadow hover:border-primary/50 transition-all text-left"><div class="w-12 h-12 rounded-full bg-tertiary-container/20 text-tertiary flex items-center justify-center mb-md group-hover:scale-110 transition-transform"><span class="material-symbols-outlined">prescriptions</span></div><h3 class="font-title-md text-title-md mb-xs">Request Prescription</h3><p class="font-body-sm text-body-sm text-on-surface-variant">Renew your meds.</p></button><button class="group bg-surface-container-lowest p-lg rounded-xl border border-outline-variant/20 custom-shadow hover:border-primary/50 transition-all text-left"><div class="w-12 h-12 rounded-full bg-tertiary-container/30 text-tertiary flex items-center justify-center mb-md group-hover:scale-110 transition-transform"><span class="material-symbols-outlined">person_edit</span></div><h3 class="font-title-md text-title-md mb-xs">Update Profile</h3><p class="font-body-sm text-body-sm text-on-surface-variant">Manage your info.</p></button><button class="group bg-surface-container-lowest p-lg rounded-xl border border-outline-variant/20 custom-shadow hover:border-primary/50 transition-all text-left"><div class="w-12 h-12 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center mb-md group-hover:scale-110 transition-transform"><span class="material-symbols-outlined">call</span></div><h3 class="font-title-md text-title-md mb-xs">Contact Hospital</h3><p class="font-body-sm text-body-sm text-on-surface-variant">Get in touch with us.</p></button></div>
 </section>
 <!-- Appointments Table -->
 <section class="bg-surface-container-lowest rounded-2xl border border-outline-variant/20 custom-shadow overflow-hidden">
@@ -253,5 +253,120 @@
 <button class="fixed bottom-24 right-margin-mobile md:bottom-12 md:right-margin-desktop bg-primary text-on-primary w-14 h-14 rounded-full flex items-center justify-center shadow-xl hover:scale-110 active:scale-95 transition-all z-40">
 <span class="material-symbols-outlined" style='font-variation-settings: "FILL" 1;'>add</span>
 </button>
+<!-- Edit Profile Modal -->
+<div id="editProfileModal" class="hidden fixed inset-0 bg-black/50 z-[100] flex items-center justify-center p-md">
+    <div class="bg-surface-container-lowest p-xl rounded-xl w-full max-w-md shadow-xl border border-outline-variant/30 relative">
+        <button id="closeEditModal" class="absolute top-md right-md text-on-surface-variant hover:text-error transition-colors">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+        <h2 class="font-title-lg text-title-lg mb-lg">Update Profile</h2>
+        <form id="editProfileForm" class="space-y-md">
+            <div>
+                <label class="block font-label-sm text-on-surface-variant mb-xs">Phone Number</label>
+                <input type="text" id="editPhone" class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-md py-2 text-body-md" />
+            </div>
+            <div>
+                <label class="block font-label-sm text-on-surface-variant mb-xs">Allergies (comma-separated)</label>
+                <input type="text" id="editAllergies" placeholder="e.g. Penicillin, Peanuts" class="w-full bg-surface-container-low border border-outline-variant rounded-lg px-md py-2 text-body-md" />
+            </div>
+            <button type="submit" class="w-full bg-primary text-on-primary py-2 rounded-lg font-title-md hover:bg-primary-container transition-all" id="saveProfileBtn">Save Changes</button>
+        </form>
+    </div>
+</div>
 
-<script src="scripts.js"></script></body></html>
+<!-- Digital Card Modal -->
+<div id="digitalCardModal" class="hidden fixed inset-0 bg-black/50 z-[100] flex items-center justify-center p-md">
+    <div class="bg-surface-container-lowest p-xl rounded-xl w-full max-w-sm shadow-xl border border-outline-variant/30 relative text-center">
+        <button id="closeCardModal" class="absolute top-md right-md text-on-surface-variant hover:text-error transition-colors">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+        <h2 class="font-title-lg text-title-lg mb-sm text-primary font-bold">MediUM+ Card</h2>
+        <div id="cardContent" class="space-y-sm text-left bg-primary/10 p-md rounded-lg">
+            <p><strong>Name:</strong> <span id="cardName">...</span></p>
+            <p><strong>Patient ID:</strong> <span id="cardId">...</span></p>
+            <p><strong>Blood Group:</strong> <span id="cardBlood">...</span></p>
+            <p><strong>Allergies:</strong> <span id="cardAllergies">...</span></p>
+            <p><strong>Hospital:</strong> <span id="cardHospital">...</span></p>
+        </div>
+        <a href="#" id="downloadCardBtn" target="_blank" class="block w-full text-center bg-secondary-container text-on-secondary-container py-2 rounded-lg font-title-md mt-md hover:bg-secondary transition-all">Download PDF</a>
+    </div>
+</div>
+
+<script src="api.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        // Only fetch if token exists
+        if(window.API && window.API.getToken()) {
+            try {
+                const res = await window.API.patients.getProfile();
+                if(res.success && res.data) {
+                    const data = res.data;
+                    document.getElementById('displayAllergies').innerText = (data.allergies && data.allergies.length) ? data.allergies.join(', ') : 'None';
+                    document.getElementById('editPhone').value = data.phone || '';
+                    document.getElementById('editAllergies').value = (data.allergies || []).join(', ');
+                }
+            } catch(e) {
+                console.error("Failed to load profile", e);
+            }
+        }
+        
+        // Open edit modal
+        const updateBtn = document.querySelector('button h3:contains("Update Profile")')?.parentElement || Array.from(document.querySelectorAll('button')).find(el => el.textContent.includes('Update Profile'));
+        if(updateBtn) {
+            updateBtn.onclick = () => document.getElementById('editProfileModal').classList.remove('hidden');
+        }
+        
+        // Close edit modal
+        document.getElementById('closeEditModal').onclick = () => document.getElementById('editProfileModal').classList.add('hidden');
+        
+        // Save profile
+        document.getElementById('editProfileForm').onsubmit = async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('saveProfileBtn');
+            btn.innerText = 'Saving...';
+            btn.disabled = true;
+            
+            const allergiesVal = document.getElementById('editAllergies').value;
+            const allergies = allergiesVal ? allergiesVal.split(',').map(s=>s.trim()).filter(Boolean) : [];
+            const phone = document.getElementById('editPhone').value;
+            
+            try {
+                await window.API.patients.updateProfile({ phone, allergies });
+                document.getElementById('displayAllergies').innerText = allergies.length ? allergies.join(', ') : 'None';
+                document.getElementById('editProfileModal').classList.add('hidden');
+            } catch(err) {
+                alert('Error updating profile: ' + err.message);
+            } finally {
+                btn.innerText = 'Save Changes';
+                btn.disabled = false;
+            }
+        };
+
+        // Digital Card logic
+        const cardBtn = document.querySelector('button h3:contains("Digital Card")')?.parentElement || Array.from(document.querySelectorAll('button')).find(el => el.textContent.includes('Digital Card'));
+        if(cardBtn) {
+            cardBtn.onclick = async () => {
+                document.getElementById('digitalCardModal').classList.remove('hidden');
+                document.getElementById('cardName').innerText = 'Loading...';
+                document.getElementById('downloadCardBtn').href = 'https://medium-backend-md5a.onrender.com/api/patients/card/pdf?download=true';
+                
+                try {
+                    const res = await window.API.patients.getCard();
+                    if(res.success && res.data) {
+                        const d = res.data;
+                        document.getElementById('cardName').innerText = d.name || 'N/A';
+                        document.getElementById('cardId').innerText = d.patientId || 'N/A';
+                        document.getElementById('cardBlood').innerText = d.bloodGroup || 'N/A';
+                        document.getElementById('cardAllergies').innerText = (d.allergies && d.allergies.length) ? d.allergies.join(', ') : 'None';
+                        document.getElementById('cardHospital').innerText = d.hospitalName || 'N/A';
+                    }
+                } catch(e) {
+                    document.getElementById('cardContent').innerText = 'Error loading card: ' + e.message;
+                }
+            };
+        }
+        document.getElementById('closeCardModal').onclick = () => document.getElementById('digitalCardModal').classList.add('hidden');
+    });
+</script>
+<script src="scripts.js"></script>
+</body></html>

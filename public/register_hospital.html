@@ -113,10 +113,24 @@
                                 </div>
                             </div>
                             <div class="flex flex-col gap-xs">
+                                <label class="font-label-md text-label-md text-on-surface-variant" for="admin_email">Admin Email <span class="text-error">*</span></label>
+                                <div class="relative">
+                                    <span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant/60">mail</span>
+                                    <input class="w-full h-12 pl-12 pr-md bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-on-surface" id="admin_email" name="adminEmail" placeholder="admin@yourhospital.com" required type="email" />
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-xs">
+                                <label class="font-label-md text-label-md text-on-surface-variant" for="admin_phone">Admin Phone <span class="text-error">*</span></label>
+                                <div class="relative">
+                                    <span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant/60">call</span>
+                                    <input class="w-full h-12 pl-12 pr-md bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-on-surface" id="admin_phone" name="adminPhone" placeholder="08011111111" required type="tel" />
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-xs">
                                 <label class="font-label-md text-label-md text-on-surface-variant" for="admin_password">Password <span class="text-error">*</span></label>
                                 <div class="relative">
                                     <span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant/60">lock</span>
-                                    <input class="w-full h-12 pl-12 pr-md bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-on-surface" id="admin_password" name="password" placeholder="Min 8 chars, uppercase, number, special char" required type="password" />
+                                    <input class="w-full h-12 pl-12 pr-md bg-surface-container-lowest border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md text-on-surface" id="admin_password" name="adminPassword" placeholder="Min 8 chars, uppercase, number, special char" required type="password" />
                                 </div>
                                 <p class="font-label-sm text-on-surface-variant mt-xs">Min 8 characters · 1 uppercase · 1 number · 1 special character</p>
                             </div>
@@ -169,6 +183,7 @@
         </div>
     </div>
 
+    <script src="api.js"></script>
     <script>
         async function submitHospital(e) {
             e.preventDefault();
@@ -180,24 +195,21 @@
 
             const form = e.target;
             const body = {
-                name: form.hospital_name.value,
-                email: form.email.value,
-                phone: form.phone.value,
+                hospitalName: form.hospital_name.value,
+                contactEmail: form.email.value,
+                contactPhone: form.phone.value,
                 address: form.address.value,
                 city: form.city.value,
                 state: form.state.value,
                 adminFirstName: form.adminFirstName.value,
                 adminLastName: form.adminLastName.value,
-                password: form.password.value,
+                adminEmail: form.adminEmail.value,
+                adminPhone: form.adminPhone.value,
+                adminPassword: form.adminPassword.value,
             };
 
             try {
-                const res = await fetch('https://medium-server-377j.onrender.com/api/hospitals/register', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(body),
-                });
-                const data = await res.json();
+                const data = await API.hospitals.register(body);
                 if (data.success) {
                     document.getElementById('success-modal').classList.remove('hidden');
                 } else {

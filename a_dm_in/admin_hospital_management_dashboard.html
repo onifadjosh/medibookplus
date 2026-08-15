@@ -123,7 +123,7 @@
 <span class="text-primary font-bold text-label-sm">+4.2%</span>
 </div>
 <p class="text-on-surface-variant font-label-md text-label-md">Total Patients</p>
-<h3 class="text-on-surface font-headline-md text-headline-md">12,482</h3>
+<h3 class="text-on-surface font-headline-md text-headline-md" id="stat-patients">...</h3>
 </div>
 <!-- Card 2 -->
 <div class="bg-surface-container-lowest p-md rounded-xl shadow-[0px_4px_15px_0px_rgba(0,0,0,0.05)] border border-outline-variant/30">
@@ -132,7 +132,7 @@
 <span class="text-on-surface-variant font-bold text-label-sm">Active</span>
 </div>
 <p class="text-on-surface-variant font-label-md text-label-md">Doctors</p>
-<h3 class="text-on-surface font-headline-md text-headline-md">486</h3>
+<h3 class="text-on-surface font-headline-md text-headline-md" id="stat-doctors">...</h3>
 </div>
 <!-- Card 3 -->
 <div class="bg-surface-container-lowest p-md rounded-xl shadow-[0px_4px_15px_0px_rgba(0,0,0,0.05)] border border-outline-variant/30">
@@ -141,7 +141,7 @@
 <span class="text-tertiary font-bold text-label-sm">Today</span>
 </div>
 <p class="text-on-surface-variant font-label-md text-label-md">Appointments</p>
-<h3 class="text-on-surface font-headline-md text-headline-md">158</h3>
+<h3 class="text-on-surface font-headline-md text-headline-md" id="stat-appointments">...</h3>
 </div>
 <!-- Card 4 -->
 <div class="bg-surface-container-lowest p-md rounded-xl shadow-[0px_4px_15px_0px_rgba(0,0,0,0.05)] border border-outline-variant/30">
@@ -278,7 +278,8 @@
 <!-- Recent Activity Feed -->
 <div class="col-span-12 lg:col-span-6 bg-surface-container-lowest p-lg rounded-xl shadow-[0px_4px_15px_0px_rgba(0,0,0,0.05)] border border-outline-variant/30 flex flex-col">
 <h4 class="font-title-lg text-title-lg text-on-surface mb-lg">System Activity Log</h4>
-<div class="flex-1 space-y-md overflow-y-auto pr-md custom-scrollbar max-h-64">
+<div class="flex-1 space-y-md overflow-y-auto pr-md custom-scrollbar max-h-64" id="audit-log-container">
+    <div class="text-center text-outline">Loading logs...</div>
 <div class="flex gap-md border-b border-outline-variant/20 pb-sm">
 <div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center shrink-0">
 <span class="material-symbols-outlined text-primary text-[20px]">person_add</span>
@@ -441,4 +442,47 @@
 <span class="material-symbols-outlined text-[32px] transition-transform duration-300" id="fab-icon" style="transform: rotate(0deg);">bolt</span>
 </button>
 </div>
-<script src="scripts.js"></script></body></html>
+<script src="../public/api.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        if(window.API) {
+            window.API.requireAuth(['admin']);
+            try {
+                const res = await window.API.admin.dashboard();
+                if(res.success && res.data) {
+                    document.getElementById('stat-patients').innerText = res.data.totalPatients || 0;
+                    document.getElementById('stat-doctors').innerText = res.data.totalDoctors || 0;
+                    // appointments is an object: { today, thisWeek, thisMonth, pending, confirmed, ... }
+                    const appts = res.data.appointments || {};
+                    const apptEl = document.getElementById('stat-appointments');
+                    if(apptEl) apptEl.innerText = appts.today || 0;
+                }
+                
+                const logsRes = await window.API.admin.auditLogs();
+                const logsContainer = document.getElementById('audit-log-container');
+                if(logsRes.success && logsRes.data) {
+                    logsContainer.innerHTML = '';
+                    logsRes.data.forEach(log => {
+                        logsContainer.innerHTML += `
+                            <div class="flex gap-md border-b border-outline-variant/20 pb-sm">
+                                <div class="w-10 h-10 rounded-full bg-primary-container/20 flex items-center justify-center shrink-0">
+                                    <span class="material-symbols-outlined text-primary text-[20px]">info</span>
+                                </div>
+                                <div>
+                                    <p class="font-body-md text-body-md">${log.action}</p>
+                                    <p class="font-label-sm text-label-sm text-outline">${new Date(log.timestamp).toLocaleString()} • ${log.performedByModel} • ${log.details}</p>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    if (logsRes.data.length === 0) {
+                        logsContainer.innerHTML = '<div class="text-center text-outline">No recent activity.</div>';
+                    }
+                }
+            } catch(e) {
+                console.error("Dashboard error", e);
+            }
+        }
+    });
+</script>
+<script src="../public/scripts.js"></script></body></html>

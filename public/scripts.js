@@ -12,44 +12,21 @@ function togglePassword() {
     }
 }
 
-// Form Submission Micro-interaction
-var el_loginForm = document.getElementById('loginForm'); 
-if (el_loginForm) {
-    el_loginForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const btn = e.target.querySelector('button[type="submit"]');
-        if (!btn) return;
-        const originalContent = btn.innerHTML;
-        
-        btn.disabled = true;
-        btn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> Authenticating...';
-        
-        setTimeout(() => {
-            btn.classList.add('bg-tertiary-container');
-            btn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> Verified';
-            setTimeout(() => {
-                const role = localStorage.getItem('userRole');
-                if (role === 'provider') {
-                    window.location.href = '../doctor/dashboard.html';
-                } else {
-                    window.location.href = '../patient/pages/dashboard.html';
-                }
-            }, 1000);
-        }, 1500);
-    });
-}
+// Login logic moved to login_secure_entry.html
 // Simple Micro-interaction: Omnibar highlight focus
         const omnibar = document.querySelector('input');
 if(omnibar) {
         const searchIcon = document.querySelector('.material-symbols-outlined.mx-md');
         
         omnibar.addEventListener('focus', () => {
-            searchIcon.classList.add('scale-110');
-            searchIcon.style.transition = 'transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            if (searchIcon) {
+                searchIcon.classList.add('scale-110');
+                searchIcon.style.transition = 'transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            }
         });
 
         omnibar.addEventListener('blur', () => {
-            searchIcon.classList.remove('scale-110');
+            if (searchIcon) searchIcon.classList.remove('scale-110');
         });
 }
 
@@ -163,18 +140,7 @@ if(searchInput) {
             });
         });
 
-        // Simple form handling
-        const regForm = document.getElementById('registration-form');
-        if (regForm) {
-            regForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const submitBtn = regForm.querySelector('button[type="submit"]');
-                submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin" data-icon="progress_activity">progress_activity</span>';
-                setTimeout(() => {
-                    window.location.href = 'register_health_profile_step_2.html';
-                }, 1000);
-            });
-        }
+        // Simple form handling removed to avoid conflicting with real API logic
 
 function toggleVisibility(id) {
             const el = document.getElementById(id);
@@ -592,27 +558,7 @@ let currentSlide = 1;
             });
         });
 
-        // Simple validation visualization
-        const validationForm = document.querySelector('form');
-        if (validationForm) {
-            validationForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const btn = e.target.querySelector('button[type="submit"]');
-            const originalContent = btn.innerHTML;
-            btn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> Validating...';
-            btn.disabled = true;
-            
-            setTimeout(() => {
-                btn.innerHTML = '<span class="material-symbols-outlined">check</span> Success';
-                btn.classList.add('bg-success'); // Mocking success state
-                setTimeout(() => {
-                    alert('Moving to Step 4: Work Schedule');
-                    btn.innerHTML = originalContent;
-                    btn.disabled = false;
-                }, 1000);
-            }, 1500);
-        });
-        }
+        // Validation visualization removed to avoid conflicting with real API form logic
 
 // Contact Form Logic
 const contactForm = document.getElementById('contactForm');

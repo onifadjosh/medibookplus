@@ -147,12 +147,12 @@
 <div class="fixed top-[20%] -right-32 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-10 pointer-events-none"></div>
 <div class="fixed bottom-[10%] -left-32 w-80 h-80 bg-tertiary-container/5 rounded-full blur-3xl -z-10 pointer-events-none"></div>
 
+<script src="api.js"></script>
 <script>
 async function loadHospitals() {
     const sel = document.getElementById('hospitalId');
     try {
-        const res = await fetch('https://medium-server-377j.onrender.com/api/hospitals');
-        const data = await res.json();
+        const data = await API.hospitals.list();
         sel.innerHTML = '<option value="">— Select a Hospital —</option>';
         if (data.success && data.data) {
             const hospitals = Array.isArray(data.data) ? data.data : (data.data.hospitals || []);
@@ -194,17 +194,19 @@ async function submitPatient(e) {
     };
 
     try {
-        const res = await fetch('https://medium-server-377j.onrender.com/api/auth/register/patient', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(body),
-        });
-        const data = await res.json();
+        const data = await API.auth.registerPatient(body);
+        
         if (data.success) {
-            localStorage.setItem('token', data.data.token);
-            localStorage.setItem('user', JSON.stringify(data.data.user));
+            // Log them in immediately to complete profile if needed, or redirect
+            API.setSession(data.data.token, data.data.user);
             document.getElementById('success-name').textContent = 'Welcome, ' + data.data.user.firstName + '!';
-            document.getElementById('success-msg').textContent = 'Your patient ID is ' + (data.data.user.patientId || '') + '. You can now log in and book appointments.';
+            document.getElementById('success-msg').textContent = 'Your patient ID is ' + (data.data.user.patientId || '') + '. Let\'s complete your profile.';
+            
+            // Change modal button to go to next step
+            const modalBtn = document.querySelector('#success-modal a');
+            modalBtn.href = 'register_health_profile_step_2.html';
+            modalBtn.textContent = 'Continue to Health Profile';
+            
             document.getElementById('success-modal').classList.remove('hidden');
         } else {
             err.textContent = data.message || 'Registration failed. Please try again.';
