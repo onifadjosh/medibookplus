@@ -169,6 +169,7 @@
         </div>
     </div>
 
+    <script src="api.js"></script>
     <script>
         async function submitHospital(e) {
             e.preventDefault();
@@ -192,12 +193,7 @@
             };
 
             try {
-                const res = await fetch('https://medium-server-377j.onrender.com/api/hospitals/register', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(body),
-                });
-                const data = await res.json();
+                const data = await API.hospitals.register(body);
                 if (data.success) {
                     document.getElementById('success-modal').classList.remove('hidden');
                 } else {

@@ -20,12 +20,24 @@
             <a class="text-secondary hover:bg-surface-container-high transition-colors font-body-md text-body-md px-2 py-1 rounded" href="#">Resources</a>
             <a class="text-primary border-b-2 border-primary font-body-md text-body-md py-1" href="contact_us.html">Contact</a>
         </nav>
-        <div class="flex items-center gap-md">
-            <button class="material-symbols-outlined text-primary p-2 cursor-pointer active:opacity-80">notifications</button>
-            <button class="material-symbols-outlined text-primary p-2 cursor-pointer active:opacity-80">help</button>
-            <a class="bg-primary text-on-primary px-lg py-sm rounded-lg font-title-md text-title-md hover:shadow-lg transition-all active:scale-95" href="onboarding_feature_walkthrough.html?next=login">Sign in</a>
+        <div class="flex items-center gap-sm md:gap-md">
+            <button class="hidden md:block material-symbols-outlined text-primary p-2 cursor-pointer active:opacity-80">notifications</button>
+            <button class="hidden md:block material-symbols-outlined text-primary p-2 cursor-pointer active:opacity-80">help</button>
+            <a class="hidden md:block bg-primary text-on-primary px-lg py-sm rounded-lg font-title-md text-title-md hover:shadow-lg transition-all active:scale-95" href="onboarding_feature_walkthrough.html?next=login">Sign in</a>
+            <!-- Mobile menu toggle -->
+            <button class="md:hidden p-2 cursor-pointer active:opacity-80 flex items-center justify-center" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <span class="material-symbols-outlined text-primary">menu</span>
+            </button>
         </div>
     </header>
+    <!-- Mobile Menu Drawer -->
+    <div id="mobile-menu" class="hidden md:hidden bg-surface-container-lowest w-full absolute top-16 left-0 z-40 border-b border-outline-variant shadow-lg flex flex-col p-md gap-md">
+        <a href="index.html" class="text-secondary font-title-md py-2 border-b border-outline-variant/30">Home</a>
+        <a href="solutions.html" class="text-secondary font-title-md py-2 border-b border-outline-variant/30">Solutions</a>
+        <a href="resources.html" class="text-secondary font-title-md py-2 border-b border-outline-variant/30">Resources</a>
+        <a href="contact_us.html" class="text-primary font-title-md py-2 border-b border-outline-variant/30">Contact</a>
+        <a href="login_secure_entry.html" class="bg-primary text-on-primary px-md py-sm text-center rounded-lg font-title-md">Sign in</a>
+    </div>
 
     <main class="min-h-[85vh] flex items-center justify-center py-2xl px-margin-desktop hero-gradient relative">
         <div class="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-2xl relative z-10 my-xl">

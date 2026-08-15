@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Find Your Doctor | Medium+</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+
+
+<link href="tailwind.css" rel="stylesheet"/><link href="custom.css" rel="stylesheet"/></head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-surface-bright shadow-sm flex justify-between items-center w-full px-margin-desktop h-16 sticky top-0 z-50">
+    <div class="flex items-center gap-xl">
+        <a href="patient_dashboard_enhanced_home.html">
+            <img src="./logo.jpeg" alt="Medium+" style="height: 32px; display: inline-block;" />
+        </a>
+    </div>
+    <div class="flex items-center gap-md">
+        <a href="patient_dashboard_enhanced_home.html" class="flex items-center gap-sm text-secondary hover:text-primary font-label-lg">
+            <span class="material-symbols-outlined">arrow_back</span> Back to Dashboard
+        </a>
+    </div>
+</header>
+<main class="flex-grow max-w-container-max mx-auto w-full px-margin-desktop py-xl flex flex-col md:flex-row gap-lg">
+<!-- Filter Sidebar -->
+<aside class="w-full md:w-80 shrink-0">
+<div class="bg-surface-container-low rounded-xl p-lg sticky top-24 border border-outline-variant/30">
+<div class="flex items-center justify-between mb-lg">
+<h2 class="font-title-lg text-title-lg text-on-surface">Filters</h2>
+<button class="text-primary font-label-md hover:underline">Clear all</button>
+</div>
+<div class="space-y-xl sidebar-scroll overflow-y-auto max-h-[calc(100vh-200px)] pr-xs">
+<!-- Specialty -->
+<section>
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-md">Specialty</h3>
+<div class="space-y-sm">
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="rounded text-primary focus:ring-primary w-5 h-5 border-outline" type="checkbox"/>
+<span class="font-body-md text-on-surface group-hover:text-primary transition-colors">Cardiology</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer group">
+<input checked="" class="rounded text-primary focus:ring-primary w-5 h-5 border-outline" type="checkbox"/>
+<span class="font-body-md text-on-surface group-hover:text-primary transition-colors">Dermatology</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="rounded text-primary focus:ring-primary w-5 h-5 border-outline" type="checkbox"/>
+<span class="font-body-md text-on-surface group-hover:text-primary transition-colors">Pediatrics</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="rounded text-primary focus:ring-primary w-5 h-5 border-outline" type="checkbox"/>
+<span class="font-body-md text-on-surface group-hover:text-primary transition-colors">Neurology</span>
+</label>
+</div>
+</section>
+<!-- Language -->
+<section>
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-md">Language</h3>
+<div class="space-y-sm">
+<label class="flex items-center gap-sm cursor-pointer group">
+<input checked="" class="rounded text-primary focus:ring-primary w-5 h-5 border-outline" type="checkbox"/>
+<span class="font-body-md text-on-surface group-hover:text-primary transition-colors">English</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="rounded text-primary focus:ring-primary w-5 h-5 border-outline" type="checkbox"/>
+<span class="font-body-md text-on-surface group-hover:text-primary transition-colors">Spanish</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="rounded text-primary focus:ring-primary w-5 h-5 border-outline" type="checkbox"/>
+<span class="font-body-md text-on-surface group-hover:text-primary transition-colors">Mandarin</span>
+</label>
+</div>
+</section>
+<!-- Gender -->
+<section>
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-md">Provider Gender</h3>
+<div class="flex flex-wrap gap-sm">
+<button class="px-md py-xs bg-surface-container-highest rounded-full font-label-md text-on-surface-variant border border-transparent hover:border-primary transition-all">Male</button>
+<button class="px-md py-xs bg-primary-container text-on-primary-container rounded-full font-label-md border border-primary transition-all">Female</button>
+<button class="px-md py-xs bg-surface-container-highest rounded-full font-label-md text-on-surface-variant border border-transparent hover:border-primary transition-all">Non-binary</button>
+</div>
+</section>
+<!-- Availability -->
+<section>
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-md">Availability</h3>
+<div class="space-y-sm">
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="text-primary focus:ring-primary w-5 h-5 border-outline" name="avail" type="radio"/>
+<span class="font-body-md text-on-surface">Available Today</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer group">
+<input checked="" class="text-primary focus:ring-primary w-5 h-5 border-outline" name="avail" type="radio"/>
+<span class="font-body-md text-on-surface">Within 3 Days</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="text-primary focus:ring-primary w-5 h-5 border-outline" name="avail" type="radio"/>
+<span class="font-body-md text-on-surface">This Week</span>
+</label>
+</div>
+</section>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<div class="flex-grow space-y-xl">
+<!-- Search & Title -->
+<div class="flex flex-col gap-md">
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Find the right specialist for you</h1>
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-lg top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+<input class="w-full pl-[56px] pr-lg py-md bg-white border border-outline-variant rounded-xl shadow-sm focus:ring-2 focus:ring-primary focus:border-primary transition-all font-body-md" placeholder="Search by name, clinic, or keyword..." type="text"/>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant">
+<span class="font-label-md">Showing 24 of 142 providers</span>
+<div class="flex items-center gap-sm">
+<span class="font-label-md">Sort by:</span>
+<select class="bg-transparent border-none font-label-md text-primary focus:ring-0 cursor-pointer">
+<option>Recommended</option>
+<option>Rating (Highest)</option>
+<option>Availability (Soonest)</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Doctor Grid -->
+<div id="doctors-grid" class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-lg">
+    <div class="col-span-full p-xl text-center text-on-surface-variant italic">Loading doctors...</div>
+</div>
+<!-- Pagination -->
+<div class="flex justify-center items-center gap-sm py-xl">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary text-on-primary font-title-md">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant hover:bg-surface-container transition-colors font-title-md">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant hover:bg-surface-container transition-colors font-title-md">3</button>
+<span class="px-sm text-on-surface-variant">...</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant hover:bg-surface-container transition-colors font-title-md">12</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-highest border-t border-outline-variant w-full py-xl">
+<div class="flex flex-col md:flex-row justify-between items-center px-margin-desktop max-w-container-max mx-auto gap-lg">
+<div class="flex flex-col items-center md:items-start gap-sm">
+<span class="font-title-md text-title-md text-on-surface font-bold"><img src="./logo.jpeg" alt="Medium+" style="height: 32px; display: inline-block;" /></span>
+<p class="font-body-sm text-on-surface-variant">© 2026 Medium+ SaaS. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-lg">
+<a class="font-body-sm text-on-surface-variant hover:text-primary transition-all hover:underline" href="#">© 2026 Medium+ SaaS. All rights reserved.</a>
+<a class="font-body-sm text-on-surface-variant hover:text-primary transition-all hover:underline" href="#">© 2026 Medium+ SaaS. All rights reserved.</a>
+</div>
+</div>
+</footer>
+<!-- Booking Modal -->
+<div id="booking-modal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center p-margin-mobile">
+    <div class="bg-surface-container-lowest rounded-2xl p-xl max-w-lg w-full shadow-2xl max-h-[90vh] overflow-y-auto">
+        <h2 class="font-title-lg text-on-surface mb-xs">Book Appointment</h2>
+        <p id="booking-doctor-name" class="font-body-md text-primary font-semibold mb-lg">With Dr. Name</p>
+        
+        <form id="booking-form" class="space-y-md">
+            <input type="hidden" id="booking-doctor-id">
+            
+            <div>
+                <label class="block font-label-md text-on-surface-variant mb-xs">Visit Type *</label>
+                <select id="booking-visit-type" class="w-full p-md bg-white border border-outline-variant rounded-xl shadow-sm focus:ring-2 focus:ring-primary focus:border-primary font-body-md" required>
+                    <option value="">Select a visit type</option>
+                </select>
+            </div>
+            
+            <div id="booking-reason-container" class="hidden">
+                <label class="block font-label-md text-on-surface-variant mb-xs">Reason for Visit *</label>
+                <textarea id="booking-reason" class="w-full p-md bg-white border border-outline-variant rounded-xl shadow-sm focus:ring-2 focus:ring-primary focus:border-primary font-body-md" rows="2" placeholder="Briefly describe your reason..."></textarea>
+            </div>
+
+            <div>
+                <label class="block font-label-md text-on-surface-variant mb-xs">Date *</label>
+                <input type="date" id="booking-date" class="w-full p-md bg-white border border-outline-variant rounded-xl shadow-sm focus:ring-2 focus:ring-primary focus:border-primary font-body-md" required>
+            </div>
+
+            <div>
+                <label class="block font-label-md text-on-surface-variant mb-xs">Available Slots</label>
+                <div id="booking-slots-container" class="grid grid-cols-3 gap-sm">
+                    <div class="col-span-full text-body-sm text-on-surface-variant italic">Select a visit type and date to view slots.</div>
+                </div>
+                <input type="hidden" id="booking-time-slot" required>
+            </div>
+            
+            <div id="booking-error" class="hidden text-error font-body-sm bg-error/10 p-sm rounded-lg"></div>
+
+            <div class="flex justify-end gap-md pt-md border-t border-outline-variant/30">
+                <button type="button" onclick="closeBookingModal()" class="px-lg py-2 font-label-md text-on-surface-variant border border-outline-variant rounded-lg hover:bg-surface-container transition-all">Cancel</button>
+                <button type="submit" id="booking-submit-btn" class="px-lg py-2 font-label-md bg-primary text-on-primary rounded-lg shadow-sm hover:brightness-110 transition-all flex items-center gap-2" disabled>
+                    Confirm Booking
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="api.js"></script>
+<script>
+    let visitTypesData = [];
+
+    document.addEventListener('DOMContentLoaded', async () => {
+        if (window.API && window.API.requireAuth) {
+            window.API.requireAuth(['patient']);
+        }
+
+        // Set min date to today
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('booking-date').min = today;
+
+        // Fetch Visit Types
+        try {
+            const vtRes = await window.API.public.visitTypes();
+            if (vtRes.success) {
+                visitTypesData = vtRes.data;
+                const select = document.getElementById('booking-visit-type');
+                select.innerHTML = '<option value="">Select a visit type</option>' + 
+                    visitTypesData.map(vt => `<option value="${vt.value}">${vt.label} (${vt.durationMinutes}m)</option>`).join('');
+            }
+        } catch (e) { console.error("Error loading visit types", e); }
+
+        // Fetch Doctors
+        const grid = document.getElementById('doctors-grid');
+        try {
+            const res = await window.API.doctors.list();
+            if (res.success && res.data && res.data.doctors) {
+                const doctors = res.data.doctors;
+                if (doctors.length === 0) {
+                    grid.innerHTML = '<div class="col-span-full p-xl text-center text-on-surface-variant italic">No doctors found at your hospital.</div>';
+                } else {
+                    grid.innerHTML = doctors.map(doc => `
+                        <div class="doctor-card bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-outline-variant/20 flex flex-col">
+                            <div class="h-64 relative overflow-hidden bg-surface-container">
+                                ${doc.photo ? `<img class="w-full h-full object-cover" src="${doc.photo}" />` : `<div class="w-full h-full flex items-center justify-center material-symbols-outlined text-[64px] text-on-surface-variant">person</div>`}
+                            </div>
+                            <div class="p-lg flex-grow flex flex-col">
+                                <div class="mb-sm">
+                                    <h3 class="font-title-lg text-title-lg text-on-surface">Dr. ${doc.firstName} ${doc.lastName}</h3>
+                                    <p class="font-label-md text-primary font-semibold">${doc.department || 'Specialist'}</p>
+                                </div>
+                                <div class="mt-auto pt-lg border-t border-outline-variant/30 flex items-center justify-between">
+                                    <button onclick="openBookingModal('${doc._id || doc.id}', 'Dr. ${doc.firstName} ${doc.lastName}')" class="px-lg py-sm rounded-lg bg-primary text-on-primary font-title-md transition-all duration-200">Book Appointment</button>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+            } else {
+                grid.innerHTML = `<div class="col-span-full p-xl text-center text-error italic">Failed to load doctors: ${res.message || 'Unknown error'}</div>`;
+            }
+        } catch (err) {
+            console.error(err);
+            grid.innerHTML = '<div class="col-span-full p-xl text-center text-error italic">Error fetching doctors.</div>';
+        }
+    });
+
+    function openBookingModal(doctorId, doctorName) {
+        document.getElementById('booking-doctor-id').value = doctorId;
+        document.getElementById('booking-doctor-name').innerText = `With ${doctorName}`;
+        document.getElementById('booking-modal').classList.remove('hidden');
+        resetBookingForm();
+    }
+
+    function closeBookingModal() {
+        document.getElementById('booking-modal').classList.add('hidden');
+    }
+
+    function resetBookingForm() {
+        document.getElementById('booking-form').reset();
+        document.getElementById('booking-time-slot').value = '';
+        document.getElementById('booking-slots-container').innerHTML = '<div class="col-span-full text-body-sm text-on-surface-variant italic">Select a visit type and date to view slots.</div>';
+        document.getElementById('booking-reason-container').classList.add('hidden');
+        document.getElementById('booking-error').classList.add('hidden');
+        document.getElementById('booking-submit-btn').disabled = true;
+    }
+
+    // Event Listeners for fetching slots
+    document.getElementById('booking-visit-type').addEventListener('change', handleSlotInputsChange);
+    document.getElementById('booking-date').addEventListener('change', handleSlotInputsChange);
+
+    async function handleSlotInputsChange() {
+        const vtVal = document.getElementById('booking-visit-type').value;
+        const dateVal = document.getElementById('booking-date').value;
+        const docId = document.getElementById('booking-doctor-id').value;
+        
+        // Handle reason visibility
+        const vtObj = visitTypesData.find(v => v.value === vtVal);
+        const reasonContainer = document.getElementById('booking-reason-container');
+        const reasonInput = document.getElementById('booking-reason');
+        if (vtObj && vtObj.requiresReason) {
+            reasonContainer.classList.remove('hidden');
+            reasonInput.required = true;
+        } else {
+            reasonContainer.classList.add('hidden');
+            reasonInput.required = false;
+        }
+
+        const slotsContainer = document.getElementById('booking-slots-container');
+        document.getElementById('booking-time-slot').value = '';
+        document.getElementById('booking-submit-btn').disabled = true;
+
+        if (!vtVal || !dateVal) {
+            slotsContainer.innerHTML = '<div class="col-span-full text-body-sm text-on-surface-variant italic">Select a visit type and date to view slots.</div>';
+            return;
+        }
+
+        slotsContainer.innerHTML = '<div class="col-span-full text-body-sm text-on-surface-variant italic">Loading slots...</div>';
+        
+        try {
+            const res = await window.API.doctors.getSlots(docId, dateVal, vtVal);
+            if (res.success && res.data && res.data.slots) {
+                const slots = res.data.slots;
+                if (slots.length === 0) {
+                    slotsContainer.innerHTML = '<div class="col-span-full text-body-sm text-error italic">No available slots for this date.</div>';
+                } else {
+                    slotsContainer.innerHTML = slots.map(slot => `
+                        <button type="button" onclick="selectSlot(this, '${slot}')" class="slot-btn p-xs border border-outline-variant rounded-md font-body-sm hover:border-primary hover:text-primary transition-all">
+                            ${slot}
+                        </button>
+                    `).join('');
+                }
+            } else {
+                slotsContainer.innerHTML = `<div class="col-span-full text-body-sm text-error italic">${res.message || 'Failed to load slots.'}</div>`;
+            }
+        } catch(e) {
+            slotsContainer.innerHTML = '<div class="col-span-full text-body-sm text-error italic">Network error while fetching slots.</div>';
+        }
+    }
+
+    function selectSlot(btn, slotVal) {
+        document.querySelectorAll('.slot-btn').forEach(b => {
+            b.classList.remove('bg-primary', 'text-on-primary', 'border-primary');
+            b.classList.add('border-outline-variant');
+        });
+        btn.classList.remove('border-outline-variant');
+        btn.classList.add('bg-primary', 'text-on-primary', 'border-primary');
+        
+        document.getElementById('booking-time-slot').value = slotVal;
+        document.getElementById('booking-submit-btn').disabled = false;
+    }
+
+    document.getElementById('booking-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const errDiv = document.getElementById('booking-error');
+        errDiv.classList.add('hidden');
+        
+        const payload = {
+            doctorId: document.getElementById('booking-doctor-id').value,
+            date: document.getElementById('booking-date').value,
+            timeSlot: document.getElementById('booking-time-slot').value,
+            visitType: document.getElementById('booking-visit-type').value,
+            reason: document.getElementById('booking-reason').value
+        };
+
+        const btn = document.getElementById('booking-submit-btn');
+        const origText = btn.innerHTML;
+        btn.innerHTML = '<span class="material-symbols-outlined animate-spin text-sm">progress_activity</span> Booking...';
+        btn.disabled = true;
+
+        try {
+            const res = await window.API.patients.appointments.book(payload);
+            if (res.success) {
+                alert('Appointment booked successfully!');
+                closeBookingModal();
+            } else {
+                errDiv.innerText = res.message || 'Booking failed.';
+                errDiv.classList.remove('hidden');
+                btn.disabled = false;
+            }
+        } catch(e) {
+            errDiv.innerText = 'Network error during booking.';
+            errDiv.classList.remove('hidden');
+            btn.disabled = false;
+        } finally {
+            btn.innerHTML = origText;
+        }
+    });
+</script>
+<script src="scripts.js"></script></body></html>

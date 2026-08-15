@@ -96,13 +96,14 @@
 </footer>
 <!-- Success Feedback Micro-interaction -->
 
+<script src="api.js"></script>
 <script>
 function routeToDashboard() {
-    const role = localStorage.getItem('userRole');
-    if (role === 'provider') {
-        window.location.href = '../doctor/dashboard.html';
+    const user = API.getUser();
+    if (user) {
+        API.redirectByRole(user.role);
     } else {
-        window.location.href = '../patient/pages/dashboard.html';
+        window.location.href = 'login_secure_entry.html';
     }
 }
 </script>

@@ -262,88 +262,8 @@
 <th class="px-lg py-4 text-right">Actions</th>
 </tr>
 </thead>
-<tbody class="font-body-sm text-body-sm text-on-surface divide-y divide-surface-container">
-<tr class="hover:bg-surface-container-low transition-colors group">
-<td class="px-lg py-4">
-<div class="flex items-center gap-md">
-<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-secondary font-bold">AM</div>
-<div>
-<p class="font-bold">Alice Morgan</p>
-<p class="text-xs text-on-surface-variant">ID: #AP-8821</p>
-</div>
-</div>
-</td>
-<td class="px-lg py-4">Dr. Robert Chen</td>
-<td class="px-lg py-4">Cardiology</td>
-<td class="px-lg py-4">Oct 24, 09:30 AM</td>
-<td class="px-lg py-4">
-<span class="px-2 py-1 bg-secondary-container text-on-secondary-container rounded-full text-xs font-bold uppercase tracking-tight">Scheduled</span>
-</td>
-<td class="px-lg py-4 text-right">
-<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-<button class="p-2 text-primary hover:bg-surface-container-high rounded-full" title="Reschedule">
-<span class="material-symbols-outlined">schedule_send</span>
-</button>
-<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full" title="More Options">
-<span class="material-symbols-outlined">more_vert</span>
-</button>
-</div>
-</td>
-</tr>
-<tr class="hover:bg-surface-container-low transition-colors group">
-<td class="px-lg py-4">
-<div class="flex items-center gap-md">
-<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-secondary font-bold">JW</div>
-<div>
-<p class="font-bold">John Wickham</p>
-<p class="text-xs text-on-surface-variant">ID: #AP-8832</p>
-</div>
-</div>
-</td>
-<td class="px-lg py-4">Dr. Sarah Miller</td>
-<td class="px-lg py-4">Neurology</td>
-<td class="px-lg py-4">Oct 24, 10:45 AM</td>
-<td class="px-lg py-4">
-<span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-bold uppercase tracking-tight">Completed</span>
-</td>
-<td class="px-lg py-4 text-right">
-<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-<button class="p-2 text-primary hover:bg-surface-container-high rounded-full" title="Reschedule">
-<span class="material-symbols-outlined">schedule_send</span>
-</button>
-<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full" title="More Options">
-<span class="material-symbols-outlined">more_vert</span>
-</button>
-</div>
-</td>
-</tr>
-<tr class="hover:bg-surface-container-low transition-colors group">
-<td class="px-lg py-4">
-<div class="flex items-center gap-md">
-<div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-secondary font-bold">BK</div>
-<div>
-<p class="font-bold">Benjamin Knight</p>
-<p class="text-xs text-on-surface-variant">ID: #AP-8845</p>
-</div>
-</div>
-</td>
-<td class="px-lg py-4">Dr. Emily Stone</td>
-<td class="px-lg py-4">Pediatrics</td>
-<td class="px-lg py-4">Oct 24, 11:30 AM</td>
-<td class="px-lg py-4">
-<span class="px-2 py-1 bg-red-100 text-red-800 rounded-full text-xs font-bold uppercase tracking-tight">No-show</span>
-</td>
-<td class="px-lg py-4 text-right">
-<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-<button class="p-2 text-primary hover:bg-surface-container-high rounded-full" title="Reschedule">
-<span class="material-symbols-outlined">schedule_send</span>
-</button>
-<button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full" title="More Options">
-<span class="material-symbols-outlined">more_vert</span>
-</button>
-</div>
-</td>
-</tr>
+<tbody class="font-body-sm text-body-sm text-on-surface divide-y divide-surface-container" id="appointmentsTableBody">
+    <tr><td colspan="6" class="text-center py-lg text-outline">Loading appointments...</td></tr>
 </tbody>
 </table>
 </div>
@@ -397,5 +317,83 @@
 <button class="flex-1 py-3 bg-primary text-on-primary rounded-lg font-bold hover:opacity-90 transition-all" onclick="showSuccess()">Send Now</button>
 </div>
 </div>
-</div>
-<script src="scripts.js"></script></body></html>
+<script src="../public/api.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        if(window.API) {
+            window.API.requireAuth(['admin']);
+            await loadAppointments();
+        }
+    });
+
+    async function loadAppointments() {
+        const tBody = document.getElementById('appointmentsTableBody');
+        try {
+            const res = await window.API.admin.appointments.list();
+            if(res.success && res.data) {
+                tBody.innerHTML = '';
+                if(res.data.length === 0) {
+                    tBody.innerHTML = '<tr><td colspan="6" class="text-center py-lg text-outline">No appointments found.</td></tr>';
+                    return;
+                }
+                res.data.forEach(apt => {
+                    let statusClass = 'bg-surface-variant text-on-surface-variant';
+                    if(apt.status === 'scheduled') statusClass = 'bg-secondary-container text-on-secondary-container';
+                    if(apt.status === 'completed') statusClass = 'bg-green-100 text-green-800';
+                    if(apt.status === 'cancelled' || apt.status === 'rejected') statusClass = 'bg-red-100 text-red-800';
+                    
+                    const pName = apt.patient ? apt.patient.name : 'Unknown Patient';
+                    const initials = pName.substring(0, 2).toUpperCase();
+                    const dName = apt.doctor ? apt.doctor.name : 'Unknown Doctor';
+                    const dept = apt.doctor ? apt.doctor.department : 'General';
+                    const dt = new Date(apt.date).toLocaleString();
+
+                    let cancelBtn = '';
+                    if(apt.status === 'scheduled' || apt.status === 'pending') {
+                        cancelBtn = `<button onclick="cancelAppointment('${apt._id}')" class="p-2 text-error hover:bg-surface-container-high rounded-full" title="Cancel Appointment"><span class="material-symbols-outlined">cancel</span></button>`;
+                    }
+
+                    tBody.innerHTML += `
+                    <tr class="hover:bg-surface-container-low transition-colors group">
+                        <td class="px-lg py-4">
+                            <div class="flex items-center gap-md">
+                                <div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-secondary font-bold">${initials}</div>
+                                <div>
+                                    <p class="font-bold">${pName}</p>
+                                    <p class="text-xs text-on-surface-variant">ID: ${apt.patient ? apt.patient._id.substring(0,8) : 'N/A'}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-lg py-4">${dName}</td>
+                        <td class="px-lg py-4">${dept}</td>
+                        <td class="px-lg py-4">${dt}</td>
+                        <td class="px-lg py-4">
+                            <span class="px-2 py-1 ${statusClass} rounded-full text-xs font-bold uppercase tracking-tight">${apt.status}</span>
+                        </td>
+                        <td class="px-lg py-4 text-right">
+                            <div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                ${cancelBtn}
+                                <button class="p-2 text-on-surface-variant hover:bg-surface-container-high rounded-full" title="More Options">
+                                    <span class="material-symbols-outlined">more_vert</span>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>`;
+                });
+            }
+        } catch(e) {
+            tBody.innerHTML = '<tr><td colspan="6" class="text-center py-lg text-error">Failed to load appointments.</td></tr>';
+        }
+    }
+
+    window.cancelAppointment = async (id) => {
+        if(!confirm('Are you sure you want to cancel this appointment?')) return;
+        try {
+            await window.API.admin.appointments.cancel(id);
+            loadAppointments();
+        } catch(e) {
+            alert(e.message);
+        }
+    };
+</script>
+<script src="../public/scripts.js"></script></body></html>
