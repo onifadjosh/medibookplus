@@ -452,7 +452,10 @@
                 if(res.success && res.data) {
                     document.getElementById('stat-patients').innerText = res.data.totalPatients || 0;
                     document.getElementById('stat-doctors').innerText = res.data.totalDoctors || 0;
-                    document.getElementById('stat-appointments').innerText = res.data.totalAppointments || 0;
+                    // appointments is an object: { today, thisWeek, thisMonth, pending, confirmed, ... }
+                    const appts = res.data.appointments || {};
+                    const apptEl = document.getElementById('stat-appointments');
+                    if(apptEl) apptEl.innerText = appts.today || 0;
                 }
                 
                 const logsRes = await window.API.admin.auditLogs();
