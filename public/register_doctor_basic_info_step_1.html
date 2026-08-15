@@ -271,7 +271,7 @@ async function submitDoctor(e) {
             btn.innerHTML = 'Submit Application <span class="material-symbols-outlined">send</span>';
         }
     } catch(ex) {
-        err.textContent = 'Network error. Please check your connection.';
+        err.textContent = ex.message || 'Network error. Please check your connection.';
         err.classList.remove('hidden');
         btn.disabled = false;
         btn.innerHTML = 'Submit Application <span class="material-symbols-outlined">send</span>';

@@ -215,7 +215,7 @@ async function submitPatient(e) {
             btn.innerHTML = '<span>Create Account</span><span class="material-symbols-outlined text-[20px]">arrow_forward</span>';
         }
     } catch(ex) {
-        err.textContent = 'Network error. Please check your connection.';
+        err.textContent = ex.message || 'Network error. Please check your connection.';
         err.classList.remove('hidden');
         btn.disabled = false;
         btn.innerHTML = '<span>Create Account</span><span class="material-symbols-outlined text-[20px]">arrow_forward</span>';

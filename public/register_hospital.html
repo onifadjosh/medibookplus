@@ -219,7 +219,7 @@
                     btn.innerHTML = '<span>Submit Application</span><span class="material-symbols-outlined text-[20px]">send</span>';
                 }
             } catch (e) {
-                err.textContent = 'Network error. Please check your connection and try again.';
+                err.textContent = e.message || 'Network error. Please check your connection and try again.';
                 err.classList.remove('hidden');
                 btn.disabled = false;
                 btn.innerHTML = '<span>Submit Application</span><span class="material-symbols-outlined text-[20px]">send</span>';
