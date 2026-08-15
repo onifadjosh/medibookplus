@@ -5,6 +5,18 @@
       "destination": "/public/index.html"
     },
     {
+      "source": "/a_dm_in/(.*)",
+      "destination": "/a_dm_in/$1"
+    },
+    {
+      "source": "/assest/(.*)",
+      "destination": "/assest/$1"
+    },
+    {
+      "source": "/public/(.*)",
+      "destination": "/public/$1"
+    },
+    {
       "source": "/(.*)",
       "destination": "/public/$1"
     }
