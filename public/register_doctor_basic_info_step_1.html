@@ -147,11 +147,36 @@
                     </div>
 
                     <!-- Specialization -->
+                    <!-- Specialization -->
                     <div class="space-y-xs">
                         <label class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wide">Specialization <span class="text-error">*</span></label>
                         <div class="relative">
                             <span class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline text-lg">biotech</span>
                             <input class="w-full pl-12 pr-md py-3 rounded-lg border border-outline-variant bg-surface-container-lowest text-body-md font-body-md input-focus-ring transition-all" required type="text" name="specialization" placeholder="e.g. Interventional Cardiology" />
+                        </div>
+                    </div>
+
+                    <!-- Gender -->
+                    <div class="space-y-xs">
+                        <label class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wide">Gender <span class="text-error">*</span></label>
+                        <div class="relative">
+                            <span class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline text-lg">wc</span>
+                            <select class="w-full pl-12 pr-10 py-3 rounded-lg border border-outline-variant bg-surface-container-lowest text-body-md font-body-md input-focus-ring transition-all appearance-none cursor-pointer" required name="gender">
+                                <option value="">— Select Gender —</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="non-binary">Non-binary</option>
+                            </select>
+                            <span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
+                        </div>
+                    </div>
+
+                    <!-- Languages -->
+                    <div class="space-y-xs">
+                        <label class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wide">Languages Spoken <span class="text-error">*</span></label>
+                        <div class="relative">
+                            <span class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline text-lg">translate</span>
+                            <input class="w-full pl-12 pr-md py-3 rounded-lg border border-outline-variant bg-surface-container-lowest text-body-md font-body-md input-focus-ring transition-all" required type="text" name="languages" placeholder="e.g. English, Spanish" />
                         </div>
                     </div>
 
@@ -258,6 +283,8 @@ async function submitDoctor(e) {
         hospitalId: form.hospitalId.value,
         department: form.departmentId.value,
         specialization: form.specialization.value,
+        gender: form.gender.value,
+        languages: form.languages.value.split(',').map(l => l.trim()).filter(Boolean),
     };
 
     try {

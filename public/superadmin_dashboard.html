@@ -19,6 +19,7 @@
             </nav>
         </div>
         <div class="flex items-center gap-md">
+            <div id="global-notif-container"></div>
             <button onclick="handleLogout()" class="text-on-surface-variant hover:text-error transition-colors font-label-md flex items-center gap-2">
                 <span class="material-symbols-outlined">logout</span>
                 Logout
@@ -112,6 +113,7 @@
     </div>
 
     <script src="api.js"></script>
+    <script src="notifications.js"></script>
     <script>
         // Enforce Superadmin Role
         API.requireAuth(['superadmin']);

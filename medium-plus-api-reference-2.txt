@@ -1,0 +1,985 @@
+MediUM+ API Reference
+Base URL: https://medium-backend-md5a.onrender.com
+Every endpoint below has the base URL included in full in the index table — copy-paste any URL directly into your fetch() calls. This doc is updated after every batch of backend work.
+How Every Response Looks
+Success:
+{
+  "success": true,
+  "message": "Human-readable message",
+  "data": { }
+}
+Error:
+{
+  "success": false,
+  "message": "Human-readable message",
+  "code": "SOME_CODE"
+}
+"message" is always safe to show the user directly. "code" is there in case you want to handle a specific situation differently in your JS.
+Authentication
+After a successful login, you receive a "token". Store it (localStorage is fine). For any endpoint marked Protected, attach it as a header:
+Authorization: Bearer <the token>
+Missing/expired/invalid token → 401 with code "NOT_LOGGED_IN" or "INVALID_TOKEN". Logged in but wrong role for that endpoint → 403 with code "FORBIDDEN".
+MediUM+ is Multi-Tenant — What This Means For You
+Every hospital using MediUM+ is its own separate "tenant". Patients and doctors register UNDER a specific hospital (a dropdown, populated from endpoint 9). A patient or doctor only ever sees data belonging to their own hospital — doctors, appointments, everything is automatically scoped behind the scenes. You do not need to filter by hospital yourself; the backend already guarantees this.
+Roles, in order: superadmin (one, platform-wide, approves hospitals) → admin (one per hospital, approves that hospital's doctors) → doctor (approves appointments) → patient (books appointments).
+Full List of Endpoints (Index)
+#
+Method
+URL (append to base URL)
+Access
+1
+POST
+/api/auth/register/patient
+Public
+2
+POST
+/api/auth/register/doctor
+Public
+3
+POST
+/api/auth/login
+Public
+4
+GET
+/api/auth/me
+Logged in
+5
+POST
+/api/auth/logout
+Public
+6
+PATCH
+/api/account/photo
+Logged in
+7
+PATCH
+/api/account/password
+Logged in
+8
+POST
+/api/hospitals/register
+Public
+9
+GET
+/api/hospitals
+Public
+10
+GET
+/api/hospitals/:id
+Public
+11
+GET
+/api/superadmin/hospitals
+Superadmin
+12
+PATCH
+/api/superadmin/hospitals/:id/approve
+Superadmin
+13
+PATCH
+/api/superadmin/hospitals/:id/reject
+Superadmin
+14
+GET
+/api/patients/profile
+Patient
+15
+PATCH
+/api/patients/profile
+Patient
+16
+GET
+/api/patients/card
+Patient
+17
+GET
+/api/patients/card/pdf
+Patient
+18
+POST
+/api/patients/appointments
+Patient
+19
+GET
+/api/patients/appointments
+Patient
+20
+PATCH
+/api/patients/appointments/:id/cancel
+Patient
+21
+PATCH
+/api/patients/appointments/:id/reschedule
+Patient
+22
+GET
+/api/doctor/availability
+Doctor
+23
+PATCH
+/api/doctor/availability
+Doctor
+24
+GET
+/api/doctor/appointments
+Doctor
+25
+PATCH
+/api/doctor/appointments/:id/approve
+Doctor
+26
+PATCH
+/api/doctor/appointments/:id/reject
+Doctor
+27
+GET
+/api/departments
+Public
+28
+GET
+/api/visit-types
+Public
+29
+GET
+/api/doctors
+Logged in
+30
+GET
+/api/doctors/:id/slots
+Logged in
+31
+GET
+/api/admin/doctors
+Admin
+32
+PATCH
+/api/admin/doctors/:id/approve
+Admin
+33
+PATCH
+/api/admin/doctors/:id/reject
+Admin
+34
+GET
+/api/admin/patients
+Admin
+35
+PATCH
+/api/admin/patients/:id
+Admin
+36
+PATCH
+/api/admin/patients/:id/deactivate
+Admin
+37
+PATCH
+/api/admin/patients/:id/activate
+Admin
+38
+GET
+/api/admin/appointments
+Admin
+39
+PATCH
+/api/admin/appointments/:id/cancel
+Admin
+40
+GET
+/api/admin/dashboard
+Admin
+41
+GET
+/api/admin/audit-logs
+Admin
+42
+POST
+/api/auth/forgot-password
+Public
+43
+POST
+/api/auth/reset-password
+Public
+44
+GET
+/api/doctor/patients/:id
+Doctor
+45
+GET
+/api/notifications
+Logged in
+46
+GET
+/api/notifications/unread-count
+Logged in
+47
+PATCH
+/api/notifications/:id/read
+Logged in
+48
+PATCH
+/api/notifications/read-all
+Logged in
+New in This Batch — Admin Module
+Endpoints 34–41 are brand new. Here is the context needed to build the admin dashboard UI around them:
+Patients are never permanently deleted. "Delete" in the admin UI should call deactivate (endpoint 36), not remove the record — appointment history must stay intact. A separate activate endpoint (37) exists to undo this.
+Admin CANNOT edit a patient's blood group. That field is intentionally excluded from endpoint 35 for safety — only the patient themselves or a doctor should be able to set it. If your edit form includes a blood group field, sending it will simply be ignored, not an error.
+Admin can CANCEL any appointment (endpoint 39) for operational reasons (e.g. doctor unavailable, hospital closure), but CANNOT approve/reject bookings — that remains solely the doctor's decision (endpoints 25/26 from the Doctor section).
+Every sensitive admin action (patient edits, deactivate/activate, appointment cancellation, doctor approve/reject) is now recorded in an audit trail, viewable via endpoint 41. Good candidate for an "Activity Log" or "Recent Actions" panel in the admin dashboard.
+New in This Batch — Forgot Password & Allergies
+Endpoints 42–43 are brand new, plus one field addition to the Patient module. Context for the frontend:
+Forgot Password is now a two-step flow: endpoint 42 sends a reset link to the user’s email if the account exists (it always returns the same generic success message either way, so it can’t be used to check which emails are registered), and endpoint 43 completes the reset using the token from that link.
+UPDATE: the link now points to {CLIENT_URL}/forgot_password_account_recovery.html?token=<token> — matching the frontend’s existing page (it was originally reset_password.html, changed to avoid needing a new page). The frontend still needs to add a conditional “enter new password” step to this page when a token is present in the URL, POSTing to endpoint 43.
+The reset token is single-use and expires 30 minutes after the email is sent. A stale or already-used token returns 400 INVALID_OR_EXPIRED_TOKEN — the reset page should show a friendly "this link has expired, request a new one" state for this, not a raw error.
+Both endpoints share the same rate limit as login/register (20 requests per 15 minutes per IP) — if you’re testing repeatedly, you may hit AUTH_RATE_LIMITED.
+Patient.allergies is a new field — an array of strings, e.g. ["Penicillin", "Peanuts"]. It’s now part of endpoint 15 (update profile), endpoint 16 (digital card), and the printable card PDF (endpoint 17, back page). Like blood group, it is intentionally NOT editable by admin (endpoint 35) — only the patient or a doctor can set it.
+1. Register a Patient
+POST  
+https://medium-backend-md5a.onrender.com/api/auth/register/patient
+Access: Public
+Body:
+{
+  "firstName": "Jane",
+  "lastName": "Doe",
+  "email": "jane@example.com",
+  "password": "Test@1234",
+  "phone": "08012345678",
+  "hospitalId": "665f..."
+}
+hospitalId is required — get the list of valid ones from endpoint 9 and use it to populate a hospital dropdown on the registration form.
+Password rule: min 8 characters, 1 uppercase, 1 lowercase, 1 number, 1 special character.
+Success response:
+{
+  "success": true,
+  "message": "Registration successful",
+  "data": {
+    "token": "...",
+    "user": {
+      "id": "...", "firstName": "Jane", "lastName": "Doe", "email": "jane@example.com",
+      "role": "patient", "hospital": { "id": "...", "name": "St. Mary's Hospital" },
+      "patientId": "PT-2026-4F3A1B"
+    }
+  }
+}
+Possible errors:
+Code
+Status
+Meaning
+MISSING_FIELDS
+400
+A required field is missing
+MISSING_HOSPITAL
+400
+No hospitalId was sent
+INVALID_HOSPITAL
+400
+That hospital does not exist or is not approved yet
+EMAIL_TAKEN
+400
+An account already exists with this email
+2. Register a Doctor
+POST  
+https://medium-backend-md5a.onrender.com/api/auth/register/doctor
+Access: Public
+Body:
+{
+  "firstName": "John",
+  "lastName": "Smith",
+  "email": "john@example.com",
+  "password": "Test@1234",
+  "phone": "08012345678",
+  "hospitalId": "665f...",
+  "department": "Cardiology",
+  "specialization": "Interventional Cardiology",
+  "gender": "female", "languages": ["English", "Yoruba"]
+}
+hospitalId required, same dropdown as patient registration. department must exactly match one value from endpoint 27. gender and languages are both optional at registration — there is currently no endpoint to edit them afterward.
+IMPORTANT: No token is issued. The doctor cannot log in until THAT HOSPITAL'S admin approves them (not the platform superadmin). Show the pending message clearly — do not redirect to a dashboard.
+Success response:
+{
+  "success": true,
+  "message": "Registration successful. Your account is pending admin approval — you will be able to log in once approved.",
+  "data": null
+}
+Possible errors:
+Code
+Status
+Meaning
+MISSING_FIELDS
+400
+A required field is missing
+INVALID_DEPARTMENT
+400
+Department is not one of the allowed values
+MISSING_HOSPITAL / INVALID_HOSPITAL
+400
+hospitalId missing or invalid
+EMAIL_TAKEN
+400
+An account already exists with this email
+3. Login
+POST  
+https://medium-backend-md5a.onrender.com/api/auth/login
+Access: Public — same endpoint for patient, doctor, admin, and superadmin
+Body:
+{
+  "email": "jane@example.com",
+  "password": "Test@1234"
+}
+Check user.role ("patient" / "doctor" / "admin" / "superadmin") to decide which dashboard to show.
+Success response:
+{
+  "success": true,
+  "message": "Login successful",
+  "data": {
+    "token": "...",
+    "user": { "id": "...", "firstName": "Jane", "lastName": "Doe", "email": "jane@example.com", "role": "patient" }
+  }
+}
+Possible errors:
+Code
+Status
+Meaning
+INVALID_CREDENTIALS
+401
+Wrong email or password
+ACCOUNT_DEACTIVATED
+403
+This user account was deactivated
+DOCTOR_PENDING
+403
+Doctor not approved by their hospital yet
+DOCTOR_REJECTED
+403
+Doctor's application was rejected
+HOSPITAL_PENDING
+403
+The hospital itself is still awaiting superadmin approval
+HOSPITAL_REJECTED
+403
+The hospital application was rejected
+HOSPITAL_SUSPENDED
+403
+The hospital has been suspended
+HOSPITAL_INACTIVE
+403
+The hospital is deactivated
+4. Get Current Logged-In User
+GET  
+https://medium-backend-md5a.onrender.com/api/auth/me
+Access: Protected — any logged-in role
+Call this on page load/refresh to check who is logged in.
+Success response:
+{
+  "success": true, "message": "Current user retrieved",
+  "data": {
+    "user": { "id": "...", "firstName": "Jane", "lastName": "Doe", "email": "...", "phone": "...", "photo": "", "role": "patient" },
+    "profile": { "_id": "...", "patientId": "PT-2026-4F3A1B", "gender": null, "dateOfBirth": null, "bloodGroup": null, "address": "", "emergencyContact": {}, "status": "active" }
+  }
+}
+"profile" = Patient record for patients, Doctor record for doctors, null for admin/superadmin.
+Possible errors:
+Code
+Status
+Meaning
+NOT_LOGGED_IN
+401
+No token sent
+INVALID_TOKEN
+401
+Token malformed or expired
+USER_NOT_FOUND
+401
+Token valid but account no longer exists
+ACCOUNT_DEACTIVATED / HOSPITAL_INACTIVE
+403
+Account or hospital not in good standing
+5. Logout
+POST  
+https://medium-backend-md5a.onrender.com/api/auth/logout
+Access: Public
+No body needed. Mostly a formality — logging out really just means deleting the token from localStorage on your end, since there is no server-side session. Call it anyway for consistency.
+6. Upload Profile Photo
+PATCH  
+https://medium-backend-md5a.onrender.com/api/account/photo
+Access: Protected — any logged-in role
+Send as multipart/form-data, NOT JSON. Field name must be exactly "photo", value = the image file.
+Success response:
+{
+  "success": true,
+  "message": "Photo updated successfully",
+  "data": { "photo": "https://res.cloudinary.com/..." }
+}
+That URL now shows up in /auth/me, /patients/profile, and /patients/card automatically afterward.
+Possible errors:
+Code
+Status
+Meaning
+NO_FILE
+400
+No photo file was received
+7. Change Password
+PATCH  
+https://medium-backend-md5a.onrender.com/api/account/password
+Access: Protected — any logged-in role
+Body:
+{
+  "currentPassword": "Test@1234",
+  "newPassword": "NewPass@5678"
+}
+Success response:
+{ "success": true, "message": "Password changed successfully", "data": null }
+NOTE: For a locked-out user who doesn’t know their current password, use Forgot/Reset Password (endpoints 42–43) instead. This endpoint requires knowing the current password.
+Possible errors:
+Code
+Status
+Meaning
+MISSING_FIELDS
+400
+currentPassword or newPassword missing
+INCORRECT_PASSWORD
+401
+Current password is wrong
+8. Register a Hospital
+POST  
+https://medium-backend-md5a.onrender.com/api/hospitals/register
+Access: Public
+Body:
+{
+  "hospitalName": "St. Mary's Hospital",
+  "contactEmail": "info@stmarys.com",
+  "contactPhone": "08000000000",
+  "state": "Osun", "city": "Osogbo", "address": "12 Ilesa Road",
+  "adminFirstName": "Jane", "adminLastName": "Admin",
+  "adminEmail": "jane.admin@stmarys.com", "adminPassword": "Test@1234", "adminPhone": "08011111111"
+}
+This single call creates the hospital AND its first admin account together. The hospital starts pending — the admin cannot log in until a superadmin approves the hospital (see endpoint 12). No token is issued here.
+Success response:
+{
+  "success": true,
+  "message": "Hospital registration successful. Your hospital is pending approval — you will be able to log in once approved.",
+  "data": { "hospital": { "id": "...", "name": "St. Mary's Hospital", "approvalStatus": "pending" } }
+}
+Possible errors:
+Code
+Status
+Meaning
+MISSING_FIELDS
+400
+A required field is missing
+EMAIL_TAKEN
+400
+That admin email is already registered
+9. List Hospitals (Public Directory / Registration Dropdown)
+GET  
+https://medium-backend-md5a.onrender.com/api/hospitals
+Access: Public
+Only ever shows approved + active hospitals — use this to populate the hospital dropdown on patient/doctor registration, and for a public hospital directory page.
+Success response:
+{
+  "success": true, "message": "Hospitals retrieved",
+  "data": { "hospitals": [ { "_id": "...", "name": "St. Mary's Hospital", "logo": "", "state": "Osun", "city": "Osogbo", "address": "..." } ], "pagination": {...} }
+}
+10. Get Hospital Details
+GET  
+https://medium-backend-md5a.onrender.com/api/hospitals/:id
+Access: Public
+For a hospital profile page. Returns 404 for any hospital that is not approved + active — pending/rejected hospitals are never publicly visible.
+Possible errors:
+Code
+Status
+Meaning
+HOSPITAL_NOT_FOUND
+404
+No such approved, active hospital
+11. List Hospitals (Superadmin View)
+GET  
+https://medium-backend-md5a.onrender.com/api/superadmin/hospitals
+Access: Protected — Superadmin only
+Query params (optional): ?status=pending (or approved/rejected/suspended), ?page=1, ?limit=10. Unlike endpoint 9, this shows hospitals of every status.
+12–13. Approve / Reject a Hospital
+PATCH  
+https://medium-backend-md5a.onrender.com/api/superadmin/hospitals/:id/approve  (or /reject)
+Access: Protected — Superadmin only
+No body needed. Replace ":id" with the hospital's _id. Automatically emails that hospital's admin with the outcome.
+Possible errors:
+Code
+Status
+Meaning
+HOSPITAL_NOT_FOUND
+404
+No such hospital
+ALREADY_APPROVED
+400
+Approve only — already approved
+14–15. Get / Update Patient Profile
+GET / PATCH  
+https://medium-backend-md5a.onrender.com/api/patients/profile
+Access: Protected — Patient only
+Body:
+{
+  "firstName": "Jane", "lastName": "Doe", "phone": "08012345678",
+  "gender": "female", "dateOfBirth": "1998-05-12", "bloodGroup": "O+",
+  "allergies": ["Penicillin", "Peanuts"],
+  "address": "12 Ilesa Road, Osogbo",
+  "emergencyContact": { "name": "John Doe", "phone": "08099999999", "relationship": "Spouse" }
+}
+PATCH: send only the fields you want to change. Email is NOT editable through this endpoint. "allergies" is an array of strings — send the full list each time, not one item at a time.
+16. Get Digital Patient Card (in-app live view)
+GET  
+https://medium-backend-md5a.onrender.com/api/patients/card
+Access: Protected — Patient only
+This is the "live" card data — render this directly in your UI as a styled component.
+Success response:
+{
+  "success": true, "message": "Patient card retrieved",
+  "data": {
+    "patientId": "PT-2026-4F3A1B", "firstName": "Jane", "lastName": "Doe", "photo": "",
+    "gender": "female", "dateOfBirth": "1998-05-12", "bloodGroup": "O+",
+    "allergies": ["Penicillin", "Peanuts"],
+    "phone": "...", "email": "...", "address": "...", "emergencyContact": {...},
+    "registrationDate": "2026-07-14T...",
+    "qrCode": "data:image/png;base64,iVBORw0KG..."
+  }
+}
+"qrCode" is ready to use directly: <img src={qrCode} /> — no QR library needed on your end.
+17. Download / Print Patient Card (PDF)
+GET  
+https://medium-backend-md5a.onrender.com/api/patients/card/pdf
+Access: Protected — Patient only
+Add ?download=true to force a download prompt instead of opening inline.
+A separate thing from endpoint 16 — a real, portable, card-sized PDF (front + back, 2 pages) for saving/printing/sharing outside the app.
+Returns raw PDF bytes, not JSON. Point a link/button directly at this URL. The back page now also includes an Allergies row (shows "Not provided" if the patient has none listed).
+18. Book an Appointment
+POST  
+https://medium-backend-md5a.onrender.com/api/patients/appointments
+Access: Protected — Patient only
+Body:
+{
+  "doctorId": "665f...",
+  "date": "2026-07-20",
+  "timeSlot": "09:00 AM",
+  "visitType": "general_consultation",
+  "reason": "Routine checkup"
+}
+visitType is REQUIRED — must be one of the values from endpoint 28 (e.g. "general_consultation", "follow_up", "new_patient_exam", "minor_procedure", "other"). Its duration determines how many 30-min slots the appointment actually blocks.
+reason is required ONLY when visitType is "other" — otherwise optional.
+timeSlot must be one of the values returned by endpoint 30 for that SAME visitType — the backend re-validates this regardless.
+Success response:
+{
+  "success": true,
+  "message": "Appointment booked successfully and is pending doctor approval",
+  "data": { "appointment": {...} }
+}
+Possible errors:
+Code
+Status
+Meaning
+INVALID_DOCTOR_ID
+400
+doctorId missing or malformed
+INVALID_DATE
+400
+Date missing or wrong format
+PAST_DATE
+400
+Date has already passed
+MISSING_TIME_SLOT
+400
+timeSlot missing
+INVALID_VISIT_TYPE
+400
+visitType missing or not recognized
+REASON_REQUIRED
+400
+visitType is "other" but no reason given
+SLOT_TAKEN
+400
+That slot (or enough consecutive slots) is no longer available
+DOCTOR_NOT_FOUND
+404
+No such active doctor at your hospital
+19. View Appointment History
+GET  
+https://medium-backend-md5a.onrender.com/api/patients/appointments
+Access: Protected — Patient only
+Query params (optional): ?status=pending (or confirmed/rejected/cancelled/completed), ?page=1, ?limit=10
+20. Cancel an Appointment
+PATCH  
+https://medium-backend-md5a.onrender.com/api/patients/appointments/:id/cancel
+Access: Protected — Patient only
+No body. Replace ":id" with the appointment's _id.
+Possible errors:
+Code
+Status
+Meaning
+APPOINTMENT_NOT_FOUND
+404
+No such appointment for this patient
+NOT_CANCELLABLE
+400
+Already cancelled/rejected/completed
+21. Reschedule an Appointment
+PATCH  
+https://medium-backend-md5a.onrender.com/api/patients/appointments/:id/reschedule
+Access: Protected — Patient only
+Body:
+{
+  "date": "2026-07-22",
+  "timeSlot": "10:00 AM"
+}
+Body is the NEW date/time only. The original visitType/duration carries forward automatically. Creates a brand new appointment (pending again) and marks the original as cancelled.
+Possible errors:
+Code
+Status
+Meaning
+APPOINTMENT_NOT_FOUND
+404
+No such appointment
+NOT_RESCHEDULABLE
+400
+Already finalized
+SLOT_TAKEN
+400
+New slot not available
+PAST_DATE
+400
+New date already passed
+22–23. Doctor Availability
+GET / PATCH  
+https://medium-backend-md5a.onrender.com/api/doctor/availability
+Access: Protected — Doctor only
+Body:
+{
+  "availability": [
+    { "day": "Monday", "startTime": "09:00", "endTime": "12:00" },
+    { "day": "Wednesday", "startTime": "10:00", "endTime": "16:00" }
+  ]
+}
+PATCH REPLACES the whole schedule — send the complete list every time. To remove a day, leave it out.
+Possible errors:
+Code
+Status
+Meaning
+INVALID_AVAILABILITY
+400
+Not a valid list
+INVALID_DAY
+400
+Not a real weekday name
+INVALID_TIME_FORMAT
+400
+Not HH:MM 24-hour format
+INVALID_TIME_RANGE
+400
+startTime is after endTime
+DUPLICATE_DAY
+400
+Same day listed twice
+undefined. Doctor's Own Appointment Schedule
+GET  
+https://medium-backend-md5a.onrender.com/api/doctor/appointments
+Access: Protected — Doctor only
+Query params (optional): ?status=pending, ?page=1, ?limit=10. Returns patient info populated in (name, phone, email).
+25–26. Approve / Reject an Appointment
+PATCH  
+https://medium-backend-md5a.onrender.com/api/doctor/appointments/:id/approve  (or /reject)
+Access: Protected — Doctor only
+Body:
+// reject only, optional:
+{ "reason": "Fully booked that day" }
+Both automatically email the patient with the outcome.
+Possible errors:
+Code
+Status
+Meaning
+APPOINTMENT_NOT_FOUND
+404
+Not found, or belongs to a different doctor
+NOT_APPROVABLE / NOT_REJECTABLE
+400
+Already finalized
+27. List Departments
+GET  
+https://medium-backend-md5a.onrender.com/api/departments
+Access: Public
+Success response:
+{
+  "success": true, "message": "Departments retrieved",
+  "data": ["General Medicine", "Cardiology", "Dentistry", "Pediatrics", "Orthopedics", "Eye Clinic", "ENT", "Neurology", "Dermatology"]
+}
+28. List Visit Types
+GET  
+https://medium-backend-md5a.onrender.com/api/visit-types
+Access: Public
+Use this to populate the appointment-type dropdown when booking.
+Success response:
+{
+  "success": true, "message": "Visit types retrieved",
+  "data": [
+    { "value": "general_consultation", "label": "General Consultation", "durationMinutes": 30, "requiresReason": false },
+    { "value": "follow_up", "label": "Follow-up Visit", "durationMinutes": 30, "requiresReason": false },
+    { "value": "new_patient_exam", "label": "New Patient / Full Exam", "durationMinutes": 60, "requiresReason": false },
+    { "value": "minor_procedure", "label": "Minor Procedure", "durationMinutes": 60, "requiresReason": false },
+    { "value": "other", "label": "Other", "durationMinutes": 30, "requiresReason": true }
+  ]
+}
+requiresReason: true means your form MUST show and require the reason text field for that type — currently only "Other".
+29. List Doctors (for booking)
+GET  
+https://medium-backend-md5a.onrender.com/api/doctors
+Access: Protected — any logged-in role
+Query params (optional): ?department=Cardiology, ?gender=female, ?language=Yoruba, ?page=1, ?limit=10. Automatically scoped to YOUR hospital only — you never see other hospitals' doctors. Each doctor in the response now also includes gender and languages (languages is an array).
+30. Get Available Time Slots
+GET  
+https://medium-backend-md5a.onrender.com/api/doctors/:id/slots?date=2026-07-20&visitType=general_consultation
+Access: Protected — any logged-in role
+Replace ":id" with the doctor's id. "date" required (YYYY-MM-DD). "visitType" should always be passed once the patient has picked one — different visit types need different amounts of free time, so the returned slot list changes based on it.
+Success response:
+{ "success": true, "message": "Available slots retrieved", "data": { "date": "2026-07-20", "visitType": "general_consultation", "durationMinutes": 30, "slots": ["09:00 AM", "09:30 AM", "10:00 AM"] } }
+If the doctor does not work that day of the week, "slots" is just an empty array — not an error.
+Possible errors:
+Code
+Status
+Meaning
+INVALID_DATE
+400
+Missing or wrong format
+PAST_DATE
+400
+Date already passed
+DOCTOR_NOT_FOUND
+404
+No such active doctor at your hospital
+31. List Doctors (Admin View)
+GET  
+https://medium-backend-md5a.onrender.com/api/admin/doctors
+Access: Protected — Admin only
+Query params (optional): ?status=pending (or approved/rejected), ?page=1, ?limit=10. Automatically scoped to your own hospital only.
+32–33. Approve / Reject a Doctor Application
+PATCH  
+https://medium-backend-md5a.onrender.com/api/admin/doctors/:id/approve  (or /reject)
+Access: Protected — Admin only
+No body. Replace ":id" with the doctor's id (from endpoint 31). Only works for doctors belonging to YOUR hospital. Automatically emails the doctor.
+Possible errors:
+Code
+Status
+Meaning
+DOCTOR_NOT_FOUND
+404
+No such doctor at your hospital
+ALREADY_APPROVED
+400
+Already approved
+34. List Patients (Admin View)
+GET  
+https://medium-backend-md5a.onrender.com/api/admin/patients
+Access: Protected — Admin only
+Query params (optional): ?status=active|inactive|deactivated, ?search=jane (matches name, email, or patient ID), ?page=1, ?limit=10. Scoped to your own hospital only.
+undefined. Update a Patient's Info
+PATCH  
+https://medium-backend-md5a.onrender.com/api/admin/patients/:id
+Access: Protected — Admin only
+Body:
+{
+  "firstName": "Jane", "lastName": "Doe", "phone": "08012345678",
+  "gender": "female", "dateOfBirth": "1998-05-12",
+  "address": "12 Ilesa Road, Osogbo",
+  "emergencyContact": { "name": "John Doe", "phone": "08099999999", "relationship": "Spouse" }
+}
+Send only the fields you want to change. bloodGroup is NOT accepted here — see the note at the top of this section for why.
+Possible errors:
+Code
+Status
+Meaning
+PATIENT_NOT_FOUND
+404
+No such patient at your hospital
+36–37. Deactivate / Activate a Patient
+PATCH  
+https://medium-backend-md5a.onrender.com/api/admin/patients/:id/deactivate  (or /activate)
+Access: Protected — Admin only
+No body. This is the "delete" action in the admin UI — the record is never actually removed, only marked inactive so login is blocked but appointment history stays intact.
+Possible errors:
+Code
+Status
+Meaning
+PATIENT_NOT_FOUND
+404
+No such patient at your hospital
+38. View All Appointments (Admin)
+GET  
+https://medium-backend-md5a.onrender.com/api/admin/appointments
+Access: Protected — Admin only
+Query params (optional): ?status=, ?doctorId=, ?page=1, ?limit=10. Shows every appointment at your hospital, across all doctors and patients.
+39. Cancel Any Appointment (Admin Override)
+PATCH  
+https://medium-backend-md5a.onrender.com/api/admin/appointments/:id/cancel
+Access: Protected — Admin only
+No body. Use this for operational reasons (doctor unavailable, hospital closure, scheduling conflict) — NOT for approving/rejecting new bookings, which stays the doctor's call. Automatically emails the patient.
+Possible errors:
+Code
+Status
+Meaning
+APPOINTMENT_NOT_FOUND
+404
+No such appointment at your hospital
+NOT_CANCELLABLE
+400
+Already finalized
+40. Admin Dashboard
+GET  
+https://medium-backend-md5a.onrender.com/api/admin/dashboard
+Access: Protected — Admin only
+Success response:
+{
+  "success": true, "message": "Dashboard retrieved",
+  "data": {
+    "appointments": { "today": 3, "thisWeek": 12, "thisMonth": 40, "pending": 5, "confirmed": 20, "rejected": 2, "cancelled": 3, "completed": 10 },
+    "totalPatients": 58, "totalDoctors": 6,
+    "newPatientRegistrationsThisMonth": 9,
+    "mostVisitedDepartment": { "department": "Cardiology", "count": 15 },
+    "mostBookedDoctor": { "id": "...", "name": "John Smith", "department": "Cardiology", "appointmentCount": 12 },
+    "appointmentTrend": [ { "date": "2026-07-14", "count": 3 }, { "date": "2026-07-15", "count": 5 } ]
+  }
+}
+"appointmentTrend" covers the last 7 days — good for a small line/bar chart on the dashboard.
+41. Audit Logs (Admin Activity History)
+GET  
+https://medium-backend-md5a.onrender.com/api/admin/audit-logs
+Access: Protected — Admin only
+Query params (optional): ?action=PATIENT_UPDATED (or PATIENT_DEACTIVATED / PATIENT_ACTIVATED / APPOINTMENT_CANCELLED / DOCTOR_APPROVED / DOCTOR_REJECTED), ?targetType=Patient|Doctor|Appointment, ?page=1, ?limit=20.
+Success response:
+{
+  "success": true, "message": "Audit logs retrieved",
+  "data": {
+    "logs": [
+      {
+        "actorName": "Jane Admin", "actorRole": "admin", "action": "PATIENT_UPDATED",
+        "targetType": "Patient", "targetLabel": "Mary Doe",
+        "changes": [ { "field": "phone", "oldValue": "0801...", "newValue": "0809..." } ],
+        "createdAt": "2026-07-26T10:15:00.000Z"
+      }
+    ],
+    "pagination": {...}
+  }
+}
+Good candidate for an "Activity Log" or "Recent Actions" panel — "changes" gives you the exact before/after for edits.
+42. Forgot Password
+POST  
+https://medium-backend-md5a.onrender.com/api/auth/forgot-password
+Access: Public
+Body:
+{
+  "email": "jane@example.com"
+}
+Success response:
+{ "success": true, "message": "If an account exists with that email, a password reset link has been sent.", "data": null }
+Always returns this exact response, whether or not the email is registered — this is intentional, so the endpoint can’t be used to check which emails have accounts. If the email does exist and the account is active, a reset email is sent in the background (fire-and-forget, same pattern as every other email in this app).
+The email contains a link to {CLIENT_URL}/forgot_password_account_recovery.html?token=<token> — this matches your existing page. It needs a conditional step: when a token is present in the URL, show an "enter new password" form and POST to endpoint 43. The token expires in 30 minutes and can only be used once.
+Possible errors:
+Code
+Status
+Meaning
+MISSING_FIELDS
+400
+Email not provided
+AUTH_RATE_LIMITED
+429
+More than 20 requests from this IP in 15 minutes (shared limit with login/register)
+43. Reset Password
+POST  
+https://medium-backend-md5a.onrender.com/api/auth/reset-password
+Access: Public
+Body:
+{
+  "token": "<the raw token from the reset link>",
+  "newPassword": "NewPass@5678"
+}
+Success response:
+{ "success": true, "message": "Password reset successfully. You can now log in with your new password.", "data": null }
+On success, log the user straight through to your login screen (or auto-redirect there) — no token is issued by this endpoint, they still need to log in normally afterward.
+Possible errors:
+Code
+Status
+Meaning
+MISSING_FIELDS
+400
+token or newPassword missing
+INVALID_OR_EXPIRED_TOKEN
+400
+Token is wrong, already used, or older than 30 minutes — show a "request a new link" state, not a raw error
+New in This Batch — Doctor Detail View, Notifications & Reminders
+Endpoints 44–48 are new, plus two existing endpoints picked up new fields/filters. Context:
+Doctor registration (endpoint 2) and List Doctors (endpoint 29) now support gender and languages — both optional, settable only at doctor registration for now (no edit-profile endpoint exists yet). Endpoint 29 also takes ?gender= and ?language= as new filters.
+Endpoint 44 (single-patient view for a doctor) only works if the doctor has actually had at least one appointment with that patient — otherwise it returns 403, not the patient’s data. This is deliberate, not a bug: a doctor shouldn’t be able to browse arbitrary hospital patients by guessing an id.
+The Notification model already existed in the schema before this batch — endpoints 45–48 are the first endpoints that actually expose it. Every notification belongs to exactly one user; there’s no cross-user access possible.
+Notifications now fire automatically (no new endpoint calls needed) when: an appointment is approved/rejected/cancelled/rescheduled by either side, and when a doctor account is approved/rejected. Build the bell icon against endpoints 45 (list) and 46 (unread count) and it’ll start populating immediately from existing actions.
+Appointment reminders are NOT an endpoint — they’re a background job that runs automatically every 15 minutes and creates a notification (type: appointment_reminder) plus sends an email, 24hrs and 1hr before a confirmed appointment. Nothing for the frontend to call; just render the appointment_reminder notification type like any other when it shows up in endpoint 45.
+44. Get Patient Detail (Doctor View)
+GET  
+https://medium-backend-md5a.onrender.com/api/doctor/patients/:id
+Access: Protected — Doctor only
+Replace ":id" with the patient’s id (the Patient document’s _id, found on any appointment object under patientId). Only works if this doctor has at least one appointment (any status) with this patient.
+Success response:
+{ "success": true, "message": "Patient detail retrieved",
+  "data": { "patient": { "id": "...", "patientId": "PT-2026-...", "firstName": "...",
+    "lastName": "...", "email": "...", "phone": "...", "photo": "...", "gender": "...",
+    "dateOfBirth": "...", "bloodGroup": "...", "allergies": [...], "address": "...",
+    "emergencyContact": {...} }, "appointments": [ {...}, {...} ] } }
+"appointments" is every appointment (any status) between this doctor and this patient, newest first — use it to build the visit history panel.
+Possible errors:
+Code
+Status
+Meaning
+PATIENT_NOT_FOUND
+404
+No such patient at your hospital, or the id is invalid/malformed
+NO_APPOINTMENT_HISTORY
+403
+Patient exists but you’ve never had an appointment with them — do not show their data
+45. Get My Notifications
+GET  
+https://medium-backend-md5a.onrender.com/api/notifications
+Access: Protected — any logged-in role
+Query params (optional): ?read=false (or true), ?page=1, ?limit=20. Always scoped to your own notifications only.
+Success response:
+{ "success": true, "message": "Notifications retrieved",
+  "data": { "notifications": [ { "id": "...", "type": "appointment_approved",
+    "message": "Dr. Smith approved your Monday, August 24, 2026 appointment",
+    "link": "", "read": false, "createdAt": "..." } ], "pagination": {...} } }
+"type" is one of: appointment_approved, appointment_rejected, appointment_cancelled, appointment_rescheduled, appointment_reminder, doctor_account_approved, doctor_account_rejected. Use it to pick an icon per notification if desired — "message" is always ready-to-display plain text either way.
+46. Get Unread Notification Count
+GET  
+https://medium-backend-md5a.onrender.com/api/notifications/unread-count
+Access: Protected — any logged-in role
+Lightweight, separate from endpoint 45 on purpose — poll this one for the bell-icon badge number without pulling the full notification list every time.
+Success response:
+{ "success": true, "message": "Unread count retrieved", "data": { "count": 3 } }
+47. Mark a Notification as Read
+PATCH  
+https://medium-backend-md5a.onrender.com/api/notifications/:id/read
+Access: Protected — any logged-in role
+Replace ":id" with the notification’s id from endpoint 45.
+Success response:
+{ "success": true, "message": "Notification marked as read", "data": { "notification": {...} } }
+Possible errors:
+Code
+Status
+Meaning
+NOTIFICATION_NOT_FOUND
+404
+Not found, or it belongs to a different user
+48. Mark All Notifications as Read
+PATCH  
+https://medium-backend-md5a.onrender.com/api/notifications/read-all
+Access: Protected — any logged-in role
+No body needed. Good fit for a "Mark all as read" link/button at the top of the notification panel.
+Success response:
+{ "success": true, "message": "All notifications marked as read", "data": { "updatedCount": 3 } }
+Not Built Yet
+Messages (patient-doctor chat) — planned as polling-based, not true real-time
+Medical Records (structured records beyond appointment notes)
+Settings: notification/privacy preferences, self-service account deactivation
+Doctor "Active Consultation" session tracking — live session start/end, not just approve/reject
+Patient card fields still pending a decision: nationality, insurance, card-expiry-date (allergies is done — see the batch note above)
+Do not build against these yet — this section just tells you what is coming.

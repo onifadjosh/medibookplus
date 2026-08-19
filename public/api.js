@@ -131,7 +131,7 @@ const API = {
         registerPatient: (data) => API.fetch('/auth/register/patient', { method: 'POST', body: data }),
         registerDoctor: (data) => API.fetch('/auth/register/doctor', { method: 'POST', body: data }),
         forgotPassword: (email) => API.fetch('/auth/forgot-password', { method: 'POST', body: { email } }),
-        resetPassword: (token, password) => API.fetch('/auth/reset-password', { method: 'POST', body: { token, password } }),
+        resetPassword: (token, newPassword) => API.fetch('/auth/reset-password', { method: 'POST', body: { token, newPassword } }),
     },
 
     account: {
@@ -171,6 +171,9 @@ const API = {
     },
 
     doctorRole: {
+        patients: {
+            getDetail: (id) => API.fetch(`/doctor/patients/${id}`),
+        },
         availability: {
             get: () => API.fetch('/doctor/availability'),
             update: (data) => API.fetch('/doctor/availability', { method: 'PATCH', body: data }),
@@ -180,6 +183,13 @@ const API = {
             approve: (id) => API.fetch(`/doctor/appointments/${id}/approve`, { method: 'PATCH' }),
             reject: (id, reason = '') => API.fetch(`/doctor/appointments/${id}/reject`, { method: 'PATCH', body: reason ? { reason } : {} }),
         }
+    },
+
+    notifications: {
+        list: (params = '') => API.fetch(`/notifications${params}`),
+        getUnreadCount: () => API.fetch('/notifications/unread-count'),
+        markRead: (id) => API.fetch(`/notifications/${id}/read`, { method: 'PATCH' }),
+        markAllRead: () => API.fetch('/notifications/read-all', { method: 'PATCH' }),
     },
 
     admin: {

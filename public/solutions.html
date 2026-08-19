@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Solutions | Medium+ Healthcare Platform</title>
-    <meta name="description" content="Discover how Medium+ serves patients, doctors, and healthcare administrators with smart scheduling, secure records, and seamless telehealth." />
+    <meta name="description" content="Discover how Medium+ serves patients, doctors, and healthcare administrators with smart scheduling, secure records, and seamless management." />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
     <link href="tailwind.css?v=3" rel="stylesheet" />
     <link href="custom.css" rel="stylesheet" />
@@ -92,16 +92,10 @@
                                 <span class="material-symbols-outlined text-primary mt-1">check_circle</span>
                                 <div>
                                     <p class="font-title-md text-title-md">Appointment Reminders</p>
-                                    <p class="font-body-sm text-body-sm text-on-surface-variant">Never miss a visit with automated SMS and in-app reminders.</p>
+                                    <p class="font-body-sm text-body-sm text-on-surface-variant">Never miss a visit with automated email and in-app reminders.</p>
                                 </div>
                             </li>
-                            <li class="flex items-start gap-md">
-                                <span class="material-symbols-outlined text-primary mt-1">check_circle</span>
-                                <div>
-                                    <p class="font-title-md text-title-md">Telehealth Consultations</p>
-                                    <p class="font-body-sm text-body-sm text-on-surface-variant">Connect with your doctor via secure video call — no travel needed.</p>
-                                </div>
-                            </li>
+
                         </ul>
                         <a href="onboarding_feature_walkthrough.html?next=register" class="inline-flex items-center gap-sm bg-primary text-on-primary px-xl py-md rounded-xl font-title-md hover:shadow-lg transition-all active:scale-95">
                             Register as Patient
@@ -164,9 +158,9 @@
                                 <p class="font-body-sm text-body-sm text-on-surface-variant">Secure patient chat</p>
                             </div>
                             <div class="bg-primary p-lg rounded-2xl shadow-sm text-center space-y-xs">
-                                <span class="material-symbols-outlined text-white text-[32px]">video_call</span>
-                                <p class="font-title-sm text-title-sm text-white">Telehealth</p>
-                                <p class="font-body-sm text-body-sm text-white/80">Built-in video</p>
+                                <span class="material-symbols-outlined text-white text-[32px]">notifications_active</span>
+                                <p class="font-title-sm text-title-sm text-white">Notifications</p>
+                                <p class="font-body-sm text-body-sm text-white/80">Real-time alerts</p>
                             </div>
                         </div>
                     </div>
@@ -233,15 +227,15 @@
                             <li class="flex items-start gap-md">
                                 <span class="material-symbols-outlined text-primary mt-1">check_circle</span>
                                 <div>
-                                    <p class="font-title-md text-title-md">Department Overview</p>
-                                    <p class="font-body-sm text-body-sm text-on-surface-variant">Track activity across departments, specialties, and appointment queues.</p>
+                                    <p class="font-title-md text-title-md">Patient Directory</p>
+                                    <p class="font-body-sm text-body-sm text-on-surface-variant">View all registered patients and manage their active status.</p>
                                 </div>
                             </li>
                             <li class="flex items-start gap-md">
                                 <span class="material-symbols-outlined text-primary mt-1">check_circle</span>
                                 <div>
-                                    <p class="font-title-md text-title-md">Reports & Analytics</p>
-                                    <p class="font-body-sm text-body-sm text-on-surface-variant">Generate facility reports, view appointment trends, and monitor operations.</p>
+                                    <p class="font-title-md text-title-md">Audit Logs</p>
+                                    <p class="font-body-sm text-body-sm text-on-surface-variant">Track all critical administrative actions across the facility.</p>
                                 </div>
                             </li>
                         </ul>
@@ -253,40 +247,30 @@
                     <div class="bg-surface-container-low rounded-3xl p-2xl border border-outline-variant/30 space-y-md">
                         <div class="flex items-center justify-between p-lg bg-surface-container-lowest rounded-2xl">
                             <div class="flex items-center gap-md">
-                                <span class="material-symbols-outlined text-primary">local_hospital</span>
+                                <span class="material-symbols-outlined text-primary">groups</span>
                                 <div>
-                                    <p class="font-title-md">Departments</p>
-                                    <p class="font-body-sm text-on-surface-variant">Manage all units</p>
+                                    <p class="font-title-md">Patients</p>
+                                    <p class="font-body-sm text-on-surface-variant">Manage active status</p>
                                 </div>
                             </div>
                             <span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
                         </div>
                         <div class="flex items-center justify-between p-lg bg-surface-container-lowest rounded-2xl">
                             <div class="flex items-center gap-md">
-                                <span class="material-symbols-outlined text-primary">people</span>
+                                <span class="material-symbols-outlined text-primary">calendar_month</span>
                                 <div>
-                                    <p class="font-title-md">Staff Directory</p>
-                                    <p class="font-body-sm text-on-surface-variant">All doctors & nurses</p>
-                                </div>
-                            </div>
-                            <span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
-                        </div>
-                        <div class="flex items-center justify-between p-lg bg-surface-container-lowest rounded-2xl">
-                            <div class="flex items-center gap-md">
-                                <span class="material-symbols-outlined text-primary">bar_chart</span>
-                                <div>
-                                    <p class="font-title-md">Reports & Analytics</p>
-                                    <p class="font-body-sm text-on-surface-variant">Facility performance</p>
+                                    <p class="font-title-md">Appointments</p>
+                                    <p class="font-body-sm text-on-surface-variant">All hospital bookings</p>
                                 </div>
                             </div>
                             <span class="material-symbols-outlined text-on-surface-variant">chevron_right</span>
                         </div>
                         <div class="flex items-center justify-between p-lg bg-primary rounded-2xl">
                             <div class="flex items-center gap-md">
-                                <span class="material-symbols-outlined text-white">settings</span>
+                                <span class="material-symbols-outlined text-white">history</span>
                                 <div>
-                                    <p class="font-title-md text-white">System Settings</p>
-                                    <p class="font-body-sm text-white/80">Global configuration</p>
+                                    <p class="font-title-md text-white">Audit Logs</p>
+                                    <p class="font-body-sm text-white/80">Track facility actions</p>
                                 </div>
                             </div>
                             <span class="material-symbols-outlined text-white">chevron_right</span>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Medium+ | Patient Detail</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="tailwind.css" rel="stylesheet"/>
+    <link href="custom.css" rel="stylesheet"/>
+</head>
+<body class="bg-surface-bright text-on-surface">
+    <!-- Top Navigation Shell -->
+    <header class="bg-surface-bright shadow-sm flex justify-between items-center w-full px-margin-desktop h-16 z-50 fixed top-0">
+        <div class="flex items-center gap-xl">
+            <span class="font-title-lg text-title-lg font-bold text-primary"><img src="./logo.jpeg" alt="Medium+" style="height: 32px; display: inline-block;" /></span>
+            <nav class="hidden md:flex items-center gap-lg">
+                <a class="text-on-surface hover:text-primary font-semibold font-body-md text-body-md py-5" href="doctor_dashboard.html">Doctor Dashboard</a>
+            </nav>
+        </div>
+        <div class="flex items-center gap-md">
+            <div id="global-notif-container"></div>
+            <button onclick="handleLogout()" class="text-on-surface-variant hover:text-error transition-colors font-label-md flex items-center gap-2">
+                <span class="material-symbols-outlined">logout</span>
+                Logout
+            </button>
+        </div>
+    </header>
+    <div class="flex pt-16 h-screen">
+        <!-- Sidebar Shell (Desktop only) -->
+        <aside class="hidden md:flex flex-col h-[calc(100vh-64px)] p-md gap-sm bg-surface-container-low w-64 fixed left-0 top-16">
+            <div class="flex-1 space-y-1">
+                <a class="w-full flex items-center gap-md px-md py-3 text-on-surface hover:bg-surface-container-highest hover:text-primary rounded-lg font-label-md transition-all" href="doctor_dashboard.html">
+                    <span class="material-symbols-outlined">dashboard</span>Dashboard
+                </a>
+            </div>
+        </aside>
+        
+        <!-- Main Content Canvas -->
+        <main class="flex-1 md:ml-64 p-margin-mobile md:p-margin-desktop overflow-y-auto">
+            <div class="max-w-container-max mx-auto space-y-2xl">
+                <!-- Header -->
+                <section class="mb-lg flex justify-between items-end">
+                    <div>
+                        <h1 class="font-headline-lg text-headline-lg text-on-surface mb-xs" id="patient-name">Patient Details</h1>
+                        <p class="font-body-md text-on-surface-variant" id="patient-id">Loading patient...</p>
+                    </div>
+                </section>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-xl">
+                    <!-- Left Column: Patient Profile Card -->
+                    <div class="lg:col-span-1">
+                        <section class="bg-surface-container-lowest rounded-2xl border border-outline-variant/20 custom-shadow overflow-hidden">
+                            <div class="p-lg border-b border-outline-variant/10 bg-surface-container-low flex flex-col items-center">
+                                <div id="patient-photo" class="w-24 h-24 rounded-full bg-surface-container flex items-center justify-center overflow-hidden mb-md shadow-sm border-2 border-white">
+                                    <span class="material-symbols-outlined text-[48px] text-on-surface-variant">person</span>
+                                </div>
+                                <h2 class="font-title-lg text-title-lg text-on-surface text-center" id="patient-name-card">Loading...</h2>
+                                <p class="font-body-sm text-on-surface-variant text-center mt-xs" id="patient-email-phone">...</p>
+                            </div>
+                            <div class="p-lg space-y-md">
+                                <div class="flex justify-between items-center border-b border-outline-variant/10 pb-sm">
+                                    <span class="font-label-sm text-on-surface-variant uppercase tracking-wider">Gender</span>
+                                    <span class="font-body-md font-medium text-on-surface" id="patient-gender">-</span>
+                                </div>
+                                <div class="flex justify-between items-center border-b border-outline-variant/10 pb-sm">
+                                    <span class="font-label-sm text-on-surface-variant uppercase tracking-wider">Date of Birth</span>
+                                    <span class="font-body-md font-medium text-on-surface" id="patient-dob">-</span>
+                                </div>
+                                <div class="flex justify-between items-center border-b border-outline-variant/10 pb-sm">
+                                    <span class="font-label-sm text-on-surface-variant uppercase tracking-wider">Blood Group</span>
+                                    <span class="font-body-md font-medium text-on-surface" id="patient-blood">-</span>
+                                </div>
+                                <div>
+                                    <span class="font-label-sm text-on-surface-variant uppercase tracking-wider block mb-xs">Allergies</span>
+                                    <div class="flex flex-wrap gap-xs" id="patient-allergies">
+                                        <span class="font-body-md text-on-surface-variant">-</span>
+                                    </div>
+                                </div>
+                                <div>
+                                    <span class="font-label-sm text-on-surface-variant uppercase tracking-wider block mb-xs">Address</span>
+                                    <span class="font-body-md text-on-surface" id="patient-address">-</span>
+                                </div>
+                                <div class="bg-error-container/20 p-md rounded-xl mt-md">
+                                    <span class="font-label-sm text-error uppercase tracking-wider block mb-xs">Emergency Contact</span>
+                                    <span class="font-body-md text-on-surface block font-semibold" id="patient-emer-name">-</span>
+                                    <span class="font-body-sm text-on-surface-variant" id="patient-emer-phone"></span>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <!-- Right Column: Appointments -->
+                    <div class="lg:col-span-2">
+                        <section class="bg-surface-container-lowest rounded-2xl border border-outline-variant/20 custom-shadow overflow-hidden">
+                            <div class="p-lg border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-low">
+                                <h2 class="font-title-lg text-title-lg text-on-surface flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-primary">calendar_clock</span>
+                                    Appointment History
+                                </h2>
+                            </div>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-left border-collapse">
+                                    <thead class="bg-surface-container-low">
+                                        <tr>
+                                            <th class="px-lg py-md font-label-sm text-on-surface-variant">DATE & TIME</th>
+                                            <th class="px-lg py-md font-label-sm text-on-surface-variant">TYPE</th>
+                                            <th class="px-lg py-md font-label-sm text-on-surface-variant">STATUS</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="appointments-tbody" class="divide-y divide-outline-variant/10">
+                                        <tr><td colspan="3" class="p-lg text-center text-on-surface-variant">Loading...</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                
+                <div id="error-message" class="hidden text-error bg-error-container p-md rounded-xl font-body-md text-center"></div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="api.js"></script>
+    <script src="notifications.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            if (window.API && window.API.requireAuth) {
+                window.API.requireAuth(['doctor']);
+            }
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const patientId = urlParams.get('id');
+
+            if (!patientId) {
+                document.getElementById('error-message').innerText = 'No patient ID provided in URL.';
+                document.getElementById('error-message').classList.remove('hidden');
+                document.getElementById('patient-id').innerText = 'Error';
+                return;
+            }
+
+            try {
+                const res = await window.API.doctorRole.patients.getDetail(patientId);
+                if (res.success && res.data) {
+                    const patient = res.data.patient;
+                    const appointments = res.data.appointments || [];
+
+                    // Populate patient profile
+                    document.getElementById('patient-name').innerText = patient.firstName + ' ' + patient.lastName;
+                    document.getElementById('patient-name-card').innerText = patient.firstName + ' ' + patient.lastName;
+                    document.getElementById('patient-id').innerText = patient.patientId || patient.id;
+                    document.getElementById('patient-email-phone').innerText = (patient.email || '') + (patient.phone ? ' • ' + patient.phone : '');
+                    
+                    if (patient.photo) {
+                        document.getElementById('patient-photo').innerHTML = \`<img src="\${patient.photo}" class="w-full h-full object-cover">\`;
+                    }
+                    
+                    document.getElementById('patient-gender').innerText = patient.gender || 'Not specified';
+                    document.getElementById('patient-dob').innerText = patient.dateOfBirth ? new Date(patient.dateOfBirth).toLocaleDateString() : 'Not specified';
+                    document.getElementById('patient-blood').innerText = patient.bloodGroup || 'Not specified';
+                    document.getElementById('patient-address').innerText = patient.address || 'Not specified';
+                    
+                    if (patient.emergencyContact) {
+                        document.getElementById('patient-emer-name').innerText = patient.emergencyContact.name || 'Not specified';
+                        document.getElementById('patient-emer-phone').innerText = patient.emergencyContact.phone || '';
+                    }
+
+                    if (patient.allergies && patient.allergies.length > 0) {
+                        document.getElementById('patient-allergies').innerHTML = patient.allergies.map(a => \`<span class="px-sm py-1 bg-surface-container-highest rounded-md font-label-sm">\${a}</span>\`).join('');
+                    } else {
+                        document.getElementById('patient-allergies').innerHTML = '<span class="font-body-md text-on-surface-variant">None</span>';
+                    }
+
+                    // Populate appointments
+                    const tbody = document.getElementById('appointments-tbody');
+                    if (appointments.length === 0) {
+                        tbody.innerHTML = '<tr><td colspan="3" class="p-lg text-center text-on-surface-variant italic">No appointments found.</td></tr>';
+                    } else {
+                        tbody.innerHTML = appointments.map(appt => {
+                            let statusClass = 'bg-surface-container-highest text-on-surface';
+                            if (appt.status === 'confirmed') statusClass = 'bg-primary-container text-on-primary-container';
+                            if (appt.status === 'completed') statusClass = 'bg-green-100 text-green-800';
+                            if (appt.status === 'cancelled') statusClass = 'bg-error/10 text-error';
+
+                            const date = new Date(appt.date).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+                            return \`
+                                <tr>
+                                    <td class="px-lg py-md font-body-md text-on-surface">
+                                        <div class="font-semibold">\${date}</div>
+                                        <div class="text-sm text-on-surface-variant">\${appt.timeSlot || ''}</div>
+                                    </td>
+                                    <td class="px-lg py-md font-body-md text-on-surface-variant">\${appt.visitType || 'General'}</td>
+                                    <td class="px-lg py-md">
+                                        <span class="px-sm py-1 rounded-full font-label-sm capitalize \${statusClass}">\${appt.status}</span>
+                                    </td>
+                                </tr>
+                            \`;
+                        }).join('');
+                    }
+                } else {
+                    document.getElementById('error-message').innerText = res.message || 'Failed to load patient detail';
+                    document.getElementById('error-message').classList.remove('hidden');
+                }
+            } catch (err) {
+                console.error(err);
+                document.getElementById('error-message').innerText = 'Error loading patient detail. ' + (err.message || '');
+                document.getElementById('error-message').classList.remove('hidden');
+            }
+        });
+
+        function handleLogout() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = 'login_secure_entry.html';
+        }
+    </script>
+</body>
+</html>
