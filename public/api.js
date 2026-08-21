@@ -137,6 +137,9 @@ const API = {
     account: {
         updatePhoto: (formData) => API.fetch('/account/photo', { method: 'PATCH', body: formData }),
         changePassword: (data) => API.fetch('/account/password', { method: 'PATCH', body: data }),
+        getPreferences: () => API.fetch('/account/preferences'),
+        updatePreferences: (data) => API.fetch('/account/preferences', { method: 'PATCH', body: data }),
+        deactivate: (password) => API.fetch('/account/deactivate', { method: 'PATCH', body: { password } }),
     },
 
     hospitals: {
@@ -182,7 +185,23 @@ const API = {
             list: (params = '') => API.fetch(`/doctor/appointments${params}`),
             approve: (id) => API.fetch(`/doctor/appointments/${id}/approve`, { method: 'PATCH' }),
             reject: (id, reason = '') => API.fetch(`/doctor/appointments/${id}/reject`, { method: 'PATCH', body: reason ? { reason } : {} }),
+            startConsultation: (id) => API.fetch(`/doctor/appointments/${id}/start-consultation`, { method: 'PATCH' }),
+            endConsultation: (id, notes = '') => API.fetch(`/doctor/appointments/${id}/end-consultation`, { method: 'PATCH', body: notes ? { notes } : {} }),
         }
+    },
+
+    messages: {
+        send: (data) => API.fetch('/messages', { method: 'POST', body: data }), // data is { doctorId, text } or { patientId, text }
+        getConversations: () => API.fetch('/messages/conversations'),
+        getThread: (id, params = '') => API.fetch(`/messages/thread/${id}${params}`),
+    },
+
+    medicalRecords: {
+        create: (data) => API.fetch('/medical-records', { method: 'POST', body: data }),
+        getMine: (params = '') => API.fetch(`/medical-records/mine${params}`),
+        getForPatient: (patientId, params = '') => API.fetch(`/medical-records/patient/${patientId}${params}`),
+        getSingle: (id) => API.fetch(`/medical-records/${id}`),
+        update: (id, data) => API.fetch(`/medical-records/${id}`, { method: 'PATCH', body: data }),
     },
 
     notifications: {

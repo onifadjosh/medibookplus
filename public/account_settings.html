@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Medium+ | Account Settings</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="tailwind.css" rel="stylesheet"/>
+    <link href="custom.css" rel="stylesheet"/>
+</head>
+<body class="bg-surface-bright text-on-surface flex flex-col h-screen">
+    <!-- Top Navigation -->
+    <header class="bg-surface-bright shadow-sm flex justify-between items-center w-full px-margin-desktop h-16 z-50 shrink-0">
+        <div class="flex items-center gap-xl">
+            <span class="font-title-lg text-title-lg font-bold text-primary"><img src="./logo.jpeg" alt="Medium+" style="height: 32px; display: inline-block;" /></span>
+            <nav class="hidden md:flex items-center gap-lg">
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md py-5" href="javascript:history.back()">Back to Dashboard</a>
+            </nav>
+        </div>
+        <div class="flex items-center gap-md">
+            <button onclick="handleLogout()" class="text-on-surface-variant hover:text-error transition-colors font-label-md flex items-center gap-2">
+                <span class="material-symbols-outlined">logout</span> Logout
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-1 overflow-y-auto p-margin-mobile md:p-margin-desktop bg-surface-container-lowest">
+        <div class="max-w-3xl mx-auto space-y-xl">
+            <div>
+                <h1 class="font-headline-lg text-headline-lg text-on-surface mb-xs">Account Settings</h1>
+                <p class="font-body-md text-on-surface-variant">Manage your preferences and account status.</p>
+            </div>
+
+            <!-- Preferences -->
+            <section class="bg-surface-container-low rounded-2xl border border-outline-variant/20 p-xl custom-shadow">
+                <h2 class="font-title-lg text-on-surface flex items-center gap-2 mb-lg border-b border-outline-variant/10 pb-md">
+                    <span class="material-symbols-outlined text-primary">tune</span> Preferences
+                </h2>
+                
+                <form id="preferences-form" class="space-y-lg">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="font-title-md text-on-surface">In-App Notifications</h3>
+                            <p class="font-body-sm text-on-surface-variant">Receive alerts within the dashboard.</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="pref-inapp" class="sr-only peer">
+                            <div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                        </label>
+                    </div>
+                    
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="font-title-md text-on-surface">Appointment Reminders</h3>
+                            <p class="font-body-sm text-on-surface-variant">Get notified before upcoming appointments.</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="pref-reminders" class="sr-only peer">
+                            <div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                        </label>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h3 class="font-title-md text-on-surface">Allow Messages</h3>
+                            <p class="font-body-sm text-on-surface-variant">Allow direct messaging with your doctor/patient.</p>
+                        </div>
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" id="pref-messages" class="sr-only peer">
+                            <div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                        </label>
+                    </div>
+
+                    <div class="pt-md border-t border-outline-variant/10 flex justify-end">
+                        <button type="submit" id="save-pref-btn" class="px-xl py-3 bg-primary text-on-primary font-title-md rounded-xl hover:bg-primary/90 transition-colors">
+                            Save Preferences
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Danger Zone -->
+            <section class="bg-error-container/10 border border-error/20 rounded-2xl p-xl">
+                <h2 class="font-title-lg text-error flex items-center gap-2 mb-md">
+                    <span class="material-symbols-outlined">warning</span> Danger Zone
+                </h2>
+                <p class="font-body-md text-on-surface-variant mb-lg">Deactivating your account will disable your login and hide your profile. This action cannot be easily undone.</p>
+                <button onclick="openDeactivateModal()" class="px-lg py-2 bg-error text-onError font-label-md rounded-lg hover:bg-error/90 transition-colors">
+                    Deactivate Account
+                </button>
+            </section>
+        </div>
+    </main>
+
+    <!-- Deactivate Modal -->
+    <dialog id="deactivate-modal" class="bg-surface-container-lowest rounded-2xl shadow-lg p-0 backdrop:bg-black/50 w-full max-w-md border border-outline-variant/20">
+        <div class="p-lg border-b border-outline-variant/10">
+            <h3 class="font-title-lg text-error">Confirm Deactivation</h3>
+        </div>
+        <div class="p-lg space-y-md">
+            <p class="font-body-md text-on-surface">Please enter your password to confirm account deactivation.</p>
+            <div>
+                <input type="password" id="deactivate-password" class="w-full bg-surface text-on-surface border border-outline-variant rounded-lg p-sm focus:border-error focus:ring-1 focus:ring-error" placeholder="Current Password">
+            </div>
+        </div>
+        <div class="p-lg border-t border-outline-variant/10 flex justify-end gap-sm bg-surface-container-low">
+            <button onclick="closeDeactivateModal()" class="px-md py-2 rounded-lg font-label-md text-on-surface hover:bg-surface-container-highest transition-colors">Cancel</button>
+            <button onclick="submitDeactivate()" class="px-md py-2 rounded-lg font-label-md bg-error text-onError hover:bg-error/90 transition-colors">Confirm Deactivation</button>
+        </div>
+    </dialog>
+
+    <script src="api.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            if (window.API && window.API.requireAuth) {
+                if(!localStorage.getItem('token')) {
+                    window.location.href = 'login_secure_entry.html';
+                }
+            }
+            loadPreferences();
+        });
+
+        async function loadPreferences() {
+            try {
+                const res = await window.API.account.getPreferences();
+                if(res.success && res.data) {
+                    const p = res.data.preferences;
+                    if(p) {
+                        document.getElementById('pref-inapp').checked = !!p.inAppNotifications;
+                        document.getElementById('pref-reminders').checked = !!p.appointmentReminders;
+                        document.getElementById('pref-messages').checked = !!p.allowMessages;
+                    }
+                }
+            } catch(e) {
+                console.error("Failed to load preferences", e);
+            }
+        }
+
+        document.getElementById('preferences-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('save-pref-btn');
+            btn.disabled = true;
+            btn.innerText = 'Saving...';
+
+            const payload = {
+                inAppNotifications: document.getElementById('pref-inapp').checked,
+                appointmentReminders: document.getElementById('pref-reminders').checked,
+                allowMessages: document.getElementById('pref-messages').checked
+            };
+
+            try {
+                const res = await window.API.account.updatePreferences(payload);
+                if(res.success) {
+                    alert('Preferences updated successfully!');
+                } else {
+                    alert(res.message || 'Failed to update preferences');
+                }
+            } catch (err) {
+                alert(err.message || 'Error updating preferences');
+            } finally {
+                btn.disabled = false;
+                btn.innerText = 'Save Preferences';
+            }
+        });
+
+        function openDeactivateModal() {
+            document.getElementById('deactivate-password').value = '';
+            document.getElementById('deactivate-modal').showModal();
+        }
+
+        function closeDeactivateModal() {
+            document.getElementById('deactivate-modal').close();
+        }
+
+        async function submitDeactivate() {
+            const pwd = document.getElementById('deactivate-password').value;
+            if(!pwd) return alert('Password is required to deactivate account.');
+
+            try {
+                const res = await window.API.account.deactivate(pwd);
+                if(res.success) {
+                    alert('Account deactivated successfully.');
+                    handleLogout();
+                } else {
+                    alert(res.message || 'Failed to deactivate account');
+                }
+            } catch(err) {
+                alert(err.message || 'Error deactivating account');
+            }
+        }
+
+        function handleLogout() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = 'login_secure_entry.html';
+        }
+    </script>
+</body>
+</html>

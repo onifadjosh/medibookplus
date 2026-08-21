@@ -18,13 +18,13 @@
 <nav class="hidden md:flex items-center gap-lg">
 <a class="text-primary font-semibold border-b-2 border-primary font-body-md text-body-md py-5" href="../a_dm_in/admin_hospital_management_dashboard.html">Dashboard</a>
 <a class="text-on-surface-variant hover:bg-surface-container-high transition-colors font-body-md text-body-md px-4 py-2 rounded-lg" href="#">Appointments</a>
-<a class="text-on-surface-variant hover:bg-surface-container-high transition-colors font-body-md text-body-md px-4 py-2 rounded-lg" href="doctor_messages_consultations_hub.html">Messages</a>
+<a class="text-on-surface-variant hover:bg-surface-container-high transition-colors font-body-md text-body-md px-4 py-2 rounded-lg" href="messages_hub.html">Messages</a>
 <a class="text-on-surface-variant hover:bg-surface-container-high transition-colors font-body-md text-body-md px-4 py-2 rounded-lg" href="#">Records</a>
 </nav>
 </div>
 <div class="flex items-center gap-md">
 <div id="global-notif-container"></div>
-<button class="material-symbols-outlined text-on-surface-variant p-2 hover:bg-surface-container-high rounded-full transition-colors">settings</button>
+<button onclick="window.location.href='account_settings.html'" class="material-symbols-outlined text-on-surface-variant p-2 hover:bg-surface-container-high rounded-full transition-colors">settings</button>
 <div class="w-10 h-10 rounded-full border-2 border-primary overflow-hidden ml-2">
 <img class="w-full h-full object-cover" data-alt="A professional headshot of a middle-aged man with a friendly expression, set against a soft-focus clinical background. The image has a clean, high-key lighting style with a professional SaaS aesthetic. Soft teal accents reflect the Medium+ brand identity, maintaining a crisp, modern light-mode feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCB_nPDjNG-dKphZ2oFbbNR0VDahfBBGYhRzWkTgQBJm2Qg5cKlO8FjPTQAVK-cMHoF5GwTfARLmz_-FGeEvs0g4Cyq79SH3bZHAmT6q1DOnCwBDgC6tzR5D5-XxGF2WKN_Pz9MX5kYKgg-us-wnC7eBoqCvQk2kgdRaUR7I4NvTx1FcE0c5YL87JhKyfi4C4lTspcVZw5RtuCNpAFHoRkvpIrtyHWlHU6lxXDiZG8sanzQh8P4YQRkPQ"/>
 </div>
@@ -33,7 +33,7 @@
 <div class="flex pt-16 h-screen">
 <!-- Sidebar Shell (Desktop only) -->
 <aside class="hidden md:flex flex-col h-[calc(100vh-64px)] p-md gap-sm bg-surface-container-low dark:bg-surface-container-lowest w-64 fixed left-0 top-16">
-<div class="flex-1 space-y-1"><a class="w-full flex items-center gap-md px-md py-3 text-primary font-bold bg-secondary-container rounded-lg font-label-md text-label-md transition-all" href="../a_dm_in/admin_hospital_management_dashboard.html"><span class="material-symbols-outlined">dashboard</span>Dashboard</a><button class="w-full flex items-center gap-md px-md py-3 text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all font-label-md text-label-md"><span class="material-symbols-outlined">folder_shared</span>Profile</button><button class="w-full flex items-center gap-md px-md py-3 text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all font-label-md text-label-md"><span class="material-symbols-outlined">calendar_today</span>Appointments</button><a class="w-full flex items-center gap-md px-md py-3 text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all font-label-md text-label-md" href="doctor_messages_consultations_hub.html"><span class="material-symbols-outlined">chat</span>Messages</a><button class="w-full flex items-center gap-md px-md py-3 text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all font-label-md text-label-md"><span class="material-symbols-outlined">settings</span>Settings</button></div>
+<div class="flex-1 space-y-1"><a class="w-full flex items-center gap-md px-md py-3 text-primary font-bold bg-secondary-container rounded-lg font-label-md text-label-md transition-all" href="../a_dm_in/admin_hospital_management_dashboard.html"><span class="material-symbols-outlined">dashboard</span>Dashboard</a><button class="w-full flex items-center gap-md px-md py-3 text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all font-label-md text-label-md"><span class="material-symbols-outlined">folder_shared</span>Profile</button><button class="w-full flex items-center gap-md px-md py-3 text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all font-label-md text-label-md"><span class="material-symbols-outlined">calendar_today</span>Appointments</button><a class="w-full flex items-center gap-md px-md py-3 text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all font-label-md text-label-md" href="messages_hub.html"><span class="material-symbols-outlined">chat</span>Messages</a><a class="w-full flex items-center gap-md px-md py-3 text-on-surface-variant hover:bg-surface-container-highest rounded-lg transition-all font-label-md text-label-md" href="account_settings.html"><span class="material-symbols-outlined">settings</span>Settings</a></div>
 <div class="space-y-lg mb-lg"><div class="bg-surface-container-lowest p-md rounded-xl border border-outline-variant/10"><p class="text-label-sm font-bold text-on-surface-variant uppercase mb-sm">October 2023</p><div class="grid grid-cols-7 gap-1 text-center text-[10px]"><div class="text-on-surface-variant">S</div><div class="text-on-surface-variant">M</div><div class="text-on-surface-variant">T</div><div class="text-on-surface-variant">W</div><div class="text-on-surface-variant">T</div><div class="text-on-surface-variant">F</div><div class="text-on-surface-variant">S</div><div class="p-1">22</div><div class="p-1">23</div><div class="p-1 bg-primary text-white rounded-full font-bold">24</div><div class="p-1">25</div><div class="p-1 bg-secondary-container rounded-full">26</div><div class="p-1">27</div><div class="p-1">28</div></div></div><div class="space-y-md"><p class="text-label-sm font-bold text-on-surface-variant uppercase px-md">Recent Notifications</p><div class="space-y-sm px-md"><div class="flex gap-sm items-start"><div class="w-2 h-2 bg-primary rounded-full mt-1.5"></div><p class="text-body-sm leading-tight">Lab results ready</p></div><div class="flex gap-sm items-start"><div class="w-2 h-2 bg-primary rounded-full mt-1.5"></div><p class="text-body-sm leading-tight">Appointment confirmed</p></div></div></div></div><div class="border-t border-outline-variant pt-md">
 <button class="w-full flex items-center justify-center gap-sm bg-primary text-on-primary py-3 px-md rounded-xl font-title-md text-title-md hover:shadow-lg transition-all active:scale-95">
 <span class="material-symbols-outlined">add</span>
@@ -215,6 +215,19 @@
 </table>
 </div>
 </section>
+<!-- Medical Records Section -->
+<section class="bg-surface-container-lowest rounded-2xl border border-outline-variant/20 custom-shadow overflow-hidden mt-xl" id="medical-records-section">
+    <div class="p-lg border-b border-outline-variant/10 flex justify-between items-center bg-surface-container-low">
+        <h2 class="font-title-lg text-title-lg text-on-surface flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">medical_information</span>
+            My Medical Records
+        </h2>
+    </div>
+    <div class="p-lg space-y-md" id="patient-medical-records-list">
+        <p class="text-on-surface-variant text-center py-md italic">Loading medical records...</p>
+    </div>
+</section>
+
 </div>
 <!-- Spacer for mobile navigation bar -->
 <div class="h-20 md:hidden"></div>
@@ -360,6 +373,50 @@
             };
         }
         document.getElementById('closeCardModal').onclick = () => document.getElementById('digitalCardModal').classList.add('hidden');
+        // Fetch Medical Records
+        async function fetchMedicalRecords() {
+            const container = document.getElementById('patient-medical-records-list');
+            try {
+                const res = await window.API.medicalRecords.getMine();
+                if(res.success && res.data && res.data.records) {
+                    if (res.data.records.length === 0) {
+                        container.innerHTML = '<p class="text-on-surface-variant text-center italic">No medical records found.</p>';
+                    } else {
+                        container.innerHTML = res.data.records.map(rec => {
+                            const date = new Date(rec.createdAt).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+                            const docName = rec.doctor ? `Dr. ${rec.doctor.firstName} ${rec.doctor.lastName}` : 'Unknown Doctor';
+                            return `
+                                <div class="bg-surface rounded-xl p-md border border-outline-variant/20 mb-md">
+                                    <div class="flex justify-between items-start mb-sm">
+                                        <div>
+                                            <h4 class="font-title-md text-on-surface font-semibold">${rec.diagnosis}</h4>
+                                            <p class="font-label-sm text-primary">Consulted by: ${docName}</p>
+                                        </div>
+                                        <span class="font-label-sm text-on-surface-variant">${date}</span>
+                                    </div>
+                                    <p class="font-body-md text-on-surface mb-sm">${rec.notes || 'No clinical notes provided.'}</p>
+                                    ${rec.vitals ? `
+                                    <div class="bg-surface-container-lowest p-sm rounded-lg flex gap-md font-body-sm text-on-surface-variant mt-sm">
+                                        ${rec.vitals.bloodPressure ? `<span>BP: ${rec.vitals.bloodPressure}</span>` : ''}
+                                        ${rec.vitals.heartRate ? `<span>HR: ${rec.vitals.heartRate}</span>` : ''}
+                                        ${rec.vitals.temperature ? `<span>Temp: ${rec.vitals.temperature}°C</span>` : ''}
+                                        ${rec.vitals.weight ? `<span>Wt: ${rec.vitals.weight}kg</span>` : ''}
+                                    </div>` : ''}
+                                </div>
+                            `;
+                        }).join('');
+                    }
+                } else {
+                    container.innerHTML = '<p class="text-error text-center">Failed to load medical records.</p>';
+                }
+            } catch (err) {
+                console.error(err);
+                container.innerHTML = '<p class="text-error text-center">Error fetching medical records.</p>';
+            }
+        }
+        
+        fetchMedicalRecords();
+
     });
 </script>
 <script src="scripts.js"></script>

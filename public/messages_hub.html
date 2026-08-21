@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Medium+ | Messages Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="tailwind.css" rel="stylesheet"/>
+    <link href="custom.css" rel="stylesheet"/>
+</head>
+<body class="bg-surface-bright text-on-surface h-screen flex flex-col overflow-hidden">
+    <!-- Top Navigation -->
+    <header class="bg-surface-bright shadow-sm flex justify-between items-center w-full px-margin-desktop h-16 z-50 shrink-0">
+        <div class="flex items-center gap-xl">
+            <span class="font-title-lg text-title-lg font-bold text-primary"><img src="./logo.jpeg" alt="Medium+" style="height: 32px; display: inline-block;" /></span>
+            <nav class="hidden md:flex items-center gap-lg">
+                <a class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md py-5" href="javascript:history.back()">Back to Dashboard</a>
+            </nav>
+        </div>
+        <div class="flex items-center gap-md">
+            <button onclick="handleLogout()" class="text-on-surface-variant hover:text-error transition-colors font-label-md flex items-center gap-2">
+                <span class="material-symbols-outlined">logout</span> Logout
+            </button>
+        </div>
+    </header>
+
+    <div class="flex flex-1 overflow-hidden">
+        <!-- Sidebar: Conversations -->
+        <aside class="w-full md:w-80 bg-surface-container-low border-r border-outline-variant/20 flex flex-col flex-shrink-0">
+            <div class="p-md border-b border-outline-variant/10">
+                <h2 class="font-title-lg text-on-surface">Conversations</h2>
+            </div>
+            <div class="flex-1 overflow-y-auto" id="conversations-list">
+                <div class="p-md text-center text-on-surface-variant italic">Loading...</div>
+            </div>
+        </aside>
+
+        <!-- Main Content: Chat -->
+        <main class="flex-1 flex flex-col bg-surface-container-lowest hidden md:flex" id="chat-panel">
+            <div class="flex-1 flex items-center justify-center text-on-surface-variant italic" id="chat-placeholder">
+                Select a conversation to start messaging
+            </div>
+            
+            <div class="hidden flex-col h-full" id="chat-active">
+                <!-- Chat Header -->
+                <div class="h-16 border-b border-outline-variant/20 flex items-center px-lg bg-surface-container-low shrink-0 gap-md">
+                    <button class="md:hidden text-on-surface-variant" onclick="closeChatMobile()"><span class="material-symbols-outlined">arrow_back</span></button>
+                    <div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center overflow-hidden">
+                        <span class="material-symbols-outlined text-on-surface-variant">person</span>
+                    </div>
+                    <div>
+                        <h3 class="font-title-md text-on-surface font-semibold" id="chat-header-name">Name</h3>
+                    </div>
+                </div>
+                
+                <!-- Chat Messages -->
+                <div class="flex-1 overflow-y-auto p-lg space-y-md" id="chat-messages">
+                    <!-- Messages go here -->
+                </div>
+                
+                <!-- Chat Input -->
+                <div class="p-md bg-surface-container-low border-t border-outline-variant/20 shrink-0">
+                    <form id="chat-form" class="flex gap-sm">
+                        <input type="text" id="chat-input" class="flex-1 bg-surface border border-outline-variant rounded-full px-md py-2 text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none" placeholder="Type a message..." required>
+                        <button type="submit" class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center hover:bg-primary-container transition-colors disabled:opacity-50" id="chat-send-btn">
+                            <span class="material-symbols-outlined">send</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="api.js"></script>
+    <script>
+        let currentUserId = null;
+        let currentUserRole = null;
+        let activeThreadId = null;
+        let pollInterval = null;
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            if (window.API && window.API.requireAuth) {
+                // Allows either doctor or patient
+                if(!localStorage.getItem('token')) {
+                    window.location.href = 'login_secure_entry.html';
+                }
+            }
+            
+            try {
+                const userStr = localStorage.getItem('user');
+                if(userStr) {
+                    const user = JSON.parse(userStr);
+                    currentUserId = user._id || user.id;
+                    currentUserRole = user.role || 'patient';
+                }
+            } catch(e){}
+
+            loadConversations();
+        });
+
+        async function loadConversations() {
+            try {
+                const res = await window.API.messages.getConversations();
+                const container = document.getElementById('conversations-list');
+                if(res.success && res.data && res.data.length > 0) {
+                    container.innerHTML = res.data.map(conv => {
+                        const otherParty = currentUserRole === 'doctor' ? conv.patient : conv.doctor;
+                        const otherName = otherParty ? `${otherParty.firstName || ''} ${otherParty.lastName || ''}`.trim() : 'Unknown';
+                        
+                        return `
+                            <button onclick="openChat('${conv._id}', '${otherName.replace(/'/g, "\'")}')" class="w-full p-md border-b border-outline-variant/10 text-left hover:bg-surface-container-highest transition-colors flex gap-md items-center ${activeThreadId === conv._id ? 'bg-surface-container-highest' : ''}">
+                                <div class="w-10 h-10 rounded-full bg-surface-container shrink-0 flex items-center justify-center overflow-hidden">
+                                    <span class="material-symbols-outlined text-on-surface-variant">person</span>
+                                </div>
+                                <div class="flex-1 overflow-hidden">
+                                    <h4 class="font-title-sm text-on-surface font-semibold truncate">${otherName}</h4>
+                                    <p class="font-body-sm text-on-surface-variant truncate">${conv.lastMessage ? conv.lastMessage.text : 'Start a conversation'}</p>
+                                </div>
+                                ${conv.unreadCount ? `<div class="w-5 h-5 rounded-full bg-error text-onError text-xs flex items-center justify-center">${conv.unreadCount}</div>` : ''}
+                            </button>
+                        `;
+                    }).join('');
+                } else {
+                    container.innerHTML = '<div class="p-md text-center text-on-surface-variant italic">No conversations found.</div>';
+                }
+            } catch(e) {
+                document.getElementById('conversations-list').innerHTML = '<div class="p-md text-center text-error">Failed to load.</div>';
+            }
+        }
+
+        async function openChat(threadId, name) {
+            activeThreadId = threadId;
+            document.getElementById('chat-placeholder').classList.add('hidden');
+            document.getElementById('chat-active').classList.remove('hidden');
+            document.getElementById('chat-active').classList.add('flex');
+            
+            // On mobile, hide sidebar, show chat
+            if(window.innerWidth < 768) {
+                document.querySelector('aside').classList.add('hidden');
+                document.getElementById('chat-panel').classList.remove('hidden');
+                document.getElementById('chat-panel').classList.add('flex');
+            }
+
+            document.getElementById('chat-header-name').innerText = name;
+            
+            loadConversations(); // refresh list to highlight active
+            await fetchMessages(threadId);
+            
+            if(pollInterval) clearInterval(pollInterval);
+            pollInterval = setInterval(() => {
+                fetchMessages(activeThreadId, true);
+            }, 10000);
+        }
+
+        function closeChatMobile() {
+            document.querySelector('aside').classList.remove('hidden');
+            document.getElementById('chat-panel').classList.add('hidden');
+            document.getElementById('chat-panel').classList.remove('flex');
+            activeThreadId = null;
+            if(pollInterval) clearInterval(pollInterval);
+        }
+
+        async function fetchMessages(threadId, isPoll = false) {
+            if(!threadId) return;
+            try {
+                const res = await window.API.messages.getThread(threadId);
+                if(res.success && res.data) {
+                    const container = document.getElementById('chat-messages');
+                    const wasAtBottom = container.scrollHeight - container.scrollTop <= container.clientHeight + 50;
+                    
+                    container.innerHTML = res.data.map(msg => {
+                        const isMine = msg.senderId === currentUserId;
+                        const time = new Date(msg.createdAt).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                        return `
+                            <div class="flex flex-col ${isMine ? 'items-end' : 'items-start'}">
+                                <div class="max-w-[75%] rounded-2xl p-sm px-md ${isMine ? 'bg-primary text-on-primary rounded-tr-none' : 'bg-surface-container-high text-on-surface rounded-tl-none'}">
+                                    <p class="font-body-md whitespace-pre-wrap">${msg.text}</p>
+                                </div>
+                                <span class="text-[10px] text-on-surface-variant mt-1">${time}</span>
+                            </div>
+                        `;
+                    }).join('');
+
+                    if (!isPoll || wasAtBottom) {
+                        container.scrollTop = container.scrollHeight;
+                    }
+                }
+            } catch(e) {
+                console.error('Failed fetching messages', e);
+            }
+        }
+
+        document.getElementById('chat-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            if(!activeThreadId) return;
+            const input = document.getElementById('chat-input');
+            const text = input.value.trim();
+            if(!text) return;
+
+            input.value = '';
+            document.getElementById('chat-send-btn').disabled = true;
+
+            try {
+                // To send, the API accepts either doctorId or patientId. 
+                // We need to extract the other party ID from the conversations list, or just use threadId if the API supports it.
+                // Wait, API says: /messages POST takes doctorId/patientId and text.
+                // We don't have the other party ID trivially without caching it from the conversation list. Let's fetch it from the conversation obj.
+                // Actually, let's fetch the conversations again to find the thread's participants, or we can just cache it.
+                
+                const convs = await window.API.messages.getConversations();
+                const thread = convs.data.find(c => c._id === activeThreadId);
+                if(!thread) throw new Error("Thread not found");
+                
+                let targetData = { text };
+                if (currentUserRole === 'patient') {
+                    targetData.doctorId = typeof thread.doctor === 'object' ? thread.doctor._id || thread.doctor.id : thread.doctor;
+                } else {
+                    targetData.patientId = typeof thread.patient === 'object' ? thread.patient._id || thread.patient.id : thread.patient;
+                }
+
+                const res = await window.API.messages.send(targetData);
+                if(res.success) {
+                    await fetchMessages(activeThreadId);
+                    loadConversations();
+                } else {
+                    if (res.error === 'MESSAGES_DISABLED') {
+                        alert("The other user has disabled messaging.");
+                    } else {
+                        alert(res.message || "Failed to send message");
+                    }
+                }
+            } catch(err) {
+                alert("Error sending message");
+                console.error(err);
+            } finally {
+                document.getElementById('chat-send-btn').disabled = false;
+            }
+        });
+
+        function handleLogout() {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+            window.location.href = 'login_secure_entry.html';
+        }
+    </script>
+</body>
+</html>
