@@ -140,8 +140,8 @@
             const pendingTbody = document.getElementById('pending-tbody');
             const activeTbody = document.getElementById('active-tbody');
             
-            const pending = hospitals.filter(h => h.status === 'pending');
-            const active = hospitals.filter(h => h.status === 'approved' || h.status === 'active');
+            const pending = hospitals.filter(h => h.status === 'pending' || h.approvalStatus === 'pending');
+            const active = hospitals.filter(h => h.status === 'approved' || h.approvalStatus === 'approved' || h.status === 'active' || h.approvalStatus === 'active');
 
             if (pending.length === 0) {
                 pendingTbody.innerHTML = '<tr><td colspan="4" class="p-lg text-center text-on-surface-variant italic">No pending applications</td></tr>';
@@ -149,13 +149,13 @@
                 pendingTbody.innerHTML = pending.map(h => `
                     <tr class="hover:bg-amber-50/50 transition-colors">
                         <td class="px-lg py-lg">
-                            <p class="font-title-sm text-on-surface">${h.name}</p>
-                            <p class="text-body-sm text-on-surface-variant">Admin: ${h.adminFirstName} ${h.adminLastName}</p>
+                            <p class="font-title-sm text-on-surface">${h.name || h.hospitalName}</p>
+                            <p class="text-body-sm text-on-surface-variant">Admin: ${h.adminFirstName || '-'} ${h.adminLastName || ''}</p>
                         </td>
-                        <td class="px-lg py-lg text-body-md">${h.city}, ${h.state}</td>
+                        <td class="px-lg py-lg text-body-md">${h.city || '-'}, ${h.state || '-'}</td>
                         <td class="px-lg py-lg">
-                            <p class="text-body-sm">${h.email}</p>
-                            <p class="text-body-sm text-on-surface-variant">${h.phone}</p>
+                            <p class="text-body-sm">${h.email || h.contactEmail || '-'}</p>
+                            <p class="text-body-sm text-on-surface-variant">${h.phone || h.contactPhone || '-'}</p>
                         </td>
                         <td class="px-lg py-lg text-right">
                             <button onclick="approveHospital('${h._id || h.id}')" class="px-4 py-2 bg-green-100 text-green-800 rounded hover:bg-green-200 transition-colors mr-2 font-label-sm">Approve</button>
@@ -170,11 +170,11 @@
             } else {
                 activeTbody.innerHTML = active.map(h => `
                     <tr class="hover:bg-surface-container/30 transition-colors">
-                        <td class="px-lg py-lg font-title-sm">${h.name}</td>
-                        <td class="px-lg py-lg text-body-md">${h.city}, ${h.state}</td>
+                        <td class="px-lg py-lg font-title-sm">${h.name || h.hospitalName}</td>
+                        <td class="px-lg py-lg text-body-md">${h.city || '-'}, ${h.state || '-'}</td>
                         <td class="px-lg py-lg">
-                            <p class="text-body-sm">${h.email}</p>
-                            <p class="text-body-sm text-on-surface-variant">${h.phone}</p>
+                            <p class="text-body-sm">${h.email || h.contactEmail || '-'}</p>
+                            <p class="text-body-sm text-on-surface-variant">${h.phone || h.contactPhone || '-'}</p>
                         </td>
                         <td class="px-lg py-lg text-right">
                             <span class="px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full border border-green-200">Active</span>

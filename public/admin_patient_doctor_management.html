@@ -196,28 +196,30 @@
             const res = await window.API.admin.patients.list();
             if(res.success && res.data) {
                 tBody.innerHTML = '';
-                if(res.data.length === 0) {
+                const pts = Array.isArray(res.data) ? res.data : (res.data?.patients || []);
+                if(pts.length === 0) {
                     tBody.innerHTML = '<tr><td colspan="5" class="text-center py-lg text-outline">No patients found.</td></tr>';
                     return;
                 }
-                res.data.forEach(p => {
-                    const statusClass = p.status === 'active' ? 'bg-primary/10 text-primary' : 'bg-surface-variant text-on-surface-variant';
-                    const actionBtn = p.status === 'active' 
-                        ? `<button onclick="deactivatePatient('${p._id}')" class="text-error font-body-sm hover:underline">Deactivate</button>`
-                        : `<button onclick="activatePatient('${p._id}')" class="text-primary font-body-sm hover:underline">Activate</button>`;
+                pts.forEach(p => {
+                    const status = p.status || p.approvalStatus;
+                    const statusClass = status === 'active' ? 'bg-primary/10 text-primary' : 'bg-surface-variant text-on-surface-variant';
+                    const actionBtn = status === 'active' 
+                        ? `<button onclick="deactivatePatient('${p._id || p.id}')" class="text-error font-body-sm hover:underline">Deactivate</button>`
+                        : `<button onclick="activatePatient('${p._id || p.id}')" class="text-primary font-body-sm hover:underline">Activate</button>`;
                     
                     tBody.innerHTML += `
                     <tr class="hover:bg-surface-container-low/50 transition-colors">
                         <td class="px-lg py-lg">
-                            <p class="font-title-md text-on-surface">${p.name}</p>
+                            <p class="font-title-md text-on-surface">${p.name || (p.firstName + ' ' + p.lastName)}</p>
                         </td>
-                        <td class="px-lg py-lg font-body-md text-on-surface-variant">${p.patientId || p._id.substring(0, 8)}</td>
+                        <td class="px-lg py-lg font-body-md text-on-surface-variant">${p.patientId || (p._id || p.id || '').substring(0, 8)}</td>
                         <td class="px-lg py-lg">
                             <div class="text-body-sm text-on-surface">${p.email}</div>
                             <div class="text-body-sm text-on-surface">${p.phone || 'No phone'}</div>
                         </td>
                         <td class="px-lg py-lg">
-                            <span class="inline-flex items-center px-sm py-1 ${statusClass} text-label-sm font-label-sm rounded-full capitalize">${p.status}</span>
+                            <span class="inline-flex items-center px-sm py-1 ${statusClass} text-label-sm font-label-sm rounded-full capitalize">${status}</span>
                         </td>
                         <td class="px-lg py-lg text-right">
                             ${actionBtn}
@@ -236,14 +238,15 @@
             const res = await window.API.admin.doctors.list();
             if(res.success && res.data) {
                 container.innerHTML = '';
-                if(res.data.length === 0) {
+                const docs = Array.isArray(res.data) ? res.data : (res.data?.doctors || []);
+                if(docs.length === 0) {
                     container.innerHTML = '<div class="col-span-full text-center py-lg text-outline">No doctors found.</div>';
                     return;
                 }
-                res.data.forEach(d => {
+                docs.forEach(d => {
                     container.innerHTML += `
                     <div class="glass-card rounded-2xl p-lg flex flex-col hover:shadow-xl transition-all duration-300">
-                        <h3 class="font-title-lg text-title-lg text-on-surface mb-xs">${d.name}</h3>
+                        <h3 class="font-title-lg text-title-lg text-on-surface mb-xs">Dr. ${d.name || (d.firstName + ' ' + d.lastName)}</h3>
                         <p class="text-label-md font-label-md text-primary mb-md">${d.department}</p>
                         <div class="grid grid-cols-2 gap-md mb-lg p-md bg-surface-container-low rounded-xl">
                             <div>

@@ -205,19 +205,21 @@
             const res = await window.API.admin.doctors.list();
             if(res.success && res.data) {
                 tBody.innerHTML = '';
-                if(res.data.length === 0) {
+                const docs = Array.isArray(res.data) ? res.data : (res.data?.doctors || []);
+                if(docs.length === 0) {
                     tBody.innerHTML = '<tr><td colspan="7" class="text-center py-lg text-outline">No doctors found.</td></tr>';
                     return;
                 }
-                res.data.forEach(d => {
-                    const statusClass = d.status === 'approved' ? 'bg-emerald-100 text-emerald-800' :
-                                        d.status === 'pending' ? 'bg-amber-100 text-amber-800' : 'bg-surface-container-high text-on-surface-variant';
+                docs.forEach(d => {
+                    const status = d.status || d.approvalStatus;
+                    const statusClass = status === 'approved' ? 'bg-emerald-100 text-emerald-800' :
+                                        status === 'pending' ? 'bg-amber-100 text-amber-800' : 'bg-surface-container-high text-on-surface-variant';
                     
                     let actionBtn = '';
-                    if (d.status === 'pending') {
+                    if (status === 'pending') {
                         actionBtn = `
-                            <button onclick="approveDoctor('${d._id}')" class="text-primary font-bold hover:underline mx-2">Approve</button>
-                            <button onclick="rejectDoctor('${d._id}')" class="text-error font-bold hover:underline mx-2">Reject</button>
+                            <button onclick="approveDoctor('${d._id || d.id}')" class="text-primary font-bold hover:underline mx-2">Approve</button>
+                            <button onclick="rejectDoctor('${d._id || d.id}')" class="text-error font-bold hover:underline mx-2">Reject</button>
                         `;
                     }
                     
@@ -226,10 +228,10 @@
                         <td class="p-md"><input class="rounded text-primary focus:ring-primary h-5 w-5" type="checkbox"/></td>
                         <td class="p-md">
                             <div class="flex items-center gap-md">
-                                <div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center font-bold text-on-surface-variant">${d.name.charAt(0)}</div>
+                                <div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center font-bold text-on-surface-variant">${(d.name || d.firstName || 'D').charAt(0)}</div>
                                 <div>
-                                    <p class="font-title-md text-on-background">${d.name}</p>
-                                    <p class="text-body-sm text-on-surface-variant">ID: ${d._id.substring(0, 8)}</p>
+                                    <p class="font-title-sm text-on-surface">Dr. ${d.name || (d.firstName + ' ' + d.lastName)}</p>
+                                    <p class="text-body-sm text-on-surface-variant">ID: ${(d._id || d.id || '').substring(0, 8)}</p>
                                 </div>
                             </div>
                         </td>
@@ -248,7 +250,7 @@
                         <td class="p-md text-body-md text-on-background">-</td>
                         <td class="p-md">
                             <span class="inline-flex items-center gap-1.5 px-3 py-1 ${statusClass} rounded-full text-label-sm capitalize">
-                                ${d.status}
+                                ${status}
                             </span>
                         </td>
                         <td class="p-md text-right">

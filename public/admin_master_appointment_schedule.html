@@ -332,11 +332,12 @@
             const res = await window.API.admin.appointments.list();
             if(res.success && res.data) {
                 tBody.innerHTML = '';
-                if(res.data.length === 0) {
+                const apts = Array.isArray(res.data) ? res.data : (res.data?.appointments || []);
+                if(apts.length === 0) {
                     tBody.innerHTML = '<tr><td colspan="6" class="text-center py-lg text-outline">No appointments found.</td></tr>';
                     return;
                 }
-                res.data.forEach(apt => {
+                apts.forEach(apt => {
                     let statusClass = 'bg-surface-variant text-on-surface-variant';
                     if(apt.status === 'scheduled') statusClass = 'bg-secondary-container text-on-secondary-container';
                     if(apt.status === 'completed') statusClass = 'bg-green-100 text-green-800';
