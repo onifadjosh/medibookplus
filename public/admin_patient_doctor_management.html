@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Medium+ Admin | Patient &amp; Doctor Management</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/><link href="tailwind.css" rel="stylesheet"/></head>
+<body class="bg-surface-bright text-on-surface min-h-screen flex overflow-hidden">
+<!-- Side Navigation Shell -->
+<aside class="hidden md:flex flex-col h-screen p-md gap-sm bg-surface-container-low w-64 shrink-0">
+<div class="px-md py-lg flex items-center gap-sm">
+<div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white">
+<span class="material-symbols-outlined">medical_services</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-bold text-primary tracking-tight"><img src="./logo.jpeg" alt="Medium+" style="height: 32px; display: inline-block;" /></h1>
+<p class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-widest opacity-70">Healthcare Suite</p>
+</div>
+</div>
+<nav class="flex-1 space-y-sm overflow-y-auto custom-scrollbar mt-lg">
+<!-- Inactive Tabs -->
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-surface-container-highest rounded-lg transition-all active:scale-95" href="admin_hospital_management_dashboard.html">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<!-- Patients (Active) -->
+<a class="flex items-center gap-md bg-secondary-container text-on-secondary-container rounded-lg px-md py-sm font-bold transition-transform active:scale-95" href="admin_patient_doctor_management.html">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Patients</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-surface-container-highest rounded-lg transition-all active:scale-95" href="admin_doctor_management_directory.html">
+<span class="material-symbols-outlined">medical_services</span>
+<span class="font-label-md text-label-md">Doctors</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-surface-container-highest rounded-lg transition-all active:scale-95" href="admin_hospital_departments_overview.html">
+<span class="material-symbols-outlined">domain</span>
+<span class="font-label-md text-label-md">Departments</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-surface-container-highest rounded-lg transition-all active:scale-95" href="admin_master_appointment_schedule.html">
+<span class="material-symbols-outlined">event</span>
+<span class="font-label-md text-label-md">Appointments</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-surface-container-highest rounded-lg transition-all active:scale-95" href="doctor_messages_consultations_hub.html">
+<span class="material-symbols-outlined">chat</span>
+<span class="font-label-md text-label-md">Messages</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-surface-container-highest rounded-lg transition-all active:scale-95" href="admin_centralized_medical_records_portal.html">
+<span class="material-symbols-outlined">description</span>
+<span class="font-label-md text-label-md">Medical Records</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-surface-container-highest rounded-lg transition-all active:scale-95" href="admin_advanced_hospital_reports_analytics.html">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+<a class="flex items-center gap-md text-on-surface-variant px-md py-sm hover:bg-surface-container-highest rounded-lg transition-all active:scale-95" href="admin_global_hospital_settings.html">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto pt-lg border-t border-outline-variant/30">
+<button class="w-full py-md px-lg bg-primary text-white rounded-xl font-title-md text-title-md flex items-center justify-center gap-sm hover:opacity-90 transition-all shadow-sm">
+<span class="material-symbols-outlined">add</span>
+<span>New Appointment</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 h-screen flex flex-col overflow-hidden relative">
+<!-- Top App Bar Shell -->
+<header class="flex justify-between items-center w-full px-margin-desktop h-16 z-50 bg-surface-bright shadow-sm shrink-0">
+<div class="flex items-center gap-lg flex-1">
+<div class="relative w-full max-w-md hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-md py-sm bg-surface-container-low border-none rounded-full font-body-sm text-body-sm focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Search patients, doctors, records..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<button class="p-sm text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-surface-bright"></span>
+</button>
+<button class="p-sm text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-full">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-8 w-[1px] bg-outline-variant/30 mx-sm"></div>
+<div class="flex items-center gap-sm cursor-pointer hover:bg-surface-container-high p-xs pr-md rounded-full transition-all">
+<img class="w-8 h-8 rounded-full object-cover" data-alt="Close-up professional headshot of a female hospital administrator in her 40s wearing a modern tailored blazer, smiling confidently with a blurred clinical office background. High-quality corporate photography with soft, warm studio lighting that complements the healthcare brand colors." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD04cxZ4HkSheW5Mr8E7XUCZsZSthNa-IyvlbLyixsg99VzhPHjHskMScba4pb8qErpQj3WV6zKQddDtPErXiQ0EJ_G74YDcFf8kb-pA6SdOm5icw9FzGLaDSRkg--xHjcGgQOSj3EMeL4zCYP_meK-N6yHczMe1FeldWcDS3kdH-fntv7fmEXL7ARW0SYpTBTqy_skQr13bIsN77-WPXs2OHdzUo-GoGdNSfsjpGqK3R92oBHuBdrt8Q"/>
+<span class="font-label-md text-label-md font-semibold text-on-surface hidden sm:block">Admin Sarah</span>
+</div>
+</div>
+</header>
+<!-- Dynamic Content Area -->
+<div class="flex-1 overflow-y-auto custom-scrollbar p-margin-desktop space-y-3xl">
+<!-- Patient Management Section -->
+<section class="fade-in">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-lg mb-xl">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Patient Directory</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Manage medical records and patient status updates.</p>
+</div>
+<div class="flex items-center gap-sm">
+<div class="flex bg-surface-container rounded-lg p-1">
+<button class="px-md py-sm bg-surface-container-lowest shadow-sm rounded-md font-label-md text-label-md text-primary flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">list</span> Table
+                            </button>
+<button class="px-md py-sm hover:bg-surface-container-high rounded-md font-label-md text-label-md text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">grid_view</span> Grid
+                            </button>
+</div>
+<button class="flex items-center gap-sm px-lg py-sm bg-surface-container-low border border-outline-variant text-on-surface rounded-lg font-label-md text-label-md hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined">download</span> Export CSV
+                        </button>
+</div>
+</div>
+<!-- Patient Filter Bar -->
+<div class="bg-surface-container-lowest p-md rounded-xl shadow-sm mb-lg flex flex-wrap items-center gap-md">
+<div class="flex-1 min-w-[240px] relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-md py-sm border border-outline-variant rounded-lg font-body-sm text-body-sm focus:border-primary focus:ring-0" placeholder="Filter by name, ID or email..." type="text"/>
+</div>
+<select class="py-sm px-lg border border-outline-variant rounded-lg font-body-sm text-body-sm bg-surface-container-low text-on-surface focus:ring-0">
+<option>All Status</option>
+<option>Active</option>
+<option>On Treatment</option>
+<option>Recovered</option>
+</select>
+<button class="p-sm border border-outline-variant rounded-lg hover:bg-surface-container-high">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+<!-- Patient Table -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden border border-outline-variant/20">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low">
+<th class="px-lg py-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Photo &amp; Name</th>
+<th class="px-lg py-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Patient ID</th>
+<th class="px-lg py-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Contact Info</th>
+<th class="px-lg py-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="px-lg py-md font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10" id="patientTableBody">
+    <tr><td colspan="5" class="text-center py-lg text-outline">Loading patients...</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Doctor Management Section -->
+<section class="fade-in" style="animation-delay: 0.1s;">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-lg mb-xl">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Medical Staff</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Monitor practitioner availability and daily workloads.</p>
+</div>
+<div class="flex items-center gap-sm">
+<div class="flex bg-surface-container rounded-lg p-1">
+<button class="px-md py-sm hover:bg-surface-container-high rounded-md font-label-md text-label-md text-on-surface-variant flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">list</span> Table
+                            </button>
+<button class="px-md py-sm bg-surface-container-lowest shadow-sm rounded-md font-label-md text-label-md text-primary flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">grid_view</span> Grid
+                            </button>
+</div>
+</div>
+</div>
+<!-- Doctor Cards Grid -->
+<div id="doctorCardsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-lg">
+    <div class="col-span-full text-center text-outline">Loading doctors...</div>
+</div>
+</section>
+</div>
+<!-- Floating Action Button -->
+<button class="fixed bottom-margin-desktop right-margin-desktop w-14 h-14 bg-primary text-white rounded-full flex items-center justify-center shadow-xl hover:scale-105 active:scale-95 duration-150 group z-[60]">
+<span class="material-symbols-outlined text-[28px] group-hover:rotate-90 transition-transform">add</span>
+<span class="absolute right-16 bg-inverse-surface text-inverse-on-surface px-md py-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap text-label-md pointer-events-none shadow-lg">Add New Doctor</span>
+</button>
+</main>
+<script src="api.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        if(window.API) {
+            window.API.requireAuth(['admin']);
+            await loadPatients();
+            await loadDoctors();
+        }
+    });
+
+    async function loadPatients() {
+        const tBody = document.getElementById('patientTableBody');
+        try {
+            const res = await window.API.admin.patients.list();
+            if(res.success && res.data) {
+                tBody.innerHTML = '';
+                if(res.data.length === 0) {
+                    tBody.innerHTML = '<tr><td colspan="5" class="text-center py-lg text-outline">No patients found.</td></tr>';
+                    return;
+                }
+                res.data.forEach(p => {
+                    const statusClass = p.status === 'active' ? 'bg-primary/10 text-primary' : 'bg-surface-variant text-on-surface-variant';
+                    const actionBtn = p.status === 'active' 
+                        ? `<button onclick="deactivatePatient('${p._id}')" class="text-error font-body-sm hover:underline">Deactivate</button>`
+                        : `<button onclick="activatePatient('${p._id}')" class="text-primary font-body-sm hover:underline">Activate</button>`;
+                    
+                    tBody.innerHTML += `
+                    <tr class="hover:bg-surface-container-low/50 transition-colors">
+                        <td class="px-lg py-lg">
+                            <p class="font-title-md text-on-surface">${p.name}</p>
+                        </td>
+                        <td class="px-lg py-lg font-body-md text-on-surface-variant">${p.patientId || p._id.substring(0, 8)}</td>
+                        <td class="px-lg py-lg">
+                            <div class="text-body-sm text-on-surface">${p.email}</div>
+                            <div class="text-body-sm text-on-surface">${p.phone || 'No phone'}</div>
+                        </td>
+                        <td class="px-lg py-lg">
+                            <span class="inline-flex items-center px-sm py-1 ${statusClass} text-label-sm font-label-sm rounded-full capitalize">${p.status}</span>
+                        </td>
+                        <td class="px-lg py-lg text-right">
+                            ${actionBtn}
+                        </td>
+                    </tr>`;
+                });
+            }
+        } catch(e) {
+            tBody.innerHTML = '<tr><td colspan="5" class="text-center py-lg text-error">Failed to load patients</td></tr>';
+        }
+    }
+
+    async function loadDoctors() {
+        const container = document.getElementById('doctorCardsContainer');
+        try {
+            const res = await window.API.admin.doctors.list();
+            if(res.success && res.data) {
+                container.innerHTML = '';
+                if(res.data.length === 0) {
+                    container.innerHTML = '<div class="col-span-full text-center py-lg text-outline">No doctors found.</div>';
+                    return;
+                }
+                res.data.forEach(d => {
+                    container.innerHTML += `
+                    <div class="glass-card rounded-2xl p-lg flex flex-col hover:shadow-xl transition-all duration-300">
+                        <h3 class="font-title-lg text-title-lg text-on-surface mb-xs">${d.name}</h3>
+                        <p class="text-label-md font-label-md text-primary mb-md">${d.department}</p>
+                        <div class="grid grid-cols-2 gap-md mb-lg p-md bg-surface-container-low rounded-xl">
+                            <div>
+                                <p class="text-label-sm text-on-surface-variant uppercase">Consultation Fee</p>
+                                <p class="font-title-md text-title-md text-on-surface">$${d.consultationFee}</p>
+                            </div>
+                            <div>
+                                <p class="text-label-sm text-on-surface-variant uppercase">Status</p>
+                                <p class="font-title-md text-title-md text-primary capitalize">${d.status}</p>
+                            </div>
+                        </div>
+                    </div>`;
+                });
+            }
+        } catch(e) {
+            container.innerHTML = '<div class="col-span-full text-center py-lg text-error">Failed to load doctors.</div>';
+        }
+    }
+
+    window.deactivatePatient = async (id) => {
+        if(!confirm('Deactivate this patient?')) return;
+        try {
+            await window.API.admin.patients.deactivate(id);
+            loadPatients();
+        } catch(e) {
+            alert(e.message);
+        }
+    };
+    
+    window.activatePatient = async (id) => {
+        if(!confirm('Activate this patient?')) return;
+        try {
+            await window.API.admin.patients.activate(id);
+            loadPatients();
+        } catch(e) {
+            alert(e.message);
+        }
+    };
+</script>
+<script src="admin_scripts.js"></script></body></html>

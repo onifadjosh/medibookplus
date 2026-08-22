@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MediFlow Admin - Doctors Management</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="styles.css" rel="stylesheet"/><link href="tailwind.css" rel="stylesheet"/></head>
+<body class="font-body-md text-body-md overflow-hidden">
+<!-- Side Navigation Shell -->
+<aside class="w-64 h-full fixed left-0 top-0 bg-surface-container-lowest dark:bg-inverse-surface shadow-sm flex flex-col py-md px-sm z-50">
+<div class="mb-3xl px-md">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">MediFlow Admin</h1>
+<p class="text-on-surface-variant font-label-sm">General Hospital</p>
+</div>
+<nav class="flex-1 space-y-1 custom-scrollbar overflow-y-auto">
+<!-- Navigation Items - Patients is active for this context -->
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors cursor-pointer active:scale-95 transition-transform" href="admin_hospital_management_dashboard.html">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors cursor-pointer active:scale-95 transition-transform" href="admin_patient_doctor_management.html">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Patients</span>
+</a>
+<!-- Doctors is active -->
+<a class="flex items-center gap-md p-md rounded-lg text-primary dark:text-primary-fixed-dim font-bold border-r-4 border-primary bg-surface-container-low transition-colors cursor-pointer active:scale-95 transition-transform" href="admin_doctor_management_directory.html">
+<span class="material-symbols-outlined">medical_services</span>
+<span class="font-label-md text-label-md">Doctors</span>
+</a>
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors cursor-pointer active:scale-95 transition-transform" href="admin_hospital_departments_overview.html">
+<span class="material-symbols-outlined">domain</span>
+<span class="font-label-md text-label-md">Departments</span>
+</a>
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors cursor-pointer active:scale-95 transition-transform" href="admin_master_appointment_schedule.html">
+<span class="material-symbols-outlined">event</span>
+<span class="font-label-md text-label-md">Appointments</span>
+</a>
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors cursor-pointer active:scale-95 transition-transform" href="admin_centralized_medical_records_portal.html">
+<span class="material-symbols-outlined">description</span>
+<span class="font-label-md text-label-md">Medical Records</span>
+</a>
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors cursor-pointer active:scale-95 transition-transform" href="admin_advanced_hospital_reports_analytics.html">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+<a class="flex items-center gap-md p-md rounded-lg text-on-surface-variant dark:text-outline-variant hover:bg-surface-container-low dark:hover:bg-surface-container-high transition-colors cursor-pointer active:scale-95 transition-transform" href="admin_global_hospital_settings.html">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+</aside>
+<!-- Top Navigation Shell -->
+<header class="h-16 w-full sticky top-0 z-40 bg-surface dark:bg-background shadow-sm flex justify-between items-center px-lg ml-64 border-none">
+<div class="flex items-center gap-lg flex-1">
+<div class="relative w-full max-w-md focus-within:ring-2 focus-within:ring-primary rounded-lg">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-md py-2 bg-surface-container-low border-none rounded-lg font-body-sm focus:outline-none" placeholder="Search for doctors, staff ID..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-lg">
+<button class="relative p-2 rounded-full hover:text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-1 right-1 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="p-2 rounded-full hover:text-primary transition-colors">
+<span class="material-symbols-outlined">help</span>
+</button>
+<div class="flex items-center gap-sm ml-md">
+<div class="text-right">
+<p class="font-title-md text-title-md text-primary">Admin User</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">System Manager</p>
+</div>
+<img class="w-10 h-10 rounded-full border-2 border-primary-fixed" data-alt="A professional headshot of a healthcare administrator, wearing a crisp white blazer over a teal blouse, smiling warmly in a bright, modern glass-walled office with a soft-focus background of clinical monitors. The lighting is clean and airy, reinforcing a high-trust, professional healthcare environment with a minimalist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCYHuffXvaLgPfY6n4EG76jiEaBIUUMgBIO7oj6Zyh-TC9X49Gcl_zaMkTJKOmKxQ_78QqTMhUs1LvlkpJvBl5wUKTZOV5L8pypZTF6ITQi-4eYB9zMnr44AKnhB_klrny-Q6CT_HqCW2xe2O3uZDJGfiMxTDfpd1UUo0zx7O8jUzOjZIWkrL6We_nfrUrAIVK1nR6X0O3TLyksC3dveMPbXq684Se4V57Ucki4c6Elk-hRJOVfZTbrnQ"/>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="ml-64 p-lg h-[calc(100vh-64px)] overflow-y-auto bg-background">
+<div class="max-w-7xl mx-auto space-y-lg">
+<!-- Header Section -->
+<div class="flex justify-between items-end pb-md border-b border-outline-variant">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-on-background">Doctors Directory</h2>
+<p class="text-on-surface-variant">Manage medical staff profiles, schedules, and clinical assignments.</p>
+</div>
+<div class="flex gap-md">
+<button class="flex items-center gap-sm px-lg py-md bg-surface-container border border-outline rounded-lg font-label-md text-on-surface hover:bg-surface-container-high transition-all active:scale-95">
+<span class="material-symbols-outlined">upload</span>
+                        Export List
+                    </button>
+<button class="flex items-center gap-sm px-lg py-md bg-primary text-on-primary rounded-lg font-label-md shadow-sm hover:shadow-md transition-all active:scale-95">
+<span class="material-symbols-outlined">add</span>
+                        Add New Doctor
+                    </button>
+</div>
+</div>
+<!-- Dashboard Stats / Filters Row -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-lg">
+<!-- Filters Panel -->
+<div class="md:col-span-4 bg-surface-container-lowest p-md rounded-xl shadow-sm flex flex-wrap items-center gap-md">
+<div class="flex items-center gap-sm px-md py-sm bg-surface-container rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined text-outline">filter_list</span>
+<select class="bg-transparent border-none focus:ring-0 font-label-md">
+<option>All Departments</option>
+<option>Cardiology</option>
+<option>Neurology</option>
+<option>Pediatrics</option>
+<option>Surgery</option>
+</select>
+</div>
+<div class="flex items-center gap-sm px-md py-sm bg-surface-container rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined text-outline">grade</span>
+<select class="bg-transparent border-none focus:ring-0 font-label-md">
+<option>All Expertise Levels</option>
+<option>Senior Consultant</option>
+<option>Attending Physician</option>
+<option>Medical Resident</option>
+<option>Intern</option>
+</select>
+</div>
+<div class="flex items-center gap-sm px-md py-sm bg-surface-container rounded-lg border border-outline-variant">
+<span class="material-symbols-outlined text-outline">sync</span>
+<select class="bg-transparent border-none focus:ring-0 font-label-md">
+<option>All Statuses</option>
+<option>Active</option>
+<option>On Leave</option>
+<option>In Surgery</option>
+</select>
+</div>
+<div class="flex-1"></div>
+<button class="text-primary font-label-md hover:underline">Clear All Filters</button>
+</div>
+</div>
+<!-- Table Section -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden border border-surface-container-high">
+<!-- Bulk Actions Toolbar -->
+<div class="p-md bg-surface-container-low flex justify-between items-center border-b border-outline-variant">
+<div class="flex items-center gap-md">
+<input class="rounded text-primary focus:ring-primary h-5 w-5 cursor-pointer" type="checkbox"/>
+<span class="text-body-sm font-medium text-on-surface-variant">12 Doctors Selected</span>
+<div class="h-4 w-[1px] bg-outline-variant"></div>
+<button class="text-on-surface-variant hover:text-error flex items-center gap-xs transition-colors">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+<span class="font-label-sm">Delete Selected</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary flex items-center gap-xs transition-colors">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+<span class="font-label-sm">Email Team</span>
+</button>
+</div>
+<div class="flex items-center gap-sm text-on-surface-variant">
+<span class="font-label-sm">Displaying 1-10 of 48</span>
+<div class="flex gap-xs">
+<button class="p-1 rounded hover:bg-surface-container"><span class="material-symbols-outlined">chevron_left</span></button>
+<button class="p-1 rounded hover:bg-surface-container"><span class="material-symbols-outlined">chevron_right</span></button>
+</div>
+</div>
+</div>
+<!-- Main Directory Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-lowest border-b border-outline-variant">
+<th class="p-md w-12"><input class="rounded text-primary focus:ring-primary h-5 w-5" type="checkbox"/></th>
+<th class="p-md font-label-sm text-outline uppercase tracking-wider">Doctor Name</th>
+<th class="p-md font-label-sm text-outline uppercase tracking-wider">Specialty &amp; Expertise</th>
+<th class="p-md font-label-sm text-outline uppercase tracking-wider">Contact Info</th>
+<th class="p-md font-label-sm text-outline uppercase tracking-wider">Assigned Ward</th>
+<th class="p-md font-label-sm text-outline uppercase tracking-wider">Current Status</th>
+<th class="p-md font-label-sm text-outline uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-high" id="doctorTableBody">
+    <tr><td colspan="7" class="text-center py-lg text-outline">Loading doctors...</td></tr>
+</tbody>
+</table>
+</div>
+<!-- Footer / Pagination -->
+<div class="p-md border-t border-outline-variant flex items-center justify-center gap-2">
+<button class="px-3 py-1 border border-outline-variant rounded hover:bg-surface-container-low transition-colors text-label-md">1</button>
+<button class="px-3 py-1 bg-primary text-on-primary rounded font-bold text-label-md">2</button>
+<button class="px-3 py-1 border border-outline-variant rounded hover:bg-surface-container-low transition-colors text-label-md">3</button>
+<span class="mx-2 text-outline">...</span>
+<button class="px-3 py-1 border border-outline-variant rounded hover:bg-surface-container-low transition-colors text-label-md">5</button>
+</div>
+</div>
+</div>
+</main>
+<script src="api.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', async () => {
+        if(window.API) {
+            window.API.requireAuth(['admin', 'superadmin']);
+            await loadDoctors();
+        }
+    });
+
+    async function loadDoctors() {
+        const tBody = document.getElementById('doctorTableBody');
+        try {
+            const res = await window.API.admin.doctors.list();
+            if(res.success && res.data) {
+                tBody.innerHTML = '';
+                if(res.data.length === 0) {
+                    tBody.innerHTML = '<tr><td colspan="7" class="text-center py-lg text-outline">No doctors found.</td></tr>';
+                    return;
+                }
+                res.data.forEach(d => {
+                    const statusClass = d.status === 'approved' ? 'bg-emerald-100 text-emerald-800' :
+                                        d.status === 'pending' ? 'bg-amber-100 text-amber-800' : 'bg-surface-container-high text-on-surface-variant';
+                    
+                    let actionBtn = '';
+                    if (d.status === 'pending') {
+                        actionBtn = `
+                            <button onclick="approveDoctor('${d._id}')" class="text-primary font-bold hover:underline mx-2">Approve</button>
+                            <button onclick="rejectDoctor('${d._id}')" class="text-error font-bold hover:underline mx-2">Reject</button>
+                        `;
+                    }
+                    
+                    tBody.innerHTML += `
+                    <tr class="hover:bg-surface-container-low transition-colors group">
+                        <td class="p-md"><input class="rounded text-primary focus:ring-primary h-5 w-5" type="checkbox"/></td>
+                        <td class="p-md">
+                            <div class="flex items-center gap-md">
+                                <div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center font-bold text-on-surface-variant">${d.name.charAt(0)}</div>
+                                <div>
+                                    <p class="font-title-md text-on-background">${d.name}</p>
+                                    <p class="text-body-sm text-on-surface-variant">ID: ${d._id.substring(0, 8)}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="p-md">
+                            <div>
+                                <p class="font-body-md text-on-background">${d.department || 'N/A'}</p>
+                            </div>
+                        </td>
+                        <td class="p-md">
+                            <div class="space-y-1">
+                                <div class="flex items-center gap-xs text-body-sm text-on-surface-variant">
+                                    <span class="material-symbols-outlined text-[16px]">mail</span> ${d.email}
+                                </div>
+                            </div>
+                        </td>
+                        <td class="p-md text-body-md text-on-background">-</td>
+                        <td class="p-md">
+                            <span class="inline-flex items-center gap-1.5 px-3 py-1 ${statusClass} rounded-full text-label-sm capitalize">
+                                ${d.status}
+                            </span>
+                        </td>
+                        <td class="p-md text-right">
+                            ${actionBtn}
+                        </td>
+                    </tr>`;
+                });
+            }
+        } catch(e) {
+            tBody.innerHTML = '<tr><td colspan="7" class="text-center py-lg text-error">Failed to load doctors</td></tr>';
+        }
+    }
+
+    window.approveDoctor = async (id) => {
+        if(!confirm('Approve this doctor?')) return;
+        try {
+            await window.API.admin.doctors.approve(id);
+            loadDoctors();
+        } catch(e) {
+            alert(e.message);
+        }
+    };
+    
+    window.rejectDoctor = async (id) => {
+        if(!confirm('Reject this doctor?')) return;
+        try {
+            await window.API.admin.doctors.reject(id);
+            loadDoctors();
+        } catch(e) {
+            alert(e.message);
+        }
+    };
+</script>
+<script src="admin_scripts.js"></script>
+</body></html>
