@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Medium+ | Doctor Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <link href="tailwind.css" rel="stylesheet"/>
+    <link href="custom.css" rel="stylesheet"/>
+    <style>
+        .stat-card { transition: transform 0.2s, box-shadow 0.2s; }
+        .stat-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+        .appt-row { transition: background 0.15s; }
+        .appt-row:hover { background: var(--md-sys-color-surface-container-low); }
+        .sidebar-link { transition: all 0.15s; }
+        .sidebar-link:hover { background: rgba(var(--md-sys-color-on-surface-rgb, 0,0,0), 0.05); }
+        .pulse-dot { animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.4; } }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen">
+
+<!-- Sidebar -->
+<aside class="fixed left-0 top-0 h-full w-64 flex flex-col p-md border-r border-outline-variant bg-surface-container-low z-50">
+    <div class="flex items-center gap-md mb-xl">
+        <div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center text-on-primary shrink-0">
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">stethoscope</span>
+        </div>
+        <div>
+            <img src="./logo.jpeg" alt="Medium+" style="height:28px;"/>
+            <p class="font-label-sm text-label-sm text-on-surface-variant">Doctor Portal</p>
+        </div>
+    </div>
+
+    <nav class="flex-1 space-y-1 overflow-y-auto">
+        <a class="sidebar-link flex items-center gap-md bg-secondary-container text-on-secondary-container rounded-lg px-md py-sm font-bold" href="doctor_dashboard.html">
+            <span class="material-symbols-outlined">dashboard</span>
+            <span class="font-label-md text-label-md">Dashboard</span>
+        </a>
+        <a class="sidebar-link flex items-center gap-md text-on-surface-variant px-md py-sm rounded-lg" href="doctor_appointments.html">
+            <span class="material-symbols-outlined">event</span>
+            <span class="font-label-md text-label-md">Appointments</span>
+        </a>
+        <a class="sidebar-link flex items-center gap-md text-on-surface-variant px-md py-sm rounded-lg" href="messages_hub.html">
+            <span class="material-symbols-outlined">chat</span>
+            <span class="font-label-md text-label-md">Messages</span>
+        </a>
+        <a class="sidebar-link flex items-center gap-md text-on-surface-variant px-md py-sm rounded-lg" href="account_settings.html">
+            <span class="material-symbols-outlined">settings</span>
+            <span class="font-label-md text-label-md">Settings</span>
+        </a>
+    </nav>
+
+    <div class="mt-auto pt-md border-t border-outline-variant">
+        <div class="flex items-center gap-md">
+            <div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center font-bold text-primary" id="avatar-initials">DR</div>
+            <div class="overflow-hidden flex-1">
+                <p class="font-title-sm text-title-sm truncate" id="sidebar-name">Loading...</p>
+                <p class="font-label-sm text-label-sm text-on-surface-variant truncate" id="sidebar-dept">Doctor</p>
+            </div>
+            <button onclick="handleLogout()" class="text-on-surface-variant hover:text-error transition-colors" title="Logout">
+                <span class="material-symbols-outlined">logout</span>
+            </button>
+        </div>
+    </div>
+</aside>
+
+<!-- Main Content -->
+<main class="ml-64 min-h-screen">
+    <!-- Top Nav -->
+    <header class="sticky top-0 z-40 flex justify-between items-center w-full px-margin-desktop h-16 bg-surface-container-lowest shadow-sm">
+        <h1 class="font-headline-sm text-headline-sm font-bold text-primary" id="header-greeting">Good morning, Doctor</h1>
+        <div class="flex items-center gap-md">
+            <button onclick="window.location.href='notification_center_centralized_alerts.html'" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors relative">
+                <span class="material-symbols-outlined">notifications</span>
+                <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full pulse-dot"></span>
+            </button>
+            <button onclick="window.location.href='account_settings.html'" class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors">
+                <span class="material-symbols-outlined">manage_accounts</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="p-margin-desktop space-y-xl">
+
+        <!-- Pending Approval Notice (shown if doctor is not yet approved) -->
+        <div id="pending-notice" class="hidden bg-amber-50 border border-amber-200 rounded-xl p-lg flex items-start gap-md">
+            <span class="material-symbols-outlined text-amber-600 shrink-0 text-[28px]">pending_actions</span>
+            <div>
+                <p class="font-title-md text-title-md text-amber-900">Account Pending Approval</p>
+                <p class="font-body-sm text-body-sm text-amber-800 mt-xs">Your account is currently under review by the hospital administrator. You will receive access to full features once approved. Please check back later.</p>
+            </div>
+        </div>
+
+        <!-- Stats Row -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+            <div class="stat-card bg-surface-container-lowest rounded-2xl p-lg border border-outline-variant/20 shadow-sm">
+                <div class="flex items-center justify-between mb-md">
+                    <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Today's Appointments</p>
+                    <div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center">
+                        <span class="material-symbols-outlined text-primary text-[20px]">event_available</span>
+                    </div>
+                </div>
+                <p class="font-display-sm text-display-sm font-bold text-on-surface" id="stat-today">—</p>
+            </div>
+            <div class="stat-card bg-surface-container-lowest rounded-2xl p-lg border border-outline-variant/20 shadow-sm">
+                <div class="flex items-center justify-between mb-md">
+                    <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Pending Requests</p>
+                    <div class="w-10 h-10 rounded-xl bg-tertiary-container flex items-center justify-center">
+                        <span class="material-symbols-outlined text-tertiary text-[20px]">pending</span>
+                    </div>
+                </div>
+                <p class="font-display-sm text-display-sm font-bold text-on-surface" id="stat-pending">—</p>
+            </div>
+            <div class="stat-card bg-surface-container-lowest rounded-2xl p-lg border border-outline-variant/20 shadow-sm">
+                <div class="flex items-center justify-between mb-md">
+                    <p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Total Patients</p>
+                    <div class="w-10 h-10 rounded-xl bg-secondary-container flex items-center justify-center">
+                        <span class="material-symbols-outlined text-secondary text-[20px]">group</span>
+                    </div>
+                </div>
+                <p class="font-display-sm text-display-sm font-bold text-on-surface" id="stat-total">—</p>
+            </div>
+        </div>
+
+        <!-- Upcoming Appointments -->
+        <section class="bg-surface-container-lowest rounded-2xl border border-outline-variant/20 shadow-sm overflow-hidden">
+            <div class="flex items-center justify-between p-lg border-b border-outline-variant/10">
+                <h2 class="font-title-lg text-title-lg text-on-surface">Upcoming Appointments</h2>
+                <div class="flex items-center gap-sm">
+                    <button id="btn-pending-only" onclick="filterAppts('pending')" class="px-md py-xs text-label-md font-label-md text-on-surface-variant bg-surface-container rounded-lg hover:bg-primary-container hover:text-primary transition-all">Pending</button>
+                    <button id="btn-all" onclick="filterAppts('all')" class="px-md py-xs text-label-md font-label-md text-primary bg-primary-container rounded-lg">All</button>
+                </div>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left">
+                    <thead class="bg-surface-container-low text-on-surface-variant">
+                        <tr>
+                            <th class="px-lg py-md font-label-sm uppercase text-xs tracking-wider">Patient</th>
+                            <th class="px-lg py-md font-label-sm uppercase text-xs tracking-wider">Date & Time</th>
+                            <th class="px-lg py-md font-label-sm uppercase text-xs tracking-wider">Visit Type</th>
+                            <th class="px-lg py-md font-label-sm uppercase text-xs tracking-wider">Status</th>
+                            <th class="px-lg py-md font-label-sm uppercase text-xs tracking-wider text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="appts-tbody" class="divide-y divide-outline-variant/10">
+                        <tr><td colspan="5" class="px-lg py-xl text-center text-on-surface-variant">Loading appointments...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </div>
+</main>
+
+<!-- Reject Reason Modal -->
+<div id="reject-modal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-[100] flex items-center justify-center p-md">
+    <div class="bg-surface-container-lowest rounded-2xl p-xl max-w-md w-full shadow-2xl">
+        <h2 class="font-title-lg text-on-surface mb-md">Reject Appointment</h2>
+        <p class="font-body-sm text-on-surface-variant mb-md">Provide an optional reason for the patient.</p>
+        <textarea id="reject-reason" rows="3" placeholder="e.g. Schedule conflict, please rebook..." class="w-full bg-surface-container border border-outline-variant rounded-lg p-md font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-primary/20 resize-none"></textarea>
+        <div class="flex justify-end gap-md mt-lg">
+            <button onclick="closeRejectModal()" class="px-lg py-2 font-label-md text-on-surface-variant border border-outline-variant rounded-lg hover:bg-surface-container transition-all">Cancel</button>
+            <button id="confirm-reject-btn" onclick="confirmReject()" class="px-lg py-2 font-label-md bg-error text-on-error rounded-lg hover:brightness-110 transition-all flex items-center gap-2">
+                <span class="material-symbols-outlined text-[18px]">cancel</span> Confirm Reject
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Toast -->
+<div id="toast" class="fixed bottom-6 right-6 z-[200] hidden">
+    <div class="flex items-center gap-sm bg-inverse-surface text-inverse-on-surface px-lg py-md rounded-xl shadow-2xl font-body-md text-body-md">
+        <span class="material-symbols-outlined text-[20px]" id="toast-icon">check_circle</span>
+        <span id="toast-msg">Done</span>
+    </div>
+</div>
+
+<script src="api.js"></script>
+<script>
+    API.requireAuth(['doctor']);
+
+    let allAppointments = [];
+    let appointmentToReject = null;
+    let currentFilter = 'all';
+
+    // --- INIT ---
+    document.addEventListener('DOMContentLoaded', async () => {
+        const user = API.getUser();
+        if (user) {
+            const name = user.name || (user.firstName + ' ' + user.lastName) || 'Doctor';
+            const initials = name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+            document.getElementById('avatar-initials').textContent = initials;
+            document.getElementById('sidebar-name').textContent = 'Dr. ' + name;
+            document.getElementById('sidebar-dept').textContent = user.department || 'Doctor';
+
+            const hour = new Date().getHours();
+            const greet = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
+            document.getElementById('header-greeting').textContent = greet + ', Dr. ' + name.split(' ')[0];
+
+            // Show pending notice if not yet approved
+            const status = user.status || user.approvalStatus;
+            if (status === 'pending') {
+                document.getElementById('pending-notice').classList.remove('hidden');
+            }
+        }
+
+        await loadAppointments();
+    });
+
+    async function loadAppointments() {
+        const tbody = document.getElementById('appts-tbody');
+        try {
+            const res = await API.doctorRole.appointments.list();
+            const data = res.data;
+            allAppointments = Array.isArray(data) ? data : (data?.appointments || []);
+
+            // Stats
+            const today = new Date().toDateString();
+            const todayAppts = allAppointments.filter(a => new Date(a.date).toDateString() === today);
+            const pending = allAppointments.filter(a => a.status === 'pending');
+
+            document.getElementById('stat-today').textContent = todayAppts.length;
+            document.getElementById('stat-pending').textContent = pending.length;
+
+            // Count unique patients
+            const uniquePatients = new Set(allAppointments.map(a => a.patient?._id || a.patient?.id || a.patientId).filter(Boolean));
+            document.getElementById('stat-total').textContent = uniquePatients.size;
+
+            renderAppts(allAppointments);
+        } catch (err) {
+            console.error(err);
+            tbody.innerHTML = '<tr><td colspan="5" class="px-lg py-xl text-center text-error">Failed to load appointments. ' + (err.message || '') + '</td></tr>';
+        }
+    }
+
+    function filterAppts(filter) {
+        currentFilter = filter;
+        document.getElementById('btn-all').className = filter === 'all'
+            ? 'px-md py-xs text-label-md font-label-md text-primary bg-primary-container rounded-lg'
+            : 'px-md py-xs text-label-md font-label-md text-on-surface-variant bg-surface-container rounded-lg hover:bg-primary-container hover:text-primary transition-all';
+        document.getElementById('btn-pending-only').className = filter === 'pending'
+            ? 'px-md py-xs text-label-md font-label-md text-primary bg-primary-container rounded-lg'
+            : 'px-md py-xs text-label-md font-label-md text-on-surface-variant bg-surface-container rounded-lg hover:bg-primary-container hover:text-primary transition-all';
+
+        const filtered = filter === 'all' ? allAppointments : allAppointments.filter(a => a.status === filter);
+        renderAppts(filtered);
+    }
+
+    function renderAppts(appointments) {
+        const tbody = document.getElementById('appts-tbody');
+        if (appointments.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="5" class="px-lg py-xl text-center text-on-surface-variant italic">No appointments found.</td></tr>';
+            return;
+        }
+
+        tbody.innerHTML = appointments.map(apt => {
+            const pName = apt.patient?.name || (apt.patient?.firstName + ' ' + apt.patient?.lastName) || 'Unknown Patient';
+            const initials = pName.substring(0, 2).toUpperCase();
+            const dt = new Date(apt.date);
+            const dateStr = dt.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+            const timeStr = dt.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+            const visitType = apt.visitType || apt.type || 'Consultation';
+            const aptId = apt._id || apt.id;
+
+            let statusBadge, actionBtns;
+            switch (apt.status) {
+                case 'pending':
+                    statusBadge = '<span class="px-2 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded-full">Pending</span>';
+                    actionBtns = `
+                        <button onclick="approveAppt('${aptId}')" class="text-primary text-label-sm font-bold hover:underline mr-3">Approve</button>
+                        <button onclick="openRejectModal('${aptId}')" class="text-error text-label-sm font-bold hover:underline">Reject</button>`;
+                    break;
+                case 'approved':
+                case 'scheduled':
+                    statusBadge = '<span class="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-bold rounded-full">Scheduled</span>';
+                    actionBtns = `<button onclick="startConsult('${aptId}')" class="text-primary text-label-sm font-bold hover:underline">Start Consult</button>`;
+                    break;
+                case 'in-progress':
+                case 'ongoing':
+                    statusBadge = '<span class="px-2 py-1 bg-green-100 text-green-800 text-xs font-bold rounded-full animate-pulse">In Progress</span>';
+                    actionBtns = `<button onclick="endConsult('${aptId}')" class="text-tertiary text-label-sm font-bold hover:underline">End Consult</button>`;
+                    break;
+                case 'completed':
+                    statusBadge = '<span class="px-2 py-1 bg-emerald-100 text-emerald-800 text-xs font-bold rounded-full">Completed</span>';
+                    actionBtns = `<a href="doctor_patient_detail.html?id=${apt.patient?._id || apt.patientId}" class="text-on-surface-variant text-label-sm hover:underline">View Record</a>`;
+                    break;
+                case 'cancelled':
+                case 'rejected':
+                    statusBadge = '<span class="px-2 py-1 bg-red-100 text-red-800 text-xs font-bold rounded-full">Cancelled</span>';
+                    actionBtns = '';
+                    break;
+                default:
+                    statusBadge = `<span class="px-2 py-1 bg-surface-container-high text-on-surface-variant text-xs font-bold rounded-full capitalize">${apt.status}</span>`;
+                    actionBtns = '';
+            }
+
+            return `
+            <tr class="appt-row">
+                <td class="px-lg py-md">
+                    <div class="flex items-center gap-md">
+                        <div class="w-9 h-9 rounded-full bg-primary-container flex items-center justify-center font-bold text-primary text-sm shrink-0">${initials}</div>
+                        <p class="font-title-sm text-on-surface">${pName}</p>
+                    </div>
+                </td>
+                <td class="px-lg py-md">
+                    <p class="font-body-sm text-on-surface">${dateStr}</p>
+                    <p class="font-body-sm text-on-surface-variant">${timeStr}</p>
+                </td>
+                <td class="px-lg py-md font-body-sm text-on-surface-variant capitalize">${visitType}</td>
+                <td class="px-lg py-md">${statusBadge}</td>
+                <td class="px-lg py-md text-right">${actionBtns}</td>
+            </tr>`;
+        }).join('');
+    }
+
+    async function approveAppt(id) {
+        try {
+            const res = await API.doctorRole.appointments.approve(id);
+            if (res.success) {
+                showToast('Appointment approved', 'check_circle');
+                await loadAppointments();
+                filterAppts(currentFilter);
+            } else {
+                showToast(res.message || 'Failed to approve', 'error');
+            }
+        } catch (err) {
+            showToast(err.message || 'Network error', 'error');
+        }
+    }
+
+    function openRejectModal(id) {
+        appointmentToReject = id;
+        document.getElementById('reject-reason').value = '';
+        document.getElementById('reject-modal').classList.remove('hidden');
+    }
+
+    function closeRejectModal() {
+        appointmentToReject = null;
+        document.getElementById('reject-modal').classList.add('hidden');
+    }
+
+    async function confirmReject() {
+        if (!appointmentToReject) return;
+        const btn = document.getElementById('confirm-reject-btn');
+        const reason = document.getElementById('reject-reason').value.trim();
+        btn.disabled = true;
+        btn.innerHTML = '<span class="material-symbols-outlined animate-spin text-[18px]">progress_activity</span> Rejecting...';
+        try {
+            const res = await API.doctorRole.appointments.reject(appointmentToReject, reason);
+            if (res.success) {
+                closeRejectModal();
+                showToast('Appointment rejected', 'info');
+                await loadAppointments();
+                filterAppts(currentFilter);
+            } else {
+                showToast(res.message || 'Failed to reject', 'error');
+            }
+        } catch (err) {
+            showToast(err.message || 'Network error', 'error');
+        } finally {
+            btn.disabled = false;
+            btn.innerHTML = '<span class="material-symbols-outlined text-[18px]">cancel</span> Confirm Reject';
+        }
+    }
+
+    async function startConsult(id) {
+        try {
+            const res = await API.doctorRole.appointments.startConsultation(id);
+            if (res.success) {
+                showToast('Consultation started', 'play_circle');
+                await loadAppointments();
+                filterAppts(currentFilter);
+            } else {
+                showToast(res.message || 'Failed', 'error');
+            }
+        } catch (err) {
+            showToast(err.message || 'Network error', 'error');
+        }
+    }
+
+    async function endConsult(id) {
+        const notes = prompt('Add consultation notes (optional):') || '';
+        try {
+            const res = await API.doctorRole.appointments.endConsultation(id, notes);
+            if (res.success) {
+                showToast('Consultation ended', 'check_circle');
+                await loadAppointments();
+                filterAppts(currentFilter);
+            } else {
+                showToast(res.message || 'Failed', 'error');
+            }
+        } catch (err) {
+            showToast(err.message || 'Network error', 'error');
+        }
+    }
+
+    async function handleLogout() {
+        try { await API.auth.logout(); } catch(e) {}
+        API.clearSession();
+        window.location.href = 'login_secure_entry.html';
+    }
+
+    function showToast(message, icon = 'check_circle') {
+        const toast = document.getElementById('toast');
+        document.getElementById('toast-msg').textContent = message;
+        document.getElementById('toast-icon').textContent = icon;
+        toast.classList.remove('hidden');
+        setTimeout(() => toast.classList.add('hidden'), 3500);
+    }
+</script>
+</body>
+</html>

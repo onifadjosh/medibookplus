@@ -104,7 +104,20 @@
         class="fixed bottom-0 left-0 w-1/4 h-1/4 opacity-20 pointer-events-none blur-3xl bg-primary rounded-full translate-x-[-20%] translate-y-[20%]">
     </div>
 
+    <div id="loginError" class="hidden mt-md p-md bg-error-container text-on-error-container rounded-lg text-body-sm font-body-sm flex items-center gap-sm">
+        <span class="material-symbols-outlined text-[18px]">error</span>
+        <span id="loginErrorMsg"></span>
+    </div>
+
+    <script src="api.js"></script>
     <script>
+        // Auto redirect if already logged in
+        document.addEventListener('DOMContentLoaded', () => {
+            if (API.getToken() && API.getUser()) {
+                API.redirectByRole(API.getUser().role);
+            }
+        });
+
         function togglePassword() {
             const passwordInput = document.getElementById('password');
             const pwToggle = document.getElementById('pw-toggle');
@@ -117,25 +130,53 @@
             }
         }
 
-        document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+        document.getElementById('adminLoginForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const btn = document.getElementById('submitBtn');
+            const errorDiv = document.getElementById('loginError');
+            const errorMsg = document.getElementById('loginErrorMsg');
             const originalContent = btn.innerHTML;
-            
-            btn.innerHTML = '<span class="material-symbols-outlined animate-spin text-[20px]">sync</span> Authenticating...';
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin text-[20px]">progress_activity</span> Authenticating...';
             btn.disabled = true;
-            
-            setTimeout(() => {
-                btn.classList.remove('bg-primary');
-                btn.classList.add('bg-tertiary-container', 'text-on-tertiary-container');
-                btn.innerHTML = '<span class="material-symbols-outlined text-[20px]">check_circle</span> Verified';
-                setTimeout(() => {
-                    window.location.href = 'admin_hospital_management_dashboard.html';
-                }, 1000);
-            }, 1500);
+            errorDiv.classList.add('hidden');
+
+            try {
+                const data = await API.auth.login(email, password);
+
+                if (data.success && data.data) {
+                    API.setSession(data.data.token, data.data.user);
+
+                    const role = data.data.user.role;
+                    if (role !== 'admin' && role !== 'superadmin') {
+                        errorMsg.textContent = 'Access denied. This portal is for administrators only.';
+                        errorDiv.classList.remove('hidden');
+                        API.clearSession();
+                        btn.disabled = false;
+                        btn.innerHTML = originalContent;
+                        return;
+                    }
+
+                    btn.classList.remove('bg-primary');
+                    btn.classList.add('bg-tertiary-container', 'text-on-tertiary-container');
+                    btn.innerHTML = '<span class="material-symbols-outlined text-[20px]">check_circle</span> Verified';
+
+                    setTimeout(() => {
+                        API.redirectByRole(role);
+                    }, 600);
+                }
+            } catch(err) {
+                console.error(err);
+                errorMsg.textContent = err.message || 'Login failed. Please check your credentials.';
+                errorDiv.classList.remove('hidden');
+                btn.disabled = false;
+                btn.innerHTML = originalContent;
+            }
         });
     </script>
-    <script src="api.js"></script>
 </body>
 
 </html>

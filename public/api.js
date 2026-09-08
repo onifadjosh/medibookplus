@@ -110,7 +110,7 @@ const API = {
                 window.location.href = 'doctor_dashboard.html';
                 break;
             case 'admin':
-                window.location.href = 'admin_dashboard.html';
+                window.location.href = 'admin_hospital_management_dashboard.html';
                 break;
             case 'superadmin':
                 window.location.href = 'superadmin_dashboard.html';
