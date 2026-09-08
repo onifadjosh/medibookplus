@@ -190,7 +190,7 @@
             const btn = document.getElementById('submit-btn');
             const err = document.getElementById('error-msg');
             btn.disabled = true;
-            btn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> Submitting...';
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> Connecting to server...';
             err.classList.add('hidden');
 
             const form = e.target;
@@ -210,16 +210,19 @@
 
             try {
                 const data = await API.hospitals.register(body);
-                if (data.success) {
+                if (data && data.success) {
                     document.getElementById('success-modal').classList.remove('hidden');
                 } else {
-                    err.textContent = data.message || 'Registration failed. Please try again.';
+                    err.textContent = data.message || 'Registration failed. Please check your form details.';
                     err.classList.remove('hidden');
                     btn.disabled = false;
                     btn.innerHTML = '<span>Submit Application</span><span class="material-symbols-outlined text-[20px]">send</span>';
                 }
-            } catch (e) {
-                err.textContent = e.message || 'Network error. Please check your connection and try again.';
+            } catch (ex) {
+                console.error('Hospital registration error:', ex);
+                err.textContent = ex.message === 'Failed to fetch' 
+                    ? 'Server connection timeout. The backend is waking up — please click Submit Application again in a few seconds.' 
+                    : (ex.message || 'Network error. Please check your connection and try again.');
                 err.classList.remove('hidden');
                 btn.disabled = false;
                 btn.innerHTML = '<span>Submit Application</span><span class="material-symbols-outlined text-[20px]">send</span>';

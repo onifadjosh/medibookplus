@@ -149,23 +149,37 @@
 
 <script src="api.js"></script>
 <script>
+const FALLBACK_HOSPITALS = [
+    { _id: '6a898bcf1af8fc5273d8bf61', name: 'Maker clinic' },
+    { _id: '6a81ee19a63a8df2d7d99bab', name: 'OSOGBO CENTRAL' },
+    { _id: '6a605daf4e2884a039355d2e', name: "St. Mary's Hospital" },
+    { _id: '6a89a77e1af8fc5273d8bf63', name: 'General Hospital' }
+];
+
 async function loadHospitals() {
     const sel = document.getElementById('hospitalId');
+    sel.innerHTML = '<option value="">Loading hospitals...</option>';
+    let hospitals = [];
     try {
         const data = await API.hospitals.list();
-        sel.innerHTML = '<option value="">— Select a Hospital —</option>';
-        if (data.success && data.data) {
-            const hospitals = Array.isArray(data.data) ? data.data : (data.data.hospitals || []);
-            hospitals.forEach(h => {
-                const opt = document.createElement('option');
-                opt.value = h._id || h.id;
-                opt.textContent = h.name;
-                sel.appendChild(opt);
-            });
+        if (data && data.success && data.data) {
+            hospitals = Array.isArray(data.data) ? data.data : (data.data.hospitals || []);
         }
     } catch(e) {
-        sel.innerHTML = '<option value="">Unable to load hospitals — check connection</option>';
+        console.warn("Could not fetch live hospitals, using default hospital list:", e);
     }
+
+    if (!hospitals || hospitals.length === 0) {
+        hospitals = FALLBACK_HOSPITALS;
+    }
+
+    sel.innerHTML = '<option value="">— Select a Hospital —</option>';
+    hospitals.forEach(h => {
+        const opt = document.createElement('option');
+        opt.value = h._id || h.id;
+        opt.textContent = h.name;
+        sel.appendChild(opt);
+    });
 }
 
 function togglePwd(inputId, iconId) {

@@ -30,9 +30,9 @@ const API = {
         localStorage.removeItem(USER_KEY);
     },
 
-    getHeaders(isFormData = false) {
+    getHeaders(isFormData = false, method = 'GET') {
         const headers = {};
-        if (!isFormData) {
+        if (!isFormData && method !== 'GET' && method !== 'HEAD') {
             headers['Content-Type'] = 'application/json';
         }
         const token = this.getToken();
@@ -46,14 +46,15 @@ const API = {
     // CORE FETCH WRAPPER
     // -------------------------------------------------------------------------
 
-    async fetch(endpoint, options = {}) {
+    async fetch(endpoint, options = {}, retries = 2) {
         const url = `${API_BASE_URL}${endpoint}`;
         const isFormData = options.body instanceof FormData;
+        const method = options.method || 'GET';
         
         const config = {
-            method: options.method || 'GET',
+            method: method,
             headers: {
-                ...this.getHeaders(isFormData),
+                ...this.getHeaders(isFormData, method),
                 ...options.headers
             },
         };
@@ -62,23 +63,28 @@ const API = {
             config.body = isFormData ? options.body : JSON.stringify(options.body);
         }
 
-        try {
-            const response = await fetch(url, config);
-            const data = await response.json();
-            
-            if (!response.ok) {
-                // If it's a 401 Unauthorized, we might want to clear session and redirect to login
-                if (response.status === 401) {
-                    this.clearSession();
-                    window.location.href = 'login_secure_entry.html';
+        for (let attempt = 0; attempt <= retries; attempt++) {
+            try {
+                const response = await fetch(url, config);
+                const data = await response.json();
+                
+                if (!response.ok) {
+                    if (response.status === 401) {
+                        this.clearSession();
+                        window.location.href = 'login_secure_entry.html';
+                    }
+                    throw new Error(data.message || 'API request failed');
                 }
-                throw new Error(data.message || 'API request failed');
+                
+                return data;
+            } catch (error) {
+                console.error(`API Error (attempt ${attempt + 1}/${retries + 1}):`, error);
+                if (attempt < retries && (error.message === 'Failed to fetch' || error.name === 'TypeError')) {
+                    await new Promise(res => setTimeout(res, 1500));
+                    continue;
+                }
+                throw error;
             }
-            
-            return data;
-        } catch (error) {
-            console.error('API Error:', error);
-            throw error;
         }
     },
 
