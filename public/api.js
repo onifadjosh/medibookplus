@@ -46,7 +46,7 @@ const API = {
     // CORE FETCH WRAPPER
     // -------------------------------------------------------------------------
 
-    async fetch(endpoint, options = {}, retries = 2) {
+    async fetch(endpoint, options = {}, retries = 4) {
         const url = `${API_BASE_URL}${endpoint}`;
         const isFormData = options.body instanceof FormData;
         const method = options.method || 'GET';
@@ -80,7 +80,7 @@ const API = {
             } catch (error) {
                 console.error(`API Error (attempt ${attempt + 1}/${retries + 1}):`, error);
                 if (attempt < retries && (error.message === 'Failed to fetch' || error.name === 'TypeError')) {
-                    await new Promise(res => setTimeout(res, 1500));
+                    await new Promise(res => setTimeout(res, 2500));
                     continue;
                 }
                 throw error;

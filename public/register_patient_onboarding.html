@@ -216,11 +216,37 @@ async function submitPatient(e) {
     };
 
     try {
-        const data = await API.auth.registerPatient(body);
+        let data;
+        try {
+            data = await API.auth.registerPatient(body);
+        } catch(ex) {
+            // If connection timed out, check if backend created the user before connection dropped
+            try {
+                const loginRes = await API.auth.login(body.email, body.password);
+                if (loginRes && loginRes.success && loginRes.data) {
+                    data = { success: true, data: loginRes.data };
+                } else {
+                    throw ex;
+                }
+            } catch(lErr) {
+                throw ex;
+            }
+        }
+
+        if (!data || !data.success) {
+            if (data && data.message && (data.message.toLowerCase().includes('already exists') || data.code === 'EMAIL_TAKEN')) {
+                try {
+                    const loginRes = await API.auth.login(body.email, body.password);
+                    if (loginRes && loginRes.success && loginRes.data) {
+                        data = { success: true, data: loginRes.data };
+                    }
+                } catch(lErr) {}
+            }
+        }
         
         if (data && data.success) {
             API.setSession(data.data.token, data.data.user);
-            document.getElementById('success-name').textContent = 'Welcome, ' + data.data.user.firstName + '!';
+            document.getElementById('success-name').textContent = 'Welcome, ' + (data.data.user.firstName || 'Patient') + '!';
             document.getElementById('success-msg').textContent = 'Your patient ID is ' + (data.data.user.patientId || '') + '. Your account has been created successfully.';
             
             const modalBtn = document.querySelector('#success-modal a');
@@ -241,7 +267,7 @@ async function submitPatient(e) {
     } catch(ex) {
         console.error('Registration error:', ex);
         err.textContent = ex.message === 'Failed to fetch'
-            ? 'Server connection timeout. The backend is waking up — please click Create Account again in a few seconds.'
+            ? 'Server connection timeout. The backend is waking up — please click Create Account again.'
             : (ex.message || 'Network error. Please check your connection.');
         err.classList.remove('hidden');
         btn.disabled = false;
