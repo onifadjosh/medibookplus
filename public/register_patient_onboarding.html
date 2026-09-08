@@ -193,43 +193,56 @@ async function submitPatient(e) {
     e.preventDefault();
     const btn = document.getElementById('submit-btn');
     const err = document.getElementById('error-msg');
+    const form = e.target;
+
+    const hospitalId = form.hospitalId.value;
+    if (!hospitalId) {
+        err.textContent = 'Please select a hospital from the dropdown list above before creating your account.';
+        err.classList.remove('hidden');
+        return;
+    }
+
     btn.disabled = true;
     btn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> Creating account...';
     err.classList.add('hidden');
 
-    const form = e.target;
     const body = {
         firstName: form.firstName.value,
         lastName: form.lastName.value,
         email: form.email.value,
         phone: form.phone.value,
         password: form.password.value,
-        hospitalId: form.hospitalId.value,
+        hospitalId: hospitalId,
     };
 
     try {
         const data = await API.auth.registerPatient(body);
         
-        if (data.success) {
-            // Log them in immediately to complete profile if needed, or redirect
+        if (data && data.success) {
             API.setSession(data.data.token, data.data.user);
             document.getElementById('success-name').textContent = 'Welcome, ' + data.data.user.firstName + '!';
-            document.getElementById('success-msg').textContent = 'Your patient ID is ' + (data.data.user.patientId || '') + '. Let\'s complete your profile.';
+            document.getElementById('success-msg').textContent = 'Your patient ID is ' + (data.data.user.patientId || '') + '. Your account has been created successfully.';
             
-            // Change modal button to go to next step
             const modalBtn = document.querySelector('#success-modal a');
-            modalBtn.href = 'register_health_profile_step_2.html';
-            modalBtn.textContent = 'Continue to Health Profile';
+            modalBtn.href = '../patient/pages/dashboard.html';
+            modalBtn.textContent = 'Go to Patient Dashboard';
             
             document.getElementById('success-modal').classList.remove('hidden');
         } else {
-            err.textContent = data.message || 'Registration failed. Please try again.';
+            let msg = data.message || 'Registration failed. Please check your form details.';
+            if (msg.includes('User validation failed:')) {
+                msg = msg.replace(/User validation failed:\s*/i, '').replace(/.*:\s*/, '');
+            }
+            err.textContent = msg;
             err.classList.remove('hidden');
             btn.disabled = false;
             btn.innerHTML = '<span>Create Account</span><span class="material-symbols-outlined text-[20px]">arrow_forward</span>';
         }
     } catch(ex) {
-        err.textContent = ex.message || 'Network error. Please check your connection.';
+        console.error('Registration error:', ex);
+        err.textContent = ex.message === 'Failed to fetch'
+            ? 'Server connection timeout. The backend is waking up — please click Create Account again in a few seconds.'
+            : (ex.message || 'Network error. Please check your connection.');
         err.classList.remove('hidden');
         btn.disabled = false;
         btn.innerHTML = '<span>Create Account</span><span class="material-symbols-outlined text-[20px]">arrow_forward</span>';
