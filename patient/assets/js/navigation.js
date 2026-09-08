@@ -19,7 +19,11 @@ async function renderNavbarAvatar() {
   if (!mount) return;
   const patient = await getPatient();
   mount.setAttribute('aria-label', `${patient.firstName} ${patient.lastName}'s profile`);
+  mount.style.cursor = 'pointer';
   mount.appendChild(createInitialsAvatar(patient.initials, 40, 15));
+  mount.addEventListener('click', () => {
+    window.location.href = routes.profile;
+  });
 }
 
 /**

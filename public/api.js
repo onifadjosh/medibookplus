@@ -102,21 +102,22 @@ const API = {
     },
 
     redirectByRole(role) {
+        const isPublicDir = window.location.pathname.includes('/public/');
         switch (role) {
             case 'patient':
-                window.location.href = 'patient_dashboard_enhanced_home.html';
+                window.location.href = isPublicDir ? '../patient/pages/dashboard.html' : 'dashboard.html';
                 break;
             case 'doctor':
-                window.location.href = 'doctor_dashboard.html';
+                window.location.href = isPublicDir ? 'doctor_dashboard.html' : '../../public/doctor_dashboard.html';
                 break;
             case 'admin':
-                window.location.href = 'admin_hospital_management_dashboard.html';
+                window.location.href = isPublicDir ? 'admin_hospital_management_dashboard.html' : '../../public/admin_hospital_management_dashboard.html';
                 break;
             case 'superadmin':
-                window.location.href = 'superadmin_dashboard.html';
+                window.location.href = isPublicDir ? 'superadmin_dashboard.html' : '../../public/superadmin_dashboard.html';
                 break;
             default:
-                window.location.href = 'login_secure_entry.html';
+                window.location.href = isPublicDir ? 'login_secure_entry.html' : '../../public/login_secure_entry.html';
         }
     },
 

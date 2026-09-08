@@ -47,12 +47,94 @@ function mockResponse(payload) {
  * Reads
  * --------------------------------------------------------------------- */
 
-export const getPatient = () => mockResponse(patient);
-export const getAppointments = () => mockResponse(appointments);
+function getLiveUser() {
+  try {
+    const raw = localStorage.getItem('medibookplus_user');
+    return raw ? JSON.parse(raw) : null;
+  } catch (e) {
+    return null;
+  }
+}
+
+/* ---------------------------------------------------------------------
+ * Reads
+ * --------------------------------------------------------------------- */
+
+export const getPatient = () => {
+  const liveUser = getLiveUser();
+  if (liveUser) {
+    const fn = liveUser.firstName || patient.firstName;
+    const ln = liveUser.lastName || patient.lastName;
+    const initials = `${fn[0] || ''}${ln[0] || ''}`.toUpperCase() || patient.initials;
+    return mockResponse({
+      ...patient,
+      id: liveUser.patientId || liveUser._id || patient.id,
+      firstName: fn,
+      lastName: ln,
+      initials,
+      contact: {
+        ...patient.contact,
+        email: liveUser.email || patient.contact.email,
+        phone: liveUser.phone || patient.contact.phone,
+      },
+      healthSummary: {
+        bloodGroup: liveUser.bloodGroup || patient.healthSummary.bloodGroup,
+        insuranceStatus: liveUser.insuranceProvider || patient.healthSummary.insuranceStatus,
+        allergies: liveUser.allergies ? (Array.isArray(liveUser.allergies) ? liveUser.allergies.join(', ') : liveUser.allergies) : patient.healthSummary.allergies,
+      },
+      profileCompletion: liveUser.bloodGroup ? 100 : 75,
+    });
+  }
+  return mockResponse(patient);
+};
+
+export const getAppointments = async () => {
+  const token = localStorage.getItem('medibookplus_token');
+  if (token) {
+    try {
+      const res = await fetch('https://medium-backend-md5a.onrender.com/api/patients/appointments', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      const json = await res.json();
+      if (json.success && Array.isArray(json.data) && json.data.length > 0) {
+        return json.data.map(apt => ({
+          id: apt._id || apt.id,
+          doctorName: apt.doctorId ? `Dr. ${apt.doctorId.firstName || ''} ${apt.doctorId.lastName || ''}`.trim() : 'Assigned Doctor',
+          department: apt.department || apt.doctorId?.department || 'General Medicine',
+          date: apt.date || 'Today',
+          time: apt.time || '10:00 AM',
+          status: apt.status || 'confirmed',
+          doctorInitials: apt.doctorId ? `${apt.doctorId.firstName?.[0] || 'D'}${apt.doctorId.lastName?.[0] || 'R'}` : 'DR'
+        }));
+      }
+    } catch(e) {}
+  }
+  return appointments;
+};
+
 export const getAppointmentHistory = () => mockResponse(appointmentHistory);
-export const getFeaturedAppointment = () => mockResponse(featuredAppointment);
-export const getNextAppointmentReminder = () => mockResponse(nextAppointmentReminder);
-export const getDashboardStats = () => mockResponse(dashboardStats);
+export const getFeaturedAppointment = async () => {
+  const appts = await getAppointments();
+  return appts.length > 0 ? appts[0] : featuredAppointment;
+};
+export const getNextAppointmentReminder = async () => {
+  const appts = await getAppointments();
+  if (appts.length > 0) {
+    return { label: `Upcoming: ${appts[0].doctorName}`, detail: `${appts[0].date} at ${appts[0].time}` };
+  }
+  return nextAppointmentReminder;
+};
+export const getDashboardStats = async () => {
+  const appts = await getAppointments();
+  const upcomingCount = appts.filter(a => a.status === 'confirmed' || a.status === 'pending').length;
+  const completedCount = appts.filter(a => a.status === 'completed').length;
+  return [
+    { title: 'Upcoming Appointments', value: String(upcomingCount || 1), icon: 'bi-calendar-event', tone: 'solid-primary', badge: 'Active' },
+    { title: 'Completed Visits', value: String(completedCount || 3), icon: 'bi-check2-circle', tone: 'secondary', badge: 'Total' },
+    { title: 'Pending Reports', value: '0', icon: 'bi-file-earmark-medical', tone: 'amber-tint', badge: 'Up to date' },
+    { title: 'Prescriptions', value: '2', icon: 'bi-capsule', tone: 'neutral', badge: 'Active' }
+  ];
+};
 export const getNotifications = () => mockResponse(notifications);
 
 /**
@@ -200,7 +282,11 @@ export const updateSettings = (updates) =>
  * already shaped like a real `POST /auth/logout` for when one exists.
  * @returns {Promise<{success: boolean}>}
  */
-export const logoutUser = () => mockResponse({ success: true });
+export const logoutUser = () => {
+  localStorage.removeItem('medibookplus_token');
+  localStorage.removeItem('medibookplus_user');
+  return mockResponse({ success: true });
+};
 
 /**
  * Soft-deletes (deactivates) the patient's account. A real implementation

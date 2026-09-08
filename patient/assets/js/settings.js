@@ -140,11 +140,12 @@ function initLogout() {
   qs('[data-action="logout"]').addEventListener('click', () => openModal('logoutConfirmModal'));
 
   qs('[data-action="confirm-logout"]').addEventListener('click', async () => {
-    const { success } = await logoutUser();
+    await logoutUser();
     closeModal('logoutConfirmModal');
-    if (!success) return showToast('Something went wrong. Please try again.', 'error');
     showToast('You have been logged out.', 'success');
-    window.location.href = routes.dashboard;
+    setTimeout(() => {
+      window.location.href = '../../public/login_secure_entry.html';
+    }, 500);
   });
 }
 

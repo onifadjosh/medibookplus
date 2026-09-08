@@ -18,11 +18,13 @@ export const routes = {
   dashboard: 'dashboard.html',
   appointments: 'appointments.html',
   appointmentHistory: 'appointment-history.html',
+  records: 'appointment-history.html',
   patientCard: 'patient-card.html',
   notifications: 'notifications.html',
   messages: 'messages.html',
   profile: 'profile.html',
   settings: 'settings.html',
+  login: '../../public/login_secure_entry.html',
 };
 
 /**
