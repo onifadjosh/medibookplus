@@ -415,8 +415,145 @@
             }
         }
         
-        fetchMedicalRecords();
+        // Hydrate Patient Data
+        async function hydrateDashboard() {
+            try {
+                // Set name from local session first
+                const user = window.API.getUser();
+                if (user) {
+                    const welcomeEl = document.querySelector('h1.font-headline-lg');
+                    if (welcomeEl) welcomeEl.innerHTML = `Welcome back, ${user.firstName || user.name || 'Patient'} 👋`;
+                }
 
+                // Fetch full profile and appointments
+                const [profileRes, appointmentsRes] = await Promise.all([
+                    window.API.patients.getProfile(),
+                    window.API.patients.appointments.list()
+                ]);
+
+                if (profileRes.success && profileRes.data) {
+                    const profile = profileRes.data;
+                    
+                    // Update Health Summary Blood Group
+                    const bloodGroupEl = document.querySelector('.grid.grid-cols-2.gap-md .space-y-xs:first-child p:nth-child(2)');
+                    if (bloodGroupEl) bloodGroupEl.innerText = profile.bloodGroup || 'N/A';
+                    
+                    // Update Allergies
+                    const allergiesEl = document.getElementById('displayAllergies');
+                    if (allergiesEl) {
+                        allergiesEl.innerText = (profile.allergies && profile.allergies.length > 0) ? profile.allergies.join(', ') : 'None';
+                    }
+                }
+                
+                if (appointmentsRes.success && appointmentsRes.data && appointmentsRes.data.appointments) {
+                    const appointments = appointmentsRes.data.appointments;
+                    
+                    // Stats
+                    const upcoming = appointments.filter(a => a.status === 'scheduled' || a.status === 'confirmed').length;
+                    const completed = appointments.filter(a => a.status === 'completed').length;
+                    const pending = appointments.filter(a => a.status === 'pending').length;
+                    
+                    const statEls = document.querySelectorAll('h4.text-headline-md');
+                    if(statEls.length >= 3) {
+                        statEls[0].innerText = upcoming.toString().padStart(2, '0');
+                        statEls[1].innerText = completed.toString().padStart(2, '0');
+                        statEls[2].innerText = pending.toString().padStart(2, '0');
+                    }
+                    
+                    // Hero Card Upcoming
+                    const heroCard = document.querySelector('.bg-surface-container.rounded-xl.p-lg.border.border-outline-variant\\/30.max-w-md');
+                    if (heroCard) {
+                        const upcomingList = appointments.filter(a => a.status === 'scheduled' || a.status === 'confirmed' || a.status === 'pending').sort((a,b) => new Date(a.appointmentDate) - new Date(b.appointmentDate));
+                        if (upcomingList.length > 0) {
+                            const nextApp = upcomingList[0];
+                            const docName = nextApp.doctor ? `Dr. ${nextApp.doctor.firstName} ${nextApp.doctor.lastName}` : 'Unknown Doctor';
+                            const dept = nextApp.doctor ? nextApp.doctor.department : 'N/A';
+                            const date = new Date(nextApp.appointmentDate).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+                            
+                            heroCard.innerHTML = `
+                            <div class="flex items-center gap-md mb-md">
+                                <div class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-lg">
+                                    ${docName.replace('Dr. ', '').charAt(0)}
+                                </div>
+                                <div>
+                                    <h3 class="font-title-md text-title-md">${docName}</h3>
+                                    <p class="font-label-sm text-label-sm text-primary uppercase">${dept}</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-lg text-on-surface-variant mb-xl">
+                                <div class="flex items-center gap-xs">
+                                    <span class="material-symbols-outlined text-primary">event</span>
+                                    <span class="font-label-md text-label-md">${date}</span>
+                                </div>
+                                <div class="flex items-center gap-xs">
+                                    <span class="material-symbols-outlined text-primary">schedule</span>
+                                    <span class="font-label-md text-label-md">${nextApp.appointmentTime || 'TBD'}</span>
+                                </div>
+                            </div>
+                            <button class="w-full bg-[#069494] text-white font-title-md text-title-md py-4 px-xl rounded-xl hover:bg-[#057a7a] transition-all transform hover:-translate-y-1 custom-shadow flex items-center justify-center gap-sm">
+                                <span class="material-symbols-outlined">video_call</span>
+                                Join Appointment
+                            </button>
+                            `;
+                        } else {
+                            heroCard.innerHTML = `
+                            <div class="text-center py-md text-on-surface-variant">
+                                <span class="material-symbols-outlined text-[48px] mb-sm opacity-50">event_available</span>
+                                <p>No upcoming appointments.</p>
+                            </div>
+                            `;
+                        }
+                    }
+
+                    // Table
+                    const tbody = document.querySelector('tbody');
+                    if (tbody) {
+                        if (appointments.length === 0) {
+                            tbody.innerHTML = '<tr><td colspan="6" class="px-lg py-lg text-center text-on-surface-variant">No appointments found.</td></tr>';
+                        } else {
+                            tbody.innerHTML = appointments.map(app => {
+                                const docName = app.doctor ? `Dr. ${app.doctor.firstName} ${app.doctor.lastName}` : 'Unknown Doctor';
+                                const dept = app.doctor ? app.doctor.department : 'N/A';
+                                const date = new Date(app.appointmentDate).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+                                const time = app.appointmentTime || 'TBD';
+                                
+                                let statusClass = 'bg-surface-container text-on-surface';
+                                if(app.status === 'confirmed' || app.status === 'completed') statusClass = 'bg-green-100 text-green-700 border-green-200';
+                                else if(app.status === 'pending') statusClass = 'bg-amber-100 text-amber-700 border-amber-200';
+                                else if(app.status === 'cancelled') statusClass = 'bg-red-100 text-red-700 border-red-200';
+                                
+                                return \`
+                                <tr class="hover:bg-surface-container/30 transition-colors">
+                                    <td class="px-lg py-lg flex items-center gap-sm">
+                                        <div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold">
+                                            \${docName.replace('Dr. ', '').charAt(0)}
+                                        </div>
+                                        <span class="font-body-md text-body-md font-medium">\${docName}</span>
+                                    </td>
+                                    <td class="px-lg py-lg font-body-md text-body-md">\${dept}</td>
+                                    <td class="px-lg py-lg font-body-md text-body-md">\${date}</td>
+                                    <td class="px-lg py-lg font-body-md text-body-md">\${time}</td>
+                                    <td class="px-lg py-lg">
+                                        <span class="px-3 py-1 \${statusClass} text-xs font-bold rounded-full border uppercase">\${app.status}</span>
+                                    </td>
+                                    <td class="px-lg py-lg">
+                                        <button class="text-on-surface-variant hover:text-primary transition-colors">
+                                            <span class="material-symbols-outlined">more_horiz</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                \`;
+                            }).join('');
+                        }
+                    }
+                }
+            } catch (err) {
+                console.error("Error hydrating dashboard:", err);
+            }
+        }
+        
+        hydrateDashboard();
+        
     });
 </script>
 <script src="scripts.js"></script>
