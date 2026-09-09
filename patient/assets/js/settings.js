@@ -144,7 +144,12 @@ function initLogout() {
     closeModal('logoutConfirmModal');
     showToast('You have been logged out.', 'success');
     setTimeout(() => {
-      window.location.href = '../../public/login_secure_entry.html';
+      let appRoot = '';
+      const path = window.location.pathname;
+      if (path.includes('/patient/')) {
+        appRoot = path.substring(0, path.indexOf('/patient/'));
+      }
+      window.location.href = appRoot + '/public/login_secure_entry.html';
     }, 500);
   });
 }

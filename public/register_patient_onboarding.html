@@ -158,7 +158,7 @@ const FALLBACK_HOSPITALS = [
 
 async function loadHospitals() {
     const sel = document.getElementById('hospitalId');
-    sel.innerHTML = '<option value="">Loading hospitals...</option>';
+    sel.innerHTML = '<option value="">Loading hospitals (waking up server, please wait 30s)...</option>';
     let hospitals = [];
     try {
         const data = await API.hospitals.list();
@@ -171,9 +171,11 @@ async function loadHospitals() {
 
     if (!hospitals || hospitals.length === 0) {
         hospitals = FALLBACK_HOSPITALS;
+        sel.innerHTML = '<option value="">— Select a Hospital (Offline Mode) —</option>';
+    } else {
+        sel.innerHTML = '<option value="">— Select a Hospital —</option>';
     }
 
-    sel.innerHTML = '<option value="">— Select a Hospital —</option>';
     hospitals.forEach(h => {
         const opt = document.createElement('option');
         opt.value = h._id || h.id;

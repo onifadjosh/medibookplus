@@ -1,4 +1,5 @@
-const API_BASE_URL = 'https://medium-backend-md5a.onrender.com/api';
+const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const API_BASE_URL = isLocal ? 'https://medium-backend-md5a.onrender.com/api' : '/api';
 const TOKEN_KEY = 'medibookplus_token';
 const USER_KEY = 'medibookplus_user';
 
@@ -108,22 +109,32 @@ const API = {
     },
 
     redirectByRole(role) {
-        const isPublicDir = window.location.pathname.includes('/public/');
+        let appRoot = '';
+        const path = window.location.pathname;
+        if (path.includes('/public/')) {
+            appRoot = path.substring(0, path.indexOf('/public/'));
+        } else if (path.includes('/a_dm_in/')) {
+            appRoot = path.substring(0, path.indexOf('/a_dm_in/'));
+        } else {
+            // Assume we are in public if neither is present (e.g. Vercel with public as root)
+            appRoot = '';
+        }
+
         switch (role) {
             case 'patient':
-                window.location.href = isPublicDir ? '../patient/pages/dashboard.html' : 'dashboard.html';
+                window.location.href = appRoot + '/patient/pages/dashboard.html';
                 break;
             case 'doctor':
-                window.location.href = isPublicDir ? 'doctor_dashboard.html' : '../../public/doctor_dashboard.html';
+                window.location.href = appRoot + '/public/doctor_dashboard.html';
                 break;
             case 'admin':
-                window.location.href = isPublicDir ? 'admin_hospital_management_dashboard.html' : '../../public/admin_hospital_management_dashboard.html';
+                window.location.href = appRoot + '/a_dm_in/admin_hospital_management_dashboard.html';
                 break;
             case 'superadmin':
-                window.location.href = isPublicDir ? 'superadmin_dashboard.html' : '../../public/superadmin_dashboard.html';
+                window.location.href = appRoot + '/public/superadmin_dashboard.html';
                 break;
             default:
-                window.location.href = isPublicDir ? 'login_secure_entry.html' : '../../public/login_secure_entry.html';
+                window.location.href = appRoot + '/public/login_secure_entry.html';
         }
     },
 

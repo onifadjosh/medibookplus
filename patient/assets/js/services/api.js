@@ -60,39 +60,39 @@ function getLiveUser() {
  * Reads
  * --------------------------------------------------------------------- */
 
-export const getPatient = () => {
+export const getPatient = async () => {
   const liveUser = getLiveUser();
   if (liveUser) {
-    const fn = liveUser.firstName || patient.firstName;
-    const ln = liveUser.lastName || patient.lastName;
-    const initials = `${fn[0] || ''}${ln[0] || ''}`.toUpperCase() || patient.initials;
+    const fn = liveUser.firstName || 'Patient';
+    const ln = liveUser.lastName || '';
+    const initials = `${fn[0] || ''}${ln[0] || ''}`.toUpperCase();
     return mockResponse({
-      ...patient,
-      id: liveUser.patientId || liveUser._id || patient.id,
+      id: liveUser.patientId || liveUser._id || 'PT-UNKNOWN',
       firstName: fn,
       lastName: ln,
       initials,
       contact: {
-        ...patient.contact,
-        email: liveUser.email || patient.contact.email,
-        phone: liveUser.phone || patient.contact.phone,
+        email: liveUser.email || 'No email',
+        phone: liveUser.phone || 'No phone',
       },
       healthSummary: {
-        bloodGroup: liveUser.bloodGroup || patient.healthSummary.bloodGroup,
-        insuranceStatus: liveUser.insuranceProvider || patient.healthSummary.insuranceStatus,
-        allergies: liveUser.allergies ? (Array.isArray(liveUser.allergies) ? liveUser.allergies.join(', ') : liveUser.allergies) : patient.healthSummary.allergies,
+        bloodGroup: liveUser.bloodGroup || 'Not Set',
+        insuranceStatus: liveUser.insuranceProvider || 'Not Set',
+        allergies: liveUser.allergies ? (Array.isArray(liveUser.allergies) ? liveUser.allergies.join(', ') : liveUser.allergies) : 'None reported',
       },
       profileCompletion: liveUser.bloodGroup ? 100 : 75,
     });
   }
-  return mockResponse(patient);
+  return mockResponse(null);
 };
 
 export const getAppointments = async () => {
   const token = localStorage.getItem('medibookplus_token');
   if (token) {
     try {
-      const res = await fetch('https://medium-backend-md5a.onrender.com/api/patients/appointments', {
+      const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      const API_BASE_URL = isLocal ? 'https://medium-backend-md5a.onrender.com/api' : '/api';
+      const res = await fetch(`${API_BASE_URL}/patients/appointments`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const json = await res.json();
@@ -114,8 +114,11 @@ export const getAppointments = async () => {
 
 export const getAppointmentHistory = () => mockResponse(appointmentHistory);
 export const getFeaturedAppointment = async () => {
-  const appts = await getAppointments();
-  return appts.length > 0 ? appts[0] : featuredAppointment;
+  const apts = await getAppointments();
+  if (apts && apts.length > 0) {
+    return mockResponse(apts[0]);
+  }
+  return mockResponse(null);
 };
 export const getNextAppointmentReminder = async () => {
   const appts = await getAppointments();

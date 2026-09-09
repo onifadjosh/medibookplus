@@ -37,17 +37,30 @@ const MOCK_MARKED_DAYS = [26];
 /** Renders the hero's featured "Join Appointment" card. */
 async function renderHeroAppointment() {
   const appt = await getFeaturedAppointment();
+  const heroCard = qs('.mb-appt-highlight');
+  
+  if (!appt) {
+    if (heroCard) {
+      heroCard.innerHTML = `<div class="p-4 text-center w-100" style="padding: 2rem;">
+        <h3 class="mb-2">No Upcoming Appointments</h3>
+        <p class="text-muted mb-4">You don't have any appointments scheduled for today.</p>
+        <button class="mb-btn mb-btn-primary" data-cta="new-appointment" onclick="window.location.href='appointments.html'">Book Appointment</button>
+      </div>`;
+    }
+    return;
+  }
+
   const nameEl = qs('[data-hero-doctor-name]');
   const deptEl = qs('[data-hero-doctor-dept]');
   const dateEl = qs('[data-hero-date]');
   const timeEl = qs('[data-hero-time]');
   const avatarMount = qs('[data-hero-avatar]');
 
-  if (nameEl) nameEl.textContent = appt.doctorName;
-  if (deptEl) deptEl.textContent = appt.department;
-  if (dateEl) dateEl.textContent = appt.date;
-  if (timeEl) timeEl.textContent = appt.time;
-  if (avatarMount) avatarMount.appendChild(createInitialsAvatar(appt.doctorInitials, 48, 16));
+  if (nameEl) nameEl.textContent = appt.doctorName || appt.doctor || 'Doctor';
+  if (deptEl) deptEl.textContent = appt.department || 'General';
+  if (dateEl) dateEl.textContent = appt.date || 'TBD';
+  if (timeEl) timeEl.textContent = appt.time || 'TBD';
+  if (avatarMount) avatarMount.appendChild(createInitialsAvatar(appt.doctorInitials || 'DR', 48, 16));
 }
 
 /** Populates the patient's health summary and animates the profile-completion bar. */

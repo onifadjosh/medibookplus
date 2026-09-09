@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://medium-backend-md5a.onrender.com/api/:path*"
+    }
+  ]
+}
